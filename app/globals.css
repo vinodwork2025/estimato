@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,8 +10,8 @@
     --bg-elevated: #ffffff;
     --bg-navy: #0E2146;
     --text-primary: #0E2146;
-    --text-secondary: #4A5568;
-    --text-tertiary: #8492A6;
+    --text-secondary: #1A1A1A;
+    --text-tertiary: #0a0a0a;
     --accent: #C8633A;
     --accent-hover: #B5552E;
     --gold: #C5A059;
@@ -33,11 +33,30 @@
   }
 
   body {
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.011em;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  /* Grain noise overlay — fixed, GPU-safe, pointer-events-none */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  /* Balance text wrapping on all headings — prevents orphaned words */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
   }
 
   * {
@@ -45,14 +64,15 @@
   }
 
   ::selection {
-    background: rgba(197, 160, 89, 0.2);
+    background: rgba(197, 160, 89, 0.22);
     color: var(--navy);
   }
 }
 
 @layer utilities {
+  /* Headings — Outfit geometric (futuristic, Apple/Tesla adjacent) */
   .font-serif {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 
   .font-mono {
@@ -120,10 +140,10 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Architectural label — used throughout planner and results */
+  /* Architectural label — mono caps eyebrow throughout */
   .label-arch {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-tertiary);
@@ -153,12 +173,28 @@
     );
   }
 
-  /* Planner step title */
+  /* Planner step title — Outfit geometric */
   .step-title {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Outfit', system-ui, sans-serif;
     font-size: clamp(28px, 4vw, 36px);
-    line-height: 1.12;
-    letter-spacing: -0.015em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
     color: var(--text-primary);
+  }
+
+  /* Spotlight border card — border illuminates under cursor (use with JS or group-hover) */
+  .spotlight-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .spotlight-card:hover {
+    border-color: rgba(14, 33, 70, 0.2);
+    box-shadow: 0 8px 32px rgba(14, 33, 70, 0.08), 0 2px 8px rgba(14, 33, 70, 0.04);
   }
 }

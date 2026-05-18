@@ -29,8 +29,8 @@ const config: Config = {
         },
         text: {
           primary: "#0E2146",
-          secondary: "#4A5568",
-          tertiary: "#8492A6",
+          secondary: "#1A1A1A",
+          tertiary: "#0a0a0a",
           inverse: "#F8F6F2",
         },
         accent: {
@@ -54,8 +54,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        serif: ["Instrument Serif", "Georgia", "serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+        serif: ["Outfit", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       fontSize: {

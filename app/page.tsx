@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -142,59 +143,64 @@ export default function HomePage() {
 
       <div className="min-h-screen bg-bg-primary">
 
-        {/* ── Nav ── */}
-        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
-          <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <EstimateLogo size="sm" />
-            <nav className="flex items-center gap-6" aria-label="Main navigation">
-              <Link href="/about" className="text-sm text-text-secondary hover:text-navy transition-colors hidden md:block font-medium">
-                About
-              </Link>
-              <Link href="/for-architects" className="text-sm text-text-secondary hover:text-navy transition-colors hidden md:block font-medium">
-                For architects
-              </Link>
-              <Link href="/plan">
-                <Button variant="primary" size="sm">
-                  Get my estimate →
-                </Button>
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
 
         <main>
           {/* ── Hero ── */}
           <HomeHero />
 
-          {/* ── How it works ── */}
-          <section className="py-24 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
+          {/* ── How it works — zig-zag (3-column grid is banned) ── */}
+          <section className="py-28 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
             <div className="max-w-6xl mx-auto">
-              <AnimateIn className="mb-16">
-                <p className="label-arch mb-3">The process</p>
-                <h2 id="how-heading" className="font-serif text-headline-xl text-navy">
+              <AnimateIn className="mb-20">
+                <div className="flex items-center gap-3 mb-4">
+                  <Image src="/icon-compass-dark.png" alt="" width={28} height={32} className="object-contain opacity-75" aria-hidden="true" />
+                  <p className="label-arch">The process</p>
+                </div>
+                <h2
+                  id="how-heading"
+                  className="font-serif text-navy"
+                  style={{ fontSize: "clamp(40px, 5vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 800 }}
+                >
                   Three steps to clarity
                 </h2>
               </AnimateIn>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-24">
                 {HOW_IT_WORKS.map((item, i) => (
-                  <AnimateIn key={item.step} delay={i * 0.12}>
-                    <div className="group">
-                      <div className="relative h-56 rounded-2xl overflow-hidden mb-6 bg-surface-low">
+                  <AnimateIn key={item.step} delay={0.05}>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-20 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
+                      {/* Image */}
+                      <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-elevation-2">
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          className="object-cover transition-transform duration-600 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-104"
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 overlay-cinema" />
-                        <div className="absolute bottom-4 left-4">
-                          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">{item.step}</span>
+                        <div className="absolute bottom-5 left-6">
+                          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">{item.step}</span>
                         </div>
                       </div>
-                      <h3 className="font-serif text-headline-sm text-navy mb-2">{item.title}</h3>
-                      <p className="text-body-sm text-text-secondary leading-relaxed">{item.body}</p>
+                      {/* Text */}
+                      <div>
+                        <p
+                          className="font-serif text-navy/8 leading-none select-none mb-2"
+                          style={{ fontSize: "clamp(80px, 12vw, 140px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.85 }}
+                          aria-hidden="true"
+                        >
+                          {item.step}
+                        </p>
+                        <h3
+                          className="font-serif text-navy mb-4"
+                          style={{ fontSize: "clamp(28px, 3vw, 38px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1 }}
+                        >
+                          {item.title}
+                        </h3>
+                        <p className="text-body text-text-secondary leading-relaxed max-w-[44ch]">{item.body}</p>
+                      </div>
                     </div>
                   </AnimateIn>
                 ))}
@@ -203,35 +209,51 @@ export default function HomePage() {
           </section>
 
           {/* ── What you get ── */}
-          <section className="py-24 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
+          <section className="py-28 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-28 items-start">
 
-                <AnimateIn direction="right">
-                  <p className="label-arch mb-3">Every estimate includes</p>
-                  <h2 id="what-heading" className="font-serif text-headline-xl text-navy mb-5">
+                {/* Left — sticky editorial block */}
+                <AnimateIn direction="right" className="lg:sticky lg:top-28">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Image src="/icon-checklist.png" alt="" width={24} height={30} className="object-contain opacity-75" aria-hidden="true" />
+                    <p className="label-arch">Every estimate includes</p>
+                  </div>
+                  <h2
+                    id="what-heading"
+                    className="font-serif text-navy mb-6"
+                    style={{ fontSize: "clamp(36px, 4.5vw, 54px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                  >
                     A 12-page report built for homeowners
                   </h2>
-                  <p className="text-body text-text-secondary mb-8 leading-relaxed">
+                  <p className="text-body text-text-secondary mb-8 leading-relaxed max-w-[44ch]">
                     Not just a number — a full picture of your construction budget
                     with the context to make confident decisions.
                   </p>
                   <Link href="/plan">
-                    <Button variant="primary" size="md">
+                    <Button variant="primary" size="lg" className="px-10">
                       Get my free estimate →
                     </Button>
                   </Link>
                 </AnimateIn>
 
-                <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Right — numbered list, no cards, just dividers */}
+                <StaggerContainer className="divide-y divide-border">
                   {WHAT_YOU_GET.map((item, i) => (
                     <StaggerItem key={item.label}>
-                      <div className="bg-white rounded-2xl border border-border p-5 h-full card-hover">
-                        <div className="w-7 h-7 rounded-lg bg-navy/6 flex items-center justify-center mb-4">
-                          <span className="text-navy text-sm font-mono font-bold">{String(i + 1).padStart(2, "0")}</span>
+                      <div className="flex gap-6 py-7 group">
+                        <span
+                          className="font-mono text-navy/20 tabular-nums shrink-0 mt-1 group-hover:text-navy/50 transition-colors duration-300"
+                          style={{ fontSize: "13px", letterSpacing: "0.05em" }}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <h3 className="font-semibold text-navy mb-1.5" style={{ fontSize: "17px", letterSpacing: "-0.01em" }}>
+                            {item.label}
+                          </h3>
+                          <p className="text-body-sm text-text-secondary leading-relaxed">{item.body}</p>
                         </div>
-                        <h3 className="font-semibold text-navy text-body-sm mb-2">{item.label}</h3>
-                        <p className="text-body-sm text-text-secondary leading-relaxed">{item.body}</p>
                       </div>
                     </StaggerItem>
                   ))}
@@ -241,23 +263,32 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Why different — solid navy, no image overlay ── */}
-          <section className="py-24 px-6 bg-navy" aria-labelledby="why-heading">
+          {/* ── Why different ── */}
+          <section className="py-28 px-6 bg-navy" aria-labelledby="why-heading">
             <div className="max-w-6xl mx-auto">
-              <AnimateIn className="mb-16">
-                <p className="text-xs font-mono uppercase tracking-[0.18em] text-gold mb-3">Our philosophy</p>
-                <h2 id="why-heading" className="font-serif text-headline-xl text-white">
+              <AnimateIn className="mb-20">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold mb-4">Our philosophy</p>
+                <h2
+                  id="why-heading"
+                  className="font-serif text-white"
+                  style={{ fontSize: "clamp(40px, 5vw, 60px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                >
                   Why Estimato is different
                 </h2>
               </AnimateIn>
 
-              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {WHY_DIFFERENT.map((item) => (
                   <StaggerItem key={item.title}>
-                    <div className="border border-white/10 rounded-2xl p-7 hover:border-gold/30 hover:bg-white/4 transition-all duration-300">
-                      <div className="w-8 h-0.5 bg-gold mb-5" />
-                      <h3 className="font-semibold text-white text-headline-sm mb-3">{item.title}</h3>
-                      <p className="text-white/65 text-body-sm leading-relaxed">{item.body}</p>
+                    <div className="border border-white/12 rounded-2xl p-8 hover:border-gold/40 hover:bg-white/[0.04] transition-all duration-300 group">
+                      <div className="w-10 h-0.5 bg-gold mb-7 group-hover:w-14 transition-all duration-300" />
+                      <h3
+                        className="font-serif text-white mb-4"
+                        style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.01em" }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p className="text-white/80 text-body leading-relaxed">{item.body}</p>
                     </div>
                   </StaggerItem>
                 ))}
@@ -266,23 +297,32 @@ export default function HomePage() {
           </section>
 
           {/* ── Cities ── */}
-          <section className="py-20 px-6 bg-white border-t border-border" aria-labelledby="cities-heading">
-            <div className="max-w-4xl mx-auto">
-              <AnimateIn className="text-center mb-10">
-                <p className="label-arch mb-3">Coverage</p>
-                <h2 id="cities-heading" className="font-serif text-headline-xl text-navy mb-3">
-                  Cities we cover
-                </h2>
-                <p className="text-body text-text-secondary">
-                  Verified 2026 construction rate data for these locations.
-                </p>
+          <section className="py-24 px-6 bg-white border-t border-border" aria-labelledby="cities-heading">
+            <div className="max-w-5xl mx-auto">
+              <AnimateIn className="mb-14">
+                <div className="flex items-center gap-3 mb-4">
+                  <Image src="/icon-roof-dark.png" alt="" width={36} height={22} className="object-contain opacity-75" aria-hidden="true" />
+                  <p className="label-arch">Coverage</p>
+                </div>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <h2
+                    id="cities-heading"
+                    className="font-serif text-navy"
+                    style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                  >
+                    Cities we cover
+                  </h2>
+                  <p className="text-body-sm text-text-secondary max-w-xs">
+                    Verified 2026 construction rate data for every location.
+                  </p>
+                </div>
               </AnimateIn>
 
-              <StaggerContainer className="flex flex-wrap gap-2.5 justify-center">
+              <StaggerContainer className="flex flex-wrap gap-2 justify-start">
                 {CITIES.filter((c) => c.value !== "other").map((city) => (
                   <StaggerSpan
                     key={city.value}
-                    className="px-4 py-2 bg-surface-low border border-border rounded-full text-body-sm text-text-primary font-medium hover:border-navy hover:text-navy hover:bg-navy-faint transition-all duration-200 cursor-default"
+                    className="px-4 py-2 bg-bg-primary border border-border rounded-lg text-body-sm text-text-secondary font-medium hover:border-navy/40 hover:text-navy hover:bg-navy-faint transition-all duration-200 cursor-default tracking-tight"
                   >
                     {city.label}
                   </StaggerSpan>
@@ -306,24 +346,27 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Final CTA — solid navy, no image overlay ── */}
-          <section className="py-28 px-6 bg-navy border-t border-navy-light">
+          {/* ── Final CTA ── */}
+          <section className="py-32 px-6 bg-navy border-t border-white/8">
             <div className="max-w-4xl mx-auto text-center">
               <AnimateIn>
-                <p className="text-xs font-mono uppercase tracking-[0.18em] text-gold mb-5">Get started today</p>
-                <h2 className="font-serif text-display-sm text-white mb-6 leading-tight">
-                  Start your home plan now.
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold mb-6">Get started today</p>
+                <h2
+                  className="font-serif text-white mb-7"
+                  style={{ fontSize: "clamp(44px, 6vw, 76px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.0 }}
+                >
+                  Know your numbers<br />before you break ground.
                 </h2>
-                <p className="text-white/65 text-body-lg mb-10 max-w-md mx-auto leading-relaxed">
+                <p className="text-white/80 text-body-lg mb-12 max-w-[44ch] mx-auto leading-relaxed">
                   Takes 3 minutes. Free. No account needed.
                   Real numbers you can take to any architect or contractor.
                 </p>
                 <Link href="/plan">
-                  <Button variant="gold" size="lg" className="px-12">
+                  <Button variant="gold" size="lg" className="px-14">
                     Get my estimate →
                   </Button>
                 </Link>
-                <p className="text-white/35 text-xs font-mono mt-6 uppercase tracking-[0.12em]">
+                <p className="text-white/40 text-[11px] font-mono mt-7 uppercase tracking-[0.14em]">
                   12+ cities · 2026 verified rates · No sign-up
                 </p>
               </AnimateIn>
@@ -336,7 +379,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div>
-                <EstimateLogo size="sm" variant="light" />
+                <EstimateLogo size="lg" variant="light" />
                 <p className="text-xs text-white/40 mt-3 max-w-xs leading-relaxed">
                   Honest construction cost estimates for Indian homeowners.
                   Free forever.

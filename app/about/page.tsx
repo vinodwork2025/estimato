@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
-import { Button } from "@/components/ui/Button";
+import { SiteHeader } from "@/components/shared/SiteHeader";
 
 export const metadata: Metadata = {
   title: "About Estimato",
@@ -36,17 +36,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
 
-      {/* Nav */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border px-6 py-4">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/">
-            <EstimateLogo size="sm" />
-          </Link>
-          <Link href="/plan">
-            <Button variant="primary" size="sm">Start planning</Button>
-          </Link>
-        </div>
-      </header>
+      <SiteHeader ctaLabel="Start planning" ctaHref="/plan" maxWidth="max-w-5xl" />
 
       <main className="max-w-2xl mx-auto px-6">
 
@@ -92,7 +82,7 @@ export default function AboutPage() {
       {/* Footer */}
       <footer className="border-t border-border bg-white px-6 py-10 mt-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <EstimateLogo size="sm" />
+          <EstimateLogo size="lg" variant="dark" />
           <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.14em]">
             © {new Date().getFullYear()} Estimato · estimato.in
           </p>

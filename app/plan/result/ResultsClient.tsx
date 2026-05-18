@@ -75,8 +75,8 @@ export function ResultsClient() {
         {/* Header */}
         <header className="border-b border-border bg-white px-4 py-4 sticky top-0 z-30">
           <div className="max-w-3xl mx-auto flex items-center justify-between">
-            <Link href="/">
-              <EstimateLogo size="sm" />
+            <Link href="/" aria-label="Estimato home">
+              <EstimateLogo size="sm" variant="mark" />
             </Link>
             <Button variant="secondary" size="sm" onClick={openLeadForm}>
               Get PDF report

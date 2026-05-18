@@ -18,7 +18,7 @@ export default function PlannerLayout({
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-border">
         <div className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" aria-label="Estimato home">
-            <EstimateLogo size="sm" />
+            <EstimateLogo size="sm" variant="mark" />
           </Link>
           <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em]">
             Free · No sign-up
