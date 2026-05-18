@@ -1,0 +1,15 @@
+export const CITIES = [
+  { value: "hosur", label: "Hosur" },
+  { value: "krishnagiri", label: "Krishnagiri" },
+  { value: "attibele", label: "Attibele" },
+  { value: "bagalur", label: "Bagalur" },
+  { value: "anekal", label: "Anekal" },
+  { value: "sarjapura", label: "Sarjapura" },
+  { value: "devanahalli", label: "Devanahalli" },
+  { value: "yelahanka", label: "Yelahanka" },
+  { value: "bengaluru-rural", label: "Bengaluru Rural" },
+  { value: "electronic-city", label: "Electronic City" },
+  { value: "bengaluru-urban", label: "Bengaluru Urban" },
+  { value: "whitefield", label: "Whitefield" },
+  { value: "other", label: "Other" },
+];

@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #F8F6F2;
+    --bg-elevated: #ffffff;
+    --bg-navy: #0E2146;
+    --text-primary: #0E2146;
+    --text-secondary: #4A5568;
+    --text-tertiary: #8492A6;
+    --accent: #C8633A;
+    --accent-hover: #B5552E;
+    --gold: #C5A059;
+    --gold-light: #D4B47A;
+    --navy: #0E2146;
+    --navy-light: #1A3461;
+    --success: #2D7D5A;
+    --warning: #B8741F;
+    --error: #B33A3A;
+    --border: #E2DDD4;
+    --border-strong: #C8C2B8;
+    --border-subtle: #EDE9E2;
+  }
+
+  html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(197, 160, 89, 0.2);
+    color: var(--navy);
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tabular-nums {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Gold text gradient */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C5A059 0%, #D4B47A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card base */
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(14, 33, 70, 0.04), 0 4px 16px rgba(14, 33, 70, 0.04);
+  }
+
+  .card-hover {
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 4px 20px rgba(14, 33, 70, 0.10), 0 12px 40px rgba(14, 33, 70, 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Section container */
+  .section-container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Image frame */
+  .image-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 60px rgba(14, 33, 70, 0.18), 0 4px 16px rgba(14, 33, 70, 0.08);
+  }
+
+  /* Navy section text */
+  .navy-section {
+    background-color: #0E2146;
+    color: #F8F6F2;
+  }
+
+  /* Gold underline decoration */
+  .gold-rule {
+    width: 2.5rem;
+    height: 2px;
+    background: #C5A059;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Architectural label — used throughout planner and results */
+  .label-arch {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* Tier selection card — selected state */
+  .tier-selected {
+    border-color: rgba(14, 33, 70, 0.25);
+    background-color: rgba(14, 33, 70, 0.025);
+  }
+
+  /* Editorial section separator */
+  .rule-gold {
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Cinematic image overlay — strong bottom gradient */
+  .overlay-cinema {
+    background: linear-gradient(to top,
+      rgba(14, 33, 70, 0.92) 0%,
+      rgba(14, 33, 70, 0.45) 40%,
+      rgba(14, 33, 70, 0.05) 100%
+    );
+  }
+
+  /* Planner step title */
+  .step-title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+  }
+}
