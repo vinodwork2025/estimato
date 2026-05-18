@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 
 const URLS = [

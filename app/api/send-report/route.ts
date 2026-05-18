@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { NextResponse } from "next/server";
 import type { CalculationResult } from "@/types";
 import { formatINRShort } from "@/lib/utils";
