@@ -170,7 +170,7 @@ export default function HomePage() {
           <section className="py-24 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-16">
-                <p className="text-xs font-mono uppercase tracking-[0.18em] text-accent mb-3">The process</p>
+                <p className="label-arch mb-3">The process</p>
                 <h2 id="how-heading" className="font-serif text-headline-xl text-navy">
                   Three steps to clarity
                 </h2>
@@ -180,21 +180,20 @@ export default function HomePage() {
                 {HOW_IT_WORKS.map((item, i) => (
                   <AnimateIn key={item.step} delay={i * 0.12}>
                     <div className="group">
-                      {/* Contained image frame */}
-                      <div className="relative h-48 rounded-2xl overflow-hidden mb-6 bg-surface-low">
+                      <div className="relative h-56 rounded-2xl overflow-hidden mb-6 bg-surface-low">
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover transition-transform duration-600 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, 33vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                        <div className="absolute inset-0 overlay-cinema" />
+                        <div className="absolute bottom-4 left-4">
+                          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">{item.step}</span>
+                        </div>
                       </div>
-                      {/* Step number */}
-                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-2">{item.step}</p>
-                      {/* Text — on white background, always readable */}
-                      <h3 className="font-bold text-headline-sm text-navy mb-2">{item.title}</h3>
+                      <h3 className="font-serif text-headline-sm text-navy mb-2">{item.title}</h3>
                       <p className="text-body-sm text-text-secondary leading-relaxed">{item.body}</p>
                     </div>
                   </AnimateIn>
@@ -209,7 +208,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                 <AnimateIn direction="right">
-                  <p className="text-xs font-mono uppercase tracking-[0.18em] text-accent mb-3">Every estimate includes</p>
+                  <p className="label-arch mb-3">Every estimate includes</p>
                   <h2 id="what-heading" className="font-serif text-headline-xl text-navy mb-5">
                     A 12-page report built for homeowners
                   </h2>
@@ -270,7 +269,7 @@ export default function HomePage() {
           <section className="py-20 px-6 bg-white border-t border-border" aria-labelledby="cities-heading">
             <div className="max-w-4xl mx-auto">
               <AnimateIn className="text-center mb-10">
-                <p className="text-xs font-mono uppercase tracking-[0.18em] text-text-tertiary mb-3">Coverage</p>
+                <p className="label-arch mb-3">Coverage</p>
                 <h2 id="cities-heading" className="font-serif text-headline-xl text-navy mb-3">
                   Cities we cover
                 </h2>

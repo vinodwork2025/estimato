@@ -9,13 +9,38 @@ export const metadata: Metadata = {
     "Estimato is a home construction cost planning platform for Indian homeowners. Honest numbers. No contractor pitch.",
 };
 
+const SECTIONS = [
+  {
+    label: "The problem",
+    heading: "Contractors quote to win, not to inform",
+    body: "Most estimates you get are designed to get you to commit. They start low and grow. By the time the real number arrives, you have already committed emotionally and financially. Estimato works the other way. You come in with a clear expectation, knowing the range, knowing what drives cost, knowing what people forget to include.",
+  },
+  {
+    label: "How we earn",
+    heading: "Aligned with honest numbers",
+    body: "Estimato is free for homeowners. We earn from verified architecture and construction firms who pay a fixed fee per qualified consultation lead. No commission on project value. This keeps our incentives aligned with giving you accurate numbers — not inflated ones.",
+  },
+  {
+    label: "Our data",
+    heading: "Verified 2026 construction rates",
+    body: "Our base rates are verified against real project BOQs from Design Intend's work in Hosur and surrounding areas as of January 2026. We update rates quarterly. City multipliers are based on labour cost surveys and material logistics data.",
+  },
+  {
+    label: "Founding partner",
+    heading: "Design Intend",
+    body: "Design Intend is our founding partner, covering Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri. Founded by Ar. Chittrarasan, with experience at Gensler on Chase Bank, Starbucks, and GMFI projects.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
-      <header className="border-b border-border bg-white px-4 py-4">
+
+      {/* Nav */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link href="/">
-            <EstimateLogo size="md" />
+            <EstimateLogo size="sm" />
           </Link>
           <Link href="/plan">
             <Button variant="primary" size="sm">Start planning</Button>
@@ -23,67 +48,57 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <main className="max-w-2xl mx-auto px-4 py-16">
-        <h1 className="font-serif text-4xl text-text-primary mb-6">About Estimato</h1>
+      <main className="max-w-2xl mx-auto px-6">
 
-        <div className="prose text-text-secondary space-y-6">
-          <p className="text-lg leading-relaxed">
-            Estimato helps Indian homeowners figure out what their home will actually cost — before they
-            talk to a single contractor.
+        {/* Hero */}
+        <div className="pt-20 pb-16 border-b border-border">
+          <p className="label-arch mb-4">About</p>
+          <h1 className="font-serif text-navy mb-6" style={{ fontSize: "clamp(36px, 5vw, 52px)", lineHeight: 1.08, letterSpacing: "-0.02em" }}>
+            Honest numbers<br />for homeowners.
+          </h1>
+          <p className="text-body-lg text-text-secondary leading-relaxed max-w-lg">
+            Estimato helps Indian homeowners figure out what their home will actually cost —
+            before they talk to a single contractor.
           </p>
-
-          <p className="leading-relaxed">
-            Most cost estimates you get from contractors are designed to win the job. They start low
-            and grow. By the time the real number arrives, you have already committed emotionally and
-            financially.
-          </p>
-
-          <p className="leading-relaxed">
-            Estimato works the other way. You come in with a clear budget expectation. You know the
-            range. You know what drives the cost. You know what people forget to include. Then you go
-            talk to architects.
-          </p>
-
-          <h2 className="text-xl font-semibold text-text-primary mt-10 mb-3">How we earn</h2>
-          <p className="leading-relaxed">
-            Estimato is free for homeowners. We earn revenue from verified architecture and construction
-            firms who pay a fixed fee per qualified consultation lead. We do not earn commissions on
-            project value. This keeps our incentives aligned with giving you honest numbers.
-          </p>
-
-          <h2 className="text-xl font-semibold text-text-primary mt-10 mb-3">Where our rates come from</h2>
-          <p className="leading-relaxed">
-            Our base rates are verified against real project BOQs from Design Intend&apos;s construction
-            work in Hosur and surrounding areas as of January 2026. We update rates quarterly. City
-            multipliers are based on labour cost surveys and material logistics data.
-          </p>
-
-          <h2 className="text-xl font-semibold text-text-primary mt-10 mb-3">Our founding partner</h2>
-          <p className="leading-relaxed">
-            Design Intend is our founding partner, covering Hosur, Sarjapura, Attibele, Bagalur, and
-            Krishnagiri for the first 12 months. Founded by Ar. Chittrarasan, with experience at Gensler
-            on Chase Bank, Starbucks, and GMFI projects.
-          </p>
-
-          <div className="mt-10 pt-10 border-t border-border">
-            <p className="text-text-secondary mb-4">Questions or feedback?</p>
-            <a
-              href="mailto:hello@estimato.in"
-              className="text-accent underline hover:no-underline"
-            >
-              hello@estimato.in
-            </a>
-          </div>
         </div>
+
+        {/* Sections */}
+        <div className="divide-y divide-border">
+          {SECTIONS.map((s) => (
+            <div key={s.label} className="py-12">
+              <p className="label-arch mb-3">{s.label}</p>
+              <h2 className="font-serif text-headline-lg text-navy mb-4">{s.heading}</h2>
+              <p className="text-body text-text-secondary leading-relaxed">{s.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Contact */}
+        <div className="py-12 border-t border-border">
+          <p className="label-arch mb-3">Contact</p>
+          <p className="text-body-sm text-text-secondary mb-3">
+            Questions, feedback, or rate data corrections?
+          </p>
+          <a
+            href="mailto:hello@estimato.in"
+            className="font-mono text-sm text-navy hover:text-navy-muted transition-colors underline underline-offset-4"
+          >
+            hello@estimato.in
+          </a>
+        </div>
+
       </main>
 
-      <footer className="border-t border-border bg-white px-4 py-8 mt-16">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-xs text-text-tertiary">
+      {/* Footer */}
+      <footer className="border-t border-border bg-white px-6 py-10 mt-8">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <EstimateLogo size="sm" />
+          <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.14em]">
             © {new Date().getFullYear()} Estimato · estimato.in
           </p>
         </div>
       </footer>
+
     </div>
   );
 }
