@@ -15,7 +15,7 @@ import { Modal } from "@/components/ui/Modal";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics/events";
-import { CTA } from "@/lib/copy";
+import { CTA, RESULTS, TRUST } from "@/lib/copy";
 import Link from "next/link";
 
 type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string };
@@ -57,17 +57,20 @@ export function ResultsClient() {
     <>
       <div className="min-h-screen bg-bg-primary">
 
-        {/* Minimal nav */}
+        {/* Sticky results header */}
         <header className="border-b border-border px-6 md:px-12 py-4 sticky top-0 z-30 bg-bg-primary">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
             <Link href="/" aria-label="Estimato home">
               <EstimateLogo size="sm" variant="mark" />
             </Link>
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hidden md:block">
+              {TRUST.confidenceHeader}
+            </p>
             <Link
               href="/plan"
               className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
             >
-              New estimate
+              {CTA.newEstimate}
             </Link>
           </div>
         </header>
@@ -116,15 +119,13 @@ export function ResultsClient() {
                   maxWidth: "24ch",
                 }}
               >
-                Continue your build with the right partner.
+                {RESULTS.footerHeadline}
               </h2>
               <p
                 className="text-text-secondary leading-relaxed mb-10"
                 style={{ fontSize: "16px", maxWidth: "52ch" }}
               >
-                Estimato connects homeowners with vetted architects and contractors
-                who have delivered at your chosen specification level. One introduction.
-                No obligation.
+                {RESULTS.footerBody}
               </p>
               <Button variant="primary" size="lg" onClick={openLeadForm}>
                 {CTA.requestIntro}
@@ -135,13 +136,13 @@ export function ResultsClient() {
                   href="/plan"
                   className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
                 >
-                  Start a new estimate
+                  {CTA.newEstimate}
                 </Link>
                 <Link
                   href="/methodology"
                   className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
                 >
-                  Read the methodology
+                  {CTA.readMethodology}
                 </Link>
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { PlannerInput } from "@/types";
-import { TIER_NAMES } from "@/lib/copy";
+import { TIER_NAMES, RESULTS } from "@/lib/copy";
 
 interface ResultCoverProps {
   input: Partial<PlannerInput>;
@@ -47,7 +47,7 @@ export function ResultCover({ input, userName }: ResultCoverProps) {
         className="pt-4 px-6 md:px-12"
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
-          Estimato · Projection 2026
+          {RESULTS.coverLabel}
         </p>
       </motion.div>
 

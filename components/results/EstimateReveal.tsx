@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, animate } from "framer-motion";
 import { formatINRShort } from "@/lib/utils";
-import { TIER_NAMES } from "@/lib/copy";
+import { TIER_NAMES, RESULTS } from "@/lib/copy";
 import type { CalculationResult, PlannerInput } from "@/types";
 
 interface EstimateRevealProps {
@@ -87,7 +87,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
           transition={{ duration: 0.8, ease }}
           className="font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary mb-10 md:mb-14"
         >
-          Estimated construction cost
+          {RESULTS.estimateLabel}
         </motion.p>
 
         {/* The number */}

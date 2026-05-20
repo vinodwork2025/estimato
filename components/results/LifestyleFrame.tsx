@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { formatINRShort } from "@/lib/utils";
-import { TIER_NAMES, TIER_DESCRIPTIONS } from "@/lib/copy";
+import { TIER_NAMES, TIER_DESCRIPTIONS, RESULTS } from "@/lib/copy";
 import type { CalculationResult, QualityTier } from "@/types";
 
 interface LifestyleFrameProps {
@@ -34,11 +34,11 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
           className="mb-14 md:mb-20"
         >
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-4">
-            Living standards compared
+            Tier comparison
           </p>
           <h2
             id="lifestyle-heading"
-            className="font-serif text-text-primary"
+            className="font-serif text-text-primary mb-4"
             style={{
               fontSize: "clamp(28px, 4vw, 36px)",
               fontWeight: 400,
@@ -46,8 +46,11 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
               lineHeight: 1.1,
             }}
           >
-            Your tier, in context.
+            {RESULTS.lifestyleHeadline}
           </h2>
+          <p className="text-text-secondary leading-relaxed" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+            {RESULTS.lifestyleBody}
+          </p>
         </motion.div>
 
         {/* Mobile: horizontal scroll snap. Desktop: 2×2 grid. */}
