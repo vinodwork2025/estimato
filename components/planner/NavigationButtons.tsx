@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { CTA } from "@/lib/copy";
 
 interface NavigationButtonsProps {
   onBack?: () => void;
@@ -15,7 +16,7 @@ interface NavigationButtonsProps {
 export function NavigationButtons({
   onBack,
   onNext,
-  nextLabel = "Continue",
+  nextLabel = CTA.planNext,
   nextDisabled = false,
   loading = false,
   showBack = true,
@@ -25,56 +26,29 @@ export function NavigationButtons({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2 }}
-      className="flex items-center justify-between gap-4 pt-8 mt-6 border-t border-border"
+      className="sticky bottom-0 z-10 md:static flex items-center justify-between gap-4 border-t border-border bg-bg-primary -mx-5 px-5 md:mx-0 md:px-0 pt-4 pb-4 md:pb-0 md:pt-8 mt-6"
     >
       {showBack && onBack ? (
         <button
           type="button"
           onClick={onBack}
-          className="flex items-center gap-1.5 text-sm text-text-tertiary hover:text-text-primary transition-colors duration-200 group"
+          className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors duration-200 min-h-[48px] flex items-center"
         >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            className="transition-transform duration-200 group-hover:-translate-x-0.5"
-            aria-hidden="true"
-          >
-            <path
-              d="M9 11L5 7L9 3"
-              stroke="currentColor"
-              strokeWidth="1.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="font-mono text-[11px] uppercase tracking-[0.12em]">Back</span>
+          Back
         </button>
       ) : (
         <div />
       )}
 
       <Button
-        variant="primary"
+        variant="gold"
         onClick={onNext}
         disabled={nextDisabled}
         loading={loading}
         type={onNext ? "button" : "submit"}
-        className="min-w-[140px]"
+        className="min-w-[140px] min-h-[48px]"
       >
         {nextLabel}
-        {!loading && (
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path
-              d="M5 3L9 7L5 11"
-              stroke="currentColor"
-              strokeWidth="1.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
       </Button>
     </motion.div>
   );

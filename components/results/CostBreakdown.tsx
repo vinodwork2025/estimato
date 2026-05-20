@@ -1,133 +1,141 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { formatINRShort } from "@/lib/utils";
+import { RESULTS } from "@/lib/copy";
 import type { CalculationResult } from "@/types";
-
-// Architectural monochromatic palette — charcoal to sand with gold accent
-const SEGMENT_COLORS = [
-  "#1C1917",  // charcoal — civil structure (largest)
-  "#B8954E",  // gold — finishes (premium highlight)
-  "#6B635C",  // smoke — interiors
-  "#A8823B",  // bronze — MEP
-  "#3A3530",  // graphite — elevation
-  "#B4AB9E",  // sand-strong — approvals
-  "#DDD7CC",  // dust — contingency
-];
 
 const LABELS: Record<string, string> = {
   civilStructure: "Civil structure",
   finishes: "Finishes",
   interiors: "Interiors",
-  mep: "MEP (electrical & plumbing)",
-  elevation: "Elevation",
-  approvalsAndFees: "Approvals & fees",
-  contingency: "Contingency",
+  mep: "MEP — electrical & plumbing",
+  elevation: "Elevation & facade",
+  approvalsAndFees: "Approvals & statutory fees",
+  contingency: "Contingency reserve",
 };
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 interface CostBreakdownProps {
   breakdown: CalculationResult["breakdown"];
 }
 
 export function CostBreakdown({ breakdown }: CostBreakdownProps) {
-  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10%" });
 
-  const data = Object.entries(breakdown).map(([key, value], i) => ({
+  const data = Object.entries(breakdown).map(([key, value]) => ({
     key,
     name: LABELS[key] ?? key,
     value,
-    color: SEGMENT_COLORS[i % SEGMENT_COLORS.length],
   }));
 
   const total = data.reduce((sum, d) => sum + d.value, 0);
 
   return (
-    <section aria-labelledby="breakdown-heading" className="py-8">
-      <p className="label-arch mb-2">Cost breakdown</p>
-      <h2 id="breakdown-heading" className="font-serif text-headline-md text-text-primary mb-1">
-        Where every rupee goes
-      </h2>
-      <p className="text-body-sm text-text-secondary mb-8">
-        7-segment breakdown of your mid estimate.
-      </p>
+    <section
+      ref={ref}
+      aria-labelledby="breakdown-heading"
+      className="px-6 md:px-12 py-[96px] md:py-[160px]"
+    >
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-14 md:gap-24 items-start">
 
-      {/* Stacked bar — editorial, no rounded corners */}
-      <div className="flex h-[3px] overflow-hidden mb-8 gap-[1px]">
-        {data.map((item) => (
+        {/* Left — editorial copy */}
+        <div className="md:sticky md:top-28">
           <motion.div
-            key={item.key}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              width: `${(item.value / total) * 100}%`,
-              background: item.color,
-              originX: 0,
-              opacity: activeKey === null || activeKey === item.key ? 1 : 0.2,
-            }}
-            className="transition-opacity duration-200"
-          />
-        ))}
-      </div>
-
-      {/* Line items */}
-      <div className="flex flex-col divide-y divide-border">
-        {data.map((item) => {
-          const pct = ((item.value / total) * 100).toFixed(0);
-          const active = activeKey === item.key;
-          return (
-            <button
-              key={item.key}
-              onClick={() => setActiveKey(active ? null : item.key)}
-              className={`
-                w-full flex items-center gap-4 py-3.5 text-left
-                transition-colors duration-200 border-b border-border
-                ${active ? "opacity-100" : "hover:opacity-80"}
-              `}
-              aria-pressed={active}
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease }}
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-6">
+              Cost breakdown
+            </p>
+            <h2
+              id="breakdown-heading"
+              className="font-serif text-text-primary mb-6"
+              style={{
+                fontSize: "clamp(28px, 4vw, 36px)",
+                fontWeight: 400,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+              }}
             >
-              <span
-                className="w-2 h-2 shrink-0"
-                style={{ background: item.color }}
-                aria-hidden="true"
-              />
-              <span className="flex-1 text-body-sm font-medium text-text-primary">
-                {item.name}
-              </span>
-              <div className="hidden sm:flex items-center gap-2 w-28">
-                <div className="flex-1 h-px bg-border overflow-hidden">
+              {RESULTS.breakdownHeadline}
+            </h2>
+            <p
+              className="text-text-secondary leading-relaxed mb-8"
+              style={{ fontSize: "16px", maxWidth: "38ch" }}
+            >
+              {RESULTS.breakdownBody}
+            </p>
+            <div className="border-t border-border pt-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
+                Total mid estimate
+              </p>
+              <p
+                className="font-serif text-text-primary tabular-nums"
+                style={{ fontSize: "28px", fontWeight: 400, letterSpacing: "-0.02em" }}
+              >
+                {formatINRShort(total)}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right — horizontal bar list */}
+        <div className="flex flex-col" style={{ gap: "32px" }}>
+          {data.map((item, i) => {
+            const pct = (item.value / total) * 100;
+            return (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, y: 8 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.08, ease }}
+              >
+                <div className="flex items-baseline justify-between mb-2">
+                  <span
+                    className="text-text-primary"
+                    style={{ fontSize: "14px", fontWeight: 500 }}
+                  >
+                    {item.name}
+                  </span>
+                  <span
+                    className="font-mono text-text-tertiary tabular-nums"
+                    style={{ fontSize: "14px" }}
+                  >
+                    {formatINRShort(item.value)}
+                  </span>
+                </div>
+                <div
+                  className="relative overflow-hidden"
+                  style={{ height: "2px", background: "#E8E3DA" }}
+                >
                   <motion.div
                     initial={{ width: 0 }}
-                    animate={{ width: `${pct}%` }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-full"
-                    style={{ background: item.color }}
+                    animate={inView ? { width: `${pct}%` } : { width: 0 }}
+                    transition={{
+                      duration: 0.9,
+                      delay: i * 0.08,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    style={{ height: "100%", background: "#1C1917", position: "absolute", left: 0, top: 0 }}
                   />
                 </div>
-                <span className="font-mono text-[10px] text-text-tertiary w-8 text-right tabular-nums">
-                  {pct}%
-                </span>
-              </div>
-              <span className="font-mono font-semibold text-body-sm text-text-primary tabular-nums w-20 text-right">
-                {formatINRShort(item.value)}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+                <p
+                  className="font-mono text-text-tertiary mt-1"
+                  style={{ fontSize: "10px" }}
+                >
+                  {pct.toFixed(0)}% of total
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
 
-      {/* Total */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-4 pt-4 border-t border-border-strong flex justify-between items-center px-3"
-      >
-        <span className="text-body-sm font-medium text-text-secondary">Total (mid estimate)</span>
-        <span className="font-mono font-bold text-headline-sm text-text-primary tabular-nums">
-          {formatINRShort(total)}
-        </span>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -17,8 +17,10 @@ interface ProgressBarProps {
 }
 
 export function ProgressBar({ currentStep }: ProgressBarProps) {
-  const progress = ((currentStep - 1) / (STEPS.length - 1)) * 100;
+  const pct = ((currentStep - 1) / (STEPS.length - 1)) * 100;
   const stepLabel = STEPS[currentStep - 1]?.label ?? "";
+  const stepNum = String(currentStep).padStart(2, "0");
+  const totalNum = String(STEPS.length).padStart(2, "0");
 
   return (
     <div
@@ -27,26 +29,23 @@ export function ProgressBar({ currentStep }: ProgressBarProps) {
       aria-valuemin={1}
       aria-valuemax={STEPS.length}
       aria-label={`Step ${currentStep} of ${STEPS.length}: ${stepLabel}`}
+      className="mb-2"
     >
-      {/* Step counter + name */}
-      <div className="flex items-center justify-between mb-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary">
-          {String(currentStep).padStart(2, "0")} / {String(STEPS.length).padStart(2, "0")}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-secondary">
-          {stepLabel}
-        </span>
-      </div>
-
-      {/* Thin progress track — architectural line, no rounded dot */}
-      <div className="relative h-px w-full bg-border">
+      {/* Track */}
+      <div className="relative h-px w-full" style={{ background: "#E8E3DA" }}>
         <motion.div
-          className="absolute left-0 top-0 h-full bg-gold"
+          className="absolute left-0 top-0 h-full"
+          style={{ background: "#1C1917" }}
           initial={{ width: "0%" }}
-          animate={{ width: `${progress}%` }}
+          animate={{ width: `${pct}%` }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
+
+      {/* Label below */}
+      <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-tertiary mt-2">
+        Step {stepNum} of {totalNum} · {stepLabel}
+      </p>
     </div>
   );
 }

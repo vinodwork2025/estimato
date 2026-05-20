@@ -129,7 +129,7 @@ export function StepPlot() {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-border"
+            className="flex items-center gap-3 px-4 py-3 border border-border"
           >
             <span className="label-arch">Plot area</span>
             <span className="font-mono font-bold text-navy text-body-sm tabular-nums">
@@ -156,8 +156,8 @@ export function StepPlot() {
                 type="button"
                 onClick={() => setValue("facing", dir.value)}
                 className={`
-                  ${dir.pos} h-11 rounded-xl text-xs font-semibold transition-all duration-200
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                  ${dir.pos} h-11 text-xs font-semibold transition-all duration-200
+                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
                   ${facing === dir.value
                     ? "border border-navy bg-navy/6 text-navy"
                     : "border border-border bg-white text-text-secondary hover:border-border-strong hover:bg-surface-low"
@@ -169,7 +169,7 @@ export function StepPlot() {
               </button>
             ))}
             {/* Center — plot marker */}
-            <div className="col-start-2 row-start-2 h-11 rounded-xl bg-navy/5 border border-navy/10 flex items-center justify-center">
+            <div className="col-start-2 row-start-2 h-11 bg-navy/5 border border-navy/10 flex items-center justify-center">
               <span className="label-arch" style={{ color: "var(--navy)", opacity: 0.4 }}>Plot</span>
             </div>
           </div>
@@ -219,8 +219,8 @@ export function StepPlot() {
                 type="button"
                 onClick={() => setValue("slope", s.value)}
                 className={`
-                  flex flex-col items-center justify-center gap-0.5 h-16 rounded-xl border text-sm font-semibold transition-all duration-200
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                  flex flex-col items-center justify-center gap-0.5 h-16 border text-sm font-semibold transition-all duration-200
+                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
                   ${slope === s.value
                     ? "border-navy bg-navy/6 text-navy"
                     : "border-border bg-white text-text-primary hover:border-border-strong hover:bg-surface-low"

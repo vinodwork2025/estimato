@@ -7,6 +7,7 @@ import { usePlannerStore } from "@/lib/store/planner-store";
 import { ProgressBar } from "./ProgressBar";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics/events";
+import { CTA } from "@/lib/copy";
 import { HOME_TYPES } from "@/data/home-types";
 import { QUALITY_TIERS } from "@/data/quality-tiers";
 import { CITIES } from "@/data/cities";
@@ -113,15 +114,13 @@ export function StepReview() {
         </p>
       </div>
 
-      {/* Dark summary card */}
+      {/* Dark summary */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="bg-navy rounded-2xl px-6 py-2 overflow-hidden relative"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-navy px-6 py-2 overflow-hidden relative"
       >
-        {/* Subtle warm glow */}
-        <div className="absolute top-0 right-0 w-40 h-20 bg-gold/8 blur-3xl rounded-full pointer-events-none" />
 
         <ReviewRow
           label="Home type"
@@ -166,13 +165,13 @@ export function StepReview() {
       </motion.div>
 
       {!isComplete && (
-        <p className="text-body-sm text-warning bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-warning border border-warning/30 px-4 py-3">
           Some steps are incomplete. Go back and fill in the missing details.
         </p>
       )}
 
       {error && (
-        <p className="text-body-sm text-error bg-red-50 border border-red-200 rounded-xl p-4" role="alert">
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-error border border-error/30 px-4 py-3" role="alert">
           {error}
         </p>
       )}
@@ -183,11 +182,11 @@ export function StepReview() {
           onClick={handleCalculate}
           disabled={!isComplete}
           loading={loading}
-          className="w-full h-14 text-base shadow-glow-gold"
+          className="w-full h-14 text-base"
         >
-          {loading ? "Calculating your estimate…" : "See my detailed estimate →"}
+          {loading ? "Calculating your estimate…" : CTA.planFinal}
         </Button>
-        <p className="text-[11px] text-center text-text-tertiary font-mono uppercase tracking-[0.1em]">
+        <p className="text-[10px] text-center text-text-tertiary font-mono uppercase tracking-[0.14em]">
           Free · 2 seconds · No sign-up needed
         </p>
       </div>

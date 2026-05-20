@@ -15,7 +15,7 @@ export default function PlannerLayout({
 }) {
   return (
     <div className="min-h-screen bg-bg-primary flex flex-col">
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-border">
+      <header className="sticky top-0 z-30 bg-bg-primary border-b border-border">
         <div className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" aria-label="Estimato home">
             <EstimateLogo size="sm" variant="mark" />
@@ -26,7 +26,7 @@ export default function PlannerLayout({
         </div>
       </header>
       <main className="flex-1 flex flex-col">
-        <div className="max-w-2xl mx-auto w-full px-5 pt-10 pb-16 flex-1 flex flex-col">
+        <div className="max-w-2xl mx-auto w-full px-5 pt-10 pb-28 md:pb-16 flex-1 flex flex-col">
           {children}
         </div>
       </main>
