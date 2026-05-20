@@ -9,7 +9,7 @@ export interface FAQItem {
 }
 
 interface FAQBlockProps {
-  items: FAQItem[];
+  items: ReadonlyArray<FAQItem>;
   title?: string;
   sourcePage?: string;
   schemaId?: string;
@@ -90,7 +90,7 @@ export function FAQBlock({
                         marginBottom: "16px",
                       }}
                     />
-                    <p className="pb-6 text-text-secondary leading-relaxed" style={{ fontSize: "16px" }}>
+                    <p className="pb-6 text-text-secondary leading-relaxed" style={{ fontSize: "17px", lineHeight: 1.7 }}>
                       {item.answer}
                     </p>
                   </motion.div>
