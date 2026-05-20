@@ -11,7 +11,7 @@ import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
 import { formatINRShort } from "@/lib/utils";
 import { track } from "@/lib/analytics/events";
-import { TIER_NAMES, TIER_DESCRIPTIONS, TIER_RATE_BANDS, PLAN } from "@/lib/copy";
+import { TIER_NAMES, TIER_DESCRIPTIONS, TIER_RATE_BANDS, PLAN, TRUST } from "@/lib/copy";
 import type { QualityTier } from "@/types";
 
 const SWATCH_IMAGES: Record<QualityTier, string> = {
@@ -200,6 +200,10 @@ export function StepQuality() {
           Select a tier to continue
         </p>
       )}
+
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
+        {PLAN.confidenceNote}
+      </p>
 
       <NavigationButtons
         onBack={() => router.push("/plan/configuration")}

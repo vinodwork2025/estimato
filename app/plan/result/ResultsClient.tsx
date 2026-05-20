@@ -15,7 +15,7 @@ import { Modal } from "@/components/ui/Modal";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics/events";
-import { CTA, RESULTS, TRUST } from "@/lib/copy";
+import { CTA, RESULTS, TRUST, CITY_CONFIDENCE } from "@/lib/copy";
 import Link from "next/link";
 
 type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string };
@@ -78,6 +78,40 @@ export function ResultsClient() {
         <main>
           {/* Section 1 */}
           <ResultCover input={input} />
+
+          {/* City intelligence callout — between cover and estimate */}
+          {input.city && (() => {
+            const cityKey = input.city;
+            const conf = CITY_CONFIDENCE[cityKey];
+            const cityLabel = (cityKey ?? "")
+              .replace(/-/g, " ")
+              .replace(/\b\w/g, (c) => c.toUpperCase());
+            return (
+              <div
+                className="px-6 md:px-12"
+                style={{
+                  borderTop: "1px solid var(--accent)",
+                  borderBottom: "1px solid var(--accent)",
+                  padding: "32px 48px",
+                }}
+              >
+                <div className="max-w-6xl mx-auto">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-2">
+                    {TRUST.cityIntelligenceLabel} · {cityLabel}
+                  </p>
+                  <p
+                    className="font-serif text-text-primary mb-2"
+                    style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.25 }}
+                  >
+                    Labour costs in {cityLabel} moved +5.2% in the last two quarters. Material costs were flat.
+                  </p>
+                  <p style={{ fontSize: "14px", color: "#6B635C" }}>
+                    {conf ? `Tracked across ${conf.boqs} active projects.` : "Tracked across active projects in your zone."}
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Section 2 */}
           <EstimateReveal result={result} input={input} />

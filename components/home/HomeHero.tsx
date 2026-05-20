@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { HOME, AUTHORITY_TILES, SAMPLE_PROJECTION, CTA } from "@/lib/copy";
+import { HOME, AUTHORITY_TILES, SAMPLE_PROJECTION, CTA, TRUST } from "@/lib/copy";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -56,6 +56,18 @@ export function HomeHero() {
             }}
           >
             {HOME.heroSubhead}
+          </motion.p>
+
+          {/* Methodology trust nudge */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.27, ease }}
+            style={{ fontSize: "13px", color: "#6B635C", marginBottom: "28px" }}
+          >
+            <Link href="/methodology" className="underline underline-offset-2 decoration-[#D4CCBF] hover:decoration-text-tertiary transition-colors">
+              {TRUST.heroNudge}
+            </Link>
           </motion.p>
 
           <motion.div

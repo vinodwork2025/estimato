@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { usePlannerStore } from "@/lib/store/planner-store";
 import { CITIES } from "@/data/cities";
-import { CITY_CONFIDENCE, PLAN } from "@/lib/copy";
+import { CITY_CONFIDENCE, PLAN, TRUST } from "@/lib/copy";
 import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
 import { track } from "@/lib/analytics/events";
@@ -139,6 +139,10 @@ export function StepLocation() {
           {error}
         </p>
       )}
+
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
+        {PLAN.confidenceNote}
+      </p>
 
       <NavigationButtons
         onBack={() => router.push("/plan")}

@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { motion, animate } from "framer-motion";
+import Link from "next/link";
 import { formatINRShort } from "@/lib/utils";
-import { TIER_NAMES, RESULTS } from "@/lib/copy";
+import { TIER_NAMES, RESULTS, TRUST } from "@/lib/copy";
 import type { CalculationResult, PlannerInput } from "@/types";
 
 interface EstimateRevealProps {
@@ -198,6 +199,22 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
               Contingency recommended
             </p>
           </div>
+        </motion.div>
+
+        {/* Methodology trust link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6, ease }}
+          className="mt-8"
+        >
+          <Link
+            href="/methodology"
+            className="font-mono uppercase tracking-[0.12em] underline underline-offset-2 decoration-[#D4CCBF] hover:decoration-text-tertiary transition-colors"
+            style={{ fontSize: "11px", color: "#6B635C" }}
+          >
+            {TRUST.resultMethodologyLink}
+          </Link>
         </motion.div>
       </div>
     </section>
