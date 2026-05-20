@@ -50,13 +50,10 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
           </h2>
         </motion.div>
 
-        {/* Desktop: 2×2 grid. Mobile: horizontal scroll snap. */}
+        {/* Mobile: horizontal scroll snap. Desktop: 2×2 grid. */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-0 md:gap-px overflow-x-auto md:overflow-visible"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(260px, 1fr))",
-          }}
+          className="flex overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible hide-scrollbar"
+          style={{ scrollSnapType: "x mandatory" }}
           role="list"
         >
           {TIERS.map((tier, i) => {
@@ -77,7 +74,9 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
                   borderTop: "1px solid #D4CCBF",
                   padding: "32px 24px 40px",
                   position: "relative",
-                  minWidth: "260px",
+                  minWidth: "min(82vw, 300px)",
+                  flexShrink: 0,
+                  scrollSnapAlign: "start",
                 }}
               >
                 {/* Tier number */}

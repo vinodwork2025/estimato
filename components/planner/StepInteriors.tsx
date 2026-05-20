@@ -94,11 +94,11 @@ export function StepInteriors() {
               transition={{ delay: i * 0.07, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleSelect(opt.value)}
               className={`
-                text-left overflow-hidden rounded-2xl border transition-all duration-200
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                text-left overflow-hidden border transition-all duration-200
+                focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
                 ${isSelected
-                  ? "border-navy/20 shadow-card"
-                  : "border-border bg-white hover:border-border-strong hover:shadow-card"
+                  ? "border-navy/30"
+                  : "border-border bg-white hover:border-border-strong"
                 }
               `}
               style={isSelected ? { backgroundColor: "rgba(14,33,70,0.025)" } : { backgroundColor: "#ffffff" }}
@@ -133,27 +133,11 @@ export function StepInteriors() {
                   </p>
                 </div>
 
-                {/* Check / circle */}
-                {isSelected ? (
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-5 h-5 rounded-full bg-navy flex items-center justify-center shrink-0"
-                  >
-                    <svg width="8" height="7" viewBox="0 0 8 7" fill="none" aria-hidden="true">
-                      <path
-                        d="M1 3.5L3 5.5L7 1"
-                        stroke="white"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </motion.div>
-                ) : (
-                  <div className="w-5 h-5 rounded-full border border-border shrink-0" />
-                )}
+                {/* Selected indicator */}
+                <div
+                  className="w-px h-8 shrink-0 transition-colors duration-200"
+                  style={{ background: isSelected ? "var(--accent)" : "transparent" }}
+                />
               </div>
             </motion.button>
           );

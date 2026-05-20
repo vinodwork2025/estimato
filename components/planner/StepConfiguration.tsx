@@ -120,8 +120,8 @@ export function StepConfiguration() {
                 type="button"
                 onClick={() => setValue("floors", f.value)}
                 className={`
-                  flex flex-col items-center justify-center gap-0.5 h-16 rounded-xl border font-semibold text-sm transition-all duration-200
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                  flex flex-col items-center justify-center gap-0.5 h-16 border font-semibold text-sm transition-all duration-200
+                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
                   ${selBtn(floors === f.value)}
                 `}
                 aria-pressed={floors === f.value}
@@ -157,8 +157,8 @@ export function StepConfiguration() {
                 type="button"
                 onClick={() => setValue("parking", p.value)}
                 className={`
-                  flex flex-col items-center justify-center gap-0.5 h-16 rounded-xl border font-semibold text-sm transition-all duration-200
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                  flex flex-col items-center justify-center gap-0.5 h-16 border font-semibold text-sm transition-all duration-200
+                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
                   ${selBtn(parking === p.value)}
                 `}
                 aria-pressed={parking === p.value}
@@ -181,7 +181,7 @@ export function StepConfiguration() {
             <button
               type="button"
               onClick={() => setValue("balconies", Math.max(0, balconies - 1))}
-              className="w-10 h-10 rounded-xl border border-border bg-white text-lg font-medium text-text-primary hover:border-border-strong hover:bg-surface-low transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-navy disabled:opacity-30"
+              className="w-10 h-10 border border-border bg-white text-lg font-medium text-text-primary hover:border-border-strong hover:bg-surface-low transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
               disabled={balconies === 0}
               aria-label="Decrease balconies"
             >
@@ -193,7 +193,7 @@ export function StepConfiguration() {
             <button
               type="button"
               onClick={() => setValue("balconies", Math.min(6, balconies + 1))}
-              className="w-10 h-10 rounded-xl border border-border bg-white text-lg font-medium text-text-primary hover:border-border-strong hover:bg-surface-low transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-navy disabled:opacity-30"
+              className="w-10 h-10 border border-border bg-white text-lg font-medium text-text-primary hover:border-border-strong hover:bg-surface-low transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
               disabled={balconies === 6}
               aria-label="Increase balconies"
             >
@@ -208,22 +208,12 @@ export function StepConfiguration() {
         </div>
 
         {/* Toggles */}
-        <div className="bg-white rounded-2xl border border-border overflow-hidden divide-y divide-border">
-          <div className="px-5">
-            <Toggle label="Terrace" hint="Usable roof terrace" checked={terrace} onChange={(v) => setValue("terrace", v)} />
-          </div>
-          <div className="px-5">
-            <Toggle label="Lift" hint="+₹6.5L installed" checked={lift} onChange={(v) => setValue("lift", v)} />
-          </div>
-          <div className="px-5">
-            <Toggle label="Basement" hint="+22% civil cost" checked={basement} onChange={(v) => setValue("basement", v)} />
-          </div>
-          <div className="px-5">
-            <Toggle label="Home office" hint="+₹1.8L" checked={homeOffice} onChange={(v) => setValue("homeOffice", v)} />
-          </div>
-          <div className="px-5">
-            <Toggle label="Rental floor" hint="Earn rental income from a separate unit" checked={rentalFloor} onChange={(v) => setValue("rentalFloor", v)} />
-          </div>
+        <div className="divide-y divide-border border-t border-border">
+          <Toggle label="Terrace" hint="Usable roof terrace" checked={terrace} onChange={(v) => setValue("terrace", v)} />
+          <Toggle label="Lift" hint="+₹6.5L installed" checked={lift} onChange={(v) => setValue("lift", v)} />
+          <Toggle label="Basement" hint="+22% civil cost" checked={basement} onChange={(v) => setValue("basement", v)} />
+          <Toggle label="Home office" hint="+₹1.8L" checked={homeOffice} onChange={(v) => setValue("homeOffice", v)} />
+          <Toggle label="Rental floor" hint="Earn rental income from a separate unit" checked={rentalFloor} onChange={(v) => setValue("rentalFloor", v)} />
         </div>
 
       </div>
