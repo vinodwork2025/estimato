@@ -21,25 +21,25 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-semibold rounded-full tracking-[-0.01em] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.96] active:translate-y-[1px] select-none";
+    "inline-flex items-center justify-center font-sans font-medium tracking-[0.018em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/30 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed select-none";
 
   const variants = {
     primary:
-      "bg-navy text-white hover:bg-navy-light shadow-[0_2px_8px_rgba(14,33,70,0.20),inset_0_1px_0_rgba(255,255,255,0.08)] hover:shadow-[0_4px_16px_rgba(14,33,70,0.28)]",
+      "bg-navy text-text-inverse hover:bg-navy-light rounded-[3px] shadow-[0_1px_3px_rgba(28,25,23,0.18),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_2px_8px_rgba(28,25,23,0.22)]",
     secondary:
-      "bg-white text-text-primary border border-border hover:border-navy/25 hover:bg-surface-low shadow-sm hover:shadow-md",
+      "bg-transparent text-text-primary border border-border hover:border-border-strong rounded-[3px]",
     ghost:
-      "bg-transparent text-text-secondary hover:text-navy hover:bg-navy/4",
+      "bg-transparent text-text-tertiary hover:text-text-primary rounded-[3px]",
     danger:
-      "bg-error text-white hover:opacity-90 shadow-sm",
+      "bg-error text-white rounded-[3px] hover:opacity-90",
     gold:
-      "bg-gradient-to-br from-gold to-gold-light text-white font-semibold shadow-[0_4px_16px_rgba(197,160,89,0.30),inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_8px_28px_rgba(197,160,89,0.40)] hover:opacity-97",
+      "bg-gold text-white rounded-[3px] hover:bg-gold-muted shadow-[0_1px_3px_rgba(184,149,78,0.25)] hover:shadow-[0_2px_8px_rgba(184,149,78,0.30)]",
   };
 
   const sizes = {
-    sm: "h-9 px-5 text-[13px] gap-1.5",
-    md: "h-11 px-6 text-sm gap-2",
-    lg: "h-[52px] px-8 text-[15px] gap-2",
+    sm: "h-9 px-5 text-[12px] gap-1.5",
+    md: "h-11 px-6 text-[13px] gap-2",
+    lg: "h-[52px] px-9 text-[14px] gap-2",
   };
 
   const classes = cn(base, variants[variant], sizes[size], className);
@@ -62,7 +62,7 @@ export function Button({
       {loading ? (
         <span className="flex items-center gap-2">
           <svg
-            className="animate-spin h-4 w-4 opacity-70"
+            className="animate-spin h-3.5 w-3.5 opacity-60"
             fill="none"
             viewBox="0 0 24 24"
             aria-hidden="true"

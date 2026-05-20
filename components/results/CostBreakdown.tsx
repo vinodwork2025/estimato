@@ -5,14 +5,15 @@ import { motion } from "framer-motion";
 import { formatINRShort } from "@/lib/utils";
 import type { CalculationResult } from "@/types";
 
+// Architectural monochromatic palette — charcoal to sand with gold accent
 const SEGMENT_COLORS = [
-  "#C8633A",
-  "#0E2146",
-  "#4A5568",
-  "#C5A059",
-  "#2D7D5A",
-  "#8492A6",
-  "#D4D2CC",
+  "#1C1917",  // charcoal — civil structure (largest)
+  "#B8954E",  // gold — finishes (premium highlight)
+  "#6B635C",  // smoke — interiors
+  "#A8823B",  // bronze — MEP
+  "#3A3530",  // graphite — elevation
+  "#B4AB9E",  // sand-strong — approvals
+  "#DDD7CC",  // dust — contingency
 ];
 
 const LABELS: Record<string, string> = {
@@ -51,8 +52,8 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
         7-segment breakdown of your mid estimate.
       </p>
 
-      {/* Stacked bar */}
-      <div className="flex h-2 rounded-full overflow-hidden mb-8 gap-px">
+      {/* Stacked bar — editorial, no rounded corners */}
+      <div className="flex h-[3px] overflow-hidden mb-8 gap-[1px]">
         {data.map((item) => (
           <motion.div
             key={item.key}
@@ -80,14 +81,14 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
               key={item.key}
               onClick={() => setActiveKey(active ? null : item.key)}
               className={`
-                w-full flex items-center gap-4 py-3.5 px-3 rounded-xl -mx-3 text-left
-                transition-all duration-200
-                ${active ? "bg-surface-low" : "hover:bg-surface-low/50"}
+                w-full flex items-center gap-4 py-3.5 text-left
+                transition-colors duration-200 border-b border-border
+                ${active ? "opacity-100" : "hover:opacity-80"}
               `}
               aria-pressed={active}
             >
               <span
-                className="w-2.5 h-2.5 rounded-full shrink-0"
+                className="w-2 h-2 shrink-0"
                 style={{ background: item.color }}
                 aria-hidden="true"
               />

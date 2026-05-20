@@ -38,20 +38,13 @@ export function ProgressBar({ currentStep }: ProgressBarProps) {
         </span>
       </div>
 
-      {/* Single thin progress track */}
+      {/* Thin progress track — architectural line, no rounded dot */}
       <div className="relative h-px w-full bg-border">
         <motion.div
-          className="absolute left-0 top-0 h-full bg-navy"
+          className="absolute left-0 top-0 h-full bg-gold"
           initial={{ width: "0%" }}
           animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        />
-        {/* Dot at current position */}
-        <motion.div
-          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-navy"
-          initial={{ left: "0%" }}
-          animate={{ left: `calc(${progress}% - 3px)` }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
     </div>

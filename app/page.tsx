@@ -160,7 +160,7 @@ export default function HomePage() {
                 <h2
                   id="how-heading"
                   className="font-serif text-navy"
-                  style={{ fontSize: "clamp(40px, 5vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 800 }}
+                  style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 400 }}
                 >
                   Three steps to clarity
                 </h2>
@@ -171,7 +171,7 @@ export default function HomePage() {
                   <AnimateIn key={item.step} delay={0.05}>
                     <div className={`grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-20 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
                       {/* Image */}
-                      <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-elevation-2">
+                      <div className="relative aspect-[4/3] overflow-hidden group shadow-elevation-2">
                         <Image
                           src={item.image}
                           alt={item.title}
@@ -187,15 +187,15 @@ export default function HomePage() {
                       {/* Text */}
                       <div>
                         <p
-                          className="font-serif text-navy/8 leading-none select-none mb-2"
-                          style={{ fontSize: "clamp(80px, 12vw, 140px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.85 }}
+                          className="font-serif text-navy/6 leading-none select-none mb-2"
+                          style={{ fontSize: "clamp(72px, 12vw, 130px)", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 0.85 }}
                           aria-hidden="true"
                         >
                           {item.step}
                         </p>
                         <h3
                           className="font-serif text-navy mb-4"
-                          style={{ fontSize: "clamp(28px, 3vw, 38px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1 }}
+                          style={{ fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.1 }}
                         >
                           {item.title}
                         </h3>
@@ -222,7 +222,7 @@ export default function HomePage() {
                   <h2
                     id="what-heading"
                     className="font-serif text-navy mb-6"
-                    style={{ fontSize: "clamp(36px, 4.5vw, 54px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                    style={{ fontSize: "clamp(34px, 4.5vw, 50px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.08 }}
                   >
                     A 12-page report built for homeowners
                   </h2>
@@ -263,32 +263,39 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Why different ── */}
+          {/* ── Why different — editorial divider list ── */}
           <section className="py-28 px-6 bg-navy" aria-labelledby="why-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-20">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold mb-4">Our philosophy</p>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-px w-5 bg-gold/50" />
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold/70">Our philosophy</p>
+                </div>
                 <h2
                   id="why-heading"
                   className="font-serif text-white"
-                  style={{ fontSize: "clamp(40px, 5vw, 60px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                  style={{ fontSize: "clamp(36px, 5vw, 58px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
                 >
-                  Why Estimato is different
+                  Why Estimato<br />is different.
                 </h2>
               </AnimateIn>
 
-              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {WHY_DIFFERENT.map((item) => (
+              <StaggerContainer className="divide-y divide-white/10">
+                {WHY_DIFFERENT.map((item, i) => (
                   <StaggerItem key={item.title}>
-                    <div className="border border-white/12 rounded-2xl p-8 hover:border-gold/40 hover:bg-white/[0.04] transition-all duration-300 group">
-                      <div className="w-10 h-0.5 bg-gold mb-7 group-hover:w-14 transition-all duration-300" />
-                      <h3
-                        className="font-serif text-white mb-4"
-                        style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.01em" }}
-                      >
-                        {item.title}
-                      </h3>
-                      <p className="text-white/80 text-body leading-relaxed">{item.body}</p>
+                    <div className="py-8 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6 md:gap-16 group">
+                      <div className="flex items-start gap-5">
+                        <span className="font-mono text-[10px] text-gold/50 tracking-[0.12em] mt-1 tabular-nums shrink-0">
+                          0{i + 1}
+                        </span>
+                        <h3
+                          className="font-serif text-white"
+                          style={{ fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.2 }}
+                        >
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="text-white/55 text-body leading-relaxed md:pt-0.5">{item.body}</p>
                     </div>
                   </StaggerItem>
                 ))}
@@ -308,7 +315,7 @@ export default function HomePage() {
                   <h2
                     id="cities-heading"
                     className="font-serif text-navy"
-                    style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05 }}
+                    style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
                   >
                     Cities we cover
                   </h2>
@@ -318,11 +325,11 @@ export default function HomePage() {
                 </div>
               </AnimateIn>
 
-              <StaggerContainer className="flex flex-wrap gap-2 justify-start">
+              <StaggerContainer className="flex flex-wrap gap-x-0 gap-y-0 justify-start divide-x divide-border border border-border">
                 {CITIES.filter((c) => c.value !== "other").map((city) => (
                   <StaggerSpan
                     key={city.value}
-                    className="px-4 py-2 bg-bg-primary border border-border rounded-lg text-body-sm text-text-secondary font-medium hover:border-navy/40 hover:text-navy hover:bg-navy-faint transition-all duration-200 cursor-default tracking-tight"
+                    className="px-5 py-3 text-body-sm text-text-tertiary hover:text-text-primary hover:bg-surface-low transition-all duration-200 cursor-default font-mono text-[12px] uppercase tracking-[0.08em]"
                   >
                     {city.label}
                   </StaggerSpan>
@@ -353,7 +360,7 @@ export default function HomePage() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold mb-6">Get started today</p>
                 <h2
                   className="font-serif text-white mb-7"
-                  style={{ fontSize: "clamp(44px, 6vw, 76px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.0 }}
+                  style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.0 }}
                 >
                   Know your numbers<br />before you break ground.
                 </h2>
