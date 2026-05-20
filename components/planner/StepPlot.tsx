@@ -8,21 +8,21 @@ import { motion } from "framer-motion";
 import { usePlannerStore } from "@/lib/store/planner-store";
 import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
-import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Toggle } from "@/components/ui/Toggle";
 import { track } from "@/lib/analytics/events";
+import { PLAN } from "@/lib/copy";
 import type { Facing, Slope } from "@/types";
 
-const COMPASS: { value: Facing; label: string; pos: string }[] = [
-  { value: "north-west", label: "NW", pos: "col-start-1 row-start-1" },
-  { value: "north",      label: "N",  pos: "col-start-2 row-start-1" },
-  { value: "north-east", label: "NE", pos: "col-start-3 row-start-1" },
-  { value: "west",       label: "W",  pos: "col-start-1 row-start-2" },
-  { value: "east",       label: "E",  pos: "col-start-3 row-start-2" },
-  { value: "south-west", label: "SW", pos: "col-start-1 row-start-3" },
-  { value: "south",      label: "S",  pos: "col-start-2 row-start-3" },
-  { value: "south-east", label: "SE", pos: "col-start-3 row-start-3" },
+const FACINGS: { value: Facing; label: string }[] = [
+  { value: "north",      label: "N"  },
+  { value: "north-east", label: "NE" },
+  { value: "east",       label: "E"  },
+  { value: "south-east", label: "SE" },
+  { value: "south",      label: "S"  },
+  { value: "south-west", label: "SW" },
+  { value: "west",       label: "W"  },
+  { value: "north-west", label: "NW" },
 ];
 
 const SLOPES: { value: Slope; label: string; desc: string }[] = [
@@ -52,7 +52,6 @@ export function StepPlot() {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -72,7 +71,15 @@ export function StepPlot() {
   const cornerPlot = watch("cornerPlot");
   const slope = watch("slope");
 
-  const plotArea = (length || 0) * (width || 0);
+  const plotArea = Math.round((length || 0) * (width || 0));
+  const sliderValue = plotArea;
+
+  function handleSlider(e: React.ChangeEvent<HTMLInputElement>) {
+    const area = Number(e.target.value);
+    const side = Math.round(Math.sqrt(area));
+    setValue("length", side);
+    setValue("width", side);
+  }
 
   function onSubmit(data: FormData) {
     setInput({ plot: data });
@@ -82,160 +89,213 @@ export function StepPlot() {
 
   return (
     <motion.form
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-6"
+      className="flex flex-col gap-8"
       noValidate
     >
       <ProgressBar currentStep={3} />
 
       <div>
-        <h1 className="step-title mb-2">Tell us about your plot.</h1>
-        <p className="text-body-sm text-text-secondary">
-          Plot size and conditions affect foundation and structure costs.
+        <h1 className="step-title mb-2">{PLAN.step3Question}</h1>
+        <p className="text-text-secondary leading-relaxed" style={{ fontSize: "16px" }}>
+          Plot dimensions affect foundation and structure costs.
         </p>
       </div>
 
-      <div className="flex flex-col gap-5">
-        {/* Dimensions */}
-        <div className="grid grid-cols-2 gap-4">
-          <Input
-            label="Length (feet)"
-            type="number"
-            inputMode="numeric"
-            min={15}
-            max={200}
-            required
-            error={errors.length?.message}
-            {...register("length")}
-          />
-          <Input
-            label="Width (feet)"
-            type="number"
-            inputMode="numeric"
-            min={15}
-            max={200}
-            required
-            error={errors.width?.message}
-            {...register("width")}
-          />
+      {/* Big plot area display */}
+      <div className="text-center py-8">
+        <p
+          className="font-serif text-navy leading-none tabular-nums"
+          style={{
+            fontSize: "clamp(72px, 14vw, 120px)",
+            fontWeight: 300,
+            letterSpacing: "-0.03em",
+          }}
+        >
+          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
+        </p>
+        <p style={{ fontSize: "16px", color: "#6B635C", marginTop: "8px" }}>
+          square feet
+        </p>
+      </div>
+
+      {/* Slider */}
+      <div style={{ maxWidth: "480px", margin: "0 auto", width: "100%" }}>
+        <input
+          type="range"
+          min={900}
+          max={40000}
+          step={100}
+          value={sliderValue || 1200}
+          onChange={handleSlider}
+          className="w-full"
+          style={{
+            appearance: "none",
+            WebkitAppearance: "none",
+            height: "2px",
+            background: `linear-gradient(to right, #1C1917 ${((sliderValue - 900) / (40000 - 900)) * 100}%, #D4CCBF ${((sliderValue - 900) / (40000 - 900)) * 100}%)`,
+            borderRadius: "0",
+            outline: "none",
+            cursor: "pointer",
+          }}
+          aria-label="Plot area slider"
+        />
+        <div className="flex justify-between mt-2">
+          <span className="font-mono text-[10px] text-text-tertiary tracking-[0.1em]">900</span>
+          <span className="font-mono text-[10px] text-text-tertiary tracking-[0.1em]">20,000</span>
+          <span className="font-mono text-[10px] text-text-tertiary tracking-[0.1em]">40,000</span>
         </div>
+      </div>
 
-        {/* Plot area live display */}
-        {plotArea > 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center gap-3 px-4 py-3 border border-border"
-          >
-            <span className="label-arch">Plot area</span>
-            <span className="font-mono font-bold text-navy text-body-sm tabular-nums">
-              {plotArea.toLocaleString("en-IN")} sqft
-            </span>
-            <div className="ml-auto flex items-center gap-2.5">
-              <div className="w-px h-3 bg-border" />
-              <span className="font-mono text-[11px] text-text-tertiary tabular-nums">
-                ≈{(plotArea / 9).toFixed(0)} sq.yd
-              </span>
-            </div>
-          </motion.div>
-        )}
+      {/* Fine-tune inputs */}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-4">
+          Or enter dimensions
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-2 block">
+              Length (ft)
+            </label>
+            <input
+              type="number"
+              min={15}
+              max={200}
+              className="w-full focus:outline-none"
+              style={{
+                borderBottom: "1px solid #D4CCBF",
+                padding: "8px 0",
+                fontSize: "18px",
+                color: "var(--text-primary)",
+                background: "transparent",
+              }}
+              {...register("length")}
+            />
+          </div>
+          <div>
+            <label className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-2 block">
+              Width (ft)
+            </label>
+            <input
+              type="number"
+              min={15}
+              max={200}
+              className="w-full focus:outline-none"
+              style={{
+                borderBottom: "1px solid #D4CCBF",
+                padding: "8px 0",
+                fontSize: "18px",
+                color: "var(--text-primary)",
+                background: "transparent",
+              }}
+              {...register("width")}
+            />
+          </div>
+        </div>
+      </div>
 
-        {/* Compass */}
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-3">
-            Plot facing
-          </p>
-          <div className="grid grid-cols-3 grid-rows-3 gap-2 w-44">
-            {COMPASS.map((dir) => (
+      {/* Facing — horizontal text buttons */}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-4">
+          Plot facing
+        </p>
+        <div className="flex flex-wrap gap-3" role="group" aria-label="Plot facing">
+          {FACINGS.map((dir) => {
+            const isActive = facing === dir.value;
+            return (
               <button
                 key={dir.value}
                 type="button"
                 onClick={() => setValue("facing", dir.value)}
-                className={`
-                  ${dir.pos} h-11 text-xs font-semibold transition-all duration-200
-                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
-                  ${facing === dir.value
-                    ? "border border-navy bg-navy/6 text-navy"
-                    : "border border-border bg-white text-text-secondary hover:border-border-strong hover:bg-surface-low"
-                  }
-                `}
-                aria-pressed={facing === dir.value}
+                className="font-mono focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200"
+                style={{
+                  fontSize: "13px",
+                  letterSpacing: "0.08em",
+                  padding: "6px 12px",
+                  border: "1px solid",
+                  borderColor: isActive ? "var(--accent)" : "var(--border)",
+                  color: isActive ? "var(--accent)" : "var(--text-secondary)",
+                  background: "transparent",
+                }}
+                aria-pressed={isActive}
               >
                 {dir.label}
               </button>
-            ))}
-            {/* Center — plot marker */}
-            <div className="col-start-2 row-start-2 h-11 bg-navy/5 border border-navy/10 flex items-center justify-center">
-              <span className="label-arch" style={{ color: "var(--navy)", opacity: 0.4 }}>Plot</span>
-            </div>
-          </div>
+            );
+          })}
         </div>
+      </div>
 
+      {/* Slope */}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-4">
+          Plot slope
+        </p>
+        <div className="flex gap-6 border-b border-border pb-6" role="group" aria-label="Plot slope">
+          {SLOPES.map((s) => {
+            const isActive = slope === s.value;
+            return (
+              <button
+                key={s.value}
+                type="button"
+                onClick={() => setValue("slope", s.value)}
+                className="text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200 pb-1"
+                style={{
+                  fontSize: "18px",
+                  color: isActive ? "var(--accent)" : "var(--text-primary)",
+                  borderBottom: isActive ? "2px solid var(--accent)" : "2px solid transparent",
+                  fontFamily: "inherit",
+                }}
+                aria-pressed={isActive}
+              >
+                {s.label}
+                <span
+                  className="block font-mono"
+                  style={{ fontSize: "11px", color: isActive ? "var(--accent)" : "var(--text-tertiary)", marginTop: "2px" }}
+                >
+                  {s.desc}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <Select
+        label="Soil type"
+        options={[
+          { value: "unknown", label: "I don't know yet" },
+          { value: "red", label: "Red soil" },
+          { value: "black-cotton", label: "Black cotton soil" },
+          { value: "rocky", label: "Rocky / hard rock" },
+          { value: "sandy", label: "Sandy soil" },
+        ]}
+        hint="If unsure, say so — we'll flag it as a risk"
+        {...register("soilType")}
+      />
+
+      <Select
+        label="Road width in front"
+        options={[
+          { value: "20", label: "20 feet" },
+          { value: "30", label: "30 feet" },
+          { value: "40", label: "40 feet" },
+          { value: "60", label: "60 feet" },
+          { value: "80", label: "80 feet or more" },
+        ]}
+        {...register("roadWidth")}
+      />
+
+      <div className="border-t border-border">
         <Toggle
           label="Corner plot"
           hint="+6% structure cost for corner exposure"
           checked={cornerPlot}
           onChange={(v) => setValue("cornerPlot", v)}
         />
-
-        <Select
-          label="Road width in front"
-          options={[
-            { value: "20", label: "20 feet" },
-            { value: "30", label: "30 feet" },
-            { value: "40", label: "40 feet" },
-            { value: "60", label: "60 feet" },
-            { value: "80", label: "80 feet or more" },
-          ]}
-          {...register("roadWidth")}
-        />
-
-        <Select
-          label="Soil type"
-          options={[
-            { value: "unknown", label: "I don't know yet" },
-            { value: "red", label: "Red soil" },
-            { value: "black-cotton", label: "Black cotton soil" },
-            { value: "rocky", label: "Rocky / hard rock" },
-            { value: "sandy", label: "Sandy soil" },
-          ]}
-          hint="If unsure, say so — we'll flag it as a risk"
-          {...register("soilType")}
-        />
-
-        {/* Slope */}
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-3">
-            Plot slope
-          </p>
-          <div className="grid grid-cols-3 gap-2">
-            {SLOPES.map((s) => (
-              <button
-                key={s.value}
-                type="button"
-                onClick={() => setValue("slope", s.value)}
-                className={`
-                  flex flex-col items-center justify-center gap-0.5 h-16 border text-sm font-semibold transition-all duration-200
-                  focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
-                  ${slope === s.value
-                    ? "border-navy bg-navy/6 text-navy"
-                    : "border-border bg-white text-text-primary hover:border-border-strong hover:bg-surface-low"
-                  }
-                `}
-                aria-pressed={slope === s.value}
-              >
-                <span>{s.label}</span>
-                <span className={`text-[11px] font-normal font-mono ${slope === s.value ? "text-navy/55" : "text-text-tertiary"}`}>
-                  {s.desc}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       <NavigationButtons onBack={() => router.push("/plan/location")} />

@@ -66,6 +66,11 @@ export function StepLocation() {
               role="radio"
               aria-checked={isSelected}
               className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 group transition-colors duration-200"
+              style={{
+                paddingLeft: "20px",
+                borderLeftWidth: "2px",
+                borderLeftColor: isSelected ? "var(--accent)" : "transparent",
+              }}
             >
               <span
                 className="font-serif transition-colors duration-200"
@@ -102,6 +107,11 @@ export function StepLocation() {
             role="radio"
             aria-checked={selected === "other"}
             className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200"
+            style={{
+              paddingLeft: "20px",
+              borderLeftWidth: "2px",
+              borderLeftColor: selected === "other" ? "var(--accent)" : "transparent",
+            }}
           >
             <span
               className="font-serif transition-colors duration-200"

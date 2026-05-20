@@ -34,7 +34,7 @@ const INTERIOR_OPTIONS: {
   {
     value: "premium",
     rateKey: "premium",
-    label: "Premium",
+    label: "Full modular",
     tagline: "Full modular and designer finishes",
     index: "03",
   },
@@ -66,7 +66,7 @@ export function StepInteriors() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col gap-6"
@@ -75,12 +75,12 @@ export function StepInteriors() {
 
       <div>
         <h1 className="step-title mb-2">What interior level do you want?</h1>
-        <p className="text-body-sm text-text-secondary">
+        <p className="text-text-secondary leading-relaxed" style={{ fontSize: "16px" }}>
           Covers furniture, modular work, and built-in fittings.
         </p>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col border-t border-border" role="radiogroup" aria-label="Interior level">
         {INTERIOR_OPTIONS.map((opt, i) => {
           const rate = INTERIOR_RATES[opt.rateKey];
           const totalCost = builtUpArea * rate;
@@ -89,55 +89,64 @@ export function StepInteriors() {
           return (
             <motion.button
               key={opt.value}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.07, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleSelect(opt.value)}
-              className={`
-                text-left overflow-hidden border transition-all duration-200
-                focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30
-                ${isSelected
-                  ? "border-navy/30"
-                  : "border-border bg-white hover:border-border-strong"
-                }
-              `}
-              style={isSelected ? { backgroundColor: "rgba(14,33,70,0.025)" } : { backgroundColor: "#ffffff" }}
-              aria-pressed={isSelected}
+              className="text-left border-b border-border focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200"
+              style={{
+                padding: "20px 16px 20px 20px",
+                borderLeftWidth: "2px",
+                borderLeftColor: isSelected ? "var(--accent)" : "transparent",
+              }}
+              role="radio"
+              aria-checked={isSelected}
             >
-              <div className="flex items-center gap-0 px-5 py-4">
-                {/* Index number */}
-                <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em] w-7 shrink-0">
-                  {opt.index}
-                </span>
-
-                {/* Thin divider */}
-                <div className="w-px h-8 bg-border shrink-0 mr-4" />
-
-                {/* Text */}
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-body-sm text-text-primary">{opt.label}</p>
-                  <p className="text-xs text-text-secondary mt-0.5">{opt.tagline}</p>
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <p
+                    className="font-mono uppercase mb-1.5 transition-colors duration-200"
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.18em",
+                      color: isSelected ? "var(--accent)" : "var(--text-tertiary)",
+                    }}
+                  >
+                    {opt.index}
+                  </p>
+                  <p
+                    className="font-serif mb-1 transition-colors duration-200"
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: isSelected ? 500 : 400,
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.1,
+                      color: isSelected ? "var(--text-primary)" : "var(--text-secondary)",
+                    }}
+                  >
+                    {opt.label}
+                  </p>
+                  <p style={{ fontSize: "14px", color: "#6B635C" }}>
+                    {opt.tagline}
+                  </p>
                 </div>
 
                 {/* Cost */}
-                <div className="text-right shrink-0 mr-3">
-                  <p className="font-mono text-[10px] text-text-tertiary tabular-nums">
+                <div className="text-right shrink-0">
+                  <p className="font-mono tabular-nums" style={{ fontSize: "10px", color: "var(--text-tertiary)" }}>
                     ₹{rate.toLocaleString("en-IN")}/sqft
                   </p>
                   <p
-                    className={`font-mono font-bold text-body-sm tabular-nums mt-0.5 ${
-                      isSelected ? "text-navy" : "text-text-primary"
-                    }`}
+                    className="font-mono tabular-nums font-medium"
+                    style={{
+                      fontSize: "14px",
+                      color: isSelected ? "var(--text-primary)" : "var(--text-secondary)",
+                      marginTop: "2px",
+                    }}
                   >
                     {formatINRShort(totalCost)}
                   </p>
                 </div>
-
-                {/* Selected indicator */}
-                <div
-                  className="w-px h-8 shrink-0 transition-colors duration-200"
-                  style={{ background: isSelected ? "var(--accent)" : "transparent" }}
-                />
               </div>
             </motion.button>
           );
