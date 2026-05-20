@@ -169,10 +169,8 @@ export function StepQuality() {
 
                       {/* Material swatch — 120×120, duotone, 4px radius */}
                       <div
-                        className="relative shrink-0 overflow-hidden"
+                        className="relative shrink-0 overflow-hidden w-20 h-20 md:w-[120px] md:h-[120px]"
                         style={{
-                          width: "120px",
-                          height: "120px",
                           borderRadius: "4px",
                           border: "1px solid #D4CCBF",
                         }}

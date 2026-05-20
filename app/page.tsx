@@ -54,7 +54,7 @@ export default function HomePage() {
           <HomeHero />
 
           {/* ── Three steps — typographic, no photos ── */}
-          <section className="py-28 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
+          <section className="py-20 md:py-28 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-20">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-4">
@@ -116,7 +116,7 @@ export default function HomePage() {
           </section>
 
           {/* ── What your projection includes — 6 items, 3×2 grid ── */}
-          <section className="py-28 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
+          <section className="py-20 md:py-28 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-20 max-w-2xl">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-4">

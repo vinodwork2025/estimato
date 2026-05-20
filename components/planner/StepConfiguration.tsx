@@ -187,7 +187,7 @@ export function StepConfiguration() {
           <button
             type="button"
             onClick={() => setValue("balconies", Math.max(0, balconies - 1))}
-            className="w-8 h-8 border border-border flex items-center justify-center font-medium text-text-primary hover:border-border-strong transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
+            className="w-12 h-12 border border-border flex items-center justify-center font-medium text-text-primary hover:border-border-strong transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
             disabled={balconies === 0}
             aria-label="Decrease balconies"
           >
@@ -202,7 +202,7 @@ export function StepConfiguration() {
           <button
             type="button"
             onClick={() => setValue("balconies", Math.min(6, balconies + 1))}
-            className="w-8 h-8 border border-border flex items-center justify-center font-medium text-text-primary hover:border-border-strong transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
+            className="w-12 h-12 border border-border flex items-center justify-center font-medium text-text-primary hover:border-border-strong transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 disabled:opacity-30"
             disabled={balconies === 6}
             aria-label="Increase balconies"
           >

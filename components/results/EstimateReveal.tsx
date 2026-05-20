@@ -102,7 +102,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
           <p
             className="font-serif text-text-primary tabular-nums leading-none"
             style={{
-              fontSize: "clamp(64px, 14vw, 144px)",
+              fontSize: "clamp(52px, 14vw, 144px)",
               fontWeight: 300,
               letterSpacing: "-0.02em",
             }}

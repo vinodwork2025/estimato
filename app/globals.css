@@ -218,6 +218,33 @@
     box-shadow: 0 8px 28px rgba(28, 25, 23, 0.07), 0 2px 8px rgba(28, 25, 23, 0.04);
   }
 
+  /* Range input — custom slider track + thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #A8823B;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    margin-top: -6px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #A8823B;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 2px;
+    border-radius: 0;
+  }
+
   /* Hide scrollbar — for horizontal scroll pickers */
   .hide-scrollbar {
     -ms-overflow-style: none;
