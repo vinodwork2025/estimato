@@ -1,98 +1,140 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { usePlannerStore } from "@/lib/store/planner-store";
 import { CITIES } from "@/data/cities";
+import { CITY_CONFIDENCE, PLAN } from "@/lib/copy";
 import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
-import { Select } from "@/components/ui/Select";
-import { Input } from "@/components/ui/Input";
 import { track } from "@/lib/analytics/events";
 
-const schema = z.object({
-  city: z.string().min(1, "Select a city"),
-  area: z.string().optional(),
-  pincode: z
-    .string()
-    .regex(/^\d{6}$/, "Enter a 6-digit pincode")
-    .optional()
-    .or(z.literal("")),
-});
-
-type FormData = z.infer<typeof schema>;
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export function StepLocation() {
   const router = useRouter();
   const { input, setInput } = usePlannerStore();
+  const [selected, setSelected] = useState<string>(input.city ?? "");
+  const [error, setError] = useState<string | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      city: input.city ?? "",
-      area: input.area ?? "",
-      pincode: input.pincode ?? "",
-    },
-  });
+  function handleSelect(city: string) {
+    setSelected(city);
+    setError(null);
+    setInput({ city });
+  }
 
-  function onSubmit(data: FormData) {
-    setInput({ city: data.city, area: data.area, pincode: data.pincode });
+  function handleNext() {
+    if (!selected) {
+      setError("Select a city to continue.");
+      return;
+    }
     track("planner_step_completed", { step_number: 2, step_name: "location" });
     router.push("/plan/plot");
   }
 
+  const cities = CITIES.filter((c) => c.value !== "other");
+  const other = CITIES.find((c) => c.value === "other");
+
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      onSubmit={handleSubmit(onSubmit)}
+      transition={{ duration: 0.55, ease }}
       className="flex flex-col gap-6"
-      noValidate
     >
       <ProgressBar currentStep={2} />
 
       <div>
-        <h1 className="step-title mb-2">Where is your plot?</h1>
-        <p className="text-body-sm text-text-secondary">
-          Location significantly affects material costs and labour rates.
+        <h1 className="step-title mb-3">{PLAN.step2Question}</h1>
+        <p className="text-text-secondary leading-relaxed" style={{ fontSize: "16px", maxWidth: "56ch", color: "var(--text-tertiary)" }}>
+          {PLAN.step2Subhead}
         </p>
       </div>
 
-      <div className="flex flex-col gap-5">
-        <Select
-          label="City"
-          options={CITIES}
-          placeholder="Select a city"
-          required
-          error={errors.city?.message}
-          {...register("city")}
-        />
-        <Input
-          label="Area or locality"
-          placeholder="e.g. Thally Road, Sipcot"
-          hint="Optional — helps narrow down your estimate"
-          {...register("area")}
-        />
-        <Input
-          label="Pincode"
-          placeholder="e.g. 635109"
-          inputMode="numeric"
-          maxLength={6}
-          hint="Optional"
-          error={errors.pincode?.message}
-          {...register("pincode")}
-        />
+      {/* City list */}
+      <div className="flex flex-col border-t border-border" role="radiogroup" aria-label="Select city">
+        {cities.map((city) => {
+          const conf = CITY_CONFIDENCE[city.value];
+          const isSelected = selected === city.value;
+
+          return (
+            <button
+              key={city.value}
+              type="button"
+              onClick={() => handleSelect(city.value)}
+              role="radio"
+              aria-checked={isSelected}
+              className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 group transition-colors duration-200"
+            >
+              <span
+                className="font-serif transition-colors duration-200"
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 400,
+                  letterSpacing: "-0.01em",
+                  color: isSelected ? "var(--text-primary)" : "var(--text-secondary)",
+                }}
+              >
+                {city.label}
+              </span>
+              {conf && (
+                <span
+                  className="font-mono text-right leading-snug shrink-0 ml-4 transition-colors duration-200"
+                  style={{
+                    fontSize: "11px",
+                    color: isSelected ? "var(--accent)" : "var(--text-tertiary)",
+                  }}
+                >
+                  {conf.boqs} verified BOQs · {conf.variance} variance
+                </span>
+              )}
+            </button>
+          );
+        })}
+
+        {/* Other */}
+        {other && (
+          <button
+            key="other"
+            type="button"
+            onClick={() => handleSelect("other")}
+            role="radio"
+            aria-checked={selected === "other"}
+            className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200"
+          >
+            <span
+              className="font-serif transition-colors duration-200"
+              style={{
+                fontSize: "22px",
+                fontWeight: 400,
+                letterSpacing: "-0.01em",
+                color: selected === "other" ? "var(--text-primary)" : "var(--text-secondary)",
+              }}
+            >
+              Other location
+            </span>
+            <span
+              className="font-mono text-right leading-snug shrink-0 ml-4"
+              style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+            >
+              {CITY_CONFIDENCE["other"]?.boqs} BOQs · {CITY_CONFIDENCE["other"]?.variance} variance
+            </span>
+          </button>
+        )}
       </div>
 
-      <NavigationButtons onBack={() => router.push("/plan")} nextLabel="Next" />
-    </motion.form>
+      {error && (
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--warning)" }}>
+          {error}
+        </p>
+      )}
+
+      <NavigationButtons
+        onBack={() => router.push("/plan")}
+        onNext={handleNext}
+        nextDisabled={!selected}
+      />
+    </motion.div>
   );
 }
