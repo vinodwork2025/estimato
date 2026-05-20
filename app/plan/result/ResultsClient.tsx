@@ -3,39 +3,26 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePlannerStore } from "@/lib/store/planner-store";
-import { matchPartnerForCity } from "@/lib/partner-routing/match";
-import { ResultHero } from "@/components/results/Hero";
+import { ResultCover } from "@/components/results/ResultCover";
+import { EstimateReveal } from "@/components/results/EstimateReveal";
 import { CostBreakdown } from "@/components/results/CostBreakdown";
-import { ScenarioComparison } from "@/components/results/ScenarioComparison";
 import { Timeline } from "@/components/results/Timeline";
-import { HiddenCosts } from "@/components/results/HiddenCosts";
-import { SmartInsights } from "@/components/results/SmartInsights";
-import { OptionalAdditions } from "@/components/results/OptionalAdditions";
-import { PartnerCard, GenericPartnerCTA } from "@/components/results/PartnerCard";
-import { StickyCTA } from "@/components/results/StickyCTA";
+import { LifestyleFrame } from "@/components/results/LifestyleFrame";
+import { AdvisoryNotes } from "@/components/results/AdvisoryNotes";
 import { LeadFormModal } from "@/components/lead-capture/LeadFormModal";
 import { SuccessState } from "@/components/lead-capture/SuccessState";
 import { Modal } from "@/components/ui/Modal";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics/events";
-import type { Partner } from "@/types";
+import { CTA } from "@/lib/copy";
 import Link from "next/link";
 
 type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string };
 
-function ResultSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <section className={`bg-white border-t border-border px-6 py-8 ${className}`}>
-      {children}
-    </section>
-  );
-}
-
 export function ResultsClient() {
   const router = useRouter();
   const { result, input } = usePlannerStore();
-  const [partner, setPartner] = useState<Partner | null>(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [success, setSuccess] = useState<SuccessData | null>(null);
 
@@ -49,9 +36,6 @@ export function ResultsClient() {
       city: input.city ?? "",
       partner_matched: false,
     });
-    if (input.city) {
-      matchPartnerForCity(input.city).then(setPartner);
-    }
   }, [result, input.city, router]);
 
   if (!result) return null;
@@ -67,87 +51,103 @@ export function ResultsClient() {
   }
 
   const qualityTier = input.qualityTier ?? "economy";
+  const builtUpArea = input.configuration?.builtUpArea ?? 0;
 
   return (
     <>
-      <div className="min-h-screen bg-bg-primary pb-24 md:pb-0">
+      <div className="min-h-screen bg-bg-primary">
 
-        {/* Header */}
-        <header className="border-b border-border bg-white px-4 py-4 sticky top-0 z-30">
-          <div className="max-w-3xl mx-auto flex items-center justify-between">
+        {/* Minimal nav */}
+        <header className="border-b border-border px-6 md:px-12 py-4 sticky top-0 z-30 bg-bg-primary">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
             <Link href="/" aria-label="Estimato home">
               <EstimateLogo size="sm" variant="mark" />
             </Link>
-            <Button variant="secondary" size="sm" onClick={openLeadForm}>
-              Get PDF report
-            </Button>
+            <Link
+              href="/plan"
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+            >
+              New estimate
+            </Link>
           </div>
         </header>
 
-        <main className="max-w-3xl mx-auto">
+        <main>
+          {/* Section 1 */}
+          <ResultCover input={input} />
 
-          {/* Hero — full-width, no horizontal padding on container */}
-          <div className="px-4 pt-6 pb-0">
-            <ResultHero result={result} input={input} />
-          </div>
+          {/* Section 2 */}
+          <EstimateReveal result={result} input={input} />
 
-          {/* Sections — editorial stacked, unified border rhythm */}
-          <div className="mt-6 rounded-2xl overflow-hidden border border-border mx-4">
+          {/* Section 3 */}
+          <CostBreakdown breakdown={result.breakdown} />
 
-            <ResultSection>
-              <CostBreakdown breakdown={result.breakdown} />
-            </ResultSection>
+          {/* Section 4 */}
+          <Timeline phases={result.timeline.phases} totalDays={result.timeline.totalDays} />
 
-            <ResultSection>
-              <ScenarioComparison
-                scenarios={result.comparisonScenarios}
-                selectedTier={qualityTier}
-              />
-            </ResultSection>
+          {/* Section 5 */}
+          <LifestyleFrame
+            scenarios={result.comparisonScenarios}
+            selectedTier={qualityTier}
+            builtUpArea={builtUpArea}
+          />
 
-            <ResultSection>
-              <Timeline phases={result.timeline.phases} totalDays={result.timeline.totalDays} />
-            </ResultSection>
+          {/* Section 6 */}
+          <AdvisoryNotes
+            insights={result.smartInsights}
+            contingency={result.recommendedContingency}
+            input={input}
+          />
 
-            <ResultSection>
-              <HiddenCosts warnings={result.hiddenCostWarnings} />
-            </ResultSection>
+          {/* Footer action */}
+          <section
+            className="px-6 md:px-12 py-[96px] md:py-[160px] border-t border-border"
+            aria-labelledby="footer-cta-heading"
+          >
+            <div className="max-w-6xl mx-auto">
+              <h2
+                id="footer-cta-heading"
+                className="font-serif text-text-primary mb-6"
+                style={{
+                  fontSize: "clamp(24px, 3.5vw, 28px)",
+                  fontWeight: 400,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.15,
+                  maxWidth: "24ch",
+                }}
+              >
+                Continue your build with the right partner.
+              </h2>
+              <p
+                className="text-text-secondary leading-relaxed mb-10"
+                style={{ fontSize: "16px", maxWidth: "52ch" }}
+              >
+                Estimato connects homeowners with vetted architects and contractors
+                who have delivered at your chosen specification level. One introduction.
+                No obligation.
+              </p>
+              <Button variant="primary" size="lg" onClick={openLeadForm}>
+                {CTA.requestIntro}
+              </Button>
 
-            <ResultSection>
-              <SmartInsights
-                insights={result.smartInsights}
-                contingency={result.recommendedContingency}
-              />
-            </ResultSection>
-
-            <ResultSection>
-              <OptionalAdditions baseTotalMid={result.totalRange.mid} />
-            </ResultSection>
-
-          </div>
-
-          {/* Partner / CTA — separate card */}
-          <div className="mx-4 mt-4 mb-4">
-            {partner ? (
-              <PartnerCard partner={partner} onGetReport={openLeadForm} />
-            ) : (
-              <GenericPartnerCTA onGetReport={openLeadForm} />
-            )}
-          </div>
-
-          <div className="text-center pb-10">
-            <Link
-              href="/plan"
-              className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary hover:text-text-secondary transition-colors"
-            >
-              Start a new estimate
-            </Link>
-          </div>
-
+              <div className="mt-16 pt-8 border-t border-border flex items-center justify-between flex-wrap gap-4">
+                <Link
+                  href="/plan"
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+                >
+                  Start a new estimate
+                </Link>
+                <Link
+                  href="/methodology"
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+                >
+                  Read the methodology
+                </Link>
+              </div>
+            </div>
+          </section>
         </main>
       </div>
-
-      <StickyCTA totalMid={result.totalRange.mid} onCTAClick={openLeadForm} />
 
       <LeadFormModal
         open={showLeadForm}
