@@ -49,20 +49,23 @@ export function FAQBlock({
               <button
                 type="button"
                 onClick={() => setOpenIndex(open ? null : i)}
-                className="w-full text-left py-5 flex items-start justify-between gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/30 rounded"
+                className="w-full text-left py-6 flex items-start justify-between gap-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/30"
                 aria-expanded={open}
                 aria-controls={`faq-answer-${schemaId}-${i}`}
               >
-                <span className="font-medium text-text-primary text-sm leading-relaxed">
+                <span
+                  className="font-serif text-text-primary leading-snug"
+                  style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em" }}
+                >
                   {item.question}
                 </span>
                 <span
-                  className="shrink-0 mt-0.5 w-5 h-5 rounded-full border border-border flex items-center justify-center transition-transform duration-300"
+                  className="shrink-0 mt-1.5 transition-transform duration-300"
                   style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
                   aria-hidden="true"
                 >
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
                   </svg>
                 </span>
               </button>
@@ -73,10 +76,21 @@ export function FAQBlock({
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-sm text-text-secondary leading-relaxed">
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      style={{
+                        height: "1px",
+                        background: "var(--accent)",
+                        transformOrigin: "left center",
+                        marginBottom: "16px",
+                      }}
+                    />
+                    <p className="pb-6 text-text-secondary leading-relaxed" style={{ fontSize: "16px" }}>
                       {item.answer}
                     </p>
                   </motion.div>
