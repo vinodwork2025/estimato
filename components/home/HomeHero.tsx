@@ -56,11 +56,11 @@ export function HomeHero() {
 
   return (
 
-    <section className="relative bg-bg-primary px-6 pt-20 md:pt-28 pb-36 md:pb-52 overflow-hidden">
+    <section className="relative bg-bg-primary px-6 pt-20 md:pt-28 pb-20 md:pb-52 overflow-hidden">
 
 
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[56%_44%] gap-16 xl:gap-32 items-center">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[56fr_44fr] gap-16 xl:gap-32 items-center">
 
 
 
@@ -382,7 +382,7 @@ export function HomeHero() {
 
               transition={{ delay: 0.85, duration: 0.75, ease }}
 
-              className="absolute -bottom-10 -left-8 bg-bg-primary"
+              className="absolute -bottom-10 -left-8 bg-bg-primary hidden lg:block"
 
               style={{
 
@@ -488,7 +488,7 @@ export function HomeHero() {
 
               transition={{ delay: 1.0, duration: 0.5, ease }}
 
-              className="absolute -top-5 -right-5 bg-navy"
+              className="absolute -top-5 -right-5 bg-navy hidden lg:block"
 
               style={{ padding: "13px 17px" }}
 

@@ -160,7 +160,7 @@ function HeroSection({
             Talk to an architect
           </Button>
           <Button variant="secondary" size="lg" onClick={onGetPDF} className="px-10">
-            Download PDF
+            Get free report
           </Button>
         </motion.div>
 

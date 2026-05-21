@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePlannerStore } from "@/lib/store/planner-store";
 import { Button } from "@/components/ui/Button";
+import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { CITIES } from "@/data/cities";
 import { getBaseRate, INTERIOR_RATES } from "@/lib/cost-engine/rates";
 import { formatINRShort } from "@/lib/utils";
@@ -678,16 +680,12 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
 function Step5Finish({
   state,
   onChange,
-  onCalculate,
-  isCalculating,
 }: {
   state: WizardState;
   onChange: (p: Partial<WizardState>) => void;
-  onCalculate: () => void;
-  isCalculating: boolean;
 }) {
   return (
-    <div className="px-5 md:px-10 pt-8 pb-16 max-w-5xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-4 max-w-5xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
           Step 5 of {TOTAL_STEPS}
@@ -803,23 +801,6 @@ function Step5Finish({
         </motion.div>
       )}
 
-      {/* Calculate */}
-      {state.qualityTier && state.interiorLevel && (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}>
-          <button
-            type="button"
-            onClick={onCalculate}
-            disabled={isCalculating}
-            className="w-full py-5 font-mono uppercase tracking-[0.18em] text-white focus:outline-none transition-all duration-200 disabled:opacity-60"
-            style={{ background: isCalculating ? "var(--navy)" : "var(--accent)", borderRadius: "2px", fontSize: "13px", cursor: isCalculating ? "wait" : "pointer" }}
-          >
-            {isCalculating ? "Calculating your estimate…" : "Calculate my estimate →"}
-          </button>
-          <p className="font-mono text-[10px] text-text-tertiary text-center mt-3 uppercase tracking-[0.1em]">
-            Free · No sign-up · BOQ-verified rates
-          </p>
-        </motion.div>
-      )}
     </div>
   );
 }
@@ -903,10 +884,22 @@ export function PlannerWizard() {
     exit: (d: number) => ({ x: d > 0 ? "-35%" : "35%", opacity: 0 }),
   };
 
-  const showContinue = step >= 2 && step <= 4;
+  const showContinue = step >= 2;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-56px)]">
+    <div className="flex flex-col min-h-screen">
+      {/* Planner header */}
+      <header className="sticky top-0 z-30 bg-bg-primary border-b border-border">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <Link href="/" aria-label="Estimato home">
+            <EstimateLogo size="sm" variant="mark" />
+          </Link>
+          <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em]">
+            Free · No sign-up
+          </span>
+        </div>
+      </header>
+
       {/* Nav bar */}
       <div className="sticky top-14 z-20 bg-bg-primary/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-5xl mx-auto px-5 md:px-10 h-12 flex items-center justify-between">
@@ -920,15 +913,7 @@ export function PlannerWizard() {
             <div />
           )}
           <StepDots current={step} />
-          {canAdvance() && step < TOTAL_STEPS ? (
-            <button type="button" onClick={() => goTo(step + 1)}
-              className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
-            >
-              Skip →
-            </button>
-          ) : (
-            <div style={{ width: "48px" }} />
-          )}
+          <div style={{ width: "48px" }} />
         </div>
       </div>
 
@@ -953,8 +938,6 @@ export function PlannerWizard() {
               <Step5Finish
                 state={wizard}
                 onChange={patch}
-                onCalculate={handleCalculate}
-                isCalculating={isCalculating}
               />
             )}
           </motion.div>
@@ -968,13 +951,30 @@ export function PlannerWizard() {
         </div>
       )}
 
-      {/* Continue button (steps 2–4) */}
+      {/* Continue / Calculate sticky CTA (steps 2–5) */}
       {showContinue && (
         <div className="sticky bottom-0 bg-bg-primary/95 backdrop-blur-sm border-t border-border px-5 py-4">
           <div className="max-w-3xl mx-auto">
-            <Button variant="primary" size="lg" className="w-full" onClick={() => goTo(step + 1)} disabled={!canAdvance()}>
-              Continue →
-            </Button>
+            {step < 5 ? (
+              <Button variant="primary" size="lg" className="w-full" onClick={() => goTo(step + 1)} disabled={!canAdvance()}>
+                Continue →
+              </Button>
+            ) : (
+              <>
+                <p className="font-mono text-[10px] text-text-tertiary text-center mb-3 uppercase tracking-[0.1em]">
+                  Free · No sign-up · BOQ-verified rates
+                </p>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  onClick={handleCalculate}
+                  disabled={!canAdvance() || isCalculating}
+                >
+                  {isCalculating ? "Calculating your estimate…" : "Calculate my estimate →"}
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}
