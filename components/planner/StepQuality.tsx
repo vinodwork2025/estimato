@@ -163,14 +163,14 @@ export function StepQuality() {
                           className="font-mono text-text-tertiary mb-1"
                           style={{ fontSize: "11px", letterSpacing: "0.1em" }}
                         >
-                          â‚¹{rateForCity.toLocaleString("en-IN")}/sqft
+                          ₹{rateForCity.toLocaleString("en-IN")}/sqft
                         </p>
                         <p style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
                           {TIER_MATERIALS[tierKey]}
                         </p>
                       </div>
 
-                      {/* Material swatch â€” warm duotone */}
+                      {/* Material swatch — warm duotone */}
                       <div
                         className="relative shrink-0 overflow-hidden w-20 h-20 md:w-[112px] md:h-[112px]"
                         style={{ borderRadius: "2px", border: "1px solid #DDE4ED" }}

@@ -10,7 +10,7 @@ const LABELS: Record<string, string> = {
   civilStructure: "Civil structure",
   finishes: "Finishes",
   interiors: "Interiors",
-  mep: "MEP â€” electrical & plumbing",
+  mep: "MEP — electrical & plumbing",
   elevation: "Elevation & facade",
   approvalsAndFees: "Approvals & statutory fees",
   contingency: "Contingency reserve",
@@ -42,7 +42,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-14 md:gap-24 items-start">
 
-        {/* Left â€” editorial copy */}
+        {/* Left — editorial copy */}
         <div className="md:sticky md:top-28">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -84,7 +84,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
           </motion.div>
         </div>
 
-        {/* Right â€” horizontal bar list */}
+        {/* Right — horizontal bar list */}
         <div className="flex flex-col" style={{ gap: "32px" }}>
           {data.map((item, i) => {
             const pct = (item.value / total) * 100;

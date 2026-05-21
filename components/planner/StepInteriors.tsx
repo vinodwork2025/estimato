@@ -21,7 +21,7 @@ const INTERIOR_OPTIONS: {
     value: "basic",
     rateKey: "basic",
     label: "Basic essentials",
-    tagline: "Carpentry only â€” no built-in furniture",
+    tagline: "Carpentry only — no built-in furniture",
     index: "01",
   },
   {
@@ -134,7 +134,7 @@ export function StepInteriors() {
                 {/* Cost */}
                 <div className="text-right shrink-0">
                   <p className="font-mono tabular-nums" style={{ fontSize: "10px", color: "var(--text-tertiary)" }}>
-                    â‚¹{rate.toLocaleString("en-IN")}/sqft
+                    ₹{rate.toLocaleString("en-IN")}/sqft
                   </p>
                   <p
                     className="font-mono tabular-nums font-medium"

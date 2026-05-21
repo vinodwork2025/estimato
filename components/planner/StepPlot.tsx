@@ -115,7 +115,7 @@ export function StepPlot() {
             letterSpacing: "-0.03em",
           }}
         >
-          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "â€”"}
+          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
         </p>
         <p style={{ fontSize: "16px", color: "#7B93A8", marginTop: "8px" }}>
           square feet
@@ -197,7 +197,7 @@ export function StepPlot() {
         </div>
       </div>
 
-      {/* Facing â€” horizontal text buttons */}
+      {/* Facing — horizontal text buttons */}
       <div>
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-4">
           Plot facing
@@ -273,7 +273,7 @@ export function StepPlot() {
           { value: "rocky", label: "Rocky / hard rock" },
           { value: "sandy", label: "Sandy soil" },
         ]}
-        hint="If unsure, say so â€” we'll flag it as a risk"
+        hint="If unsure, say so — we'll flag it as a risk"
         {...register("soilType")}
       />
 

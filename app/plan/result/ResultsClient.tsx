@@ -18,7 +18,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string };
 
-// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function cityLabel(city: string) {
   return city.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -41,7 +41,7 @@ function daysToMonths(days: number) {
   return m === 1 ? "1 month" : `${m} months`;
 }
 
-// â”€â”€â”€ Breakdown config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Breakdown config ─────────────────────────────────────────────────────────
 
 const BREAKDOWN_META: Record<
   keyof CalculationResult["breakdown"],
@@ -49,7 +49,7 @@ const BREAKDOWN_META: Record<
 > = {
   civilStructure: {
     label: "Foundation & Structure",
-    desc: "Footings, columns, slabs, beams, and roof â€” the structural skeleton of your home.",
+    desc: "Footings, columns, slabs, beams, and roof — the structural skeleton of your home.",
   },
   finishes: {
     label: "Flooring & Wall Finishes",
@@ -84,7 +84,7 @@ const TIER_LABELS: Record<QualityTier, string> = {
   luxury: "Luxury",
 };
 
-// â”€â”€â”€ Sub-components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Sub-components ───────────────────────────────────────────────────────────
 
 function HeroSection({
   result,
@@ -111,7 +111,7 @@ function HeroSection({
           transition={{ duration: 0.6, ease }}
         >
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-5">
-            Your estimate Â· {tier} finish Â· {sqft.toLocaleString("en-IN")} sqft
+            Your estimate · {tier} finish · {sqft.toLocaleString("en-IN")} sqft
           </p>
           <p
             className="text-text-secondary mb-4"
@@ -136,7 +136,7 @@ function HeroSection({
               marginBottom: "16px",
             }}
           >
-            {formatINRShort(result.totalRange.min)} â€“ {formatINRShort(result.totalRange.max)}
+            {formatINRShort(result.totalRange.min)} – {formatINRShort(result.totalRange.max)}
           </p>
           <div
             style={{ width: "48px", height: "2px", background: "var(--accent)", marginBottom: "20px" }}
@@ -144,9 +144,9 @@ function HeroSection({
           <p className="font-mono text-text-tertiary" style={{ fontSize: "13px" }}>
             That&apos;s about{" "}
             <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
-              â‚¹{result.costPerSqft.toLocaleString("en-IN")} per sqft
+              ₹{result.costPerSqft.toLocaleString("en-IN")} per sqft
             </strong>{" "}
-            Â· Confidence: Â±6%
+            · Confidence: Â±6%
           </p>
         </motion.div>
 
@@ -171,7 +171,7 @@ function HeroSection({
           className="font-mono text-text-tertiary mt-5"
           style={{ fontSize: "11px", letterSpacing: "0.06em" }}
         >
-          Free Â· No sales call Â· Based on verified BOQs from real {city} projects
+          Free · No sales call · Based on verified BOQs from real {city} projects
         </motion.p>
       </div>
     </section>
@@ -201,7 +201,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
             Where does the money go?
           </h2>
           <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
-            Seven cost segments â€” each one a real line item you can discuss with your contractor.
+            Seven cost segments — each one a real line item you can discuss with your contractor.
           </p>
         </motion.div>
 
@@ -589,7 +589,7 @@ function FooterCTA({ onTalkArchitect }: { onTalkArchitect: () => void }) {
   );
 }
 
-// â”€â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 export function ResultsClient() {
   const router = useRouter();
@@ -632,7 +632,7 @@ export function ResultsClient() {
               <EstimateLogo size="sm" variant="mark" />
             </Link>
             <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em] hidden md:block">
-              Confidence Â±6% Â· BOQ-verified
+              Confidence Â±6% · BOQ-verified
             </span>
             <Link
               href="/plan"

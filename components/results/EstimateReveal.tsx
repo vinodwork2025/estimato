@@ -62,7 +62,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
       className="relative px-6 md:px-12 py-[120px] md:py-[200px]"
       aria-labelledby="estimate-heading"
     >
-      {/* Radial gold halo behind the number â€” subtle depth */}
+      {/* Radial gold halo behind the number — subtle depth */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -147,7 +147,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
               className="font-mono text-text-primary tabular-nums"
               style={{ fontSize: "15px", fontWeight: 500 }}
             >
-              â‚¹{result.costPerSqft.toLocaleString("en-IN")}/sqft
+              ₹{result.costPerSqft.toLocaleString("en-IN")}/sqft
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mt-1">
               Cost per sqft
@@ -170,7 +170,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
               className="font-mono text-text-primary tabular-nums"
               style={{ fontSize: "15px", fontWeight: 500 }}
             >
-              {totalMonths}â€“{totalMonths + 2} months
+              {totalMonths}–{totalMonths + 2} months
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mt-1">
               Build duration

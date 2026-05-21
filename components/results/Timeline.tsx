@@ -209,7 +209,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                       {phaseName}
                     </p>
                     <p className="text-text-secondary mb-0.5" style={{ fontSize: "13px" }}>
-                      {Math.ceil(phase.durationDays / 30)} months &nbsp;Â·&nbsp; {phase.paymentPercent}% of total
+                      {Math.ceil(phase.durationDays / 30)} months &nbsp;·&nbsp; {phase.paymentPercent}% of total
                     </p>
                     <p className="text-text-tertiary" style={{ fontSize: "13px", lineHeight: 1.5 }}>
                       {phase.description}

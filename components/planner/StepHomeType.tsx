@@ -100,7 +100,7 @@ export function StepHomeType() {
                   className="font-mono uppercase mt-3"
                   style={{ fontSize: "10px", letterSpacing: "0.14em", color: "var(--text-tertiary)" }}
                 >
-                  Taking you to the next stepâ€¦
+                  Taking you to the next step…
                 </motion.p>
               )}
             </button>

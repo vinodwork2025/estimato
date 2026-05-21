@@ -134,7 +134,7 @@ export function GenericPartnerCTA({ onGetReport }: { onGetReport: () => void }) 
 
         {/* Description */}
         <p className="text-white/45 text-sm mb-8 max-w-[44ch] leading-relaxed">
-          Full cost breakdown Â· Phase-wise timeline Â· Hidden cost warnings Â·
+          Full cost breakdown · Phase-wise timeline · Hidden cost warnings ·
           Smart observations. Delivered to your inbox.
         </p>
 
@@ -149,7 +149,7 @@ export function GenericPartnerCTA({ onGetReport }: { onGetReport: () => void }) 
         </Button>
 
         <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/22 mt-5">
-          Free Â· No spam Â· One verified partner contact if you choose
+          Free · No spam · One verified partner contact if you choose
         </p>
       </div>
     </motion.div>

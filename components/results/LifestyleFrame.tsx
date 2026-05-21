@@ -53,7 +53,7 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
           </p>
         </motion.div>
 
-        {/* Mobile: horizontal scroll snap. Desktop: 2Ã—2 grid. */}
+        {/* Mobile: horizontal scroll snap. Desktop: 2×2 grid. */}
         <div
           className="flex overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible hide-scrollbar"
           style={{ scrollSnapType: "x mandatory" }}
