@@ -2,23 +2,594 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { usePlannerStore } from "@/lib/store/planner-store";
-import { ResultCover } from "@/components/results/ResultCover";
-import { EstimateReveal } from "@/components/results/EstimateReveal";
-import { CostBreakdown } from "@/components/results/CostBreakdown";
-import { Timeline } from "@/components/results/Timeline";
-import { LifestyleFrame } from "@/components/results/LifestyleFrame";
-import { AdvisoryNotes } from "@/components/results/AdvisoryNotes";
 import { LeadFormModal } from "@/components/lead-capture/LeadFormModal";
 import { SuccessState } from "@/components/lead-capture/SuccessState";
 import { Modal } from "@/components/ui/Modal";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics/events";
-import { CTA, RESULTS, TRUST, CITY_CONFIDENCE } from "@/lib/copy";
-import Link from "next/link";
+import { formatINRShort } from "@/lib/utils";
+import type { CalculationResult, PlannerInput, QualityTier } from "@/types";
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string };
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function cityLabel(city: string) {
+  return city.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function homeTypeLabel(ht: string) {
+  const map: Record<string, string> = {
+    villa: "villa",
+    duplex: "duplex",
+    farmhouse: "farmhouse",
+    contemporary: "contemporary home",
+    budget: "budget home",
+    "luxury-villa": "luxury villa",
+  };
+  return map[ht] ?? ht;
+}
+
+function daysToMonths(days: number) {
+  const m = Math.round(days / 30);
+  return m === 1 ? "1 month" : `${m} months`;
+}
+
+// ─── Breakdown config ─────────────────────────────────────────────────────────
+
+const BREAKDOWN_META: Record<
+  keyof CalculationResult["breakdown"],
+  { label: string; desc: string }
+> = {
+  civilStructure: {
+    label: "Foundation & Structure",
+    desc: "Footings, columns, slabs, beams, and roof — the structural skeleton of your home.",
+  },
+  finishes: {
+    label: "Flooring & Wall Finishes",
+    desc: "Floor tiles, wall plaster, paint, and external cladding.",
+  },
+  interiors: {
+    label: "Interiors",
+    desc: "Kitchen cabinets, wardrobes, and built-in furniture based on your finishing tier.",
+  },
+  mep: {
+    label: "Electrical & Plumbing",
+    desc: "All wiring, switchboards, pipes, sanitary ware, and water connections.",
+  },
+  elevation: {
+    label: "Exterior & Facade",
+    desc: "Main entrance, front elevation, window frames, and boundary compound wall.",
+  },
+  approvalsAndFees: {
+    label: "Approvals & Permits",
+    desc: "Building plan approval, BESCOM connection, and statutory government fees.",
+  },
+  contingency: {
+    label: "Contingency Reserve",
+    desc: "Buffer for material price changes, labour delays, and unexpected site conditions.",
+  },
+};
+
+const TIER_LABELS: Record<QualityTier, string> = {
+  essential: "Basic",
+  economy: "Standard",
+  premium: "Premium",
+  luxury: "Luxury",
+};
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function HeroSection({
+  result,
+  input,
+  onGetPDF,
+  onTalkArchitect,
+}: {
+  result: CalculationResult;
+  input: Partial<PlannerInput>;
+  onGetPDF: () => void;
+  onTalkArchitect: () => void;
+}) {
+  const ht = homeTypeLabel(input.homeType ?? "home");
+  const city = input.city ? cityLabel(input.city) : "your city";
+  const tier = TIER_LABELS[input.qualityTier ?? "economy"];
+  const sqft = input.configuration?.builtUpArea ?? 0;
+
+  return (
+    <section className="px-6 md:px-12 pt-16 pb-20 md:pt-24 md:pb-28" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-5">
+            Your estimate · {tier} finish · {sqft.toLocaleString("en-IN")} sqft
+          </p>
+          <p
+            className="text-text-secondary mb-4"
+            style={{ fontSize: "18px", lineHeight: 1.5 }}
+          >
+            Your {ht} in {city} will cost between
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
+        >
+          <p
+            className="font-serif text-navy tabular-nums"
+            style={{
+              fontSize: "clamp(52px, 10vw, 96px)",
+              fontWeight: 300,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.95,
+              marginBottom: "16px",
+            }}
+          >
+            {formatINRShort(result.totalRange.min)} – {formatINRShort(result.totalRange.max)}
+          </p>
+          <div
+            style={{ width: "48px", height: "2px", background: "var(--accent)", marginBottom: "20px" }}
+          />
+          <p className="font-mono text-text-tertiary" style={{ fontSize: "13px" }}>
+            That&apos;s about{" "}
+            <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
+              ₹{result.costPerSqft.toLocaleString("en-IN")} per sqft
+            </strong>{" "}
+            · Confidence: ±6%
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease }}
+          className="flex flex-col sm:flex-row gap-3 mt-10"
+        >
+          <Button variant="primary" size="lg" onClick={onTalkArchitect} className="px-10">
+            Talk to an architect
+          </Button>
+          <Button variant="secondary" size="lg" onClick={onGetPDF} className="px-10">
+            Download PDF
+          </Button>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="font-mono text-text-tertiary mt-5"
+          style={{ fontSize: "11px", letterSpacing: "0.06em" }}
+        >
+          Free · No sales call · Based on verified BOQs from real {city} projects
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
+function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdown"] }) {
+  const total = Object.values(breakdown).reduce((a, b) => a + b, 0);
+  const keys = Object.keys(breakdown) as (keyof CalculationResult["breakdown"])[];
+
+  return (
+    <section className="px-6 md:px-12 py-16 md:py-24" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+            Cost breakdown
+          </p>
+          <h2
+            className="font-serif text-navy"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
+          >
+            Where does the money go?
+          </h2>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+            Seven cost segments — each one a real line item you can discuss with your contractor.
+          </p>
+        </motion.div>
+
+        <div className="flex flex-col gap-4">
+          {keys.map((key, i) => {
+            const meta = BREAKDOWN_META[key];
+            const amount = breakdown[key];
+            const pct = total > 0 ? Math.round((amount / total) * 100) : 0;
+
+            return (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.07, ease }}
+                className="p-5 md:p-6"
+                style={{
+                  background: "white",
+                  border: "1px solid var(--border)",
+                  borderRadius: "4px",
+                }}
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className="font-serif text-navy mb-1"
+                      style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+                    >
+                      {meta.label}
+                    </p>
+                    <p className="text-text-secondary" style={{ fontSize: "14px", lineHeight: 1.55 }}>
+                      {meta.desc}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p
+                      className="font-serif text-navy tabular-nums"
+                      style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}
+                    >
+                      {formatINRShort(amount)}
+                    </p>
+                    <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>
+                      {pct}% of total
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style={{ height: "3px", background: "var(--border)", borderRadius: "2px" }}
+                >
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${pct}%` }}
+                    transition={{ duration: 0.8, delay: 0.4 + i * 0.07, ease }}
+                    style={{ height: "100%", background: "var(--accent)", borderRadius: "2px" }}
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TimelineSection({ phases, totalDays }: { phases: CalculationResult["timeline"]["phases"]; totalDays: number }) {
+  return (
+    <section className="px-6 md:px-12 py-16 md:py-24" style={{ background: "#F7F4EF", borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+            Build timeline
+          </p>
+          <h2
+            className="font-serif text-navy"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
+          >
+            How long will it take?
+          </h2>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+            Total build time:{" "}
+            <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
+              {daysToMonths(totalDays)}
+            </strong>
+            , split across four phases.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {phases.map((phase, i) => (
+            <motion.div
+              key={phase.name}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease }}
+              className="p-5"
+              style={{
+                background: "white",
+                border: "1px solid var(--border)",
+                borderRadius: "4px",
+              }}
+            >
+              <p
+                className="font-mono text-[10px] uppercase tracking-[0.18em] mb-3"
+                style={{ color: "var(--accent)" }}
+              >
+                Phase {i + 1}
+              </p>
+              <p
+                className="font-serif text-navy mb-1"
+                style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}
+              >
+                {phase.name}
+              </p>
+              <p
+                className="font-mono text-text-tertiary mb-3"
+                style={{ fontSize: "12px" }}
+              >
+                {daysToMonths(phase.durationDays)}
+              </p>
+              <p className="text-text-secondary" style={{ fontSize: "13px", lineHeight: 1.6 }}>
+                {phase.description}
+              </p>
+              <div
+                className="mt-4 pt-4"
+                style={{ borderTop: "1px solid var(--border)" }}
+              >
+                <p className="font-mono text-text-tertiary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                  PAYMENT DUE
+                </p>
+                <p
+                  className="font-serif text-navy tabular-nums mt-0.5"
+                  style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.02em" }}
+                >
+                  {formatINRShort(phase.cost)}
+                </p>
+                <p className="font-mono text-text-tertiary" style={{ fontSize: "10px" }}>
+                  {phase.paymentPercent}% of total
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCostWarnings"] }) {
+  if (!warnings || warnings.length === 0) return null;
+
+  const categoryLabel: Record<string, string> = {
+    approvals: "Approval risk",
+    interiors: "Interior cost risk",
+    materials: "Material cost risk",
+    labour: "Labour risk",
+    overruns: "Cost overrun risk",
+  };
+
+  return (
+    <section className="px-6 md:px-12 py-16 md:py-24" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+            Watch out for
+          </p>
+          <h2
+            className="font-serif text-navy"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
+          >
+            Things your contractor may not mention.
+          </h2>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+            These are real cost risks we surface upfront so you can budget for them.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {warnings.map((w, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.09, ease }}
+              className="p-5 md:p-6"
+              style={{
+                border: "1px solid var(--border)",
+                borderRadius: "4px",
+                borderLeft: "3px solid var(--accent)",
+              }}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>
+                {categoryLabel[w.category] ?? w.category}
+              </p>
+              <p
+                className="font-serif text-navy mb-2"
+                style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+              >
+                {w.title}
+              </p>
+              <p className="text-text-secondary mb-4" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+                {w.message}
+              </p>
+              {w.estimatedImpact && (
+                <div
+                  className="px-3 py-2 font-mono"
+                  style={{
+                    background: "rgba(168,130,59,0.07)",
+                    borderRadius: "2px",
+                    fontSize: "12px",
+                    color: "var(--text-secondary)",
+                  }}
+                >
+                  Estimated impact: {w.estimatedImpact}
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OtherTiersSection({
+  scenarios,
+  selected,
+}: {
+  scenarios: CalculationResult["comparisonScenarios"];
+  selected: QualityTier;
+}) {
+  const tiers: QualityTier[] = ["essential", "economy", "premium", "luxury"];
+  const descs: Record<QualityTier, string> = {
+    essential: "Practical materials, solid construction.",
+    economy: "Elevated finishes, brand sanitary ware.",
+    premium: "Architectural quality, imported fittings.",
+    luxury: "Italian marble, Kohler, heritage finishes.",
+  };
+
+  return (
+    <section className="px-6 md:px-12 py-16 md:py-24" style={{ background: "#F7F4EF", borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+            Other options
+          </p>
+          <h2
+            className="font-serif text-navy"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
+          >
+            What if you changed the finish level?
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {tiers.map((tier, i) => {
+            const isSelected = tier === selected;
+            const amount = scenarios[tier];
+
+            return (
+              <motion.div
+                key={tier}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                className="p-4 md:p-5"
+                style={{
+                  background: isSelected ? "var(--navy)" : "white",
+                  border: isSelected ? "2px solid var(--navy)" : "1px solid var(--border)",
+                  borderRadius: "4px",
+                }}
+              >
+                {isSelected && (
+                  <p
+                    className="font-mono text-[9px] uppercase tracking-[0.16em] mb-2"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    Your choice
+                  </p>
+                )}
+                <p
+                  className="font-serif mb-1"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    color: isSelected ? "white" : "var(--text-primary)",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {TIER_LABELS[tier]}
+                </p>
+                <p
+                  className="font-serif tabular-nums mb-2"
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: 300,
+                    color: isSelected ? "white" : "var(--navy)",
+                    letterSpacing: "-0.025em",
+                  }}
+                >
+                  {formatINRShort(amount)}
+                </p>
+                <p
+                  style={{
+                    fontSize: "12px",
+                    color: isSelected ? "rgba(255,255,255,0.55)" : "var(--text-tertiary)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {descs[tier]}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+        <p className="font-mono text-text-tertiary mt-4" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+          All figures use the same location, area, and floor count as your estimate. Only the finish level changes.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function FooterCTA({ onTalkArchitect }: { onTalkArchitect: () => void }) {
+  return (
+    <section className="px-6 md:px-12 py-20 md:py-28">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+        >
+          <h2
+            className="font-serif text-navy mb-5"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, maxWidth: "22ch" }}
+          >
+            Want to talk through this with an architect?
+          </h2>
+          <p className="text-text-secondary mb-8" style={{ fontSize: "16px", maxWidth: "48ch", lineHeight: 1.7 }}>
+            We introduce one verified firm in your area. No cold calls, no pressure. You decide if you want to talk.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button variant="primary" size="lg" onClick={onTalkArchitect} className="px-10">
+              Request one introduction
+            </Button>
+            <Link href="/plan">
+              <Button variant="secondary" size="lg" className="px-10 w-full sm:w-auto">
+                Start a new estimate
+              </Button>
+            </Link>
+          </div>
+
+          <div className="mt-16 pt-8 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid var(--border)" }}>
+            <Link
+              href="/methodology"
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+            >
+              Read the methodology
+            </Link>
+            <Link
+              href="/"
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+            >
+              Estimato home
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 export function ResultsClient() {
   const router = useRouter();
@@ -41,7 +612,7 @@ export function ResultsClient() {
   if (!result) return null;
 
   function openLeadForm() {
-    track("pdf_form_opened");
+    track("architect_intro_requested");
     setShowLeadForm(true);
   }
 
@@ -50,137 +621,53 @@ export function ResultsClient() {
     setSuccess(data);
   }
 
-  const qualityTier = input.qualityTier ?? "economy";
-  const builtUpArea = input.configuration?.builtUpArea ?? 0;
+  const qualityTier = (input.qualityTier ?? "economy") as QualityTier;
 
   return (
     <>
       <div className="min-h-screen bg-bg-primary">
-
-        {/* Sticky results header */}
-        <header className="border-b border-border px-6 md:px-12 py-4 sticky top-0 z-30 bg-bg-primary">
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+        <header className="sticky top-0 z-30 bg-bg-primary border-b border-border">
+          <div className="max-w-4xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
             <Link href="/" aria-label="Estimato home">
               <EstimateLogo size="sm" variant="mark" />
             </Link>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hidden md:block">
-              {TRUST.confidenceHeader}
-            </p>
+            <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em] hidden md:block">
+              Confidence ±6% · BOQ-verified
+            </span>
             <Link
               href="/plan"
               className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
             >
-              {CTA.newEstimate}
+              New estimate
             </Link>
           </div>
         </header>
 
         <main>
-          {/* Section 1 */}
-          <ResultCover input={input} />
-
-          {/* City intelligence callout — between cover and estimate */}
-          {input.city && (() => {
-            const cityKey = input.city;
-            const conf = CITY_CONFIDENCE[cityKey];
-            const cityLabel = (cityKey ?? "")
-              .replace(/-/g, " ")
-              .replace(/\b\w/g, (c) => c.toUpperCase());
-            return (
-              <div
-                className="px-6 md:px-12"
-                style={{
-                  borderTop: "1px solid var(--accent)",
-                  borderBottom: "1px solid var(--accent)",
-                  padding: "32px 48px",
-                }}
-              >
-                <div className="max-w-6xl mx-auto">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-2">
-                    {TRUST.cityIntelligenceLabel} · {cityLabel}
-                  </p>
-                  <p
-                    className="font-serif text-text-primary mb-2"
-                    style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.25 }}
-                  >
-                    Labour costs in {cityLabel} moved +5.2% in the last two quarters. Material costs were flat.
-                  </p>
-                  <p style={{ fontSize: "14px", color: "#6B635C" }}>
-                    {conf ? `Tracked across ${conf.boqs} active projects.` : "Tracked across active projects in your zone."}
-                  </p>
-                </div>
-              </div>
-            );
-          })()}
-
-          {/* Section 2 */}
-          <EstimateReveal result={result} input={input} />
-
-          {/* Section 3 */}
-          <CostBreakdown breakdown={result.breakdown} />
-
-          {/* Section 4 */}
-          <Timeline phases={result.timeline.phases} totalDays={result.timeline.totalDays} />
-
-          {/* Section 5 */}
-          <LifestyleFrame
-            scenarios={result.comparisonScenarios}
-            selectedTier={qualityTier}
-            builtUpArea={builtUpArea}
-          />
-
-          {/* Section 6 */}
-          <AdvisoryNotes
-            insights={result.smartInsights}
-            contingency={result.recommendedContingency}
+          <HeroSection
+            result={result}
             input={input}
+            onGetPDF={openLeadForm}
+            onTalkArchitect={openLeadForm}
           />
 
-          {/* Footer action */}
-          <section
-            className="px-6 md:px-12 py-[96px] md:py-[160px] border-t border-border"
-            aria-labelledby="footer-cta-heading"
-          >
-            <div className="max-w-6xl mx-auto">
-              <h2
-                id="footer-cta-heading"
-                className="font-serif text-text-primary mb-6"
-                style={{
-                  fontSize: "clamp(24px, 3.5vw, 28px)",
-                  fontWeight: 400,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.15,
-                  maxWidth: "24ch",
-                }}
-              >
-                {RESULTS.footerHeadline}
-              </h2>
-              <p
-                className="text-text-secondary leading-relaxed mb-10"
-                style={{ fontSize: "16px", maxWidth: "52ch" }}
-              >
-                {RESULTS.footerBody}
-              </p>
-              <Button variant="primary" size="lg" onClick={openLeadForm}>
-                {CTA.requestIntro}
-              </Button>
+          <BreakdownSection breakdown={result.breakdown} />
 
-              <div className="mt-16 pt-8 border-t border-border flex items-center justify-between flex-wrap gap-4">
-                <Link
-                  href="/plan"
-                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
-                >
-                  {CTA.newEstimate}
-                </Link>
-                <Link
-                  href="/methodology"
-                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
-                >
-                  {CTA.readMethodology}
-                </Link>
-              </div>
-            </div>
-          </section>
+          <TimelineSection
+            phases={result.timeline.phases}
+            totalDays={result.timeline.totalDays}
+          />
+
+          {result.hiddenCostWarnings?.length > 0 && (
+            <WarningsSection warnings={result.hiddenCostWarnings} />
+          )}
+
+          <OtherTiersSection
+            scenarios={result.comparisonScenarios}
+            selected={qualityTier}
+          />
+
+          <FooterCTA onTalkArchitect={openLeadForm} />
         </main>
       </div>
 

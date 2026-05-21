@@ -26,9 +26,7 @@ export default function PlannerLayout({
         </div>
       </header>
       <main className="flex-1 flex flex-col">
-        <div className="max-w-2xl mx-auto w-full px-5 pt-10 pb-28 md:pb-16 flex-1 flex flex-col">
-          {children}
-        </div>
+        {children}
       </main>
     </div>
   );

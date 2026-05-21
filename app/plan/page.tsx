@@ -1,5 +1,5 @@
-import { StepHomeType } from "@/components/planner/StepHomeType";
+import { PlannerWizard } from "@/components/planner/PlannerWizard";
 
 export default function PlanPage() {
-  return <StepHomeType />;
+  return <PlannerWizard />;
 }
