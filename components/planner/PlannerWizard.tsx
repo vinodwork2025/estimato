@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -828,12 +828,16 @@ function Step5Finish({
 
 export function PlannerWizard() {
   const router = useRouter();
-  const { setInput, setResult, setCalculating, isCalculating } = usePlannerStore();
+  const { setInput, setResult, setCalculating } = usePlannerStore();
 
   const [step, setStep] = useState(1);
   const [dir, setDir] = useState(1);
   const [wizard, setWizard] = useState<WizardState>(INITIAL);
   const [error, setError] = useState<string | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  // Clear any stale isCalculating from persisted store on mount
+  useEffect(() => { setCalculating(false); }, [setCalculating]);
 
   function patch(partial: Partial<WizardState>) {
     setWizard((prev) => ({ ...prev, ...partial }));
@@ -865,6 +869,7 @@ export function PlannerWizard() {
   async function handleCalculate() {
     if (!wizard.homeType || !wizard.city || !wizard.qualityTier || !wizard.interiorLevel) return;
     setError(null);
+    setIsCalculating(true);
     setCalculating(true);
 
     try {
@@ -887,6 +892,7 @@ export function PlannerWizard() {
       router.push("/plan/result");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Calculation failed — please try again.");
+      setIsCalculating(false);
       setCalculating(false);
     }
   }
@@ -926,8 +932,8 @@ export function PlannerWizard() {
         </div>
       </div>
 
-      {/* Step panels */}
-      <div className="flex-1 overflow-hidden">
+      {/* Step panels — overflow-x-clip clips slide animation without blocking vertical scroll */}
+      <div className="flex-1" style={{ overflowX: "clip" }}>
         <AnimatePresence custom={dir} mode="wait">
           <motion.div
             key={step}
