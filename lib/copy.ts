@@ -101,6 +101,23 @@ export const AUTHORITY_TILES = [
   },
 ] as const;
 
+// ─── Authority stats (hero stats row — label + sublabel shape) ────────────────
+
+export const AUTHORITY_STATS = [
+  {
+    label: "Verified BOQs",
+    sublabel: "From real Hosur and Bengaluru projects, 2026",
+  },
+  {
+    label: "Methodology",
+    sublabel: "Published and open to review",
+  },
+  {
+    label: "No upsell",
+    sublabel: "Free for homeowners, forever",
+  },
+] as const;
+
 // ─── How it works (3 steps) ───────────────────────────────────────────────────
 
 export const HOW_IT_WORKS = [

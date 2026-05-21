@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { usePlannerStore } from "@/lib/store/planner-store";
 import { CITIES } from "@/data/cities";
-import { CITY_CONFIDENCE, PLAN, TRUST } from "@/lib/copy";
+import { CITY_CONFIDENCE, PLAN } from "@/lib/copy";
 import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
 import { track } from "@/lib/analytics/events";
@@ -65,10 +65,11 @@ export function StepLocation() {
               onClick={() => handleSelect(city.value)}
               role="radio"
               aria-checked={isSelected}
-              className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 group transition-colors duration-200"
+              className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 group transition-all duration-200"
               style={{
-                paddingLeft: "20px",
+                paddingLeft: "16px",
                 borderLeftWidth: "2px",
+                borderLeftStyle: "solid",
                 borderLeftColor: isSelected ? "var(--accent)" : "transparent",
               }}
             >
@@ -76,7 +77,7 @@ export function StepLocation() {
                 className="font-serif transition-colors duration-200"
                 style={{
                   fontSize: "22px",
-                  fontWeight: 400,
+                  fontWeight: isSelected ? 500 : 400,
                   letterSpacing: "-0.01em",
                   color: isSelected ? "var(--text-primary)" : "var(--text-secondary)",
                 }}
@@ -91,7 +92,7 @@ export function StepLocation() {
                     color: isSelected ? "var(--accent)" : "var(--text-tertiary)",
                   }}
                 >
-                  {conf.boqs} verified BOQs · {conf.variance} variance
+                  {conf.boqs} BOQs · {conf.variance}
                 </span>
               )}
             </button>
@@ -106,10 +107,11 @@ export function StepLocation() {
             onClick={() => handleSelect("other")}
             role="radio"
             aria-checked={selected === "other"}
-            className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-colors duration-200"
+            className="flex items-baseline justify-between py-4 border-b border-border text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30 transition-all duration-200"
             style={{
-              paddingLeft: "20px",
+              paddingLeft: "16px",
               borderLeftWidth: "2px",
+              borderLeftStyle: "solid",
               borderLeftColor: selected === "other" ? "var(--accent)" : "transparent",
             }}
           >
@@ -117,7 +119,7 @@ export function StepLocation() {
               className="font-serif transition-colors duration-200"
               style={{
                 fontSize: "22px",
-                fontWeight: 400,
+                fontWeight: selected === "other" ? 500 : 400,
                 letterSpacing: "-0.01em",
                 color: selected === "other" ? "var(--text-primary)" : "var(--text-secondary)",
               }}
@@ -126,9 +128,9 @@ export function StepLocation() {
             </span>
             <span
               className="font-mono text-right leading-snug shrink-0 ml-4"
-              style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+              style={{ fontSize: "11px", color: selected === "other" ? "var(--accent)" : "var(--text-tertiary)" }}
             >
-              {CITY_CONFIDENCE["other"]?.boqs} BOQs · {CITY_CONFIDENCE["other"]?.variance} variance
+              {CITY_CONFIDENCE["other"]?.boqs} BOQs · {CITY_CONFIDENCE["other"]?.variance}
             </span>
           </button>
         )}
@@ -139,10 +141,6 @@ export function StepLocation() {
           {error}
         </p>
       )}
-
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
-        {PLAN.confidenceNote}
-      </p>
 
       <NavigationButtons
         onBack={() => router.push("/plan")}

@@ -11,7 +11,7 @@ import { ProgressBar } from "./ProgressBar";
 import { NavigationButtons } from "./NavigationButtons";
 import { formatINRShort } from "@/lib/utils";
 import { track } from "@/lib/analytics/events";
-import { TIER_NAMES, TIER_DESCRIPTIONS, TIER_RATE_BANDS, PLAN, TRUST } from "@/lib/copy";
+import { TIER_NAMES, TIER_DESCRIPTIONS, TIER_MATERIALS, PLAN } from "@/lib/copy";
 import type { QualityTier } from "@/types";
 
 const SWATCH_IMAGES: Record<QualityTier, string> = {
@@ -21,7 +21,7 @@ const SWATCH_IMAGES: Record<QualityTier, string> = {
   luxury: "https://images.unsplash.com/photo-1589217157232-464b505b197f?auto=format&fit=crop&w=240&q=80",
 };
 
-const DUOTONE = "grayscale(1) sepia(0.12) brightness(0.95) contrast(1.05)";
+const DUOTONE = "grayscale(0.8) sepia(0.18) brightness(0.93) contrast(1.06)";
 
 export function StepQuality() {
   const router = useRouter();
@@ -47,7 +47,7 @@ export function StepQuality() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col gap-6"
@@ -55,12 +55,13 @@ export function StepQuality() {
       <ProgressBar currentStep={5} />
 
       <div>
-        <h1 className="step-title mb-2">{PLAN.step6Question}</h1>
+        <h1 className="step-title mb-2">{PLAN.step5Question}</h1>
         <p className="text-text-secondary leading-relaxed" style={{ fontSize: "16px" }}>
-          {PLAN.step6Subhead}
+          {PLAN.step5Subhead}
         </p>
       </div>
 
+      {/* Editorial tier list */}
       <div className="border-t border-border">
         {QUALITY_TIERS.map((tier, i) => {
           const rateForCity = getBaseRate(city, tier.value);
@@ -76,7 +77,9 @@ export function StepQuality() {
               className="border-b border-border"
               style={{
                 borderLeftWidth: "2px",
+                borderLeftStyle: "solid",
                 borderLeftColor: isSelected ? "var(--accent)" : "transparent",
+                transition: "border-left-color 0.2s ease",
               }}
             >
               <button
@@ -85,26 +88,26 @@ export function StepQuality() {
                   setExpanded(isExpanded ? null : tier.value);
                 }}
                 className="w-full text-left py-5 flex items-start justify-between gap-4 group focus:outline-none focus-visible:ring-1 focus-visible:ring-navy/30"
-                style={{ paddingLeft: "20px" }}
+                style={{ paddingLeft: "18px" }}
                 aria-pressed={isSelected}
                 aria-expanded={isExpanded}
               >
-                {/* Left: metadata */}
+                {/* Left: tier number + name */}
                 <div className="flex-1 min-w-0">
                   <p
                     className="font-mono uppercase mb-2 transition-colors duration-200"
                     style={{
-                      fontSize: "11px",
+                      fontSize: "10px",
                       letterSpacing: "0.18em",
                       color: isSelected ? "var(--accent)" : "var(--text-tertiary)",
                     }}
                   >
-                    TIER {num}
+                    Tier {num}
                   </p>
                   <p
-                    className="font-serif transition-colors duration-200"
+                    className="font-serif transition-all duration-200"
                     style={{
-                      fontSize: "clamp(22px, 3vw, 32px)",
+                      fontSize: "clamp(22px, 3vw, 30px)",
                       fontWeight: isSelected ? 500 : 400,
                       letterSpacing: "-0.012em",
                       lineHeight: 1.05,
@@ -115,7 +118,7 @@ export function StepQuality() {
                   </p>
                 </div>
 
-                {/* Right: cost */}
+                {/* Right: live cost + chevron */}
                 <div className="text-right shrink-0 flex items-center gap-3 pt-1">
                   <span
                     className="font-mono tabular-nums transition-colors duration-200"
@@ -148,11 +151,11 @@ export function StepQuality() {
                     className="overflow-hidden"
                   >
                     <div className="pb-6 pl-5 pr-4 flex flex-col md:flex-row gap-6 items-start">
-                      {/* Description + materials */}
+                      {/* Description + material details */}
                       <div className="flex-1 min-w-0">
                         <p
                           className="leading-relaxed mb-3"
-                          style={{ fontSize: "15px", color: "#3A3530", maxWidth: "44ch" }}
+                          style={{ fontSize: "15px", color: "#3A3530", maxWidth: "44ch", lineHeight: 1.7 }}
                         >
                           {TIER_DESCRIPTIONS[tierKey]}
                         </p>
@@ -160,27 +163,24 @@ export function StepQuality() {
                           className="font-mono text-text-tertiary mb-1"
                           style={{ fontSize: "11px", letterSpacing: "0.1em" }}
                         >
-                          {TIER_RATE_BANDS[tierKey]}
+                          ₹{rateForCity.toLocaleString("en-IN")}/sqft
                         </p>
                         <p style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
-                          {tier.materials}
+                          {TIER_MATERIALS[tierKey]}
                         </p>
                       </div>
 
-                      {/* Material swatch — 120×120, duotone, 4px radius */}
+                      {/* Material swatch — warm duotone */}
                       <div
-                        className="relative shrink-0 overflow-hidden w-20 h-20 md:w-[120px] md:h-[120px]"
-                        style={{
-                          borderRadius: "4px",
-                          border: "1px solid #D4CCBF",
-                        }}
+                        className="relative shrink-0 overflow-hidden w-20 h-20 md:w-[112px] md:h-[112px]"
+                        style={{ borderRadius: "2px", border: "1px solid #D4CCBF" }}
                       >
                         <Image
                           src={SWATCH_IMAGES[tierKey]}
-                          alt={`${TIER_NAMES[tierKey]} material sample`}
+                          alt={`${TIER_NAMES[tierKey]} material reference`}
                           fill
                           className="object-cover"
-                          sizes="120px"
+                          sizes="112px"
                           style={{ filter: DUOTONE }}
                         />
                       </div>
@@ -195,13 +195,9 @@ export function StepQuality() {
 
       {!selected && (
         <p className="font-mono text-[10px] text-text-tertiary tracking-[0.1em] text-center py-2">
-          Select a tier to continue
+          Select a quality level to continue
         </p>
       )}
-
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
-        {PLAN.confidenceNote}
-      </p>
 
       <NavigationButtons
         onBack={() => router.push("/plan/configuration")}
