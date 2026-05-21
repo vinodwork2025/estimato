@@ -14,10 +14,10 @@ export function HomeHero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springX = useSpring(mouseX, { stiffness: 38, damping: 24 });
-  const springY = useSpring(mouseY, { stiffness: 38, damping: 24 });
-  const imgX = useTransform(springX, [-1, 1], [-8, 8]);
-  const imgY = useTransform(springY, [-1, 1], [-5, 5]);
+  const springX = useSpring(mouseX, { stiffness: 28, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 28, damping: 20 });
+  const imgX = useTransform(springX, [-1, 1], [-10, 10]);
+  const imgY = useTransform(springY, [-1, 1], [-6, 6]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!imageRef.current) return;
@@ -27,9 +27,9 @@ export function HomeHero() {
   }
 
   return (
-    <section className="relative bg-bg-primary px-6 pt-20 pb-32 overflow-hidden">
+    <section className="relative bg-bg-primary px-6 pt-20 md:pt-28 pb-36 md:pb-52 overflow-hidden">
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[56%_44%] gap-14 xl:gap-28 items-center">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[56%_44%] gap-16 xl:gap-32 items-center">
 
         {/* Text column */}
         <div className="order-2 lg:order-1">
@@ -37,36 +37,50 @@ export function HomeHero() {
           <motion.div
             initial={{ opacity: 0, x: -14 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, ease }}
+            transition={{ duration: 0.6, ease }}
             className="inline-flex items-center gap-3 mb-10"
           >
-            <div className="h-px w-6 bg-gold shrink-0" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary">
-              Free for Indian homeowners · 2026 rates
+            <div className="h-px w-8 bg-gold/60 shrink-0" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
+              Free for Indian homeowners · 2026 verified rates
             </span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.08, ease }}
-            className="font-serif text-navy mb-10 whitespace-pre-line"
+            transition={{ duration: 1.0, delay: 0.1, ease }}
+            className="font-serif text-navy mb-6 whitespace-pre-line"
             style={{
-              fontSize: "clamp(44px, 7vw, 80px)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(44px, 6.5vw, 76px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.032em",
               fontWeight: 400,
             }}
           >
             {HOME.heroHeadline}
           </motion.h1>
 
+          {/* Animated gold separator */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.65, delay: 0.3, ease }}
+            style={{
+              width: "44px",
+              height: "1px",
+              background: "var(--gold)",
+              marginBottom: "22px",
+              transformOrigin: "left",
+            }}
+          />
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22, ease }}
-            className="text-text-secondary leading-relaxed mb-11"
-            style={{ fontSize: "18px", maxWidth: "48ch" }}
+            transition={{ duration: 0.7, delay: 0.32, ease }}
+            className="text-text-secondary leading-relaxed mb-10"
+            style={{ fontSize: "18px", maxWidth: "46ch", lineHeight: 1.72 }}
           >
             {HOME.heroSubhead}
           </motion.p>
@@ -74,8 +88,8 @@ export function HomeHero() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.32, ease }}
-            className="flex flex-col sm:flex-row gap-3 mb-16"
+            transition={{ duration: 0.55, delay: 0.42, ease }}
+            className="flex flex-col sm:flex-row gap-3 mb-14"
           >
             <Link href="/plan">
               <Button variant="primary" size="lg" className="w-full sm:w-auto px-12">
@@ -89,25 +103,44 @@ export function HomeHero() {
             </Link>
           </motion.div>
 
-          {/* Authority stats — no vanity numbers */}
+          {/* Authority stats — serif labels, bronze accents */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="grid grid-cols-3 gap-5 pt-10 border-t border-border"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.55 }}
+            className="grid grid-cols-3 gap-4 pt-9 border-t border-border"
           >
-            {AUTHORITY_STATS.map((stat) => (
-              <div key={stat.label}>
+            {AUTHORITY_STATS.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.09 }}
+              >
+                <div
+                  style={{
+                    width: "20px",
+                    height: "1px",
+                    background: "var(--accent)",
+                    opacity: 0.5,
+                    marginBottom: "10px",
+                  }}
+                />
                 <p
-                  className="text-navy mb-1.5"
-                  style={{ fontSize: "14px", fontWeight: 500, letterSpacing: "-0.01em" }}
+                  className="font-serif text-navy mb-1"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    letterSpacing: "-0.01em",
+                    lineHeight: 1.2,
+                  }}
                 >
                   {stat.label}
                 </p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-tertiary leading-snug">
                   {stat.sublabel}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -123,59 +156,104 @@ export function HomeHero() {
           }}
         >
           <motion.div style={{ x: imgX, y: imgY }} className="relative">
-            {/* Main image — duotone art direction */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden">
+
+            {/* Main image — warm duotone, considered crop */}
+            <div
+              className="relative aspect-[4/5] w-full overflow-hidden"
+              style={{ borderRadius: "2px" }}
+            >
               <Image
-                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=85"
-                alt="Contemporary home exterior"
+                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=90"
+                alt="Contemporary South Indian home — architectural exterior"
                 fill
                 priority
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 46vw"
                 style={{
-                  filter: "grayscale(1) sepia(0.15) brightness(0.92) contrast(1.05)",
+                  filter: "grayscale(0.6) sepia(0.25) brightness(0.87) contrast(1.08)",
+                  objectPosition: "center 15%",
+                }}
+              />
+              {/* Bottom vignette — depth without heaviness */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to bottom, transparent 55%, rgba(28,25,23,0.22) 100%)",
                 }}
               />
             </div>
 
-            {/* Floating estimate — editorial style, no card chrome */}
+            {/* Floating projection card — structured, no card chrome */}
             <motion.div
-              initial={{ opacity: 0, x: -18, y: 10 }}
+              initial={{ opacity: 0, x: -20, y: 14 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.7, ease }}
-              className="absolute -bottom-8 -left-6 p-5 w-[210px] bg-bg-primary"
-              style={{ border: "1px solid var(--border)" }}
+              transition={{ delay: 0.85, duration: 0.75, ease }}
+              className="absolute -bottom-10 -left-8 bg-bg-primary"
+              style={{
+                border: "1px solid var(--border)",
+                width: "228px",
+                padding: "18px 20px 20px",
+              }}
             >
-              <div style={{ height: "1px", background: "#D4CCBF", marginBottom: "14px" }} />
-              <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-text-tertiary mb-2.5">
-                Sample estimate
+              <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-text-tertiary mb-3">
+                Sample projection
               </p>
               <p
-                className="font-serif text-navy leading-none tabular-nums mb-2"
-                style={{ fontSize: "28px", fontWeight: 400, letterSpacing: "-0.025em" }}
+                className="font-serif text-navy leading-none tabular-nums"
+                style={{ fontSize: "34px", fontWeight: 300, letterSpacing: "-0.03em" }}
               >
-                ₹68–₹84L
+                ₹68–84L
               </p>
-              <p className="text-text-secondary mb-0" style={{ fontSize: "12px", lineHeight: 1.5 }}>
-                1,500 sqft · Hosur · Refined Living
-              </p>
-              <div style={{ height: "1px", background: "#D4CCBF", marginTop: "14px" }} />
+              <div
+                style={{
+                  height: "1px",
+                  background: "var(--accent)",
+                  width: "32px",
+                  margin: "12px 0",
+                }}
+              />
+              <div className="flex flex-col gap-2">
+                {[
+                  { k: "Area", v: "1,500 sqft" },
+                  { k: "City", v: "Hosur" },
+                  { k: "Tier", v: "Refined Living" },
+                ].map((row) => (
+                  <div key={row.k} className="flex justify-between items-baseline">
+                    <span
+                      className="font-mono uppercase text-text-tertiary"
+                      style={{ fontSize: "9px", letterSpacing: "0.12em" }}
+                    >
+                      {row.k}
+                    </span>
+                    <span
+                      className="font-mono text-text-secondary tabular-nums"
+                      style={{ fontSize: "11px" }}
+                    >
+                      {row.v}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Top-right marker */}
+            {/* Top-right badge — editorial, not startup */}
             <motion.div
-              initial={{ opacity: 0, y: -6 }}
+              initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.95, duration: 0.5, ease }}
-              className="absolute -top-4 -right-4 bg-navy text-text-inverse px-4 py-3"
+              transition={{ delay: 1.0, duration: 0.5, ease }}
+              className="absolute -top-5 -right-5 bg-navy"
+              style={{ padding: "13px 17px" }}
             >
-              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em]">
-                Free forever
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/80">
+                BOQ-based
               </p>
-              <p className="text-[9px] text-text-inverse/40 mt-0.5 font-mono uppercase tracking-wide">
-                No account needed
+              <p className="font-mono text-[9px] text-white/35 mt-0.5 uppercase tracking-[0.1em]">
+                2026 verified
               </p>
             </motion.div>
+
           </motion.div>
         </div>
 
