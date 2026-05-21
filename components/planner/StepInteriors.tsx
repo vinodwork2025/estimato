@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -21,7 +21,7 @@ const INTERIOR_OPTIONS: {
     value: "basic",
     rateKey: "basic",
     label: "Basic essentials",
-    tagline: "Carpentry only — no built-in furniture",
+    tagline: "Carpentry only â€” no built-in furniture",
     index: "01",
   },
   {
@@ -126,7 +126,7 @@ export function StepInteriors() {
                   >
                     {opt.label}
                   </p>
-                  <p style={{ fontSize: "14px", color: "#6B635C" }}>
+                  <p style={{ fontSize: "14px", color: "#7B93A8" }}>
                     {opt.tagline}
                   </p>
                 </div>
@@ -134,7 +134,7 @@ export function StepInteriors() {
                 {/* Cost */}
                 <div className="text-right shrink-0">
                   <p className="font-mono tabular-nums" style={{ fontSize: "10px", color: "var(--text-tertiary)" }}>
-                    ₹{rate.toLocaleString("en-IN")}/sqft
+                    â‚¹{rate.toLocaleString("en-IN")}/sqft
                   </p>
                   <p
                     className="font-mono tabular-nums font-medium"

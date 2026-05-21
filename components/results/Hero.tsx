@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { formatINRShort } from "@/lib/utils";
@@ -30,14 +30,14 @@ export function ResultHero({ result, input }: HeroProps) {
     `${quality} finish`,
   ]
     .filter(Boolean)
-    .join("  ·  ");
+    .join("  Â·  ");
 
   return (
     <section
       className="relative bg-navy overflow-hidden px-8 pt-20 pb-16 mb-0"
       aria-labelledby="result-hero-heading"
     >
-      {/* Ambient warmth — no grid, no tech */}
+      {/* Ambient warmth â€” no grid, no tech */}
       <div
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         style={{
@@ -56,7 +56,7 @@ export function ResultHero({ result, input }: HeroProps) {
         >
           <div className="h-px w-6 bg-gold/50" />
           <p className="font-mono text-[9px] text-white/35 uppercase tracking-[0.26em]">
-            Your construction estimate · 2026 verified rates
+            Your construction estimate Â· 2026 verified rates
           </p>
         </motion.div>
 
@@ -75,13 +75,13 @@ export function ResultHero({ result, input }: HeroProps) {
               fontWeight: 300,
               letterSpacing: "-0.025em",
               background:
-                "linear-gradient(135deg, #B8954E 0%, #CCB07A 50%, #B8954E 100%)",
+                "linear-gradient(135deg, #C49A3C 0%, #D4B86A 50%, #C49A3C 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}
           >
-            {formatINRShort(result.totalRange.min)} –{" "}
+            {formatINRShort(result.totalRange.min)} â€“{" "}
             {formatINRShort(result.totalRange.max)}
           </h1>
         </motion.div>
@@ -96,11 +96,11 @@ export function ResultHero({ result, input }: HeroProps) {
             <span className="font-mono text-white/40 text-[11px] tabular-nums">
               Mid&nbsp;{formatINRShort(result.totalRange.mid)}
             </span>
-            <span className="text-white/20 font-mono">·</span>
+            <span className="text-white/20 font-mono">Â·</span>
             <span className="font-mono text-white/40 text-[11px] tabular-nums">
-              ₹{result.costPerSqft.toLocaleString("en-IN")}/sqft
+              â‚¹{result.costPerSqft.toLocaleString("en-IN")}/sqft
             </span>
-            <span className="text-white/20 font-mono">·</span>
+            <span className="text-white/20 font-mono">Â·</span>
             <span className="font-mono text-white/40 text-[11px]">
               ~{Math.ceil(result.timeline.totalDays / 30)} months
             </span>
@@ -109,7 +109,7 @@ export function ResultHero({ result, input }: HeroProps) {
           {/* Thin gold separator */}
           <div className="w-8 h-px bg-gold/35 mb-7" />
 
-          {/* Spec line — inline, not tag pills */}
+          {/* Spec line â€” inline, not tag pills */}
           <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.16em] leading-relaxed">
             {specLine}
           </p>

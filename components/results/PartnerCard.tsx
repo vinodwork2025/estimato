@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -30,7 +30,7 @@ export function PartnerCard({ partner, onGetReport }: PartnerCardProps) {
   return (
     <div
       className="bg-bg-elevated border border-border overflow-hidden"
-      style={{ boxShadow: "0 2px 8px rgba(28,25,23,0.06)" }}
+      style={{ boxShadow: "0 2px 8px rgba(13,31,60,0.06)" }}
     >
       {/* Header */}
       <div className="px-6 pt-6 pb-5 border-b border-border">
@@ -134,7 +134,7 @@ export function GenericPartnerCTA({ onGetReport }: { onGetReport: () => void }) 
 
         {/* Description */}
         <p className="text-white/45 text-sm mb-8 max-w-[44ch] leading-relaxed">
-          Full cost breakdown · Phase-wise timeline · Hidden cost warnings ·
+          Full cost breakdown Â· Phase-wise timeline Â· Hidden cost warnings Â·
           Smart observations. Delivered to your inbox.
         </p>
 
@@ -149,7 +149,7 @@ export function GenericPartnerCTA({ onGetReport }: { onGetReport: () => void }) 
         </Button>
 
         <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/22 mt-5">
-          Free · No spam · One verified partner contact if you choose
+          Free Â· No spam Â· One verified partner contact if you choose
         </p>
       </div>
     </motion.div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -59,7 +59,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
             {/* Animated horizontal line */}
             <div
               className="absolute"
-              style={{ top: "5px", left: 0, right: 0, height: "2px", background: "#D4CCBF" }}
+              style={{ top: "5px", left: 0, right: 0, height: "2px", background: "#DDE4ED" }}
             >
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -67,7 +67,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                 transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   height: "100%",
-                  background: "#D4CCBF",
+                  background: "#DDE4ED",
                   transformOrigin: "left center",
                   position: "absolute",
                   inset: 0,
@@ -94,7 +94,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                       style={{
                         width: "6px",
                         height: "6px",
-                        background: "#1C1917",
+                        background: "#0D1F3C",
                         borderRadius: "50%",
                         position: "relative",
                         zIndex: 10,
@@ -151,7 +151,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
             {/* Vertical animated line */}
             <div
               className="absolute"
-              style={{ left: "2px", top: 0, bottom: 0, width: "2px", background: "#D4CCBF" }}
+              style={{ left: "2px", top: 0, bottom: 0, width: "2px", background: "#DDE4ED" }}
             >
               <motion.div
                 initial={{ scaleY: 0 }}
@@ -160,7 +160,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                 style={{
                   width: "100%",
                   height: "100%",
-                  background: "#D4CCBF",
+                  background: "#DDE4ED",
                   transformOrigin: "top center",
                   position: "absolute",
                   inset: 0,
@@ -186,7 +186,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                       style={{
                         width: "6px",
                         height: "6px",
-                        background: "#1C1917",
+                        background: "#0D1F3C",
                         borderRadius: "50%",
                         position: "relative",
                         zIndex: 10,
@@ -209,7 +209,7 @@ export function Timeline({ phases, totalDays }: TimelineProps) {
                       {phaseName}
                     </p>
                     <p className="text-text-secondary mb-0.5" style={{ fontSize: "13px" }}>
-                      {Math.ceil(phase.durationDays / 30)} months &nbsp;·&nbsp; {phase.paymentPercent}% of total
+                      {Math.ceil(phase.durationDays / 30)} months &nbsp;Â·&nbsp; {phase.paymentPercent}% of total
                     </p>
                     <p className="text-text-tertiary" style={{ fontSize: "13px", lineHeight: 1.5 }}>
                       {phase.description}

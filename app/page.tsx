@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
@@ -9,11 +9,11 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { HOME, CTA } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "Estimato – Plan before you build",
+  title: "Estimato â€“ Plan before you build",
   description:
     "Plan your home construction budget in 7 steps. Honest numbers, no contractor pitch. Free for Indian homeowners.",
   openGraph: {
-    title: "Estimato – Plan before you build",
+    title: "Estimato â€“ Plan before you build",
     description:
       "Get an honest home construction estimate in 7 steps. Covers Hosur, Sarjapura, Bengaluru, and 12+ cities.",
     images: [{ url: "/og-home.png", width: 1200, height: 630 }],
@@ -24,7 +24,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How accurate is the estimate?",
     answer:
-      "Our estimates are based on verified 2026 market rates from real project BOQs in the Hosur–Bengaluru belt. We give you a range (not a single number) because construction costs always vary. Use the estimate to plan your budget, not to sign a contract.",
+      "Our estimates are based on verified 2026 market rates from real project BOQs in the Hosurâ€“Bengaluru belt. We give you a range (not a single number) because construction costs always vary. Use the estimate to plan your budget, not to sign a contract.",
   },
   {
     question: "Is Estimato free to use?",
@@ -67,7 +67,7 @@ const HOW_IT_WORKS = [
   {
     step: "01",
     title: "Tell us about your build",
-    body: "Home type, location, plot size, floors, quality tier — 7 considered steps. No sign-up, no obligation.",
+    body: "Home type, location, plot size, floors, quality tier â€” 7 considered steps. No sign-up, no obligation.",
   },
   {
     step: "02",
@@ -84,7 +84,7 @@ const HOW_IT_WORKS = [
 const WHAT_YOU_GET = [
   {
     label: "Cost breakdown",
-    body: "Seven segments showing exactly where every rupee goes — from civil structure to contingency reserve.",
+    body: "Seven segments showing exactly where every rupee goes â€” from civil structure to contingency reserve.",
   },
   {
     label: "Phase-wise timeline",
@@ -103,7 +103,7 @@ const WHAT_YOU_GET = [
 const WHY_DIFFERENT = [
   {
     title: "Honest numbers",
-    body: "We show a range, not a single optimistic figure. You see exactly what drives costs up or down — before you speak to anyone.",
+    body: "We show a range, not a single optimistic figure. You see exactly what drives costs up or down â€” before you speak to anyone.",
   },
   {
     title: "No contractor pitch",
@@ -129,70 +129,70 @@ function ReportMockup() {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect width="240" height="340" fill="#F7F4EF" />
-      <rect x="0.5" y="0.5" width="239" height="339" stroke="#D4CCBF" strokeWidth="1" />
+      <rect width="240" height="340" fill="#FFFFFF" />
+      <rect x="0.5" y="0.5" width="239" height="339" stroke="#DDE4ED" strokeWidth="1" />
 
       {/* Navy header */}
-      <rect width="240" height="44" fill="#1C1917" />
-      <text x="20" y="28" fill="#F7F4EF" fontFamily="Georgia, serif" fontSize="11" letterSpacing="3.5">ESTIMATO</text>
+      <rect width="240" height="44" fill="#0D1F3C" />
+      <text x="20" y="28" fill="#FFFFFF" fontFamily="Georgia, serif" fontSize="11" letterSpacing="3.5">ESTIMATO</text>
       <text x="220" y="26" fill="rgba(247,244,239,0.35)" fontFamily="monospace" fontSize="7" letterSpacing="1" textAnchor="end">2026</text>
 
       {/* Label block */}
-      <text x="20" y="64" fill="#6B635C" fontFamily="monospace" fontSize="7" letterSpacing="2">CONSTRUCTION COST</text>
-      <text x="20" y="76" fill="#6B635C" fontFamily="monospace" fontSize="7" letterSpacing="2">PROJECTION · HOSUR</text>
+      <text x="20" y="64" fill="#7B93A8" fontFamily="monospace" fontSize="7" letterSpacing="2">CONSTRUCTION COST</text>
+      <text x="20" y="76" fill="#7B93A8" fontFamily="monospace" fontSize="7" letterSpacing="2">PROJECTION Â· HOSUR</text>
 
       {/* Hairline */}
-      <line x1="20" y1="88" x2="220" y2="88" stroke="#D4CCBF" strokeWidth="0.5" />
+      <line x1="20" y1="88" x2="220" y2="88" stroke="#DDE4ED" strokeWidth="0.5" />
 
       {/* Big number */}
-      <text x="20" y="136" fill="#1C1917" fontFamily="Georgia, serif" fontSize="40" letterSpacing="-2">₹84–96L</text>
+      <text x="20" y="136" fill="#0D1F3C" fontFamily="Georgia, serif" fontSize="40" letterSpacing="-2">â‚¹84â€“96L</text>
 
       {/* Bronze rule */}
-      <line x1="20" y1="149" x2="88" y2="149" stroke="#A8823B" strokeWidth="1.5" />
+      <line x1="20" y1="149" x2="88" y2="149" stroke="#C49A3C" strokeWidth="1.5" />
 
       {/* Spec lines */}
-      <text x="20" y="167" fill="#6B635C" fontFamily="monospace" fontSize="7" letterSpacing="1.5">1,800 SQFT · G+1 · HOSUR</text>
-      <text x="20" y="179" fill="#6B635C" fontFamily="monospace" fontSize="7" letterSpacing="1.5">CRAFTED LIVING TIER</text>
+      <text x="20" y="167" fill="#7B93A8" fontFamily="monospace" fontSize="7" letterSpacing="1.5">1,800 SQFT Â· G+1 Â· HOSUR</text>
+      <text x="20" y="179" fill="#7B93A8" fontFamily="monospace" fontSize="7" letterSpacing="1.5">CRAFTED LIVING TIER</text>
 
       {/* Breakdown label */}
-      <text x="20" y="204" fill="#6B635C" fontFamily="monospace" fontSize="7" letterSpacing="2">COST BREAKDOWN</text>
-      <line x1="20" y1="211" x2="220" y2="211" stroke="#E8E3DA" strokeWidth="0.5" />
+      <text x="20" y="204" fill="#7B93A8" fontFamily="monospace" fontSize="7" letterSpacing="2">COST BREAKDOWN</text>
+      <line x1="20" y1="211" x2="220" y2="211" stroke="#EEF2F7" strokeWidth="0.5" />
 
-      {/* Bars — proportional to 200px = 100% */}
-      {/* Civil 38% → 76px */}
-      <rect x="20" y="219" width="76" height="3.5" fill="#A8823B" rx="1" />
-      <text x="102" y="223" fill="#6B635C" fontFamily="monospace" fontSize="6.5">CIVIL  38%</text>
+      {/* Bars â€” proportional to 200px = 100% */}
+      {/* Civil 38% â†’ 76px */}
+      <rect x="20" y="219" width="76" height="3.5" fill="#C49A3C" rx="1" />
+      <text x="102" y="223" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">CIVIL  38%</text>
 
-      {/* Finishes 22% → 44px */}
+      {/* Finishes 22% â†’ 44px */}
       <rect x="20" y="231" width="44" height="3.5" fill="#C4A76B" rx="1" />
-      <text x="70" y="235" fill="#6B635C" fontFamily="monospace" fontSize="6.5">FINISHES  22%</text>
+      <text x="70" y="235" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">FINISHES  22%</text>
 
-      {/* MEP 14% → 28px */}
-      <rect x="20" y="243" width="28" height="3.5" fill="#D4CCBF" rx="1" />
-      <text x="54" y="247" fill="#6B635C" fontFamily="monospace" fontSize="6.5">MEP  14%</text>
+      {/* MEP 14% â†’ 28px */}
+      <rect x="20" y="243" width="28" height="3.5" fill="#DDE4ED" rx="1" />
+      <text x="54" y="247" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">MEP  14%</text>
 
-      {/* Elevation 10% → 20px */}
-      <rect x="20" y="255" width="20" height="3.5" fill="#D4CCBF" rx="1" />
-      <text x="46" y="259" fill="#6B635C" fontFamily="monospace" fontSize="6.5">ELEVATION  10%</text>
+      {/* Elevation 10% â†’ 20px */}
+      <rect x="20" y="255" width="20" height="3.5" fill="#DDE4ED" rx="1" />
+      <text x="46" y="259" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">ELEVATION  10%</text>
 
-      {/* Interiors 8% → 16px */}
-      <rect x="20" y="267" width="16" height="3.5" fill="#E8E3DA" rx="1" />
-      <text x="42" y="271" fill="#6B635C" fontFamily="monospace" fontSize="6.5">INTERIORS  8%</text>
+      {/* Interiors 8% â†’ 16px */}
+      <rect x="20" y="267" width="16" height="3.5" fill="#EEF2F7" rx="1" />
+      <text x="42" y="271" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">INTERIORS  8%</text>
 
-      {/* Other 8% → 16px */}
-      <rect x="20" y="279" width="16" height="3.5" fill="#E8E3DA" rx="1" />
-      <text x="42" y="283" fill="#6B635C" fontFamily="monospace" fontSize="6.5">CONTINGENCY  8%</text>
+      {/* Other 8% â†’ 16px */}
+      <rect x="20" y="279" width="16" height="3.5" fill="#EEF2F7" rx="1" />
+      <text x="42" y="283" fill="#7B93A8" fontFamily="monospace" fontSize="6.5">CONTINGENCY  8%</text>
 
       {/* Footer rule */}
-      <line x1="20" y1="298" x2="220" y2="298" stroke="#D4CCBF" strokeWidth="0.5" />
+      <line x1="20" y1="298" x2="220" y2="298" stroke="#DDE4ED" strokeWidth="0.5" />
 
       {/* Footer text */}
-      <text x="20" y="313" fill="#6B635C" fontFamily="monospace" fontSize="6" letterSpacing="1">ESTIMATO.IN</text>
-      <text x="20" y="324" fill="#6B635C" fontFamily="monospace" fontSize="6" letterSpacing="1">RATES VERIFIED MAY 2026</text>
+      <text x="20" y="313" fill="#7B93A8" fontFamily="monospace" fontSize="6" letterSpacing="1">ESTIMATO.IN</text>
+      <text x="20" y="324" fill="#7B93A8" fontFamily="monospace" fontSize="6" letterSpacing="1">RATES VERIFIED MAY 2026</text>
 
       {/* Bronze corner mark */}
-      <line x1="196" y1="298" x2="220" y2="298" stroke="#A8823B" strokeWidth="1" />
-      <line x1="220" y1="298" x2="220" y2="334" stroke="#A8823B" strokeWidth="1" />
+      <line x1="196" y1="298" x2="220" y2="298" stroke="#C49A3C" strokeWidth="1" />
+      <line x1="220" y1="298" x2="220" y2="334" stroke="#C49A3C" strokeWidth="1" />
     </svg>
   );
 }
@@ -220,10 +220,10 @@ export default function HomePage() {
         <SiteHeader />
 
         <main>
-          {/* ── Hero ── */}
+          {/* â”€â”€ Hero â”€â”€ */}
           <HomeHero />
 
-          {/* ── Three steps — architectural numerals ── */}
+          {/* â”€â”€ Three steps â€” architectural numerals â”€â”€ */}
           <section className="py-28 md:py-36 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-20">
@@ -268,11 +268,11 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── What you get — sticky editorial left, report mockup right ── */}
+          {/* â”€â”€ What you get â€” sticky editorial left, report mockup right â”€â”€ */}
           <section className="py-28 md:py-36 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 xl:gap-28 items-start">
 
-              {/* Left — sticky editorial block */}
+              {/* Left â€” sticky editorial block */}
               <AnimateIn className="lg:sticky lg:top-28">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-6">
                   Every estimate includes
@@ -285,7 +285,7 @@ export default function HomePage() {
                   {HOME.reportHeadline}
                 </h2>
                 <p className="text-text-secondary mb-8 leading-relaxed" style={{ fontSize: "16px", maxWidth: "44ch", lineHeight: 1.72 }}>
-                  Not just a number — a full picture of your construction budget
+                  Not just a number â€” a full picture of your construction budget
                   with the context to make confident decisions before you start.
                 </p>
                 <Link href="/plan">
@@ -295,14 +295,14 @@ export default function HomePage() {
                 </Link>
               </AnimateIn>
 
-              {/* Right — detailed report mockup + feature list */}
+              {/* Right â€” detailed report mockup + feature list */}
               <div>
                 <AnimateIn className="mb-12">
                   <div
                     className="inline-block"
                     style={{
                       transform: "rotate(2.5deg)",
-                      boxShadow: "0 24px 64px rgba(28,25,23,0.14), 0 6px 20px rgba(28,25,23,0.07)",
+                      boxShadow: "0 24px 64px rgba(13,31,60,0.14), 0 6px 20px rgba(13,31,60,0.07)",
                     }}
                   >
                     <ReportMockup />
@@ -350,7 +350,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Why different — navy, 2×2 editorial grid ── */}
+          {/* â”€â”€ Why different â€” navy, 2Ã—2 editorial grid â”€â”€ */}
           <section className="py-28 md:py-36 px-6 bg-navy" aria-labelledby="why-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn className="mb-20">
@@ -399,7 +399,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Cities — editorial with large numeral ── */}
+          {/* â”€â”€ Cities â€” editorial with large numeral â”€â”€ */}
           <section className="py-24 md:py-32 px-6 bg-white border-t border-border" aria-labelledby="cities-heading">
             <div className="max-w-6xl mx-auto">
               <AnimateIn>
@@ -412,13 +412,13 @@ export default function HomePage() {
                 <AnimateIn className="shrink-0">
                   <p
                     className="font-serif leading-none"
-                    style={{ fontSize: "clamp(80px, 12vw, 120px)", fontWeight: 300, color: "#D4CCBF", letterSpacing: "-0.04em" }}
+                    style={{ fontSize: "clamp(80px, 12vw, 120px)", fontWeight: 300, color: "#DDE4ED", letterSpacing: "-0.04em" }}
                     aria-hidden="true"
                   >
                     12
                   </p>
                   <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary mt-3">
-                    Cities · quarterly updates
+                    Cities Â· quarterly updates
                   </p>
                 </AnimateIn>
                 <AnimateIn delay={0.12}>
@@ -433,7 +433,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── FAQ ── */}
+          {/* â”€â”€ FAQ â”€â”€ */}
           <section className="py-20 md:py-28 px-6 bg-bg-primary border-t border-border" aria-labelledby="faq-heading">
             <div className="max-w-2xl mx-auto">
               <AnimateIn className="mb-14">
@@ -452,7 +452,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Final CTA — cinematic ── */}
+          {/* â”€â”€ Final CTA â€” cinematic â”€â”€ */}
           <section className="py-36 px-6 bg-navy border-t border-white/8">
             <div className="max-w-4xl mx-auto text-center">
               <AnimateIn>
@@ -482,18 +482,18 @@ export default function HomePage() {
                     href="/methodology"
                     className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/35 hover:text-white/65 transition-colors duration-200"
                   >
-                    Read our methodology →
+                    Read our methodology â†’
                   </Link>
                 </div>
                 <p className="text-white/25 font-mono mt-10 uppercase tracking-[0.14em]" style={{ fontSize: "10px" }}>
-                  12+ cities · 2026 verified rates · No sign-up
+                  12+ cities Â· 2026 verified rates Â· No sign-up
                 </p>
               </AnimateIn>
             </div>
           </section>
         </main>
 
-        {/* ── Footer ── */}
+        {/* â”€â”€ Footer â”€â”€ */}
         <footer className="bg-navy border-t border-white/10 px-6 py-12">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
@@ -512,10 +512,10 @@ export default function HomePage() {
             </div>
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
-                © {new Date().getFullYear()} Estimato · estimato.in
+                Â© {new Date().getFullYear()} Estimato Â· estimato.in
               </p>
               <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
-                Rates verified for 2026 · Hosur–Bengaluru belt
+                Rates verified for 2026 Â· Hosurâ€“Bengaluru belt
               </p>
             </div>
           </div>

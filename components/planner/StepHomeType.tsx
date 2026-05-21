@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -90,7 +90,7 @@ export function StepHomeType() {
               >
                 {type.label}
               </p>
-              <p style={{ fontSize: "16px", color: "#6B635C", lineHeight: 1.45 }}>
+              <p style={{ fontSize: "16px", color: "#7B93A8", lineHeight: 1.45 }}>
                 {type.description}
               </p>
               {isSelected && (
@@ -100,7 +100,7 @@ export function StepHomeType() {
                   className="font-mono uppercase mt-3"
                   style={{ fontSize: "10px", letterSpacing: "0.14em", color: "var(--text-tertiary)" }}
                 >
-                  Taking you to the next step…
+                  Taking you to the next stepâ€¦
                 </motion.p>
               )}
             </button>

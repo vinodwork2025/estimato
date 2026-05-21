@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -115,9 +115,9 @@ export function StepPlot() {
             letterSpacing: "-0.03em",
           }}
         >
-          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
+          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "â€”"}
         </p>
-        <p style={{ fontSize: "16px", color: "#6B635C", marginTop: "8px" }}>
+        <p style={{ fontSize: "16px", color: "#7B93A8", marginTop: "8px" }}>
           square feet
         </p>
       </div>
@@ -136,7 +136,7 @@ export function StepPlot() {
             appearance: "none",
             WebkitAppearance: "none",
             height: "2px",
-            background: `linear-gradient(to right, #1C1917 ${((sliderValue - 900) / (40000 - 900)) * 100}%, #D4CCBF ${((sliderValue - 900) / (40000 - 900)) * 100}%)`,
+            background: `linear-gradient(to right, #0D1F3C ${((sliderValue - 900) / (40000 - 900)) * 100}%, #DDE4ED ${((sliderValue - 900) / (40000 - 900)) * 100}%)`,
             borderRadius: "0",
             outline: "none",
             cursor: "pointer",
@@ -166,7 +166,7 @@ export function StepPlot() {
               max={200}
               className="w-full focus:outline-none"
               style={{
-                borderBottom: "1px solid #D4CCBF",
+                borderBottom: "1px solid #DDE4ED",
                 padding: "8px 0",
                 fontSize: "18px",
                 color: "var(--text-primary)",
@@ -185,7 +185,7 @@ export function StepPlot() {
               max={200}
               className="w-full focus:outline-none"
               style={{
-                borderBottom: "1px solid #D4CCBF",
+                borderBottom: "1px solid #DDE4ED",
                 padding: "8px 0",
                 fontSize: "18px",
                 color: "var(--text-primary)",
@@ -197,7 +197,7 @@ export function StepPlot() {
         </div>
       </div>
 
-      {/* Facing — horizontal text buttons */}
+      {/* Facing â€” horizontal text buttons */}
       <div>
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-4">
           Plot facing
@@ -273,7 +273,7 @@ export function StepPlot() {
           { value: "rocky", label: "Rocky / hard rock" },
           { value: "sandy", label: "Sandy soil" },
         ]}
-        hint="If unsure, say so — we'll flag it as a risk"
+        hint="If unsure, say so â€” we'll flag it as a risk"
         {...register("soilType")}
       />
 

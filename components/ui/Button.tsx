@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -25,7 +25,7 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-navy text-text-inverse hover:bg-navy-light rounded-[3px] shadow-[0_1px_3px_rgba(28,25,23,0.18),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_2px_8px_rgba(28,25,23,0.22)]",
+      "bg-navy text-text-inverse hover:bg-navy-light rounded-[3px] shadow-[0_1px_3px_rgba(13,31,60,0.18),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_2px_8px_rgba(13,31,60,0.22)]",
     secondary:
       "bg-transparent text-text-primary border border-border hover:border-border-strong rounded-[3px]",
     ghost:

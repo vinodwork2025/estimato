@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -32,10 +32,10 @@ export function ProgressBar({ currentStep }: ProgressBarProps) {
       className="mb-2"
     >
       {/* Track */}
-      <div className="relative h-px w-full" style={{ background: "#E8E3DA" }}>
+      <div className="relative h-px w-full" style={{ background: "#EEF2F7" }}>
         <motion.div
           className="absolute left-0 top-0 h-full"
-          style={{ background: "#1C1917" }}
+          style={{ background: "#0D1F3C" }}
           initial={{ width: "0%" }}
           animate={{ width: `${pct}%` }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -44,7 +44,7 @@ export function ProgressBar({ currentStep }: ProgressBarProps) {
 
       {/* Label below */}
       <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-tertiary mt-2">
-        Step {stepNum} of {totalNum} · {stepLabel}
+        Step {stepNum} of {totalNum} Â· {stepLabel}
       </p>
     </div>
   );

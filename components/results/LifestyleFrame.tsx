@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -53,7 +53,7 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
           </p>
         </motion.div>
 
-        {/* Mobile: horizontal scroll snap. Desktop: 2×2 grid. */}
+        {/* Mobile: horizontal scroll snap. Desktop: 2Ã—2 grid. */}
         <div
           className="flex overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible hide-scrollbar"
           style={{ scrollSnapType: "x mandatory" }}
@@ -74,7 +74,7 @@ export function LifestyleFrame({ scenarios, selectedTier, builtUpArea }: Lifesty
                 transition={{ duration: 0.8, delay: i * 0.1, ease }}
                 role="listitem"
                 style={{
-                  borderTop: "1px solid #D4CCBF",
+                  borderTop: "1px solid #DDE4ED",
                   padding: "32px 24px 40px",
                   position: "relative",
                   minWidth: "min(82vw, 300px)",

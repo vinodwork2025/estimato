@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -136,7 +136,7 @@ export function StepQuality() {
                     style={{ fontSize: "12px", color: "var(--text-tertiary)" }}
                     aria-hidden="true"
                   >
-                    ↓
+                    â†“
                   </motion.span>
                 </div>
               </button>
@@ -155,7 +155,7 @@ export function StepQuality() {
                       <div className="flex-1 min-w-0">
                         <p
                           className="leading-relaxed mb-3"
-                          style={{ fontSize: "15px", color: "#3A3530", maxWidth: "44ch", lineHeight: 1.7 }}
+                          style={{ fontSize: "15px", color: "#3D5573", maxWidth: "44ch", lineHeight: 1.7 }}
                         >
                           {TIER_DESCRIPTIONS[tierKey]}
                         </p>
@@ -163,17 +163,17 @@ export function StepQuality() {
                           className="font-mono text-text-tertiary mb-1"
                           style={{ fontSize: "11px", letterSpacing: "0.1em" }}
                         >
-                          ₹{rateForCity.toLocaleString("en-IN")}/sqft
+                          â‚¹{rateForCity.toLocaleString("en-IN")}/sqft
                         </p>
                         <p style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
                           {TIER_MATERIALS[tierKey]}
                         </p>
                       </div>
 
-                      {/* Material swatch — warm duotone */}
+                      {/* Material swatch â€” warm duotone */}
                       <div
                         className="relative shrink-0 overflow-hidden w-20 h-20 md:w-[112px] md:h-[112px]"
-                        style={{ borderRadius: "2px", border: "1px solid #D4CCBF" }}
+                        style={{ borderRadius: "2px", border: "1px solid #DDE4ED" }}
                       >
                         <Image
                           src={SWATCH_IMAGES[tierKey]}

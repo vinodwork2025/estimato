@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { motion, animate } from "framer-motion";
@@ -62,7 +62,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
       className="relative px-6 md:px-12 py-[120px] md:py-[200px]"
       aria-labelledby="estimate-heading"
     >
-      {/* Radial gold halo behind the number — subtle depth */}
+      {/* Radial gold halo behind the number â€” subtle depth */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -147,7 +147,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
               className="font-mono text-text-primary tabular-nums"
               style={{ fontSize: "15px", fontWeight: 500 }}
             >
-              ₹{result.costPerSqft.toLocaleString("en-IN")}/sqft
+              â‚¹{result.costPerSqft.toLocaleString("en-IN")}/sqft
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mt-1">
               Cost per sqft
@@ -170,7 +170,7 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
               className="font-mono text-text-primary tabular-nums"
               style={{ fontSize: "15px", fontWeight: 500 }}
             >
-              {totalMonths}–{totalMonths + 2} months
+              {totalMonths}â€“{totalMonths + 2} months
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mt-1">
               Build duration
@@ -210,8 +210,8 @@ export function EstimateReveal({ result, input }: EstimateRevealProps) {
         >
           <Link
             href="/methodology"
-            className="font-mono uppercase tracking-[0.12em] underline underline-offset-2 decoration-[#D4CCBF] hover:decoration-text-tertiary transition-colors"
-            style={{ fontSize: "11px", color: "#6B635C" }}
+            className="font-mono uppercase tracking-[0.12em] underline underline-offset-2 decoration-[#DDE4ED] hover:decoration-text-tertiary transition-colors"
+            style={{ fontSize: "11px", color: "#7B93A8" }}
           >
             {TRUST.resultMethodologyLink}
           </Link>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -10,7 +10,7 @@ const LABELS: Record<string, string> = {
   civilStructure: "Civil structure",
   finishes: "Finishes",
   interiors: "Interiors",
-  mep: "MEP — electrical & plumbing",
+  mep: "MEP â€” electrical & plumbing",
   elevation: "Elevation & facade",
   approvalsAndFees: "Approvals & statutory fees",
   contingency: "Contingency reserve",
@@ -42,7 +42,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-14 md:gap-24 items-start">
 
-        {/* Left — editorial copy */}
+        {/* Left â€” editorial copy */}
         <div className="md:sticky md:top-28">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -84,7 +84,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
           </motion.div>
         </div>
 
-        {/* Right — horizontal bar list */}
+        {/* Right â€” horizontal bar list */}
         <div className="flex flex-col" style={{ gap: "32px" }}>
           {data.map((item, i) => {
             const pct = (item.value / total) * 100;
@@ -111,7 +111,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
                 </div>
                 <div
                   className="relative overflow-hidden"
-                  style={{ height: "2px", background: "#E8E3DA" }}
+                  style={{ height: "2px", background: "#EEF2F7" }}
                 >
                   <motion.div
                     initial={{ width: 0 }}
@@ -121,7 +121,7 @@ export function CostBreakdown({ breakdown }: CostBreakdownProps) {
                       delay: i * 0.08,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    style={{ height: "100%", background: "#1C1917", position: "absolute", left: 0, top: 0 }}
+                    style={{ height: "100%", background: "#0D1F3C", position: "absolute", left: 0, top: 0 }}
                   />
                 </div>
                 <p

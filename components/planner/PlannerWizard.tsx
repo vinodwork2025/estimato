@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,26 +16,26 @@ import type {
 const ease = [0.16, 1, 0.3, 1] as const;
 const TOTAL_STEPS = 5;
 
-// ─── Static data ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Static data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const HOME_TYPES: { value: HomeType; label: string; tagline: string; range: string; image: string }[] = [
-  { value: "villa", label: "Villa", tagline: "Independent home with garden", range: "₹50L – 1.2Cr", image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80" },
-  { value: "duplex", label: "Duplex", tagline: "Two floors, connected living", range: "₹40L – 90L", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" },
-  { value: "farmhouse", label: "Farmhouse", tagline: "Open plot, relaxed footprint", range: "₹35L – 1.5Cr", image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" },
-  { value: "contemporary", label: "Contemporary", tagline: "Clean lines, modern architecture", range: "₹45L – 1Cr", image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80" },
-  { value: "budget", label: "Budget Home", tagline: "Practical, no-frills build", range: "₹25L – 50L", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80" },
-  { value: "luxury-villa", label: "Luxury Villa", tagline: "Premium finishes, large footprint", range: "₹1.2Cr – 3Cr", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" },
+  { value: "villa", label: "Villa", tagline: "Independent home with garden", range: "â‚¹50L â€“ 1.2Cr", image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80" },
+  { value: "duplex", label: "Duplex", tagline: "Two floors, connected living", range: "â‚¹40L â€“ 90L", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" },
+  { value: "farmhouse", label: "Farmhouse", tagline: "Open plot, relaxed footprint", range: "â‚¹35L â€“ 1.5Cr", image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" },
+  { value: "contemporary", label: "Contemporary", tagline: "Clean lines, modern architecture", range: "â‚¹45L â€“ 1Cr", image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80" },
+  { value: "budget", label: "Budget Home", tagline: "Practical, no-frills build", range: "â‚¹25L â€“ 50L", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80" },
+  { value: "luxury-villa", label: "Luxury Villa", tagline: "Premium finishes, large footprint", range: "â‚¹1.2Cr â€“ 3Cr", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" },
 ];
 
 const QUALITY_OPTIONS: { value: QualityTier; label: string; badge: string; description: string; image: string; materials: string }[] = [
-  { value: "essential", label: "Basic", badge: "Budget-friendly", description: "Solid construction with practical material choices.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80", materials: "Local tiles · Standard sanitary · Basic electricals" },
-  { value: "economy", label: "Standard", badge: "Most popular", description: "Elevated finishes and considered details for homeowners who notice quality.", image: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600&q=80", materials: "Kajaria flooring · Hindware sanitary · Anchor switches" },
-  { value: "premium", label: "Premium", badge: "Design-focused", description: "Architectural intent in every surface. Materials chosen to last.", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", materials: "Somany Duragres · Jaquar fittings · Legrand switches" },
-  { value: "luxury", label: "Luxury", badge: "Heritage quality", description: "Timeless architecture and the finest finishes. Built to outlast trends.", image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=600&q=80", materials: "Italian marble · Kohler sanitary · Schneider electrics" },
+  { value: "essential", label: "Basic", badge: "Budget-friendly", description: "Solid construction with practical material choices.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80", materials: "Local tiles Â· Standard sanitary Â· Basic electricals" },
+  { value: "economy", label: "Standard", badge: "Most popular", description: "Elevated finishes and considered details for homeowners who notice quality.", image: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600&q=80", materials: "Kajaria flooring Â· Hindware sanitary Â· Anchor switches" },
+  { value: "premium", label: "Premium", badge: "Design-focused", description: "Architectural intent in every surface. Materials chosen to last.", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", materials: "Somany Duragres Â· Jaquar fittings Â· Legrand switches" },
+  { value: "luxury", label: "Luxury", badge: "Heritage quality", description: "Timeless architecture and the finest finishes. Built to outlast trends.", image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=600&q=80", materials: "Italian marble Â· Kohler sanitary Â· Schneider electrics" },
 ];
 
 const INTERIOR_OPTIONS: { value: InteriorLevel; label: string; desc: string }[] = [
-  { value: "basic", label: "Basic essentials", desc: "Carpentry only — no built-in furniture" },
+  { value: "basic", label: "Basic essentials", desc: "Carpentry only â€” no built-in furniture" },
   { value: "modular", label: "Modular standard", desc: "Modular kitchen and wardrobes" },
   { value: "premium", label: "Full modular", desc: "Full modular and designer finishes" },
   { value: "luxury-furnished", label: "Luxury furnished", desc: "Architect-curated, fully furnished" },
@@ -75,7 +75,7 @@ const INTERIOR_AUTO: Record<QualityTier, InteriorLevel> = {
   luxury: "luxury-furnished",
 };
 
-// ─── Wizard state ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Wizard state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 interface WizardState {
   homeType: HomeType | null;
@@ -154,7 +154,7 @@ function buildFullInput(w: WizardState) {
   };
 }
 
-// ─── Shared UI ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Shared UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function StepDots({ current }: { current: number }) {
   return (
@@ -166,7 +166,7 @@ function StepDots({ current }: { current: number }) {
             width: i + 1 === current ? "20px" : "6px",
             height: "6px",
             borderRadius: "3px",
-            background: i + 1 <= current ? "var(--accent)" : "#D4CCBF",
+            background: i + 1 <= current ? "var(--accent)" : "#DDE4ED",
             opacity: i + 1 < current ? 0.45 : 1,
             transition: "all 0.3s ease",
           }}
@@ -195,7 +195,7 @@ function PillBtn({ active, onClick, children }: { active: boolean; onClick: () =
         border: "1px solid",
         borderColor: active ? "var(--navy)" : "var(--border)",
         background: active ? "var(--navy)" : "transparent",
-        color: active ? "#F7F4EF" : "var(--text-secondary)",
+        color: active ? "#FFFFFF" : "var(--text-secondary)",
       }}
     >
       {children}
@@ -218,14 +218,14 @@ function ToggleRow({ label, hint, checked, onChange }: { label: string; hint: st
         className="relative focus:outline-none shrink-0"
         style={{ width: "44px", height: "24px" }}
       >
-        <div style={{ width: "44px", height: "24px", borderRadius: "12px", background: checked ? "var(--accent)" : "#D4CCBF", transition: "background 0.2s" }} />
+        <div style={{ width: "44px", height: "24px", borderRadius: "12px", background: checked ? "var(--accent)" : "#DDE4ED", transition: "background 0.2s" }} />
         <div style={{ position: "absolute", top: "3px", left: checked ? "23px" : "3px", width: "18px", height: "18px", borderRadius: "9px", background: "white", transition: "left 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }} />
       </button>
     </div>
   );
 }
 
-// ─── Step 1: Home type ────────────────────────────────────────────────────────
+// â”€â”€â”€ Step 1: Home type â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSelect: (v: HomeType) => void }) {
   return (
@@ -258,7 +258,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
             >
               <Image src={ht.image} alt={ht.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 33vw"
                 style={{ filter: isSelected ? "grayscale(0.2) brightness(0.75)" : "grayscale(0.55) sepia(0.2) brightness(0.7) contrast(1.05)", transition: "filter 0.3s" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(28,25,23,0.85) 0%, rgba(28,25,23,0.1) 55%)" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(13,31,60,0.85) 0%, rgba(13,31,60,0.1) 55%)" }} />
               {isSelected && (
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "var(--accent)" }}>
                   <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -276,7 +276,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
   );
 }
 
-// ─── Step 2: Location ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Step 2: Location â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function Step2Location({ city, onChange }: { city: string; onChange: (v: string) => void }) {
   const cities = CITIES.filter((c) => c.value !== "other");
@@ -311,7 +311,7 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
                   border: "1px solid",
                   borderColor: isSelected ? "var(--navy)" : "var(--border)",
                   background: isSelected ? "var(--navy)" : "transparent",
-                  color: isSelected ? "#F7F4EF" : "var(--text-secondary)",
+                  color: isSelected ? "#FFFFFF" : "var(--text-secondary)",
                   fontSize: "14px",
                   letterSpacing: "0.01em",
                 }}
@@ -326,7 +326,7 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
   );
 }
 
-// ─── Step 3: Plot details ─────────────────────────────────────────────────────
+// â”€â”€â”€ Step 3: Plot details â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Partial<WizardState>) => void }) {
   const plotArea = state.plotLength * state.plotWidth;
@@ -363,11 +363,11 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
       {/* Big plot area */}
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08, ease }} className="text-center py-6">
         <p className="font-serif text-navy leading-none tabular-nums" style={{ fontSize: "clamp(64px, 14vw, 110px)", fontWeight: 300, letterSpacing: "-0.03em" }}>
-          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
+          {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "â€”"}
         </p>
-        <p style={{ fontSize: "15px", color: "#6B635C", marginTop: "8px" }}>square feet</p>
+        <p style={{ fontSize: "15px", color: "#7B93A8", marginTop: "8px" }}>square feet</p>
         <p className="font-mono text-text-tertiary mt-1" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
-          {state.plotLength} ft × {state.plotWidth} ft
+          {state.plotLength} ft Ã— {state.plotWidth} ft
         </p>
       </motion.div>
 
@@ -385,7 +385,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
             appearance: "none",
             WebkitAppearance: "none",
             height: "2px",
-            background: `linear-gradient(to right, var(--navy) ${sliderPct}%, #D4CCBF ${sliderPct}%)`,
+            background: `linear-gradient(to right, var(--navy) ${sliderPct}%, #DDE4ED ${sliderPct}%)`,
             borderRadius: "0",
             outline: "none",
             cursor: "pointer",
@@ -398,7 +398,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
         </div>
       </motion.div>
 
-      {/* L × W inputs */}
+      {/* L Ã— W inputs */}
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.18, ease }} className="mb-8">
         <SectionLabel>Or enter exact dimensions</SectionLabel>
         <div className="grid grid-cols-2 gap-4">
@@ -414,7 +414,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
                 value={field === "plotLength" ? state.plotLength : state.plotWidth}
                 onChange={(e) => handleDimension(field, parseInt(e.target.value) || 1)}
                 className="w-full focus:outline-none"
-                style={{ borderBottom: "1px solid #D4CCBF", padding: "8px 0", fontSize: "18px", color: "var(--text-primary)", background: "transparent" }}
+                style={{ borderBottom: "1px solid #DDE4ED", padding: "8px 0", fontSize: "18px", color: "var(--text-primary)", background: "transparent" }}
               />
             </div>
           ))}
@@ -431,7 +431,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
             {Math.round(state.plotLength * state.plotWidth * 0.6).toLocaleString("en-IN")} sqft
           </p>
           <p className="font-mono text-text-tertiary mt-1" style={{ fontSize: "11px" }}>
-            60% plot coverage for 1 floor · multiply by floors for multi-storey
+            60% plot coverage for 1 floor Â· multiply by floors for multi-storey
           </p>
         </div>
       </motion.div>
@@ -480,7 +480,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
           ))}
         </div>
         <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>
-          If unsure, choose &ldquo;Don&rsquo;t know&rdquo; — we flag it as a risk.
+          If unsure, choose &ldquo;Don&rsquo;t know&rdquo; â€” we flag it as a risk.
         </p>
       </motion.div>
 
@@ -511,7 +511,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
   );
 }
 
-// ─── Step 4: Configuration ────────────────────────────────────────────────────
+// â”€â”€â”€ Step 4: Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Partial<WizardState>) => void }) {
   const [buaStr, setBuaStr] = useState("");
@@ -594,7 +594,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
         </div>
         <p className="font-mono text-text-tertiary mt-2" style={{ fontSize: "11px" }}>
           Suggested: {suggestedBUA.toLocaleString("en-IN")} sqft
-          ({state.plotLength} × {state.plotWidth} ft × 60%{state.floors > 1 ? ` × ${state.floors} floors` : ""})
+          ({state.plotLength} Ã— {state.plotWidth} ft Ã— 60%{state.floors > 1 ? ` Ã— ${state.floors} floors` : ""})
           {state.builtUpArea !== suggestedBUA && (
             <button
               type="button"
@@ -640,7 +640,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
           <button type="button" onClick={() => onChange({ balconies: Math.max(0, state.balconies - 1) }) } disabled={state.balconies === 0}
             className="w-12 h-12 border border-border flex items-center justify-center text-lg focus:outline-none disabled:opacity-30 transition-all"
           >
-            −
+            âˆ’
           </button>
           <span className="font-serif tabular-nums w-8 text-center" style={{ fontSize: "32px", fontWeight: 400, color: "var(--text-primary)" }}>
             {state.balconies}
@@ -652,7 +652,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
           </button>
           {state.balconies > 0 && (
             <span className="font-mono text-[11px] text-text-tertiary tabular-nums">
-              +₹{(state.balconies * 50000).toLocaleString("en-IN")} approx
+              +â‚¹{(state.balconies * 50000).toLocaleString("en-IN")} approx
             </span>
           )}
         </div>
@@ -663,9 +663,9 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
         <SectionLabel>Optional extras</SectionLabel>
         <div className="divide-y divide-border border-t border-border">
           <ToggleRow label="Terrace" hint="Usable roof terrace" checked={state.terrace} onChange={(v) => onChange({ terrace: v })} />
-          <ToggleRow label="Lift" hint="+₹6.5L installed" checked={state.lift} onChange={(v) => onChange({ lift: v })} />
+          <ToggleRow label="Lift" hint="+â‚¹6.5L installed" checked={state.lift} onChange={(v) => onChange({ lift: v })} />
           <ToggleRow label="Basement" hint="+22% civil cost" checked={state.basement} onChange={(v) => onChange({ basement: v })} />
-          <ToggleRow label="Home office" hint="+₹1.8L" checked={state.homeOffice} onChange={(v) => onChange({ homeOffice: v })} />
+          <ToggleRow label="Home office" hint="+â‚¹1.8L" checked={state.homeOffice} onChange={(v) => onChange({ homeOffice: v })} />
           <ToggleRow label="Rental floor" hint="Separate rental unit" checked={state.rentalFloor} onChange={(v) => onChange({ rentalFloor: v })} />
         </div>
       </motion.div>
@@ -673,7 +673,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
   );
 }
 
-// ─── Step 5: Quality + Interiors ──────────────────────────────────────────────
+// â”€â”€â”€ Step 5: Quality + Interiors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function Step5Finish({
   state,
@@ -741,7 +741,7 @@ function Step5Finish({
               <div className="p-4">
                 <div className="flex items-baseline justify-between mb-1">
                   <p className="font-serif text-navy" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}>{q.label}</p>
-                  <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>₹{rate.toLocaleString("en-IN")}/sqft</p>
+                  <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>â‚¹{rate.toLocaleString("en-IN")}/sqft</p>
                 </div>
                 <p className="text-text-secondary mb-2" style={{ fontSize: "13px", lineHeight: 1.6 }}>{q.description}</p>
                 <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>{q.materials}</p>
@@ -757,7 +757,7 @@ function Step5Finish({
         })}
       </div>
 
-      {/* Interior level — shown after quality is selected */}
+      {/* Interior level â€” shown after quality is selected */}
       {state.qualityTier && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="mb-10">
           <SectionLabel>Interior finish level</SectionLabel>
@@ -790,7 +790,7 @@ function Step5Finish({
                   </div>
                   <div className="text-right shrink-0 ml-4">
                     <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
-                      ₹{rate.toLocaleString("en-IN")}/sqft
+                      â‚¹{rate.toLocaleString("en-IN")}/sqft
                     </p>
                     <p className="font-mono tabular-nums" style={{ fontSize: "13px", color: isSelected ? "var(--accent)" : "var(--text-tertiary)", fontWeight: isSelected ? 500 : 400 }}>
                       {formatINRShort(cost)}
@@ -813,10 +813,10 @@ function Step5Finish({
             className="w-full py-5 font-mono uppercase tracking-[0.18em] text-white focus:outline-none transition-all duration-200 disabled:opacity-60"
             style={{ background: isCalculating ? "var(--navy)" : "var(--accent)", borderRadius: "2px", fontSize: "13px", cursor: isCalculating ? "wait" : "pointer" }}
           >
-            {isCalculating ? "Calculating your estimate…" : "Calculate my estimate →"}
+            {isCalculating ? "Calculating your estimateâ€¦" : "Calculate my estimate â†’"}
           </button>
           <p className="font-mono text-[10px] text-text-tertiary text-center mt-3 uppercase tracking-[0.1em]">
-            Free · No sign-up · BOQ-verified rates
+            Free Â· No sign-up Â· BOQ-verified rates
           </p>
         </motion.div>
       )}
@@ -824,7 +824,7 @@ function Step5Finish({
   );
 }
 
-// ─── Main wizard ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Main wizard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function PlannerWizard() {
   const router = useRouter();
@@ -891,7 +891,7 @@ export function PlannerWizard() {
       setResult(data);
       router.push("/plan/result");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Calculation failed — please try again.");
+      setError(err instanceof Error ? err.message : "Calculation failed â€” please try again.");
       setIsCalculating(false);
       setCalculating(false);
     }
@@ -914,7 +914,7 @@ export function PlannerWizard() {
             <button type="button" onClick={() => goTo(step - 1)}
               className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
             >
-              ← Back
+              â† Back
             </button>
           ) : (
             <div />
@@ -924,7 +924,7 @@ export function PlannerWizard() {
             <button type="button" onClick={() => goTo(step + 1)}
               className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
             >
-              Skip →
+              Skip â†’
             </button>
           ) : (
             <div style={{ width: "48px" }} />
@@ -932,7 +932,7 @@ export function PlannerWizard() {
         </div>
       </div>
 
-      {/* Step panels — overflow-x-clip clips slide animation without blocking vertical scroll */}
+      {/* Step panels â€” overflow-x-clip clips slide animation without blocking vertical scroll */}
       <div className="flex-1" style={{ overflowX: "clip" }}>
         <AnimatePresence custom={dir} mode="wait">
           <motion.div
@@ -968,12 +968,12 @@ export function PlannerWizard() {
         </div>
       )}
 
-      {/* Continue button (steps 2–4) */}
+      {/* Continue button (steps 2â€“4) */}
       {showContinue && (
         <div className="sticky bottom-0 bg-bg-primary/95 backdrop-blur-sm border-t border-border px-5 py-4">
           <div className="max-w-3xl mx-auto">
             <Button variant="primary" size="lg" className="w-full" onClick={() => goTo(step + 1)} disabled={!canAdvance()}>
-              Continue →
+              Continue â†’
             </Button>
           </div>
         </div>

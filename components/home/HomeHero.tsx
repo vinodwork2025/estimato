@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -42,7 +42,7 @@ export function HomeHero() {
           >
             <div className="h-px w-8 bg-gold/60 shrink-0" />
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
-              Free for Indian homeowners · 2026 verified rates
+              Free for Indian homeowners Â· 2026 verified rates
             </span>
           </motion.div>
 
@@ -103,7 +103,7 @@ export function HomeHero() {
             </Link>
           </motion.div>
 
-          {/* Authority stats — serif labels, bronze accents */}
+          {/* Authority stats â€” serif labels, bronze accents */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,14 +157,14 @@ export function HomeHero() {
         >
           <motion.div style={{ x: imgX, y: imgY }} className="relative">
 
-            {/* Main image — warm duotone, considered crop */}
+            {/* Main image â€” warm duotone, considered crop */}
             <div
               className="relative aspect-[4/5] w-full overflow-hidden"
               style={{ borderRadius: "2px" }}
             >
               <Image
                 src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=90"
-                alt="Contemporary South Indian home — architectural exterior"
+                alt="Contemporary South Indian home â€” architectural exterior"
                 fill
                 priority
                 className="object-cover"
@@ -174,18 +174,18 @@ export function HomeHero() {
                   objectPosition: "center 15%",
                 }}
               />
-              {/* Bottom vignette — depth without heaviness */}
+              {/* Bottom vignette â€” depth without heaviness */}
               <div
                 aria-hidden="true"
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "linear-gradient(to bottom, transparent 55%, rgba(28,25,23,0.22) 100%)",
+                  background: "linear-gradient(to bottom, transparent 55%, rgba(13,31,60,0.22) 100%)",
                 }}
               />
             </div>
 
-            {/* Floating projection card — structured, no card chrome */}
+            {/* Floating projection card â€” structured, no card chrome */}
             <motion.div
               initial={{ opacity: 0, x: -20, y: 14 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -204,7 +204,7 @@ export function HomeHero() {
                 className="font-serif text-navy leading-none tabular-nums"
                 style={{ fontSize: "34px", fontWeight: 300, letterSpacing: "-0.03em" }}
               >
-                ₹68–84L
+                â‚¹68â€“84L
               </p>
               <div
                 style={{
@@ -238,7 +238,7 @@ export function HomeHero() {
               </div>
             </motion.div>
 
-            {/* Top-right badge — editorial, not startup */}
+            {/* Top-right badge â€” editorial, not startup */}
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}

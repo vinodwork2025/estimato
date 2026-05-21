@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { METHODOLOGY } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "How we calculate your projection — Estimato",
+  title: "How we calculate your projection â€” Estimato",
   description:
     "The methodology behind Estimato's construction cost projections. Built from verified BOQs, updated quarterly, open to review.",
 };
@@ -14,7 +14,7 @@ const DATA_SOURCES = [
   {
     label: "SOURCE 01",
     title: "Design Intend project BOQs",
-    body: "Bills of Quantity from 14 completed residential projects in the Hosur-Bengaluru belt between 2024 and 2026. Used as the base rate calibration set for the Considered and Refined tiers. Each BOQ covers civil structure, finishes, MEP, and elevation separately — giving us category-level breakdowns, not just total cost per sqft.",
+    body: "Bills of Quantity from 14 completed residential projects in the Hosur-Bengaluru belt between 2024 and 2026. Used as the base rate calibration set for the Considered and Refined tiers. Each BOQ covers civil structure, finishes, MEP, and elevation separately â€” giving us category-level breakdowns, not just total cost per sqft.",
   },
   {
     label: "SOURCE 02",
@@ -35,13 +35,13 @@ const DATA_SOURCES = [
 
 const FORMULA_LINES: { op: string; var: string; isResult?: boolean }[] = [
   { op: "",  var: "base_rate(city, tier)" },
-  { op: "×", var: "plot_configuration_multiplier" },
-  { op: "×", var: "floors_multiplier" },
-  { op: "×", var: "finishing_tier_multiplier" },
+  { op: "Ã—", var: "plot_configuration_multiplier" },
+  { op: "Ã—", var: "floors_multiplier" },
+  { op: "Ã—", var: "finishing_tier_multiplier" },
   { op: "+", var: "statutory_allocation" },
   { op: "+", var: "approval_allocation" },
   { op: "+", var: "8% contingency_reserve" },
-  { op: "=", var: "projection_range (±6%)", isResult: true },
+  { op: "=", var: "projection_range (Â±6%)", isResult: true },
 ];
 
 const EXCLUSIONS = [
@@ -51,11 +51,11 @@ const EXCLUSIONS = [
   },
   {
     title: "Landscaping beyond basic site work",
-    body: "Trees, paving, garden lighting, and irrigation systems are not included. Add ₹3L to ₹15L depending on plot size and complexity.",
+    body: "Trees, paving, garden lighting, and irrigation systems are not included. Add â‚¹3L to â‚¹15L depending on plot size and complexity.",
   },
   {
     title: "Solar and renewable systems",
-    body: "Rooftop solar, battery storage, and water heating systems are excluded. A 3kW solar system runs ₹2L to ₹3L installed.",
+    body: "Rooftop solar, battery storage, and water heating systems are excluded. A 3kW solar system runs â‚¹2L to â‚¹3L installed.",
   },
   {
     title: "Smart home and automation",
@@ -71,7 +71,7 @@ const CONFIDENCE_FACTORS = [
   {
     num: "01",
     title: "Labour rate movement during the build period",
-    body: "Labour is the most volatile component. Rates in the Hosur–Bengaluru belt move 4 to 7 percent in peak construction cycles. Our projections use mid-cycle rates as the baseline. Plan finishing milestones outside peak cycles where possible.",
+    body: "Labour is the most volatile component. Rates in the Hosurâ€“Bengaluru belt move 4 to 7 percent in peak construction cycles. Our projections use mid-cycle rates as the baseline. Plan finishing milestones outside peak cycles where possible.",
   },
   {
     num: "02",
@@ -86,7 +86,7 @@ const CONFIDENCE_FACTORS = [
   {
     num: "04",
     title: "Specification changes during construction",
-    body: "The most common cause of budget overruns. A mid-project upgrade from standard to premium sanitary fittings adds ₹2L to ₹4L on a 2,000 sqft build. Our contingency reserve is designed to absorb changes at this scale.",
+    body: "The most common cause of budget overruns. A mid-project upgrade from standard to premium sanitary fittings adds â‚¹2L to â‚¹4L on a 2,000 sqft build. Our contingency reserve is designed to absorb changes at this scale.",
   },
 ];
 
@@ -97,7 +97,7 @@ export default function MethodologyPage() {
 
       <main className="px-6 md:px-12 max-w-4xl mx-auto">
 
-        {/* Section 1 — Cover */}
+        {/* Section 1 â€” Cover */}
         <section className="pt-20 pb-24 md:pt-28 md:pb-32 border-b border-border">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-10">
             {METHODOLOGY.pageLabel}
@@ -115,13 +115,13 @@ export default function MethodologyPage() {
           </h1>
           <p
             className="text-text-secondary leading-relaxed"
-            style={{ fontSize: "18px", maxWidth: "56ch", lineHeight: 1.75, color: "#3A3530" }}
+            style={{ fontSize: "18px", maxWidth: "56ch", lineHeight: 1.75, color: "#3D5573" }}
           >
             {METHODOLOGY.heroBody}
           </p>
         </section>
 
-        {/* Section 2 — Data sources */}
+        {/* Section 2 â€” Data sources */}
         <section className="py-20 md:py-28 border-b border-border" aria-labelledby="data-sources-heading">
           <h2
             id="data-sources-heading"
@@ -157,7 +157,7 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* Section 3 — The formula */}
+        {/* Section 3 â€” The formula */}
         <section className="py-20 md:py-28 border-b border-border" aria-labelledby="formula-heading">
           <h2
             id="formula-heading"
@@ -207,7 +207,7 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* Section 4 — What is not included */}
+        {/* Section 4 â€” What is not included */}
         <section className="py-20 md:py-28 border-b border-border" aria-labelledby="exclusions-heading">
           <h2
             id="exclusions-heading"
@@ -233,7 +233,7 @@ export default function MethodologyPage() {
                 </h3>
                 <p
                   className="leading-relaxed"
-                  style={{ fontSize: "15px", color: "#3A3530", lineHeight: 1.75, maxWidth: "60ch" }}
+                  style={{ fontSize: "15px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
                 >
                   {item.body}
                 </p>
@@ -242,7 +242,7 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* Section 5 — Confidence and variance */}
+        {/* Section 5 â€” Confidence and variance */}
         <section className="py-20 md:py-28 border-b border-border" aria-labelledby="confidence-heading">
           <h2
             id="confidence-heading"
@@ -275,7 +275,7 @@ export default function MethodologyPage() {
                   </h3>
                   <p
                     className="leading-relaxed"
-                    style={{ fontSize: "16px", color: "#3A3530", lineHeight: 1.75, maxWidth: "60ch" }}
+                    style={{ fontSize: "16px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
                   >
                     {factor.body}
                   </p>
@@ -285,7 +285,7 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* Section 6 — Update cadence */}
+        {/* Section 6 â€” Update cadence */}
         <section className="py-20 md:py-28 border-b border-border" aria-labelledby="cadence-heading">
           <h2
             id="cadence-heading"
@@ -305,7 +305,7 @@ export default function MethodologyPage() {
           </p>
         </section>
 
-        {/* Section 7 — Open challenge */}
+        {/* Section 7 â€” Open challenge */}
         <section className="py-20 md:py-28 text-center">
           <h2
             className="font-serif text-text-primary mb-5"
@@ -348,7 +348,7 @@ export default function MethodologyPage() {
           </div>
           <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
-              © {new Date().getFullYear()} Estimato · estimato.in
+              Â© {new Date().getFullYear()} Estimato Â· estimato.in
             </p>
             <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
               {METHODOLOGY.lastUpdated}
