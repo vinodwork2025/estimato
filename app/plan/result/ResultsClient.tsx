@@ -146,7 +146,7 @@ function HeroSection({
             <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
               ₹{result.costPerSqft.toLocaleString("en-IN")} per sqft
             </strong>{" "}
-            · Confidence: Â±6%
+            · Confidence: ±6%
           </p>
         </motion.div>
 
@@ -436,6 +436,85 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
   );
 }
 
+function SmartInsightsSection({ insights }: { insights: CalculationResult["smartInsights"] }) {
+  if (!insights || insights.length === 0) return null;
+
+  const iconColor: Record<string, string> = {
+    opportunity: "var(--accent)",
+    warning: "#B8741F",
+    note: "var(--text-tertiary)",
+  };
+  const bgColor: Record<string, string> = {
+    opportunity: "rgba(196,154,60,0.06)",
+    warning: "rgba(184,116,31,0.06)",
+    note: "var(--surface)",
+  };
+  const typeLabel: Record<string, string> = {
+    opportunity: "Opportunity",
+    warning: "Watch out",
+    note: "Note",
+  };
+
+  return (
+    <section className="px-6 md:px-12 py-16 md:py-24" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+            Smart observations
+          </p>
+          <h2
+            className="font-serif text-navy"
+            style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}
+          >
+            Specific to your build.
+          </h2>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+            Observations based on your plot, city, configuration, and quality choice.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {insights.map((insight, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.09, ease }}
+              className="p-5 md:p-6"
+              style={{
+                background: bgColor[insight.type] ?? "white",
+                border: "1px solid var(--border)",
+                borderRadius: "4px",
+              }}
+            >
+              <p
+                className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
+                style={{ color: iconColor[insight.type] }}
+              >
+                {typeLabel[insight.type] ?? insight.type}
+              </p>
+              <p
+                className="font-serif text-navy mb-2"
+                style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+              >
+                {insight.title}
+              </p>
+              <p className="text-text-secondary" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+                {insight.message}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OtherTiersSection({
   scenarios,
   selected,
@@ -474,7 +553,7 @@ function OtherTiersSection({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {tiers.map((tier, i) => {
             const isSelected = tier === selected;
-            const amount = scenarios[tier];
+            const amount = scenarios?.[tier] ?? 0;
 
             return (
               <motion.div
@@ -485,7 +564,8 @@ function OtherTiersSection({
                 className="p-4 md:p-5"
                 style={{
                   background: isSelected ? "var(--navy)" : "white",
-                  border: isSelected ? "2px solid var(--navy)" : "1px solid var(--border)",
+                  border: "2px solid",
+                  borderColor: isSelected ? "var(--navy)" : "var(--border)",
                   borderRadius: "4px",
                 }}
               >
@@ -632,7 +712,7 @@ export function ResultsClient() {
               <EstimateLogo size="sm" variant="mark" />
             </Link>
             <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em] hidden md:block">
-              Confidence Â±6% · BOQ-verified
+              Confidence ±6% · BOQ-verified
             </span>
             <Link
               href="/plan"
@@ -662,8 +742,12 @@ export function ResultsClient() {
             <WarningsSection warnings={result.hiddenCostWarnings} />
           )}
 
+          {result.smartInsights?.length > 0 && (
+            <SmartInsightsSection insights={result.smartInsights} />
+          )}
+
           <OtherTiersSection
-            scenarios={result.comparisonScenarios}
+            scenarios={result.comparisonScenarios ?? { essential: 0, economy: 0, premium: 0, luxury: 0 }}
             selected={qualityTier}
           />
 

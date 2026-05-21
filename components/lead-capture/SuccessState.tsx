@@ -47,16 +47,6 @@ export function SuccessState({ phone, partnerMatched, partnerName, onClose }: Su
       )}
 
       <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
-        {partnerMatched && (
-          <Button
-            variant="primary"
-            as="a"
-            href="https://wa.me"
-            onClick={onClose}
-          >
-            Open WhatsApp
-          </Button>
-        )}
         <Button variant="ghost" onClick={onClose}>
           Back to results
         </Button>

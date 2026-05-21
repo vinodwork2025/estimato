@@ -41,7 +41,7 @@ const FORMULA_LINES: { op: string; var: string; isResult?: boolean }[] = [
   { op: "+", var: "statutory_allocation" },
   { op: "+", var: "approval_allocation" },
   { op: "+", var: "8% contingency_reserve" },
-  { op: "=", var: "projection_range (Â±6%)", isResult: true },
+  { op: "=", var: "projection_range (±6%)", isResult: true },
 ];
 
 const EXCLUSIONS = [
