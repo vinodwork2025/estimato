@@ -20,7 +20,7 @@ import { HOME, CTA } from "@/lib/copy";
 
 export const metadata: Metadata = {
 
-  title: “Estimato – Plan before you build”,
+  title: "Estimato – Plan before you build",
 
   description:
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
   openGraph: {
 
-    title: “Estimato – Plan before you build”,
+    title: "Estimato – Plan before you build",
 
     description:
 
