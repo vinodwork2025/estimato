@@ -8,12 +8,13 @@ interface SuccessStateProps {
   phone: string;
   partnerMatched: boolean;
   partnerName: string | null;
+  pdfUrl?: string;
   onClose: () => void;
 }
 
-export function SuccessState({ phone, partnerMatched, partnerName, onClose }: SuccessStateProps) {
+export function SuccessState({ phone, partnerMatched, partnerName, pdfUrl, onClose }: SuccessStateProps) {
   useEffect(() => {
-    const timer = setTimeout(onClose, 6000);
+    const timer = setTimeout(onClose, 10000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
@@ -27,10 +28,19 @@ export function SuccessState({ phone, partnerMatched, partnerName, onClose }: Su
         </svg>
       </div>
 
-      <h3 className="text-lg font-semibold text-text-primary mb-2">Your report is on its way!</h3>
-      <p className="text-sm text-text-secondary mb-1">
-        Sent to <span className="font-medium text-text-primary tabular-nums">{maskedPhone}</span>
-      </p>
+      <h3 className="text-lg font-semibold text-text-primary mb-2">
+        {pdfUrl ? "Report ready!" : "Your report is on its way!"}
+      </h3>
+
+      {pdfUrl ? (
+        <p className="text-sm text-text-secondary mb-1">
+          PDF sent to your email · also available below
+        </p>
+      ) : (
+        <p className="text-sm text-text-secondary mb-1">
+          Sent to <span className="font-medium text-text-primary tabular-nums">{maskedPhone}</span>
+        </p>
+      )}
 
       {partnerMatched && partnerName && (
         <p className="text-sm text-text-secondary mt-3 px-4">
@@ -47,12 +57,19 @@ export function SuccessState({ phone, partnerMatched, partnerName, onClose }: Su
       )}
 
       <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
+        {pdfUrl && (
+          <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="primary">
+              Download PDF report
+            </Button>
+          </a>
+        )}
         <Button variant="ghost" onClick={onClose}>
           Back to results
         </Button>
       </div>
 
-      <p className="text-xs text-text-tertiary mt-4">Closes automatically in a few seconds</p>
+      <p className="text-xs text-text-tertiary mt-4">Closes automatically</p>
     </div>
   );
 }

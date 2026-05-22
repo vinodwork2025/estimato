@@ -19,6 +19,7 @@ const LeadSchema = z.object({
   calculationInput: z.any(),
   calculationResult: z.any(),
   sourcePage: z.string().optional(),
+  pdfUrl: z.string().url().optional(),
 });
 
 export async function POST(request: Request) {
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
         calculation_input: data.calculationInput,
         calculation_result: data.calculationResult,
         source_page: data.sourcePage || null,
+        pdf_url: data.pdfUrl || null,
       })
       .select("id")
       .single();
@@ -66,6 +68,7 @@ export async function POST(request: Request) {
           homeType: data.calculationInput?.homeType,
           result: data.calculationResult,
           partnerName: partner?.name ?? null,
+          pdfUrl: data.pdfUrl || null,
         }),
       }).catch(() => {});
     }

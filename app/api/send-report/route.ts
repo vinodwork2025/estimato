@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const { Resend } = await import("resend");
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
-    const { email, name, city, homeType, result, partnerName } = await request.json() as {
+    const { email, name, city, homeType, result, partnerName, pdfUrl } = await request.json() as {
       leadId: string;
       email: string;
       name: string;
@@ -16,6 +16,7 @@ export async function POST(request: Request) {
       homeType: string;
       result: CalculationResult;
       partnerName: string | null;
+      pdfUrl?: string | null;
     };
 
     const subject = `Your home construction estimate is ready, ${name.split(" ")[0]}`;
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       replyTo: "hello@estimato.in",
       to: email,
       subject,
-      html: buildEmailHtml({ name, city, homeType, result, partnerName }),
+      html: buildEmailHtml({ name, city, homeType, result, partnerName, pdfUrl }),
     });
 
     return NextResponse.json({ success: true });
@@ -41,12 +42,14 @@ function buildEmailHtml({
   homeType,
   result,
   partnerName,
+  pdfUrl,
 }: {
   name: string;
   city: string;
   homeType: string;
   result: CalculationResult;
   partnerName: string | null;
+  pdfUrl?: string | null;
 }) {
   const firstName = name.split(" ")[0];
   const cityLabel = city.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -82,14 +85,17 @@ function buildEmailHtml({
         <tr><td style="padding:0 40px 40px;">
           <table cellpadding="0" cellspacing="0" style="margin-top:16px;">
             <tr>
+              ${pdfUrl ? `
               <td style="padding-right:12px;">
-                <a href="${process.env.NEXT_PUBLIC_SITE_URL}/plan/result" style="display:inline-block;background:#0F0F0F;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:500;">View full report</a>
+                <a href="${pdfUrl}" style="display:inline-block;background:#0E2146;color:#fff;text-decoration:none;padding:12px 24px;border-radius:3px;font-size:14px;font-weight:500;">Download PDF report</a>
               </td>
-              <td>
-                <a href="${process.env.NEXT_PUBLIC_SITE_URL}/plan" style="display:inline-block;border:1px solid #E8E6E0;color:#1A1A1A;text-decoration:none;padding:12px 24px;border-radius:6px;font-size:14px;">Plan another build</a>
+              ` : ""}
+              <td style="padding-right:12px;">
+                <a href="${process.env.NEXT_PUBLIC_SITE_URL}/plan" style="display:inline-block;border:1px solid #E8E6E0;color:#1A1A1A;text-decoration:none;padding:12px 24px;border-radius:3px;font-size:14px;">Plan another build</a>
               </td>
             </tr>
           </table>
+          ${pdfUrl ? "" : `<p style="font-size:12px;color:#9CA3A3;margin-top:16px;">Your full breakdown is visible at <a href="${process.env.NEXT_PUBLIC_SITE_URL}/plan/result" style="color:#0E2146;">estimato.in/plan/result</a></p>`}
         </td></tr>
         <tr><td style="padding:24px 40px;border-top:1px solid #E8E6E0;background:#FAFAF7;">
           <p style="font-size:12px;color:#9CA3A3;margin:0;">Estimato · estimato.in · No spam. <a href="${process.env.NEXT_PUBLIC_SITE_URL}" style="color:#9CA3A3;">Unsubscribe</a></p>

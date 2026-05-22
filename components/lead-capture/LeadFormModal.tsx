@@ -10,6 +10,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Toggle } from "@/components/ui/Toggle";
 import { track } from "@/lib/analytics/events";
+import { createClient } from "@/lib/supabase/client";
 import type { PlannerInput, CalculationResult } from "@/types";
 
 const schema = z.object({
@@ -26,10 +27,51 @@ type FormData = z.infer<typeof schema>;
 interface LeadFormModalProps {
   open: boolean;
   onClose: () => void;
-  onSuccess: (result: { partnerMatched: boolean; partnerName: string | null; phone: string }) => void;
+  onSuccess: (result: {
+    partnerMatched: boolean;
+    partnerName: string | null;
+    phone: string;
+    pdfUrl?: string;
+  }) => void;
   input: Partial<PlannerInput>;
   result: CalculationResult;
   sourcePage?: string;
+}
+
+async function generateAndUploadPDF(
+  name: string,
+  input: Partial<PlannerInput>,
+  result: CalculationResult
+): Promise<string | undefined> {
+  try {
+    // Dynamic import — never runs server-side
+    const [{ pdf }, { ReportDocument }, React] = await Promise.all([
+      import("@react-pdf/renderer"),
+      import("@/components/pdf/ReportDocument"),
+      import("react"),
+    ]);
+
+    const blob = await pdf(
+      React.createElement(ReportDocument, { name, input, result })
+    ).toBlob();
+
+    const supabase = createClient();
+    const fileName = `report-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.pdf`;
+
+    const { error } = await supabase.storage
+      .from("reports")
+      .upload(fileName, blob, { contentType: "application/pdf", upsert: false });
+
+    if (error) return undefined;
+
+    const { data: { publicUrl } } = supabase.storage
+      .from("reports")
+      .getPublicUrl(fileName);
+
+    return publicUrl;
+  } catch {
+    return undefined;
+  }
 }
 
 export function LeadFormModal({
@@ -41,6 +83,7 @@ export function LeadFormModal({
   sourcePage,
 }: LeadFormModalProps) {
   const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -69,6 +112,15 @@ export function LeadFormModal({
       partner_consent: data.consentToPartnerShare,
     });
 
+    // Step 1: Generate PDF (non-blocking — failure doesn't stop submission)
+    let pdfUrl: string | undefined;
+    if (data.email) {
+      setLoadingStep("Generating your report…");
+      pdfUrl = await generateAndUploadPDF(data.name, input, result);
+    }
+
+    // Step 2: Submit lead
+    setLoadingStep("Submitting…");
     try {
       const res = await fetch("/api/submit-lead", {
         method: "POST",
@@ -85,6 +137,7 @@ export function LeadFormModal({
           calculationInput: input,
           calculationResult: result,
           sourcePage,
+          pdfUrl,
         }),
       });
 
@@ -95,11 +148,13 @@ export function LeadFormModal({
         partnerMatched: json.partnerMatched,
         partnerName: json.partnerName,
         phone: data.phone,
+        pdfUrl,
       });
     } catch {
       setServerError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
+      setLoadingStep(null);
     }
   }
 
@@ -147,10 +202,10 @@ export function LeadFormModal({
         />
 
         <Input
-          label="Email (optional)"
+          label="Email"
           type="email"
           placeholder="ravi@example.com"
-          hint="We'll send your PDF here"
+          hint="Your PDF report will be sent here"
           autoComplete="email"
           error={errors.email?.message}
           {...register("email")}
@@ -190,7 +245,7 @@ export function LeadFormModal({
           loading={loading}
           className="w-full h-12 mt-2"
         >
-          Send my report
+          {loadingStep ?? "Send my report"}
         </Button>
 
         <p className="text-xs text-center text-text-tertiary">
