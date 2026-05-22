@@ -10,7 +10,6 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Toggle } from "@/components/ui/Toggle";
 import { track } from "@/lib/analytics/events";
-import { createClient } from "@/lib/supabase/client";
 import type { PlannerInput, CalculationResult } from "@/types";
 
 const schema = z.object({
@@ -44,7 +43,6 @@ async function generateAndUploadPDF(
   result: CalculationResult
 ): Promise<string | undefined> {
   try {
-    // Dynamic import — never runs server-side
     const [{ pdf }, { ReportDocument }, React] = await Promise.all([
       import("@react-pdf/renderer"),
       import("@/components/pdf/ReportDocument"),
@@ -55,20 +53,14 @@ async function generateAndUploadPDF(
       React.createElement(ReportDocument, { name, input, result })
     ).toBlob();
 
-    const supabase = createClient();
-    const fileName = `report-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.pdf`;
+    const form = new FormData();
+    form.append("file", blob, "report.pdf");
 
-    const { error } = await supabase.storage
-      .from("reports")
-      .upload(fileName, blob, { contentType: "application/pdf", upsert: false });
+    const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
+    if (!res.ok) return undefined;
 
-    if (error) return undefined;
-
-    const { data: { publicUrl } } = supabase.storage
-      .from("reports")
-      .getPublicUrl(fileName);
-
-    return publicUrl;
+    const json = await res.json();
+    return json.url as string | undefined;
   } catch {
     return undefined;
   }
