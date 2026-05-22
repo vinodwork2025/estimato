@@ -84,7 +84,7 @@ export function HomeHero() {
 
             <div className="h-px w-8 bg-gold/60 shrink-0" />
 
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
+            <span className="font-mono text-[12px] uppercase tracking-[0.24em] text-text-secondary">
 
               Free for Indian homeowners · 2026 verified rates
 
@@ -276,7 +276,7 @@ export function HomeHero() {
 
                 </p>
 
-                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-tertiary leading-snug">
+                <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-secondary leading-snug">
 
                   {stat.sublabel}
 
@@ -396,7 +396,7 @@ export function HomeHero() {
 
             >
 
-              <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-text-tertiary mb-3">
+              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-text-secondary mb-3">
 
                 Sample projection
 
@@ -410,7 +410,7 @@ export function HomeHero() {
 
               >
 
-                ₹68“84L
+                ₹76L
 
               </p>
 
@@ -446,7 +446,7 @@ export function HomeHero() {
 
                     <span
 
-                      className="font-mono uppercase text-text-tertiary"
+                      className="font-mono uppercase text-text-secondary"
 
                       style={{ fontSize: "9px", letterSpacing: "0.12em" }}
 
@@ -494,13 +494,13 @@ export function HomeHero() {
 
             >
 
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/80">
+              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-white/80">
 
                 BOQ-based
 
               </p>
 
-              <p className="font-mono text-[9px] text-white/35 mt-0.5 uppercase tracking-[0.1em]">
+              <p className="font-mono text-[11px] text-white/35 mt-0.5 uppercase tracking-[0.1em]">
 
                 2026 verified
 

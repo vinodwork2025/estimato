@@ -180,7 +180,7 @@ function StepDots({ current }: { current: number }) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary mb-3">
+    <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary mb-3">
       {children}
     </p>
   );
@@ -210,7 +210,7 @@ function ToggleRow({ label, hint, checked, onChange }: { label: string; hint: st
     <div className="flex items-center justify-between py-4">
       <div>
         <p style={{ fontSize: "15px", color: "var(--text-primary)", fontWeight: 400 }}>{label}</p>
-        <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>{hint}</p>
+        <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{hint}</p>
       </div>
       <button
         type="button"
@@ -233,7 +233,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-5xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 1 of {TOTAL_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
@@ -285,7 +285,7 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 2 of {TOTAL_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
@@ -351,7 +351,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 3 of {TOTAL_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
@@ -368,7 +368,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
           {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
         </p>
         <p style={{ fontSize: "15px", color: "#7B93A8", marginTop: "8px" }}>square feet</p>
-        <p className="font-mono text-text-tertiary mt-1" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
+        <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
           {state.plotLength} ft × {state.plotWidth} ft
         </p>
       </motion.div>
@@ -395,8 +395,8 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
           aria-label="Plot area slider"
         />
         <div className="flex justify-between mt-2">
-          <span className="font-mono text-[10px] text-text-tertiary tracking-[0.1em]">900</span>
-          <span className="font-mono text-[10px] text-text-tertiary tracking-[0.1em]">40,000 sqft</span>
+          <span className="font-mono text-[12px] text-text-secondary tracking-[0.1em]">900</span>
+          <span className="font-mono text-[12px] text-text-secondary tracking-[0.1em]">40,000 sqft</span>
         </div>
       </motion.div>
 
@@ -406,7 +406,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
         <div className="grid grid-cols-2 gap-4">
           {(["plotLength", "plotWidth"] as const).map((field) => (
             <div key={field}>
-              <label className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary mb-2 block">
+              <label className="font-mono text-[12px] uppercase tracking-[0.14em] text-text-secondary mb-2 block">
                 {field === "plotLength" ? "Length" : "Width"} (ft)
               </label>
               <input
@@ -426,13 +426,13 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
       {/* Suggested BUA callout */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2, ease }} className="mb-8">
         <div className="p-4" style={{ background: "rgba(168,130,59,0.07)", border: "1px solid rgba(168,130,59,0.2)", borderRadius: "3px" }}>
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-1" style={{ color: "var(--accent)" }}>
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] mb-1" style={{ color: "var(--accent)" }}>
             Suggested built-up area
           </p>
           <p className="font-serif text-navy" style={{ fontSize: "24px", fontWeight: 400, letterSpacing: "-0.015em" }}>
             {Math.round(state.plotLength * state.plotWidth * 0.6).toLocaleString("en-IN")} sqft
           </p>
-          <p className="font-mono text-text-tertiary mt-1" style={{ fontSize: "11px" }}>
+          <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "11px" }}>
             60% plot coverage for 1 floor · multiply by floors for multi-storey
           </p>
         </div>
@@ -481,7 +481,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
             </PillBtn>
           ))}
         </div>
-        <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>
+        <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>
           If unsure, choose &ldquo;Don&rsquo;t know&rdquo; — we flag it as a risk.
         </p>
       </motion.div>
@@ -537,7 +537,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 4 of {TOTAL_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
@@ -560,7 +560,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
                 style={{ borderRadius: "4px", border: "1.5px solid", borderColor: isSelected ? "var(--accent)" : "var(--border)", background: isSelected ? "rgba(168,130,59,0.06)" : "white" }}
               >
                 <p className="font-serif text-navy" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}>{f.label}</p>
-                <p className="font-mono text-text-tertiary mt-1" style={{ fontSize: "10px" }}>{f.desc}</p>
+                <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "10px" }}>{f.desc}</p>
               </button>
             );
           })}
@@ -592,9 +592,9 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
               }}
             />
           </div>
-          <span className="font-mono text-[12px] text-text-tertiary shrink-0">sqft</span>
+          <span className="font-mono text-[12px] text-text-secondary shrink-0">sqft</span>
         </div>
-        <p className="font-mono text-text-tertiary mt-2" style={{ fontSize: "11px" }}>
+        <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "11px" }}>
           Suggested: {suggestedBUA.toLocaleString("en-IN")} sqft
           ({state.plotLength} × {state.plotWidth} ft × 60%{state.floors > 1 ? ` × ${state.floors} floors` : ""})
           {state.builtUpArea !== suggestedBUA && (
@@ -653,7 +653,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
             +
           </button>
           {state.balconies > 0 && (
-            <span className="font-mono text-[11px] text-text-tertiary tabular-nums">
+            <span className="font-mono text-[11px] text-text-secondary tabular-nums">
               +₹{(state.balconies * 50000).toLocaleString("en-IN")} approx
             </span>
           )}
@@ -687,7 +687,7 @@ function Step5Finish({
   return (
     <div className="px-5 md:px-10 pt-8 pb-4 max-w-5xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 5 of {TOTAL_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
@@ -726,7 +726,7 @@ function Step5Finish({
                 <Image src={q.image} alt={q.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw"
                   style={{ filter: isSelected ? "grayscale(0.1) brightness(0.9)" : "grayscale(0.5) sepia(0.15) brightness(0.85)", transition: "filter 0.3s" }} />
                 {q.value === "economy" && (
-                  <div className="absolute top-3 left-3 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em]" style={{ background: "var(--accent)", color: "white", borderRadius: "2px" }}>
+                  <div className="absolute top-3 left-3 px-2 py-1 font-mono text-[12px] uppercase tracking-[0.12em]" style={{ background: "var(--accent)", color: "white", borderRadius: "2px" }}>
                     Most popular
                   </div>
                 )}
@@ -742,9 +742,9 @@ function Step5Finish({
                   <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>₹{rate.toLocaleString("en-IN")}/sqft</p>
                 </div>
                 <p className="text-text-secondary mb-2" style={{ fontSize: "13px", lineHeight: 1.6 }}>{q.description}</p>
-                <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>{q.materials}</p>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{q.materials}</p>
                 <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
-                  <p className="font-mono text-text-tertiary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
+                  <p className="font-mono text-text-secondary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
                   <p className="font-serif text-navy tabular-nums" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
                     ~{formatINRShort(estimated)}
                   </p>
@@ -784,7 +784,7 @@ function Step5Finish({
                     <p style={{ fontSize: "15px", color: isSelected ? "var(--text-primary)" : "var(--text-secondary)", fontWeight: isSelected ? 500 : 400 }}>
                       {opt.label}
                     </p>
-                    <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>{opt.desc}</p>
+                    <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{opt.desc}</p>
                   </div>
                   <div className="text-right shrink-0 ml-4">
                     <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
@@ -894,7 +894,7 @@ export function PlannerWizard() {
           <Link href="/" aria-label="Estimato home">
             <EstimateLogo size="sm" variant="mark" />
           </Link>
-          <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em]">
+          <span className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.18em]">
             Free · No sign-up
           </span>
         </div>
@@ -905,7 +905,7 @@ export function PlannerWizard() {
         <div className="max-w-5xl mx-auto px-5 md:px-10 h-12 flex items-center justify-between">
           {step > 1 ? (
             <button type="button" onClick={() => goTo(step - 1)}
-              className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-secondary hover:text-text-secondary transition-colors focus:outline-none"
             >
               ← Back
             </button>
@@ -961,7 +961,7 @@ export function PlannerWizard() {
               </Button>
             ) : (
               <>
-                <p className="font-mono text-[10px] text-text-tertiary text-center mb-3 uppercase tracking-[0.1em]">
+                <p className="font-mono text-[12px] text-text-secondary text-center mb-3 uppercase tracking-[0.1em]">
                   Free · No sign-up · BOQ-verified rates
                 </p>
                 <Button

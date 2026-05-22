@@ -99,7 +99,7 @@ export default function MethodologyPage() {
 
         {/* Section 1 — Cover */}
         <section className="pt-20 pb-24 md:pt-28 md:pb-32 border-b border-border">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-10">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-10">
             {METHODOLOGY.pageLabel}
           </p>
           <h1
@@ -137,7 +137,7 @@ export default function MethodologyPage() {
                 className="py-10 border-t border-border"
                 style={{ borderLeftWidth: "1px", borderLeftColor: "var(--accent)", paddingLeft: "20px" }}
               >
-                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-tertiary mb-4">
+                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-secondary mb-4">
                   {source.label}
                 </p>
                 <h3
@@ -261,7 +261,7 @@ export default function MethodologyPage() {
             {CONFIDENCE_FACTORS.map((factor) => (
               <div key={factor.num} className="py-8 border-t border-border flex gap-8 items-start">
                 <span
-                  className="font-mono text-text-tertiary shrink-0 tabular-nums"
+                  className="font-mono text-text-secondary shrink-0 tabular-nums"
                   style={{ fontSize: "11px", letterSpacing: "0.12em", marginTop: "4px" }}
                 >
                   {factor.num}
@@ -300,7 +300,7 @@ export default function MethodologyPage() {
           >
             {METHODOLOGY.cadenceBody}
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary">
+          <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary">
             {METHODOLOGY.lastUpdated}
           </p>
         </section>
@@ -336,7 +336,7 @@ export default function MethodologyPage() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div>
               <EstimateLogo size="lg" variant="light" />
-              <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-[0.1em]">
+              <p className="font-mono text-[12px] text-white/40 mt-3 uppercase tracking-[0.1em]">
                 Honest construction cost estimates for Indian homeowners.
               </p>
             </div>
@@ -347,10 +347,10 @@ export default function MethodologyPage() {
             </nav>
           </div>
           <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
+            <p className="font-mono text-[12px] text-white/30 uppercase tracking-[0.1em]">
               © {new Date().getFullYear()} Estimato · estimato.in
             </p>
-            <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
+            <p className="font-mono text-[12px] text-white/30 uppercase tracking-[0.1em]">
               {METHODOLOGY.lastUpdated}
             </p>
           </div>

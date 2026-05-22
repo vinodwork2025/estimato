@@ -82,7 +82,7 @@ export default function AboutPage() {
       <footer className="border-t border-border bg-white px-6 py-10 mt-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <EstimateLogo size="lg" variant="dark" />
-          <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.14em]">
+          <p className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.14em]">
             © {new Date().getFullYear()} Estimato · estimato.in
           </p>
         </div>

@@ -20,7 +20,7 @@ import { HOME, CTA } from "@/lib/copy";
 
 export const metadata: Metadata = {
 
-  title: "Estimato “ Plan before you build",
+  title: “Estimato – Plan before you build”,
 
   description:
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
   openGraph: {
 
-    title: "Estimato “ Plan before you build",
+    title: “Estimato – Plan before you build”,
 
     description:
 
@@ -50,7 +50,7 @@ const FAQ_ITEMS: FAQItem[] = [
 
     answer:
 
-      "Our estimates are based on verified 2026 market rates from real project BOQs in the Hosur“Bengaluru belt. We give you a range (not a single number) because construction costs always vary. Use the estimate to plan your budget, not to sign a contract.",
+      "Our estimates are based on verified 2026 market rates from real project BOQs in the Hosur–Bengaluru belt. We give you a range (not a single number) because construction costs always vary. Use the estimate to plan your budget, not to sign a contract.",
 
   },
 
@@ -292,7 +292,7 @@ function ReportMockup() {
 
       {/* Big number */}
 
-      <text x="20" y="136" fill="#0D1F3C" fontFamily="Georgia, serif" fontSize="40" letterSpacing="-2">₹84“96L</text>
+      <text x="20" y="136" fill="#0D1F3C" fontFamily="Georgia, serif" fontSize="40" letterSpacing="-2">₹84–96L</text>
 
 
 
@@ -456,7 +456,7 @@ export default function HomePage() {
 
               <AnimateIn className="mb-20">
 
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-4">
+                <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-secondary mb-4">
 
                   The process
 
@@ -502,7 +502,7 @@ export default function HomePage() {
 
                     </p>
 
-                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary mb-3">
+                    <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary mb-3">
 
                       Step {item.step}
 
@@ -550,7 +550,7 @@ export default function HomePage() {
 
               <AnimateIn className="lg:sticky lg:top-28">
 
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-6">
+                <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-secondary mb-6">
 
                   Every estimate includes
 
@@ -632,7 +632,7 @@ export default function HomePage() {
 
                           <span
 
-                            className="font-mono text-text-tertiary tabular-nums group-hover:text-text-secondary transition-colors duration-300 block"
+                            className="font-mono text-text-secondary tabular-nums group-hover:text-text-secondary transition-colors duration-300 block"
 
                             style={{ fontSize: "11px", letterSpacing: "0.1em" }}
 
@@ -714,7 +714,7 @@ export default function HomePage() {
 
                   <div className="h-px w-5 bg-gold/50" />
 
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold/70">Our philosophy</p>
+                  <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-gold/70">Our philosophy</p>
 
                 </div>
 
@@ -762,7 +762,7 @@ export default function HomePage() {
 
                       <div style={{ width: "12px", height: "1px", background: "rgba(184,149,78,0.5)" }} />
 
-                      <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-gold/55">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold/55">
 
                         Point {String(i + 1).padStart(2, "0")}
 
@@ -808,7 +808,7 @@ export default function HomePage() {
 
               <AnimateIn>
 
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-14 text-center">
+                <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-secondary mb-14 text-center">
 
                   Coverage
 
@@ -836,7 +836,7 @@ export default function HomePage() {
 
                   </p>
 
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary mt-3">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary mt-3">
 
                     Cities · quarterly updates
 
@@ -876,7 +876,7 @@ export default function HomePage() {
 
               <AnimateIn className="mb-14">
 
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-4">
+                <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-secondary mb-4">
 
                   Common questions
 
@@ -1000,7 +1000,7 @@ export default function HomePage() {
 
                 <EstimateLogo size="lg" variant="light" />
 
-                <p className="font-mono text-[10px] text-white/40 mt-3 max-w-xs leading-relaxed uppercase tracking-[0.1em]">
+                <p className="font-mono text-[12px] text-white/40 mt-3 max-w-xs leading-relaxed uppercase tracking-[0.1em]">
 
                   Honest construction cost estimates for Indian homeowners.
 
@@ -1024,15 +1024,15 @@ export default function HomePage() {
 
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
 
-              <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
+              <p className="font-mono text-[12px] text-white/30 uppercase tracking-[0.1em]">
 
                 © {new Date().getFullYear()} Estimato · estimato.in
 
               </p>
 
-              <p className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em]">
+              <p className="font-mono text-[12px] text-white/30 uppercase tracking-[0.1em]">
 
-                Rates verified for 2026 · Hosur“Bengaluru belt
+                Rates verified for 2026 · Hosur–Bengaluru belt
 
               </p>
 

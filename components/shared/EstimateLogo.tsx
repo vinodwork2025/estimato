@@ -14,7 +14,7 @@ const LOGO_CONFIG = {
   mark:  { src: "/logo-mark.webp", aspect: 1.05 },
 };
 
-const heights: Record<string, number> = { sm: 32, md: 40, lg: 52, xl: 72, "2xl": 88 };
+const heights: Record<string, number> = { sm: 32, md: 50, lg: 65, xl: 90, "2xl": 110 };
 
 export function EstimateLogo({
   size = "md",

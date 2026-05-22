@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,19 +21,27 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-sans font-medium tracking-[0.018em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/30 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed select-none";
+    "inline-flex items-center justify-center font-sans font-medium tracking-[0.022em] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/30 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed select-none";
 
   const variants = {
     primary:
-      "bg-navy text-text-inverse hover:bg-navy-light rounded-[3px] shadow-[0_1px_3px_rgba(13,31,60,0.18),inset_0_1px_0_rgba(255,255,255,0.06)] hover:shadow-[0_2px_8px_rgba(13,31,60,0.22)]",
+      "bg-gradient-to-b from-[#1b3568] to-[#0c1d42] text-white rounded-[2px] " +
+      "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_1px_2px_rgba(12,29,66,0.3),0_2px_12px_rgba(12,29,66,0.18)] " +
+      "hover:from-[#1f3d78] hover:to-[#0f2250] " +
+      "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.13),0_2px_4px_rgba(12,29,66,0.35),0_6px_22px_rgba(12,29,66,0.24)] " +
+      "active:from-[#0c1d42] active:to-[#0c1d42] active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.18)]",
     secondary:
-      "bg-transparent text-text-primary border border-border hover:border-border-strong rounded-[3px]",
+      "bg-transparent text-navy rounded-[2px] border border-navy/20 " +
+      "hover:border-navy/50 hover:bg-navy/[0.03]",
     ghost:
-      "bg-transparent text-text-tertiary hover:text-text-primary rounded-[3px]",
+      "bg-transparent text-text-secondary hover:text-navy rounded-[2px] hover:bg-navy/[0.04]",
     danger:
-      "bg-error text-white rounded-[3px] hover:opacity-90",
+      "bg-error text-white rounded-[2px] shadow-[0_1px_3px_rgba(200,0,0,0.18)] hover:opacity-90",
     gold:
-      "bg-gold text-white rounded-[3px] hover:bg-gold-muted shadow-[0_1px_3px_rgba(184,149,78,0.25)] hover:shadow-[0_2px_8px_rgba(184,149,78,0.30)]",
+      "bg-gradient-to-b from-[#d4a540] to-[#b07825] text-white rounded-[2px] " +
+      "shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_3px_rgba(176,120,37,0.25),0_2px_10px_rgba(176,120,37,0.16)] " +
+      "hover:from-[#dbb04a] hover:to-[#b8802d] " +
+      "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_6px_rgba(176,120,37,0.3),0_4px_16px_rgba(176,120,37,0.2)]",
   };
 
   const sizes = {

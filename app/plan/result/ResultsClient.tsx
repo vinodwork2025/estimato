@@ -110,7 +110,7 @@ function HeroSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-5">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-5">
             Your estimate · {tier} finish · {sqft.toLocaleString("en-IN")} sqft
           </p>
           <p
@@ -141,7 +141,7 @@ function HeroSection({
           <div
             style={{ width: "48px", height: "2px", background: "var(--accent)", marginBottom: "20px" }}
           />
-          <p className="font-mono text-text-tertiary" style={{ fontSize: "13px" }}>
+          <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
             That&apos;s about{" "}
             <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
               ₹{result.costPerSqft.toLocaleString("en-IN")} per sqft
@@ -168,7 +168,7 @@ function HeroSection({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="font-mono text-text-tertiary mt-5"
+          className="font-mono text-text-secondary mt-5"
           style={{ fontSize: "11px", letterSpacing: "0.06em" }}
         >
           Free · No sales call · Based on verified BOQs from real {city} projects
@@ -191,7 +191,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
           transition={{ duration: 0.6, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
             Cost breakdown
           </p>
           <h2
@@ -243,7 +243,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
                     >
                       {formatINRShort(amount)}
                     </p>
-                    <p className="font-mono text-text-tertiary" style={{ fontSize: "11px" }}>
+                    <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>
                       {pct}% of total
                     </p>
                   </div>
@@ -277,7 +277,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
           transition={{ duration: 0.6, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
             Build timeline
           </p>
           <h2
@@ -310,7 +310,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
               }}
             >
               <p
-                className="font-mono text-[10px] uppercase tracking-[0.18em] mb-3"
+                className="font-mono text-[12px] uppercase tracking-[0.18em] mb-3"
                 style={{ color: "var(--accent)" }}
               >
                 Phase {i + 1}
@@ -322,7 +322,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
                 {phase.name}
               </p>
               <p
-                className="font-mono text-text-tertiary mb-3"
+                className="font-mono text-text-secondary mb-3"
                 style={{ fontSize: "12px" }}
               >
                 {daysToMonths(phase.durationDays)}
@@ -334,7 +334,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
                 className="mt-4 pt-4"
                 style={{ borderTop: "1px solid var(--border)" }}
               >
-                <p className="font-mono text-text-tertiary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                   PAYMENT DUE
                 </p>
                 <p
@@ -343,7 +343,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
                 >
                   {formatINRShort(phase.cost)}
                 </p>
-                <p className="font-mono text-text-tertiary" style={{ fontSize: "10px" }}>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "10px" }}>
                   {phase.paymentPercent}% of total
                 </p>
               </div>
@@ -375,7 +375,7 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
           transition={{ duration: 0.6, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
             Watch out for
           </p>
           <h2
@@ -403,7 +403,7 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
                 borderLeft: "3px solid var(--accent)",
               }}
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>
+              <p className="font-mono text-[12px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>
                 {categoryLabel[w.category] ?? w.category}
               </p>
               <p
@@ -464,7 +464,7 @@ function SmartInsightsSection({ insights }: { insights: CalculationResult["smart
           transition={{ duration: 0.6, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
             Smart observations
           </p>
           <h2
@@ -493,7 +493,7 @@ function SmartInsightsSection({ insights }: { insights: CalculationResult["smart
               }}
             >
               <p
-                className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
+                className="font-mono text-[12px] uppercase tracking-[0.16em] mb-2"
                 style={{ color: iconColor[insight.type] }}
               >
                 {typeLabel[insight.type] ?? insight.type}
@@ -539,7 +539,7 @@ function OtherTiersSection({
           transition={{ duration: 0.6, ease }}
           className="mb-10"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-tertiary mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
             Other options
           </p>
           <h2
@@ -571,7 +571,7 @@ function OtherTiersSection({
               >
                 {isSelected && (
                   <p
-                    className="font-mono text-[9px] uppercase tracking-[0.16em] mb-2"
+                    className="font-mono text-[11px] uppercase tracking-[0.16em] mb-2"
                     style={{ color: "var(--accent)" }}
                   >
                     Your choice
@@ -612,7 +612,7 @@ function OtherTiersSection({
             );
           })}
         </div>
-        <p className="font-mono text-text-tertiary mt-4" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+        <p className="font-mono text-text-secondary mt-4" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
           All figures use the same location, area, and floor count as your estimate. Only the finish level changes.
         </p>
       </div>
@@ -652,13 +652,13 @@ function FooterCTA({ onTalkArchitect }: { onTalkArchitect: () => void }) {
           <div className="mt-16 pt-8 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid var(--border)" }}>
             <Link
               href="/methodology"
-              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+              className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary hover:text-text-secondary transition-colors"
             >
               Read the methodology
             </Link>
             <Link
               href="/"
-              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+              className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary hover:text-text-secondary transition-colors"
             >
               Estimato home
             </Link>
@@ -711,12 +711,12 @@ export function ResultsClient() {
             <Link href="/" aria-label="Estimato home">
               <EstimateLogo size="sm" variant="mark" />
             </Link>
-            <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.18em] hidden md:block">
+            <span className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.18em] hidden md:block">
               Confidence ±6% · BOQ-verified
             </span>
             <Link
               href="/plan"
-              className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary hover:text-text-secondary transition-colors"
+              className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary hover:text-text-secondary transition-colors"
             >
               New estimate
             </Link>

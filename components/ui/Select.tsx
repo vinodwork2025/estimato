@@ -21,7 +21,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-secondary"
+            className="font-mono text-[12px] uppercase tracking-[0.14em] text-text-secondary"
           >
             {label}
             {props.required && (

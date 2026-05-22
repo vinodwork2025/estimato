@@ -83,7 +83,7 @@ export default function ForArchitectsPage() {
               </a>
               <div>
                 <p className="font-mono text-[22px] font-semibold text-navy tabular-nums leading-none">₹3,000</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-tertiary mt-1">per qualified lead</p>
+                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-text-secondary mt-1">per qualified lead</p>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function ForArchitectsPage() {
               {HOW_IT_WORKS.map((item) => (
                 <div key={item.number} className="flex gap-5">
                   <div className="shrink-0 mt-0.5">
-                    <span className="font-mono text-[11px] text-text-tertiary uppercase tracking-[0.14em]">{item.number}</span>
+                    <span className="font-mono text-[11px] text-text-secondary uppercase tracking-[0.14em]">{item.number}</span>
                   </div>
                   <div className="border-l border-border pl-5">
                     <h3 className="font-serif text-headline-sm text-navy mb-2">{item.title}</h3>
@@ -126,7 +126,7 @@ export default function ForArchitectsPage() {
             <div className="bg-white border border-border rounded-2xl p-8">
               <div className="text-center mb-8 pb-8 border-b border-border">
                 <p className="font-serif text-navy mb-1" style={{ fontSize: "clamp(40px, 6vw, 56px)", lineHeight: 1, letterSpacing: "-0.02em" }}>₹3,000</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-tertiary mt-2">per qualified consultation lead</p>
+                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-text-secondary mt-2">per qualified consultation lead</p>
               </div>
               <ul className="space-y-3 mb-8">
                 {PRICING_POINTS.map((point) => (
@@ -141,7 +141,7 @@ export default function ForArchitectsPage() {
                   Apply as a partner
                 </Button>
               </a>
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-tertiary text-center mt-4">
+              <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-secondary text-center mt-4">
                 Onboarding founding partners now · partners@estimato.in
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function ForArchitectsPage() {
         {/* Founding partner */}
         <section className="py-20 px-6 bg-navy">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-gold mb-4">Founding partner</p>
+            <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-gold mb-4">Founding partner</p>
             <h2 className="font-serif text-headline-xl text-white mb-5">Design Intend</h2>
             <p className="text-white/65 text-body leading-relaxed mb-8 max-w-md mx-auto">
               Design Intend is Estimato&apos;s founding partner for Hosur, Sarjapura, Attibele, Bagalur,
@@ -175,7 +175,7 @@ export default function ForArchitectsPage() {
       <footer className="border-t border-border bg-white px-6 py-10">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <EstimateLogo size="lg" variant="dark" />
-          <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-[0.14em]">
+          <p className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.14em]">
             © {new Date().getFullYear()} Estimato · partners@estimato.in
           </p>
         </div>
