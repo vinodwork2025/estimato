@@ -6,13 +6,15 @@ interface EstimateLogoProps {
   className?: string;
 }
 
+// Full logo: 1873 × 357 → aspect 5.25
+// Mark (house icon): 375 × 357 → aspect 1.05
 const LOGO_CONFIG = {
-  dark:  { src: "/brand-full-dark.png",  aspect: 3.8 },
-  light: { src: "/brand-full-light.png", aspect: 3.8 },
-  mark:  { src: "/brand-mark.png",       aspect: 1   },
+  dark:  { src: "/logo.webp",      aspect: 5.25 },
+  light: { src: "/logo.webp",      aspect: 5.25 },
+  mark:  { src: "/logo-mark.webp", aspect: 1.05 },
 };
 
-const heights: Record<string, number> = { sm: 28, md: 36, lg: 48, xl: 86, "2xl": 96 };
+const heights: Record<string, number> = { sm: 32, md: 40, lg: 52, xl: 72, "2xl": 88 };
 
 export function EstimateLogo({
   size = "md",
@@ -29,6 +31,7 @@ export function EstimateLogo({
       width={Math.round(h * aspect)}
       height={h}
       className={`object-contain ${className}`}
+      style={variant === "light" ? { filter: "brightness(0) invert(1)" } : undefined}
       priority
     />
   );

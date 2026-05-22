@@ -2,10 +2,10 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { EstimateLogo } from "@/components/shared/EstimateLogo";
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
@@ -103,14 +103,7 @@ export function SiteHeader({
           style={{ transformOrigin: "left center" }}
         >
           <Link href="/" aria-label="Estimato home">
-            <Image
-              src="/brand-header.png"
-              alt="Estimato — Plan Smart. Build Better."
-              width={220}
-              height={56}
-              className="object-contain"
-              priority
-            />
+            <EstimateLogo size="md" variant="dark" />
           </Link>
         </motion.div>
 
