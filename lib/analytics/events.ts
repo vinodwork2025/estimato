@@ -9,7 +9,8 @@ type EventName =
   | "pdf_form_submitted"
   | "partner_card_clicked"
   | "whatsapp_cta_clicked"
-  | "optional_addition_toggled";
+  | "optional_addition_toggled"
+  | "architect_intro_requested";
 
 type EventProps = Record<string, string | number | boolean>;
 

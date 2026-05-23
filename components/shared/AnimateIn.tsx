@@ -6,6 +6,7 @@ import { useRef } from "react";
 interface AnimateInProps {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   duration?: number;
@@ -15,6 +16,7 @@ interface AnimateInProps {
 export function AnimateIn({
   children,
   className,
+  style,
   delay = 0,
   direction = "up",
   duration = 0.6,
@@ -45,6 +47,7 @@ export function AnimateIn({
         ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
+      style={style}
     >
       {children}
     </motion.div>

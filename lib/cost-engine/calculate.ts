@@ -1,6 +1,7 @@
 import type { PlannerInput, CalculationResult } from "@/types";
 import {
   getBaseRate,
+  getBaseRateRange,
   INTERIOR_RATES,
   CONFIG_MODIFIERS,
   FIXED_ADDITIONS,
@@ -43,32 +44,40 @@ function calculateScenario(input: PlannerInput): number {
 }
 
 export function calculate(input: PlannerInput): CalculationResult {
-  const baseRate = getBaseRate(input.city, input.qualityTier);
-  const baseCivilCost = input.configuration.builtUpArea * baseRate;
-  const civilCost = applyConfigModifiers(input, baseCivilCost);
+  const isCustomQuote = input.qualityTier === "ultra-luxury";
+  const rateRange = getBaseRateRange(input.city, input.qualityTier);
+
+  const baseCivilLow = input.configuration.builtUpArea * rateRange.min;
+  const baseCivilHigh = input.configuration.builtUpArea * rateRange.max;
+
+  const civilLow = applyConfigModifiers(input, baseCivilLow);
+  const civilHigh = applyConfigModifiers(input, baseCivilHigh);
 
   const interiorCost =
     input.configuration.builtUpArea * INTERIOR_RATES[input.interiorLevel];
 
-  const totalMid = civilCost + interiorCost;
-  const totalMin = Math.round(totalMid * 0.94);
-  const totalMax = Math.round(totalMid * 1.08);
+  const totalMin = Math.round(civilLow + interiorCost);
+  const totalMax = Math.round(civilHigh + interiorCost);
+  const totalMid = Math.round((totalMin + totalMax) / 2);
+
+  // Use mid civil cost for breakdown
+  const civilMid = (civilLow + civilHigh) / 2;
 
   const breakdown = {
-    civilStructure: Math.round(civilCost * COST_BREAKDOWN.civilStructure),
-    finishes: Math.round(civilCost * COST_BREAKDOWN.finishes),
+    civilStructure: Math.round(civilMid * COST_BREAKDOWN.civilStructure),
+    finishes: Math.round(civilMid * COST_BREAKDOWN.finishes),
     interiors: Math.round(interiorCost),
-    mep: Math.round(civilCost * COST_BREAKDOWN.mep),
-    elevation: Math.round(civilCost * COST_BREAKDOWN.elevation),
-    approvalsAndFees: Math.round(civilCost * COST_BREAKDOWN.approvalsAndFees),
-    contingency: Math.round(civilCost * COST_BREAKDOWN.contingency),
+    mep: Math.round(civilMid * COST_BREAKDOWN.mep),
+    elevation: Math.round(civilMid * COST_BREAKDOWN.elevation),
+    approvalsAndFees: Math.round(civilMid * COST_BREAKDOWN.approvalsAndFees),
+    contingency: Math.round(civilMid * COST_BREAKDOWN.contingency),
   };
 
   const comparisonScenarios = {
-    essential: Math.round(calculateScenario({ ...input, qualityTier: "essential" })),
-    economy: Math.round(calculateScenario({ ...input, qualityTier: "economy" })),
-    premium: Math.round(calculateScenario({ ...input, qualityTier: "premium" })),
-    luxury: Math.round(calculateScenario({ ...input, qualityTier: "luxury" })),
+    basic:    Math.round(calculateScenario({ ...input, qualityTier: "basic" })),
+    standard: Math.round(calculateScenario({ ...input, qualityTier: "standard" })),
+    premium:  Math.round(calculateScenario({ ...input, qualityTier: "premium" })),
+    luxury:   Math.round(calculateScenario({ ...input, qualityTier: "luxury" })),
   };
 
   const timeline = generateTimeline(input, totalMid);
@@ -76,7 +85,7 @@ export function calculate(input: PlannerInput): CalculationResult {
   const smartInsights = generateInsights(input);
 
   return {
-    totalRange: { min: totalMin, max: totalMax, mid: Math.round(totalMid) },
+    totalRange: { min: totalMin, max: totalMax, mid: totalMid },
     costPerSqft: Math.round(totalMid / input.configuration.builtUpArea),
     timeline,
     breakdown,
@@ -84,5 +93,6 @@ export function calculate(input: PlannerInput): CalculationResult {
     smartInsights,
     recommendedContingency: Math.round(totalMid * 0.08),
     comparisonScenarios,
+    isCustomQuote,
   };
 }

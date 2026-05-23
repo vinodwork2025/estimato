@@ -22,7 +22,7 @@ export type Slope = "flat" | "mild" | "steep";
 
 export type ParkingType = "none" | "covered" | "stilt";
 
-export type QualityTier = "essential" | "economy" | "premium" | "luxury";
+export type QualityTier = "basic" | "standard" | "premium" | "luxury" | "ultra-luxury";
 
 export type InteriorLevel = "basic" | "modular" | "premium" | "luxury-furnished";
 
@@ -93,11 +93,12 @@ export type CalculationResult = {
   smartInsights: Insight[];
   recommendedContingency: number;
   comparisonScenarios: {
-    essential: number;
-    economy: number;
+    basic: number;
+    standard: number;
     premium: number;
     luxury: number;
   };
+  isCustomQuote?: boolean;
 };
 
 export type Partner = {

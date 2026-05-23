@@ -49,7 +49,7 @@ export function generateTimeline(
   if (input.configuration.basement) {
     durationMultiplier += 0.15;
   }
-  if (input.qualityTier === "luxury") {
+  if (input.qualityTier === "luxury" || input.qualityTier === "ultra-luxury") {
     durationMultiplier += 0.1;
   }
 

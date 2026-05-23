@@ -3,8 +3,14 @@ export const runtime = 'edge';
 import { NextResponse } from "next/server";
 import type { CalculationResult } from "@/types";
 import { formatINRShort } from "@/lib/utils";
+import { escapeHtml } from "@/lib/security/html";
 
 export async function POST(request: Request) {
+  const secret = request.headers.get("x-internal-secret");
+  if (!process.env.INTERNAL_API_SECRET || secret !== process.env.INTERNAL_API_SECRET) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { Resend } = await import("resend");
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
@@ -19,15 +25,17 @@ export async function POST(request: Request) {
       pdfUrl?: string | null;
     };
 
-    const subject = `Your home construction estimate is ready, ${name.split(" ")[0]}`;
+    const subject = `Your home construction estimate is ready, ${escapeHtml(name.split(" ")[0])}`;
 
-    await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: "reports@estimato.in",
       replyTo: "hello@estimato.in",
       to: email,
       subject,
       html: buildEmailHtml({ name, city, homeType, result, partnerName, pdfUrl }),
     });
+
+    if (sendError) throw new Error(sendError.message);
 
     return NextResponse.json({ success: true });
   } catch (err) {
@@ -51,9 +59,10 @@ function buildEmailHtml({
   partnerName: string | null;
   pdfUrl?: string | null;
 }) {
-  const firstName = name.split(" ")[0];
-  const cityLabel = city.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  const homeLabel = homeType.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const firstName = escapeHtml(name.split(" ")[0]);
+  const cityLabel = escapeHtml(city.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
+  const homeLabel = escapeHtml(homeType.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
+  const partnerLabel = partnerName ? escapeHtml(partnerName) : null;
 
   return `
 <!DOCTYPE html>
@@ -76,9 +85,9 @@ function buildEmailHtml({
             </p>
             <p style="color:#6B6B6B;font-size:14px;margin:8px 0 0;">₹${result.costPerSqft.toLocaleString("en-IN")}/sqft · ${result.timeline.totalDays} days estimated</p>
           </div>
-          ${partnerName ? `
+          ${partnerLabel ? `
           <div style="border:1px solid #E8E6E0;border-radius:8px;padding:20px;margin-bottom:24px;">
-            <p style="font-size:14px;color:#1A1A1A;margin:0;">We have shared your details with <strong>${partnerName}</strong>, a verified architect in your area. They will reach out within 24 hours.</p>
+            <p style="font-size:14px;color:#1A1A1A;margin:0;">We have shared your details with <strong>${partnerLabel}</strong>, a verified architect in your area. They will reach out within 24 hours.</p>
           </div>
           ` : ""}
         </td></tr>

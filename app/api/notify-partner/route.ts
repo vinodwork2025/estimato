@@ -12,6 +12,11 @@ const Schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const secret = request.headers.get("x-internal-secret");
+  if (!process.env.INTERNAL_API_SECRET || secret !== process.env.INTERNAL_API_SECRET) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { leadId, priority } = Schema.parse(body);

@@ -9,6 +9,7 @@ import { usePlannerStore } from "@/lib/store/planner-store";
 import { Button } from "@/components/ui/Button";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { CITIES } from "@/data/cities";
+import { COMING_SOON_CITIES } from "@/lib/cost-engine/rates";
 import { getBaseRate, INTERIOR_RATES } from "@/lib/cost-engine/rates";
 import { formatINRShort } from "@/lib/utils";
 import type {
@@ -30,10 +31,11 @@ const HOME_TYPES: { value: HomeType; label: string; tagline: string; range: stri
 ];
 
 const QUALITY_OPTIONS: { value: QualityTier; label: string; badge: string; description: string; image: string; materials: string }[] = [
-  { value: "essential", label: "Basic", badge: "Budget-friendly", description: "Solid construction with practical material choices.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80", materials: "Local tiles · Standard sanitary · Basic electricals" },
-  { value: "economy", label: "Standard", badge: "Most popular", description: "Elevated finishes and considered details for homeowners who notice quality.", image: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600&q=80", materials: "Kajaria flooring · Hindware sanitary · Anchor switches" },
-  { value: "premium", label: "Premium", badge: "Design-focused", description: "Architectural intent in every surface. Materials chosen to last.", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", materials: "Somany Duragres · Jaquar fittings · Legrand switches" },
-  { value: "luxury", label: "Luxury", badge: "Heritage quality", description: "Timeless architecture and the finest finishes. Built to outlast trends.", image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=600&q=80", materials: "Italian marble · Kohler sanitary · Schneider electrics" },
+  { value: "basic", label: "Basic", badge: "Budget-friendly", description: "Functional construction. Standard materials. No compromises on structure.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80", materials: "Local tiles · Standard sanitary · Basic electricals" },
+  { value: "standard", label: "Standard", badge: "Most popular", description: "Better finishes. Branded fittings. The choice for most homeowners.", image: "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600&q=80", materials: "Kajaria flooring · Hindware sanitary · Anchor switches" },
+  { value: "premium", label: "Premium", badge: "Design-focused", description: "Quality materials throughout. Designed to impress and last.", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", materials: "Somany Duragres · Jaquar fittings · Legrand switches" },
+  { value: "luxury", label: "Luxury", badge: "Heritage quality", description: "High-end finishes. Architect-designed details. Built to a higher standard.", image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=600&q=80", materials: "Italian marble · Kohler sanitary · Schneider electrics" },
+  { value: "ultra-luxury", label: "Ultra Luxury", badge: "Custom quote", description: "No constraints. Best materials. Built for permanence.", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80", materials: "Imported stone · Kohler / Duravit · Lutron / Schneider" },
 ];
 
 const INTERIOR_OPTIONS: { value: InteriorLevel; label: string; desc: string }[] = [
@@ -71,10 +73,11 @@ const FLOOR_OPTIONS = [
 ];
 
 const INTERIOR_AUTO: Record<QualityTier, InteriorLevel> = {
-  essential: "basic",
-  economy: "modular",
+  basic: "basic",
+  standard: "modular",
   premium: "premium",
   luxury: "luxury-furnished",
+  "ultra-luxury": "luxury-furnished",
 };
 
 // ─── Wizard state ─────────────────────────────────────────────────────────────
@@ -281,7 +284,6 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
 // ─── Step 2: Location ─────────────────────────────────────────────────────────
 
 function Step2Location({ city, onChange }: { city: string; onChange: (v: string) => void }) {
-  const cities = CITIES.filter((c) => c.value !== "other");
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
@@ -297,8 +299,8 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
       </motion.div>
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease }}>
-        <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Select city">
-          {[...cities, { value: "other", label: "Other location" }].map((c) => {
+        <div className="flex flex-col gap-3" role="radiogroup" aria-label="Select city">
+          {CITIES.map((c) => {
             const isSelected = city === c.value;
             return (
               <button
@@ -307,21 +309,50 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
                 onClick={() => onChange(c.value)}
                 role="radio"
                 aria-checked={isSelected}
-                className="px-4 py-3 transition-all duration-200 focus:outline-none"
+                className="text-left px-5 py-4 transition-all duration-200 focus:outline-none"
                 style={{
-                  borderRadius: "2px",
-                  border: "1px solid",
+                  borderRadius: "4px",
+                  border: "1.5px solid",
                   borderColor: isSelected ? "var(--navy)" : "var(--border)",
                   background: isSelected ? "var(--navy)" : "transparent",
-                  color: isSelected ? "#FFFFFF" : "var(--text-secondary)",
-                  fontSize: "14px",
-                  letterSpacing: "0.01em",
                 }}
               >
-                {c.label}
+                <p style={{ fontSize: "16px", color: isSelected ? "#FFFFFF" : "var(--text-primary)", fontWeight: 400 }}>
+                  {c.label}
+                </p>
+                {"subtitle" in c && c.subtitle && (
+                  <p className="font-mono mt-0.5" style={{ fontSize: "11px", color: isSelected ? "rgba(255,255,255,0.55)" : "var(--text-tertiary)" }}>
+                    {c.subtitle}
+                  </p>
+                )}
               </button>
             );
           })}
+        </div>
+
+        <div className="mt-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-secondary mb-3">
+            More cities coming soon
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {COMING_SOON_CITIES.map((name) => (
+              <div
+                key={name}
+                className="px-4 py-2 font-mono text-[12px]"
+                style={{
+                  borderRadius: "2px",
+                  border: "1px dashed var(--border)",
+                  color: "var(--text-tertiary)",
+                  userSelect: "none",
+                }}
+              >
+                {name} ·{" "}
+                <span style={{ fontSize: "10px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                  soon
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>
@@ -725,7 +756,7 @@ function Step5Finish({
               <div className="relative h-36 overflow-hidden">
                 <Image src={q.image} alt={q.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw"
                   style={{ filter: isSelected ? "grayscale(0.1) brightness(0.9)" : "grayscale(0.5) sepia(0.15) brightness(0.85)", transition: "filter 0.3s" }} />
-                {q.value === "economy" && (
+                {q.value === "standard" && (
                   <div className="absolute top-3 left-3 px-2 py-1 font-mono text-[12px] uppercase tracking-[0.12em]" style={{ background: "var(--accent)", color: "white", borderRadius: "2px" }}>
                     Most popular
                   </div>

@@ -1,5 +1,15 @@
 import type { Partner, Lead } from "@/types";
 
+export function isWhatsAppConfigured(partner: Partner): boolean {
+  if (partner.whatsappNumber.includes("XXXXXXXXXX")) {
+    console.error(
+      `[partner-routing] WhatsApp number not configured for partner "${partner.name}". Skipping WhatsApp notification.`
+    );
+    return false;
+  }
+  return true;
+}
+
 export async function notifyPartnerByEmail(
   partner: Partner,
   lead: Lead,

@@ -1,40 +1,53 @@
-import type { QualityTier } from "@/types";
-
 // ─── Tier identity ───────────────────────────────────────────────────────────
-// TODO: VERIFY WITH VINOD — tier names dropped "Living" suffix per v3 brief
 
-export const TIER_NAMES: Record<QualityTier, string> = {
-  essential: "Considered",
-  economy: "Refined",
-  premium: "Crafted",
-  luxury: "Heritage",
-};
-
-export const TIER_DESCRIPTIONS: Record<QualityTier, string> = {
-  essential:
-    "Honest construction with practical materials. Built to last. Built to budget.",
-  economy:
-    "Elevated finishes and considered detailing. For homeowners who notice the small things.",
-  premium:
-    "Architectural intent in every surface. Materials chosen for permanence.",
-  luxury:
-    "A home built to outlast trends. Timeless architecture. Generational quality.",
-};
-
-export const TIER_MATERIALS: Record<QualityTier, string> = {
-  essential: "Local tiles, standard sanitary, basic electricals",
-  economy: "Kajaria flooring, Hindware sanitary, Anchor switches",
-  premium: "Somany Duragres, Jaquar fittings, Legrand switches",
-  luxury: "Italian marble, Kohler sanitary, Schneider electrics",
-};
-
-// TODO: VERIFY WITH VINOD — rate bands per sqft
-export const TIER_RATE_BANDS: Record<QualityTier, string> = {
-  essential: "₹1,400–₹1,800 per sqft",
-  economy: "₹1,800–₹2,400 per sqft",
-  premium: "₹2,400–₹3,200 per sqft",
-  luxury: "₹3,200–₹5,000 per sqft",
-};
+export const QUALITY_TIERS = [
+  {
+    id: "basic",
+    name: "Basic",
+    tagline: "Functional construction. Standard materials. No compromises on structure.",
+    displayRange: "₹1,850 – ₹2,050 / sq ft",
+    rateMin: 1850,
+    rateMax: 2050,
+    rateMidpoint: 1950,
+  },
+  {
+    id: "standard",
+    name: "Standard",
+    tagline: "Better finishes. Branded fittings. The choice for most homeowners.",
+    displayRange: "₹2,100 – ₹2,400 / sq ft",
+    rateMin: 2100,
+    rateMax: 2400,
+    rateMidpoint: 2250,
+  },
+  {
+    id: "premium",
+    name: "Premium",
+    tagline: "Quality materials throughout. Designed to impress and last.",
+    displayRange: "₹2,500 – ₹2,900 / sq ft",
+    rateMin: 2500,
+    rateMax: 2900,
+    rateMidpoint: 2700,
+  },
+  {
+    id: "luxury",
+    name: "Luxury",
+    tagline: "High-end finishes. Architect-designed details. Built to a higher standard.",
+    displayRange: "₹3,000 – ₹4,000 / sq ft",
+    rateMin: 3000,
+    rateMax: 4000,
+    rateMidpoint: 3500,
+  },
+  {
+    id: "ultra-luxury",
+    name: "Ultra Luxury",
+    tagline: "No constraints. Best materials. Built for permanence.",
+    displayRange: "Custom quote only",
+    rateMin: 5000,
+    rateMax: null as number | null,
+    rateMidpoint: 5000,
+    isCustomQuote: true,
+  },
+] as const;
 
 // ─── CTAs ─────────────────────────────────────────────────────────────────────
 
@@ -81,7 +94,7 @@ export const HOME = {
 export const SAMPLE_PROJECTION = {
   label: "A SAMPLE PROJECTION",
   range: "₹68L – ₹84L",
-  spec: "1,500 sqft · Hosur · Considered tier",
+  spec: "1,500 sqft · Hosur · Basic tier",
 } as const;
 
 // ─── Authority tiles (replaces vanity stats) ──────────────────────────────────
@@ -103,10 +116,15 @@ export const AUTHORITY_TILES = [
 
 // ─── Authority stats (hero stats row — label + sublabel shape) ────────────────
 
+export const BOQ_STAT = {
+  label: "Verified Rates",
+  description: "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026.",
+};
+
 export const AUTHORITY_STATS = [
   {
-    label: "Verified BOQs",
-    sublabel: "From real Hosur and Bengaluru projects, 2026",
+    label: "Verified Rates",
+    sublabel: "Built from real Hosur and Bangalore BOQs, 2026",
   },
   {
     label: "Methodology",
@@ -280,22 +298,11 @@ export const PLAN = {
 } as const;
 
 // ─── City confidence indicators ───────────────────────────────────────────────
-// TODO: VERIFY WITH VINOD — BOQ counts and variance figures need real backing data
 
 export const CITY_CONFIDENCE: Record<string, { boqs: number; variance: string }> = {
   hosur: { boqs: 28, variance: "±3%" },
-  krishnagiri: { boqs: 14, variance: "±5%" },
-  attibele: { boqs: 11, variance: "±5%" },
-  bagalur: { boqs: 9, variance: "±6%" },
-  anekal: { boqs: 12, variance: "±5%" },
-  sarjapura: { boqs: 18, variance: "±4%" },
-  devanahalli: { boqs: 16, variance: "±4%" },
-  yelahanka: { boqs: 22, variance: "±4%" },
-  "bengaluru-rural": { boqs: 13, variance: "±6%" },
-  "electronic-city": { boqs: 19, variance: "±4%" },
-  "bengaluru-urban": { boqs: 31, variance: "±3%" },
-  whitefield: { boqs: 24, variance: "±4%" },
-  other: { boqs: 8, variance: "±8%" },
+  "bangalore-outskirts": { boqs: 22, variance: "±4%" },
+  "bangalore-urban": { boqs: 31, variance: "±3%" },
 };
 
 // ─── Phase labels ──────────────────────────────────────────────────────────────

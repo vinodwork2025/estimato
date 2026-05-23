@@ -78,10 +78,11 @@ const BREAKDOWN_META: Record<
 };
 
 const TIER_LABELS: Record<QualityTier, string> = {
-  essential: "Basic",
-  economy: "Standard",
+  basic: "Basic",
+  standard: "Standard",
   premium: "Premium",
   luxury: "Luxury",
+  "ultra-luxury": "Ultra Luxury",
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -97,10 +98,10 @@ function HeroSection({
   onGetPDF: () => void;
   onTalkArchitect: () => void;
 }) {
-  const ht = homeTypeLabel(input.homeType ?? "home");
   const city = input.city ? cityLabel(input.city) : "your city";
-  const tier = TIER_LABELS[input.qualityTier ?? "economy"];
+  const tier = TIER_LABELS[input.qualityTier ?? "standard"];
   const sqft = input.configuration?.builtUpArea ?? 0;
+  const isUltraLuxury = result.isCustomQuote === true;
 
   return (
     <section className="px-6 md:px-12 pt-16 pb-20 md:pt-24 md:pb-28" style={{ borderBottom: "1px solid var(--border)" }}>
@@ -111,13 +112,7 @@ function HeroSection({
           transition={{ duration: 0.6, ease }}
         >
           <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-5">
-            Your estimate · {tier} finish · {sqft.toLocaleString("en-IN")} sqft
-          </p>
-          <p
-            className="text-text-secondary mb-4"
-            style={{ fontSize: "18px", lineHeight: 1.5 }}
-          >
-            Your {ht} in {city} will cost between
+            Estimated Construction Cost
           </p>
         </motion.div>
 
@@ -126,28 +121,51 @@ function HeroSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease }}
         >
-          <p
-            className="font-serif text-navy tabular-nums"
-            style={{
-              fontSize: "clamp(52px, 10vw, 96px)",
-              fontWeight: 300,
-              letterSpacing: "-0.04em",
-              lineHeight: 0.95,
-              marginBottom: "16px",
-            }}
-          >
-            {formatINRShort(result.totalRange.min)} – {formatINRShort(result.totalRange.max)}
-          </p>
+          {isUltraLuxury ? (
+            <p
+              className="font-serif text-navy tabular-nums"
+              style={{
+                fontSize: "clamp(40px, 8vw, 80px)",
+                fontWeight: 300,
+                letterSpacing: "-0.04em",
+                lineHeight: 0.95,
+                marginBottom: "16px",
+              }}
+            >
+              Starting from {formatINRShort(result.totalRange.min)}+
+            </p>
+          ) : (
+            <p
+              className="font-serif text-navy tabular-nums"
+              style={{
+                fontSize: "clamp(52px, 10vw, 96px)",
+                fontWeight: 300,
+                letterSpacing: "-0.04em",
+                lineHeight: 0.95,
+                marginBottom: "16px",
+              }}
+            >
+              {formatINRShort(result.totalRange.min)} – {formatINRShort(result.totalRange.max)}
+            </p>
+          )}
           <div
             style={{ width: "48px", height: "2px", background: "var(--accent)", marginBottom: "20px" }}
           />
-          <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
-            That&apos;s about{" "}
-            <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
-              ₹{result.costPerSqft.toLocaleString("en-IN")} per sqft
-            </strong>{" "}
-            · Confidence: ±6%
-          </p>
+          {isUltraLuxury ? (
+            <p className="text-text-secondary" style={{ fontSize: "15px", maxWidth: "44ch", lineHeight: 1.65 }}>
+              Ultra Luxury costs vary based on material and design choices.{" "}
+              Get a detailed estimate from our architect.
+            </p>
+          ) : (
+            <>
+              <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
+                Based on {tier} tier · {sqft.toLocaleString("en-IN")} sq ft · {city}
+              </p>
+              <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "11px", letterSpacing: "0.04em" }}>
+                Construction cost only. Excludes interiors, furniture, and architect fees.
+              </p>
+            </>
+          )}
         </motion.div>
 
         <motion.div
@@ -156,12 +174,20 @@ function HeroSection({
           transition={{ duration: 0.6, delay: 0.3, ease }}
           className="flex flex-col sm:flex-row gap-3 mt-10"
         >
-          <Button variant="primary" size="lg" onClick={onTalkArchitect} className="px-10">
-            Talk to an architect
-          </Button>
-          <Button variant="secondary" size="lg" onClick={onGetPDF} className="px-10">
-            Get free report
-          </Button>
+          {isUltraLuxury ? (
+            <Button variant="primary" size="lg" onClick={onTalkArchitect} className="px-10">
+              Get detailed estimate from architect
+            </Button>
+          ) : (
+            <>
+              <Button variant="primary" size="lg" onClick={onTalkArchitect} className="px-10">
+                Talk to an architect
+              </Button>
+              <Button variant="secondary" size="lg" onClick={onGetPDF} className="px-10">
+                Get free report
+              </Button>
+            </>
+          )}
         </motion.div>
 
         <motion.p
@@ -522,13 +548,14 @@ function OtherTiersSection({
   scenarios: CalculationResult["comparisonScenarios"];
   selected: QualityTier;
 }) {
-  const tiers: QualityTier[] = ["essential", "economy", "premium", "luxury"];
-  const descs: Record<QualityTier, string> = {
-    essential: "Practical materials, solid construction.",
-    economy: "Elevated finishes, brand sanitary ware.",
+  const tiers: (keyof CalculationResult["comparisonScenarios"])[] = ["basic", "standard", "premium", "luxury"];
+  const descs: Record<string, string> = {
+    basic: "Standard materials, solid construction.",
+    standard: "Branded fittings, elevated finishes.",
     premium: "Architectural quality, imported fittings.",
-    luxury: "Italian marble, Kohler, heritage finishes.",
+    luxury: "Italian marble, Kohler, high-end finishes.",
   };
+  const displaySelected = selected === "ultra-luxury" ? "luxury" : selected;
 
   return (
     <section className="px-6 md:px-12 py-16 md:py-24" style={{ background: "#FFFFFF", borderBottom: "1px solid var(--border)" }}>
@@ -552,7 +579,7 @@ function OtherTiersSection({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {tiers.map((tier, i) => {
-            const isSelected = tier === selected;
+            const isSelected = tier === displaySelected;
             const amount = scenarios?.[tier] ?? 0;
 
             return (
@@ -586,7 +613,7 @@ function OtherTiersSection({
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  {TIER_LABELS[tier]}
+                  {TIER_LABELS[tier as QualityTier] ?? tier}
                 </p>
                 <p
                   className="font-serif tabular-nums mb-2"
@@ -701,7 +728,7 @@ export function ResultsClient() {
     setSuccess(data);
   }
 
-  const qualityTier = (input.qualityTier ?? "economy") as QualityTier;
+  const qualityTier = (input.qualityTier ?? "standard") as QualityTier;
 
   return (
     <>
@@ -747,7 +774,7 @@ export function ResultsClient() {
           )}
 
           <OtherTiersSection
-            scenarios={result.comparisonScenarios ?? { essential: 0, economy: 0, premium: 0, luxury: 0 }}
+            scenarios={result.comparisonScenarios ?? { basic: 0, standard: 0, premium: 0, luxury: 0 }}
             selected={qualityTier}
           />
 

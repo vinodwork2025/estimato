@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculate } from "@/lib/cost-engine/calculate";
 import { createServerClient } from "@/lib/supabase/server";
+import { calculateLimiter, getIP } from "@/lib/security/ratelimit";
 
 const PlannerInputSchema = z.object({
   homeType: z.enum(["villa","duplex","farmhouse","contemporary","budget","luxury-villa"]),
@@ -30,11 +31,16 @@ const PlannerInputSchema = z.object({
     homeOffice: z.boolean(),
     rentalFloor: z.boolean(),
   }),
-  qualityTier: z.enum(["essential","economy","premium","luxury"]),
+  qualityTier: z.enum(["basic","standard","premium","luxury","ultra-luxury"]),
   interiorLevel: z.enum(["basic","modular","premium","luxury-furnished"]),
 });
 
 export async function POST(request: Request) {
+  const { success } = await calculateLimiter.limit(getIP(request));
+  if (!success) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const input = PlannerInputSchema.parse(body);

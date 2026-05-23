@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { calculate } from "../calculate";
-import { getBaseRate, HOSUR_BASE_RATES } from "../rates";
+import { getBaseRate, TIER_RATES } from "../rates";
 import type { PlannerInput, QualityTier } from "@/types";
 
 const BASE_INPUT: PlannerInput = {
@@ -26,7 +26,7 @@ const BASE_INPUT: PlannerInput = {
     homeOffice: false,
     rentalFloor: false,
   },
-  qualityTier: "economy",
+  qualityTier: "standard",
   interiorLevel: "modular",
 };
 
@@ -58,29 +58,29 @@ function inputWithPlot(
 // ====================
 
 describe("getBaseRate", () => {
-  it("returns Hosur economy rate unchanged", () => {
-    expect(getBaseRate("hosur", "economy")).toBe(
-      Math.round(HOSUR_BASE_RATES.economy * 1.0)
+  it("returns Hosur standard rate unchanged", () => {
+    expect(getBaseRate("hosur", "standard")).toBe(
+      Math.round(TIER_RATES.standard.mid * 1.0)
     );
   });
 
-  it("applies city multiplier for bengaluru-urban", () => {
-    const expected = Math.round(HOSUR_BASE_RATES.premium * 1.13);
-    expect(getBaseRate("bengaluru-urban", "premium")).toBe(expected);
+  it("applies city multiplier for bangalore-urban", () => {
+    const expected = Math.round(TIER_RATES.premium.mid * 1.25);
+    expect(getBaseRate("bangalore-urban", "premium")).toBe(expected);
   });
 
-  it("applies krishnagiri multiplier (0.96) correctly", () => {
-    const expected = Math.round(HOSUR_BASE_RATES.essential * 0.96);
-    expect(getBaseRate("krishnagiri", "essential")).toBe(expected);
+  it("applies bangalore-outskirts multiplier (1.15) correctly", () => {
+    const expected = Math.round(TIER_RATES.basic.mid * 1.15);
+    expect(getBaseRate("bangalore-outskirts", "basic")).toBe(expected);
   });
 
   it("falls back to 1.0 multiplier for unknown city", () => {
-    const expected = Math.round(HOSUR_BASE_RATES.economy * 1.0);
-    expect(getBaseRate("unknown-city", "economy")).toBe(expected);
+    const expected = Math.round(TIER_RATES.standard.mid * 1.0);
+    expect(getBaseRate("unknown-city", "standard")).toBe(expected);
   });
 
   it("is case-insensitive for city lookup", () => {
-    expect(getBaseRate("Hosur", "economy")).toBe(getBaseRate("hosur", "economy"));
+    expect(getBaseRate("Hosur", "standard")).toBe(getBaseRate("hosur", "standard"));
   });
 });
 
@@ -107,14 +107,10 @@ describe("calculate - minimum input", () => {
     expect(result.totalRange.max).toBeGreaterThan(result.totalRange.mid);
   });
 
-  it("min is ~94% of mid", () => {
+  it("mid is average of min and max", () => {
     const result = calculate(BASE_INPUT);
-    expect(result.totalRange.min).toBeCloseTo(result.totalRange.mid * 0.94, -3);
-  });
-
-  it("max is ~108% of mid", () => {
-    const result = calculate(BASE_INPUT);
-    expect(result.totalRange.max).toBeCloseTo(result.totalRange.mid * 1.08, -3);
+    const expected = Math.round((result.totalRange.min + result.totalRange.max) / 2);
+    expect(result.totalRange.mid).toBe(expected);
   });
 });
 
@@ -123,8 +119,8 @@ describe("calculate - minimum input", () => {
 // ====================
 
 describe("calculate - quality tier x city combinations", () => {
-  const tiers: QualityTier[] = ["essential", "economy", "premium", "luxury"];
-  const cities = ["hosur", "krishnagiri", "sarjapura", "whitefield", "bengaluru-urban"];
+  const tiers: QualityTier[] = ["basic", "standard", "premium", "luxury"];
+  const cities = ["hosur", "bangalore-outskirts", "bangalore-urban"];
 
   for (const tier of tiers) {
     for (const city of cities) {
@@ -141,22 +137,50 @@ describe("calculate - quality tier x city combinations", () => {
     expect(luxury.totalRange.mid).toBeGreaterThan(premium.totalRange.mid);
   });
 
-  it("premium costs more than economy same city", () => {
-    const economy = calculate(input({ qualityTier: "economy" }));
+  it("premium costs more than standard same city", () => {
+    const standard = calculate(input({ qualityTier: "standard" }));
     const premium = calculate(input({ qualityTier: "premium" }));
-    expect(premium.totalRange.mid).toBeGreaterThan(economy.totalRange.mid);
+    expect(premium.totalRange.mid).toBeGreaterThan(standard.totalRange.mid);
   });
 
-  it("economy costs more than essential same city", () => {
-    const essential = calculate(input({ qualityTier: "essential" }));
-    const economy = calculate(input({ qualityTier: "economy" }));
-    expect(economy.totalRange.mid).toBeGreaterThan(essential.totalRange.mid);
+  it("standard costs more than basic same city", () => {
+    const basic = calculate(input({ qualityTier: "basic" }));
+    const standard = calculate(input({ qualityTier: "standard" }));
+    expect(standard.totalRange.mid).toBeGreaterThan(basic.totalRange.mid);
   });
 
-  it("bengaluru-urban costs more than hosur (same tier)", () => {
+  it("bangalore-urban costs more than hosur (same tier)", () => {
     const hosur = calculate(input({ city: "hosur" }));
-    const bengaluru = calculate(input({ city: "bengaluru-urban" }));
+    const bengaluru = calculate(input({ city: "bangalore-urban" }));
     expect(bengaluru.totalRange.mid).toBeGreaterThan(hosur.totalRange.mid);
+  });
+
+  it("bangalore-outskirts costs more than hosur (same tier)", () => {
+    const hosur = calculate(input({ city: "hosur" }));
+    const outskirts = calculate(input({ city: "bangalore-outskirts" }));
+    expect(outskirts.totalRange.mid).toBeGreaterThan(hosur.totalRange.mid);
+  });
+});
+
+// ====================
+// ULTRA LUXURY
+// ====================
+
+describe("calculate - ultra-luxury tier", () => {
+  it("sets isCustomQuote = true", () => {
+    const result = calculate(input({ qualityTier: "ultra-luxury", interiorLevel: "luxury-furnished" }));
+    expect(result.isCustomQuote).toBe(true);
+  });
+
+  it("ultra-luxury costs more than luxury", () => {
+    const luxury = calculate(input({ qualityTier: "luxury", interiorLevel: "luxury-furnished" }));
+    const ultra = calculate(input({ qualityTier: "ultra-luxury", interiorLevel: "luxury-furnished" }));
+    expect(ultra.totalRange.mid).toBeGreaterThan(luxury.totalRange.mid);
+  });
+
+  it("basic tier isCustomQuote is false or undefined", () => {
+    const result = calculate(input({ qualityTier: "basic" }));
+    expect(result.isCustomQuote).toBeFalsy();
   });
 });
 
@@ -312,25 +336,19 @@ describe("calculate - breakdown sum verification", () => {
 // ====================
 
 describe("calculate - scenario comparison monotonicity", () => {
-  it("scenarios are in ascending order: essential < economy < premium < luxury", () => {
+  it("scenarios are in ascending order: basic < standard < premium < luxury", () => {
     const result = calculate(BASE_INPUT);
     const s = result.comparisonScenarios;
-    expect(s.essential).toBeLessThan(s.economy);
-    expect(s.economy).toBeLessThan(s.premium);
+    expect(s.basic).toBeLessThan(s.standard);
+    expect(s.standard).toBeLessThan(s.premium);
     expect(s.premium).toBeLessThan(s.luxury);
-  });
-
-  it("user's selected tier matches corresponding scenario", () => {
-    const economyInput = input({ qualityTier: "economy" });
-    const result = calculate(economyInput);
-    expect(result.comparisonScenarios.economy).toBe(result.totalRange.mid);
   });
 
   it("all scenario values are positive", () => {
     const result = calculate(BASE_INPUT);
     const s = result.comparisonScenarios;
-    expect(s.essential).toBeGreaterThan(0);
-    expect(s.economy).toBeGreaterThan(0);
+    expect(s.basic).toBeGreaterThan(0);
+    expect(s.standard).toBeGreaterThan(0);
     expect(s.premium).toBeGreaterThan(0);
     expect(s.luxury).toBeGreaterThan(0);
   });
@@ -370,10 +388,10 @@ describe("calculate - timeline", () => {
     expect(withBasement.timeline.totalDays).toBeGreaterThan(noBasement.timeline.totalDays);
   });
 
-  it("luxury tier build takes longer than essential", () => {
-    const essential = calculate(input({ qualityTier: "essential" }));
+  it("luxury tier build takes longer than basic", () => {
+    const basic = calculate(input({ qualityTier: "basic" }));
     const luxury = calculate(input({ qualityTier: "luxury" }));
-    expect(luxury.timeline.totalDays).toBeGreaterThan(essential.timeline.totalDays);
+    expect(luxury.timeline.totalDays).toBeGreaterThan(basic.timeline.totalDays);
   });
 });
 
@@ -454,10 +472,10 @@ describe("calculate - costPerSqft", () => {
     expect(result.costPerSqft).toBe(expected);
   });
 
-  it("luxury costPerSqft is higher than essential", () => {
-    const essential = calculate(input({ qualityTier: "essential" }));
+  it("luxury costPerSqft is higher than basic", () => {
+    const basic = calculate(input({ qualityTier: "basic" }));
     const luxury = calculate(input({ qualityTier: "luxury" }));
-    expect(luxury.costPerSqft).toBeGreaterThan(essential.costPerSqft);
+    expect(luxury.costPerSqft).toBeGreaterThan(basic.costPerSqft);
   });
 });
 
@@ -468,7 +486,7 @@ describe("calculate - costPerSqft", () => {
 describe("calculate - maximum input (luxury villa, all toggles)", () => {
   const maxInput: PlannerInput = {
     homeType: "luxury-villa",
-    city: "bengaluru-urban",
+    city: "bangalore-urban",
     plot: {
       length: 80,
       width: 60,

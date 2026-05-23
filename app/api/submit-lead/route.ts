@@ -5,7 +5,8 @@ import { z } from "zod";
 import { createServerClient } from "@/lib/supabase/server";
 import { matchPartnerForCity } from "@/lib/partner-routing/match";
 import { notifyPartnerByEmail } from "@/lib/partner-routing/notify";
-import type { Lead } from "@/types";
+import { submitLeadLimiter, getIP } from "@/lib/security/ratelimit";
+import type { Lead, PlannerInput, CalculationResult } from "@/types";
 
 const LeadSchema = z.object({
   name: z.string().min(2).max(100),
@@ -16,13 +17,29 @@ const LeadSchema = z.object({
   email: z.string().email().optional().or(z.literal("")),
   planningTimeline: z.enum(["within-3-months", "3-6-months", "6-12-months", "exploring"]),
   consentToPartnerShare: z.boolean(),
-  calculationInput: z.any(),
-  calculationResult: z.any(),
+  calculationInput: z.object({
+    homeType: z.string(),
+    city: z.string(),
+    plot: z.record(z.unknown()),
+    configuration: z.record(z.unknown()),
+    qualityTier: z.string(),
+    interiorLevel: z.string(),
+  }).passthrough(),
+  calculationResult: z.object({
+    totalRange: z.object({ min: z.number(), max: z.number(), mid: z.number() }),
+    costPerSqft: z.number(),
+    timeline: z.object({ totalDays: z.number() }).passthrough(),
+  }).passthrough(),
   sourcePage: z.string().optional(),
   pdfUrl: z.string().url().optional(),
 });
 
 export async function POST(request: Request) {
+  const { success } = await submitLeadLimiter.limit(getIP(request));
+  if (!success) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const data = LeadSchema.parse(body);
@@ -59,7 +76,10 @@ export async function POST(request: Request) {
     if (data.email) {
       fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-report`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-internal-secret": process.env.INTERNAL_API_SECRET ?? "",
+        },
         body: JSON.stringify({
           leadId: lead.id,
           email: data.email,
@@ -86,8 +106,8 @@ export async function POST(request: Request) {
         area: data.area,
         planningTimeline: data.planningTimeline,
         consentToPartnerShare: data.consentToPartnerShare,
-        calculationInput: data.calculationInput,
-        calculationResult: data.calculationResult,
+        calculationInput: data.calculationInput as unknown as PlannerInput,
+        calculationResult: data.calculationResult as unknown as CalculationResult,
       };
 
       notifyPartnerByEmail(partner, leadPayload, isPriority).then(() => {

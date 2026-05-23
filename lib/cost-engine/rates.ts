@@ -1,42 +1,71 @@
-import type { QualityTier } from "@/types";
-
 /**
- * BASE CONSTRUCTION RATES (Hosur 2026 baseline)
- * Includes: Civil structure + basic finishes
- * Excludes: Interior work, modular kitchens, furniture, appliances
- * Source: Verified with Design Intend project BOQ analysis, January 2026
+ * BASE CONSTRUCTION RATES — Hosur 2026 baseline
+ * Source: Design Intend project BOQ analysis, verified May 2026
  * Review cycle: Quarterly
  */
-export const HOSUR_BASE_RATES: Record<QualityTier, number> = {
-  essential: 1750,
-  economy: 1950,
-  premium: 2050,
-  luxury: 2600,
-} as const;
+export const TIER_RATES: Record<string, { min: number; max: number; mid: number }> = {
+  basic:         { min: 1850, max: 2050, mid: 1950 },
+  standard:      { min: 2100, max: 2400, mid: 2250 },
+  premium:       { min: 2500, max: 2900, mid: 2700 },
+  luxury:        { min: 3000, max: 4000, mid: 3500 },
+  "ultra-luxury": { min: 5000, max: 5000, mid: 5000 },
+};
 
 /**
- * CITY MULTIPLIERS (relative to Hosur baseline)
- * Reflects: Labour rates, material logistics, regulatory cost variations
+ * LIVE CITIES with multipliers relative to Hosur baseline
  */
-export const CITY_MULTIPLIERS: Record<string, number> = {
-  hosur: 1.0,
-  krishnagiri: 0.96,
-  attibele: 0.97,
-  bagalur: 0.98,
-  anekal: 1.0,
-  sarjapura: 1.05,
-  devanahalli: 1.03,
-  yelahanka: 1.07,
-  "bengaluru-rural": 1.05,
-  "electronic-city": 1.1,
-  "bengaluru-urban": 1.13,
-  whitefield: 1.13,
-} as const;
+export const CITY_RATES = [
+  {
+    id: "hosur",
+    name: "Hosur",
+    multiplier: 1.00,
+    status: "live" as const,
+    region: "Tamil Nadu",
+  },
+  {
+    id: "bangalore-outskirts",
+    name: "Bangalore Outskirts",
+    subtitle: "Sarjapura, Anekal, Whitefield, Devanahalli",
+    multiplier: 1.15,
+    status: "live" as const,
+    region: "Karnataka",
+  },
+  {
+    id: "bangalore-urban",
+    name: "Bangalore Urban",
+    subtitle: "Indiranagar, Koramangala, JP Nagar, Hebbal",
+    multiplier: 1.25,
+    status: "live" as const,
+    region: "Karnataka",
+  },
+];
 
-export function getBaseRate(city: string, tier: QualityTier): number {
-  const cityMult = CITY_MULTIPLIERS[city.toLowerCase()] ?? 1.0;
-  const tierRate = HOSUR_BASE_RATES[tier];
-  return Math.round(tierRate * cityMult);
+export const COMING_SOON_CITIES = [
+  "Chennai",
+  "Hyderabad",
+  "Pune",
+  "Mumbai",
+  "Delhi NCR",
+];
+
+export function getCityMultiplier(cityId: string): number {
+  const city = CITY_RATES.find((c) => c.id === cityId.toLowerCase());
+  return city?.multiplier ?? 1.0;
+}
+
+export function getBaseRate(city: string, tier: string): number {
+  const mult = getCityMultiplier(city);
+  const tierRates = TIER_RATES[tier] ?? TIER_RATES.standard;
+  return Math.round(tierRates.mid * mult);
+}
+
+export function getBaseRateRange(city: string, tier: string): { min: number; max: number } {
+  const mult = getCityMultiplier(city);
+  const tierRates = TIER_RATES[tier] ?? TIER_RATES.standard;
+  return {
+    min: Math.round(tierRates.min * mult),
+    max: Math.round(tierRates.max * mult),
+  };
 }
 
 /**

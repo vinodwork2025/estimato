@@ -38,10 +38,11 @@ function homeLabel(ht: string): string {
 
 function tierLabel(t: string): string {
   const map: Record<string, string> = {
-    essential: "Basic",
-    economy: "Standard",
+    basic: "Basic",
+    standard: "Standard",
     premium: "Premium",
     luxury: "Luxury",
+    "ultra-luxury": "Ultra Luxury",
   };
   return map[t] ?? t;
 }
@@ -519,15 +520,16 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
               <View style={s.spacer} />
               <Text style={s.sectionLabel}>What if you changed the finish level?</Text>
               <View style={s.tierGrid}>
-                {(["essential", "economy", "premium", "luxury"] as const).map((t) => {
-                  const isActive = t === (input.qualityTier ?? "economy");
+                {(["basic", "standard", "premium", "luxury"] as const).map((t) => {
+                  const activeRef = input.qualityTier === "ultra-luxury" ? "luxury" : (input.qualityTier ?? "standard");
+                  const isActive = t === activeRef;
                   return (
                     <View key={t} style={isActive ? s.tierCardActive : s.tierCard}>
                       <Text style={isActive ? s.tierNameActive : s.tierName}>
                         {tierLabel(t)}
                       </Text>
                       <Text style={isActive ? s.tierAmountActive : s.tierAmount}>
-                        {fmtINR(result.comparisonScenarios[t])}
+                        {fmtINR(result.comparisonScenarios[t as keyof typeof result.comparisonScenarios])}
                       </Text>
                     </View>
                   );
@@ -535,6 +537,13 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
               </View>
             </>
           )}
+
+          {/* Exclusions disclaimer */}
+          <View style={{ marginTop: 20, padding: 12, backgroundColor: "#F5F4F0", borderLeftWidth: 2, borderLeftColor: GOLD }}>
+            <Text style={{ fontSize: 7, color: SECONDARY, lineHeight: 1.6 }}>
+              This estimate covers construction cost only. It does not include interior design, modular kitchen, furniture, landscaping, architect fees, structural engineer fees, government approval charges, or utility connection costs.
+            </Text>
+          </View>
 
           {/* Footer */}
           <View style={s.footer}>
@@ -545,7 +554,7 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             <Text style={s.footerMeta}>
               hello@estimato.in{"\n"}
               This report is for planning purposes only.{"\n"}
-              Confidence band ±6%. Excludes furniture and landscaping.
+              Confidence band ±6%.
             </Text>
           </View>
 

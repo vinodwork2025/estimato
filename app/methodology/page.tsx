@@ -217,11 +217,17 @@ export default function MethodologyPage() {
             {METHODOLOGY.exclusionsHeadline}
           </h2>
           <p
-            className="text-text-secondary leading-relaxed mb-12"
+            className="text-text-secondary leading-relaxed mb-6"
             style={{ fontSize: "17px", maxWidth: "56ch", lineHeight: 1.75 }}
           >
             {METHODOLOGY.exclusionsIntro}
           </p>
+          <div
+            className="mb-10 px-5 py-4 font-mono"
+            style={{ background: "rgba(168,130,59,0.06)", border: "1px solid rgba(168,130,59,0.18)", borderRadius: "3px", fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.75 }}
+          >
+            This estimate covers construction cost only. It does not include interior design, modular kitchen, furniture, landscaping, architect fees, structural engineer fees, government approval charges, or utility connection costs.
+          </div>
           <div className="flex flex-col">
             {EXCLUSIONS.map((item, i) => (
               <div key={i} className="py-6 border-t border-border">

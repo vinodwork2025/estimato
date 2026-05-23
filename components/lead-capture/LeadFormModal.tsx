@@ -50,7 +50,7 @@ async function generateAndUploadPDF(
     ]);
 
     const blob = await pdf(
-      React.createElement(ReportDocument, { name, input, result })
+      React.createElement(ReportDocument, { name, input, result }) as Parameters<typeof pdf>[0]
     ).toBlob();
 
     const form = new FormData();

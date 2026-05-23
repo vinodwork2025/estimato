@@ -12,7 +12,7 @@ export const SEED_PARTNERS: Partner[] = [
     founderPhotoUrl: "/images/partners/chittrarasan.jpg",
     logoUrl: "/images/partners/design-intend-logo.svg",
     websiteUrl: "https://designintend.com",
-    whatsappNumber: "+91XXXXXXXXXX",
+    whatsappNumber: "+917397606382",
     email: "hello@designintend.com",
     exclusiveCities: ["hosur", "sarjapura", "attibele", "bagalur", "krishnagiri"],
     status: "active",
