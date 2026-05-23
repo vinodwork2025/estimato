@@ -148,7 +148,7 @@ const s = StyleSheet.create({
     marginBottom: 8,
   },
   summaryAmount: {
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Courier-Bold",
     fontSize: 30,
     color: "#FFFFFF",
     letterSpacing: -0.5,
@@ -170,7 +170,7 @@ const s = StyleSheet.create({
     color: "rgba(255,255,255,0.6)",
   },
   summaryMetaValue: {
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Courier-Bold",
     color: "rgba(255,255,255,0.9)",
   },
 
@@ -216,13 +216,14 @@ const s = StyleSheet.create({
   breakdownAmount: {
     fontSize: 9,
     color: NAVY,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Courier-Bold",
     width: 70,
     textAlign: "right",
   },
   breakdownPct: {
     fontSize: 8,
     color: SECONDARY,
+    fontFamily: "Courier",
     width: 34,
     textAlign: "right",
   },
@@ -246,7 +247,7 @@ const s = StyleSheet.create({
     fontSize: 7,
     letterSpacing: 1,
     color: GOLD,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Courier-Bold",
     width: 20,
     marginTop: 1,
   },
@@ -260,7 +261,7 @@ const s = StyleSheet.create({
   phaseDetail: { fontSize: 8, color: SECONDARY },
   phaseAmount: {
     fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Courier-Bold",
     color: NAVY,
     textAlign: "right",
     width: 60,
@@ -342,8 +343,8 @@ const s = StyleSheet.create({
   },
   tierName: { fontSize: 7, letterSpacing: 1.2, color: SECONDARY, textTransform: "uppercase", marginBottom: 5 },
   tierNameActive: { fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", marginBottom: 5 },
-  tierAmount: { fontSize: 11, fontFamily: "Helvetica-Bold", color: NAVY },
-  tierAmountActive: { fontSize: 11, fontFamily: "Helvetica-Bold", color: "#FFFFFF" },
+  tierAmount: { fontSize: 11, fontFamily: "Courier-Bold", color: NAVY },
+  tierAmountActive: { fontSize: 11, fontFamily: "Courier-Bold", color: "#FFFFFF" },
 
   // Footer
   footer: {

@@ -38,7 +38,7 @@ export function SuccessState({ phone, partnerMatched, partnerName, pdfUrl, onClo
         </p>
       ) : (
         <p className="text-sm text-text-secondary mb-1">
-          Sent to <span className="font-medium text-text-primary tabular-nums">{maskedPhone}</span>
+          Sent to <span className="font-mono font-medium text-text-primary tabular-nums">{maskedPhone}</span>
         </p>
       )}
 

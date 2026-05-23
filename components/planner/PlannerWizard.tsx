@@ -395,7 +395,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
 
       {/* Big plot area */}
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08, ease }} className="text-center py-6">
-        <p className="font-serif text-navy leading-none tabular-nums" style={{ fontSize: "clamp(64px, 14vw, 110px)", fontWeight: 300, letterSpacing: "-0.03em" }}>
+        <p className="font-mono text-navy leading-none tabular-nums" style={{ fontSize: "clamp(64px, 14vw, 110px)", fontWeight: 300, letterSpacing: "-0.03em" }}>
           {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
         </p>
         <p style={{ fontSize: "15px", color: "#7B93A8", marginTop: "8px" }}>square feet</p>
@@ -460,7 +460,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
           <p className="font-mono text-[12px] uppercase tracking-[0.14em] mb-1" style={{ color: "var(--accent)" }}>
             Suggested built-up area
           </p>
-          <p className="font-serif text-navy" style={{ fontSize: "24px", fontWeight: 400, letterSpacing: "-0.015em" }}>
+          <p className="font-mono text-navy" style={{ fontSize: "24px", fontWeight: 400, letterSpacing: "-0.015em" }}>
             {Math.round(state.plotLength * state.plotWidth * 0.6).toLocaleString("en-IN")} sqft
           </p>
           <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "11px" }}>
@@ -590,7 +590,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
                 className="py-4 text-center focus:outline-none transition-all duration-200"
                 style={{ borderRadius: "4px", border: "1.5px solid", borderColor: isSelected ? "var(--accent)" : "var(--border)", background: isSelected ? "rgba(168,130,59,0.06)" : "white" }}
               >
-                <p className="font-serif text-navy" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}>{f.label}</p>
+                <p className="font-mono text-navy" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}>{f.label}</p>
                 <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "10px" }}>{f.desc}</p>
               </button>
             );
@@ -618,7 +618,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
                 fontSize: "clamp(24px, 5vw, 32px)",
                 color: "var(--text-primary)",
                 background: "transparent",
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-mono)",
                 letterSpacing: "-0.02em",
               }}
             />
@@ -675,7 +675,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
           >
             −
           </button>
-          <span className="font-serif tabular-nums w-8 text-center" style={{ fontSize: "32px", fontWeight: 400, color: "var(--text-primary)" }}>
+          <span className="font-mono tabular-nums w-8 text-center" style={{ fontSize: "32px", fontWeight: 400, color: "var(--text-primary)" }}>
             {state.balconies}
           </span>
           <button type="button" onClick={() => onChange({ balconies: Math.min(6, state.balconies + 1) })} disabled={state.balconies === 6}
@@ -776,7 +776,7 @@ function Step5Finish({
                 <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{q.materials}</p>
                 <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
                   <p className="font-mono text-text-secondary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
-                  <p className="font-serif text-navy tabular-nums" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
+                  <p className="font-mono text-navy tabular-nums" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
                     ~{formatINRShort(estimated)}
                   </p>
                 </div>

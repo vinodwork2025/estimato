@@ -167,7 +167,7 @@ export function LeadFormModal({
             WhatsApp number <span className="text-error" aria-label="required">*</span>
           </label>
           <div className="flex gap-2">
-            <span className="h-12 px-3 flex items-center border border-border rounded bg-bg-primary text-text-secondary text-sm">
+            <span className="h-12 px-3 flex items-center border border-border rounded bg-bg-primary text-text-secondary text-sm font-mono">
               +91
             </span>
             <input

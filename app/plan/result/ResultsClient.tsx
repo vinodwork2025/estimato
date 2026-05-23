@@ -123,7 +123,7 @@ function HeroSection({
         >
           {isUltraLuxury ? (
             <p
-              className="font-serif text-navy tabular-nums"
+              className="font-mono text-navy tabular-nums"
               style={{
                 fontSize: "clamp(40px, 8vw, 80px)",
                 fontWeight: 300,
@@ -136,7 +136,7 @@ function HeroSection({
             </p>
           ) : (
             <p
-              className="font-serif text-navy tabular-nums"
+              className="font-mono text-navy tabular-nums"
               style={{
                 fontSize: "clamp(52px, 10vw, 96px)",
                 fontWeight: 300,
@@ -264,7 +264,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
                   </div>
                   <div className="text-right shrink-0">
                     <p
-                      className="font-serif text-navy tabular-nums"
+                      className="font-mono text-navy tabular-nums"
                       style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}
                     >
                       {formatINRShort(amount)}
@@ -364,7 +364,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
                   PAYMENT DUE
                 </p>
                 <p
-                  className="font-serif text-navy tabular-nums mt-0.5"
+                  className="font-mono text-navy tabular-nums mt-0.5"
                   style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.02em" }}
                 >
                   {formatINRShort(phase.cost)}
@@ -616,7 +616,7 @@ function OtherTiersSection({
                   {TIER_LABELS[tier as QualityTier] ?? tier}
                 </p>
                 <p
-                  className="font-serif tabular-nums mb-2"
+                  className="font-mono tabular-nums mb-2"
                   style={{
                     fontSize: "22px",
                     fontWeight: 300,

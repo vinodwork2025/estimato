@@ -490,7 +490,7 @@ export default function HomePage() {
 
                     <p
 
-                      className="font-serif select-none leading-none mb-5"
+                      className="font-mono select-none leading-none mb-5"
 
                       style={{ fontSize: "112px", fontWeight: 300, color: "#C5D0DC", letterSpacing: "-0.04em", lineHeight: 0.85 }}
 

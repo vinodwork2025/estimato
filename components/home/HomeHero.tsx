@@ -404,7 +404,7 @@ export function HomeHero() {
 
               <p
 
-                className="font-serif text-navy leading-none tabular-nums"
+                className="font-mono text-navy leading-none tabular-nums"
 
                 style={{ fontSize: "34px", fontWeight: 300, letterSpacing: "-0.03em" }}
 
