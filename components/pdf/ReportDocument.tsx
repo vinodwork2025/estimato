@@ -542,7 +542,7 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
         {/* ── Header ── */}
         <View style={s.header}>
           <Text style={s.brandName}>
-            estimato<Text style={s.brandDot}>.</Text>
+            ESTIMATO<Text style={s.brandDot}>.</Text>
           </Text>
           <View style={s.headerRight}>
             <Text style={s.headerTitle}>Construction Cost Report</Text>
