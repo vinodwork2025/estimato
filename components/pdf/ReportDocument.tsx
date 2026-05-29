@@ -8,15 +8,8 @@ import {
 } from "@react-pdf/renderer";
 import type { CalculationResult, PlannerInput } from "@/types";
 
-// Playfair Display — logo text only, NO letterSpacing (custom font glyph-displacement bug)
-Font.register({
-  family: "PlayfairDisplay",
-  src: "https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/files/playfair-display-latin-700-normal.woff2",
-  fontWeight: 700,
-});
-
-// Inter: body text + numbers — NO letterSpacing (CF font bug displaces glyphs when letterSpacing != 0)
-// Helvetica: all letter-spaced uppercase labels — built-in PDF font, no bug
+// Inter: body text + numbers — NO letterSpacing (custom font glyph-displacement bug when letterSpacing != 0)
+// Helvetica: all letter-spaced uppercase labels + logo — built-in PDF font, guaranteed color rendering
 Font.register({
   family: "Inter",
   fonts: [
@@ -104,7 +97,7 @@ const s = StyleSheet.create({
   page: {
     backgroundColor: "#FDFCFA",
     paddingTop: 0,
-    paddingBottom: 52,
+    paddingBottom: 48,
     paddingHorizontal: 0,
     fontFamily: "Inter",
     fontWeight: 400,
@@ -121,11 +114,11 @@ const s = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  // Helvetica-Bold: built-in font — color rendering guaranteed regardless of CDN state
   brandName: {
-    fontFamily: "PlayfairDisplay",
-    fontWeight: 700,
-    fontSize: 24,
-    color: WHITE,
+    fontFamily: "Helvetica-Bold",
+    fontSize: 22,
+    color: "#FFFFFF",
   },
   brandDot: {
     color: GOLD,
@@ -492,7 +485,9 @@ const s = StyleSheet.create({
     lineHeight: 1.7,
   },
 
-  spacer: { height: 32 },
+  // section spacing — attached to the section wrapper, not a standalone float
+  // so when @react-pdf breaks to new page, marginTop goes WITH the section (not orphaned)
+  sectionGap: { marginTop: 28 },
 });
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -615,9 +610,8 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </Text>
           </View>
 
-          <View style={s.spacer} />
-
           {/* ── Construction Timeline ── */}
+          <View style={s.sectionGap}>
           <SectionHeader label="Construction Timeline" />
           {result.timeline.phases.map((phase, i) => (
             <View key={i} style={s.phaseRow}>
@@ -631,11 +625,11 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
               <Text style={s.phaseAmount}>{fmtINR(phase.cost)}</Text>
             </View>
           ))}
+          </View>
 
-          {/* ── Cost Alerts — wrap=false keeps label + first item together ── */}
+          {/* ── Cost Alerts — sectionGap on outer wrapper so margin travels with section on page break ── */}
           {warnings.length > 0 && (
-            <>
-              <View style={s.spacer} />
+            <View style={s.sectionGap}>
               <View wrap={false}>
                 <SectionHeader label="Cost Alerts" />
                 <View style={s.warningRow}>
@@ -665,13 +659,12 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
                   </View>
                 </View>
               ))}
-            </>
+            </View>
           )}
 
           {/* ── Observations ── */}
           {insights.length > 0 && (
-            <>
-              <View style={s.spacer} />
+            <View style={s.sectionGap}>
               <View wrap={false}>
                 <SectionHeader label="Observations" />
                 <View style={s.insightRow}>
@@ -691,13 +684,12 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
                   </View>
                 </View>
               ))}
-            </>
+            </View>
           )}
 
           {/* ── Finish Level Comparison ── */}
           {result.comparisonScenarios && (
-            <>
-              <View style={s.spacer} />
+            <View style={s.sectionGap}>
               <View wrap={false}>
                 <SectionHeader label="What If You Changed the Finish Level?" />
                 <View style={s.tierGrid}>
@@ -724,7 +716,7 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
                   })}
                 </View>
               </View>
-            </>
+            </View>
           )}
 
           {/* ── Disclaimer ── */}
