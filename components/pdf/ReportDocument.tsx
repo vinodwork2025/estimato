@@ -3,11 +3,14 @@ import {
   Page,
   Text,
   View,
+  Image,
   StyleSheet,
   Font,
 } from "@react-pdf/renderer";
 import type { CalculationResult, PlannerInput } from "@/types";
 
+// Inter: body text + numbers — NO letterSpacing (CF font bug displaces glyphs when letterSpacing != 0)
+// Helvetica: all letter-spaced uppercase labels — built-in PDF font, no bug
 Font.register({
   family: "Inter",
   fonts: [
@@ -107,17 +110,21 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: NAVY,
     paddingHorizontal: 48,
-    paddingVertical: 26,
+    paddingVertical: 22,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
+  logoImg: {
+    height: 26,
+    width: 136,   // 26 * 5.25 aspect
+    objectFit: "contain",
+  },
+  // Fallback text logo if no image provided
   brandName: {
-    fontFamily: "Inter",
-    fontWeight: 700,
+    fontFamily: "Helvetica-Bold",
     fontSize: 22,
     color: WHITE,
-    letterSpacing: 0.5,
   },
   brandDot: {
     color: GOLD,
@@ -125,14 +132,17 @@ const s = StyleSheet.create({
   headerRight: {
     alignItems: "flex-end",
   },
+  // Helvetica for letter-spaced uppercase — no glyph-displacement bug
   headerTitle: {
-    fontSize: 9,
+    fontFamily: "Helvetica-Bold",
+    fontSize: 8,
     color: "rgba(255,255,255,0.55)",
-    letterSpacing: 1.8,
+    letterSpacing: 1.5,
     textTransform: "uppercase",
     marginBottom: 4,
   },
   headerDate: {
+    fontFamily: "Helvetica",
     fontSize: 9,
     color: "rgba(255,255,255,0.42)",
   },
@@ -156,6 +166,8 @@ const s = StyleSheet.create({
     marginBottom: 5,
   },
   projectMeta: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 10,
     color: SECONDARY,
     marginBottom: 28,
@@ -169,18 +181,20 @@ const s = StyleSheet.create({
     marginBottom: 32,
   },
   summaryLabel: {
+    // Helvetica — letter-spaced, no bug
+    fontFamily: "Helvetica-Bold",
     fontSize: 8,
     color: "rgba(255,255,255,0.48)",
-    letterSpacing: 2.2,
+    letterSpacing: 2,
     textTransform: "uppercase",
     marginBottom: 10,
   },
   summaryAmount: {
+    // Inter, zero letterSpacing — ₹ renders correctly
     fontFamily: "Inter",
     fontWeight: 700,
     fontSize: 32,
     color: WHITE,
-    letterSpacing: -0.5,
     marginBottom: 8,
   },
   summaryRule: {
@@ -195,6 +209,8 @@ const s = StyleSheet.create({
     gap: 28,
   },
   summaryMetaItem: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 9,
     color: "rgba(255,255,255,0.58)",
   },
@@ -204,7 +220,7 @@ const s = StyleSheet.create({
     color: "rgba(255,255,255,0.92)",
   },
 
-  // ── Section header ──
+  // ── Section header — Helvetica + letterSpacing (safe) ──
   sectionHeaderRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -212,10 +228,9 @@ const s = StyleSheet.create({
     gap: 10,
   },
   sectionLabel: {
-    fontFamily: "Inter",
-    fontWeight: 700,
+    fontFamily: "Helvetica-Bold",
     fontSize: 8,
-    letterSpacing: 2,
+    letterSpacing: 1.8,
     textTransform: "uppercase",
     color: GOLD,
   },
@@ -244,11 +259,15 @@ const s = StyleSheet.create({
     marginTop: 6,
   },
   breakdownLabel: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 10,
     color: TEXT,
     flex: 1,
   },
   breakdownPct: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 9,
     color: SECONDARY,
     width: 36,
@@ -273,8 +292,8 @@ const s = StyleSheet.create({
     alignItems: "flex-start",
   },
   phaseNumber: {
-    fontFamily: "Inter",
-    fontWeight: 700,
+    // Helvetica-Bold — letterSpacing safe, no ₹ here
+    fontFamily: "Helvetica-Bold",
     fontSize: 8,
     letterSpacing: 1,
     color: GOLD,
@@ -290,6 +309,8 @@ const s = StyleSheet.create({
     marginBottom: 3,
   },
   phaseDetail: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 9,
     color: SECONDARY,
   },
@@ -328,6 +349,8 @@ const s = StyleSheet.create({
     marginBottom: 3,
   },
   warningText: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 9,
     color: SECONDARY,
     lineHeight: 1.6,
@@ -366,6 +389,8 @@ const s = StyleSheet.create({
     marginBottom: 3,
   },
   insightText: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 9,
     color: SECONDARY,
     lineHeight: 1.6,
@@ -389,15 +414,18 @@ const s = StyleSheet.create({
     backgroundColor: NAVY,
   },
   tierName: {
+    // Helvetica — letterSpacing safe, no ₹ in tier names
+    fontFamily: "Helvetica",
     fontSize: 8,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
     color: SECONDARY,
     textTransform: "uppercase",
     marginBottom: 6,
   },
   tierNameActive: {
+    fontFamily: "Helvetica",
     fontSize: 8,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
     color: "rgba(255,255,255,0.58)",
     textTransform: "uppercase",
     marginBottom: 6,
@@ -424,6 +452,8 @@ const s = StyleSheet.create({
     borderLeftColor: GOLD,
   },
   disclaimerText: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 8,
     color: SECONDARY,
     lineHeight: 1.7,
@@ -447,10 +477,14 @@ const s = StyleSheet.create({
     marginBottom: 3,
   },
   footerNote: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 8,
     color: "#9CA3AF",
   },
   footerMeta: {
+    fontFamily: "Inter",
+    fontWeight: 400,
     fontSize: 8,
     color: SECONDARY,
     textAlign: "right",
@@ -458,7 +492,6 @@ const s = StyleSheet.create({
   },
 
   spacer: { height: 32 },
-  spacerSm: { height: 16 },
 });
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -478,9 +511,10 @@ interface ReportDocumentProps {
   name: string;
   input: Partial<PlannerInput>;
   result: CalculationResult;
+  logoSrc?: string;
 }
 
-export function ReportDocument({ name, input, result }: ReportDocumentProps) {
+export function ReportDocument({ name, input, result, logoSrc }: ReportDocumentProps) {
   const city = input.city ? cityLabel(input.city) : "your city";
   const ht = homeLabel(input.homeType ?? "home");
   const tier = tierLabel(input.qualityTier ?? "economy");
@@ -512,9 +546,13 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
 
         {/* ── Header ── */}
         <View style={s.header}>
-          <Text style={s.brandName}>
-            estimato<Text style={s.brandDot}>.</Text>
-          </Text>
+          {logoSrc ? (
+            <Image src={logoSrc} style={s.logoImg} />
+          ) : (
+            <Text style={s.brandName}>
+              estimato<Text style={s.brandDot}>.</Text>
+            </Text>
+          )}
           <View style={s.headerRight}>
             <Text style={s.headerTitle}>Construction Cost Report</Text>
             <Text style={s.headerDate}>{today()}</Text>
@@ -566,7 +604,14 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </View>
           ))}
           <View style={s.breakdownRowLast}>
-            <Text style={{ ...s.breakdownLabel, fontFamily: "Inter", fontWeight: 700, color: NAVY }}>
+            <Text
+              style={{
+                ...s.breakdownLabel,
+                fontFamily: "Inter",
+                fontWeight: 700,
+                color: NAVY,
+              }}
+            >
               Mid-point total
             </Text>
             <Text style={{ ...s.breakdownAmount, fontSize: 11 }}>
@@ -591,11 +636,10 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </View>
           ))}
 
-          {/* ── Cost Alerts ── */}
+          {/* ── Cost Alerts — wrap=false keeps label + first item together ── */}
           {warnings.length > 0 && (
             <>
               <View style={s.spacer} />
-              {/* wrap=false keeps label with first item — prevents orphaned header */}
               <View wrap={false}>
                 <SectionHeader label="Cost Alerts" />
                 <View style={s.warningRow}>
