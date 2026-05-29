@@ -8,6 +8,24 @@ import {
 } from "@react-pdf/renderer";
 import type { CalculationResult, PlannerInput } from "@/types";
 
+Font.register({
+  family: "Inter",
+  fonts: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-400-normal.woff2",
+      fontWeight: 400,
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-600-normal.woff2",
+      fontWeight: 600,
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-700-normal.woff2",
+      fontWeight: 700,
+    },
+  ],
+});
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function fmtINR(n: number): string {
@@ -55,7 +73,12 @@ function today(): string {
   });
 }
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
+function monthsStr(days: number): string {
+  const m = Math.round(days / 30);
+  return `${m} ${m === 1 ? "month" : "months"}`;
+}
+
+// ─── Colours ──────────────────────────────────────────────────────────────────
 
 const NAVY = "#0E2146";
 const GOLD = "#C5A059";
@@ -63,31 +86,37 @@ const LIGHT_BG = "#F8F7F4";
 const BORDER = "#E2DDD4";
 const SECONDARY = "#4A6080";
 const TEXT = "#1A1A2E";
+const WHITE = "#FFFFFF";
+const AMBER = "#C47820";
+
+// ─── Styles ───────────────────────────────────────────────────────────────────
 
 const s = StyleSheet.create({
   page: {
     backgroundColor: "#FDFCFA",
     paddingTop: 0,
-    paddingBottom: 40,
+    paddingBottom: 52,
     paddingHorizontal: 0,
-    fontFamily: "Helvetica",
-    fontSize: 9,
+    fontFamily: "Inter",
+    fontWeight: 400,
+    fontSize: 10,
     color: TEXT,
   },
 
-  // Header
+  // ── Header ──
   header: {
     backgroundColor: NAVY,
     paddingHorizontal: 48,
-    paddingVertical: 28,
+    paddingVertical: 26,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
+    alignItems: "center",
   },
   brandName: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: 20,
-    color: "#FFFFFF",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 22,
+    color: WHITE,
     letterSpacing: 0.5,
   },
   brandDot: {
@@ -96,106 +125,112 @@ const s = StyleSheet.create({
   headerRight: {
     alignItems: "flex-end",
   },
-  headerMeta: {
-    fontSize: 8,
-    color: "rgba(255,255,255,0.55)",
-    letterSpacing: 1.2,
-    textTransform: "uppercase",
-  },
-  headerDate: {
-    fontSize: 8,
-    color: "rgba(255,255,255,0.4)",
-    marginTop: 3,
-  },
-
-  // Gold accent line below header
-  accentLine: {
-    height: 2,
-    backgroundColor: GOLD,
-    opacity: 0.35,
-  },
-
-  // Body
-  body: {
-    paddingHorizontal: 48,
-    paddingTop: 32,
-  },
-
-  // Address block
-  greeting: {
-    fontSize: 11,
-    fontFamily: "Helvetica-Bold",
-    color: NAVY,
-    marginBottom: 4,
-  },
-  subtitle: {
+  headerTitle: {
     fontSize: 9,
-    color: SECONDARY,
-    marginBottom: 24,
-  },
-
-  // Summary box
-  summaryBox: {
-    backgroundColor: NAVY,
-    padding: 24,
-    marginBottom: 28,
-  },
-  summaryLabel: {
-    fontSize: 7,
-    color: "rgba(255,255,255,0.5)",
+    color: "rgba(255,255,255,0.55)",
     letterSpacing: 1.8,
     textTransform: "uppercase",
-    marginBottom: 8,
+    marginBottom: 4,
+  },
+  headerDate: {
+    fontSize: 9,
+    color: "rgba(255,255,255,0.42)",
+  },
+  accentLine: {
+    height: 3,
+    backgroundColor: GOLD,
+  },
+
+  // ── Body ──
+  body: {
+    paddingHorizontal: 48,
+    paddingTop: 36,
+  },
+
+  // ── Client block ──
+  clientName: {
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 13,
+    color: NAVY,
+    marginBottom: 5,
+  },
+  projectMeta: {
+    fontSize: 10,
+    color: SECONDARY,
+    marginBottom: 28,
+    lineHeight: 1.45,
+  },
+
+  // ── Summary box ──
+  summaryBox: {
+    backgroundColor: NAVY,
+    padding: 26,
+    marginBottom: 32,
+  },
+  summaryLabel: {
+    fontSize: 8,
+    color: "rgba(255,255,255,0.48)",
+    letterSpacing: 2.2,
+    textTransform: "uppercase",
+    marginBottom: 10,
   },
   summaryAmount: {
-    fontFamily: "Courier-Bold",
-    fontSize: 30,
-    color: "#FFFFFF",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 32,
+    color: WHITE,
     letterSpacing: -0.5,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   summaryRule: {
-    height: 1,
+    height: 2,
     backgroundColor: GOLD,
-    width: 36,
-    marginBottom: 10,
-    opacity: 0.7,
+    width: 40,
+    marginBottom: 14,
+    opacity: 0.75,
   },
   summaryMeta: {
     flexDirection: "row",
-    gap: 20,
+    gap: 28,
   },
   summaryMetaItem: {
-    fontSize: 8,
-    color: "rgba(255,255,255,0.6)",
+    fontSize: 9,
+    color: "rgba(255,255,255,0.58)",
   },
   summaryMetaValue: {
-    fontFamily: "Courier-Bold",
-    color: "rgba(255,255,255,0.9)",
+    fontFamily: "Inter",
+    fontWeight: 600,
+    color: "rgba(255,255,255,0.92)",
   },
 
-  // Section
+  // ── Section header ──
+  sectionHeaderRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 14,
+    gap: 10,
+  },
   sectionLabel: {
-    fontSize: 7,
-    letterSpacing: 1.8,
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 8,
+    letterSpacing: 2,
     textTransform: "uppercase",
     color: GOLD,
-    marginBottom: 10,
-    fontFamily: "Helvetica-Bold",
   },
-  sectionDivider: {
+  sectionRule: {
+    flex: 1,
     height: 1,
     backgroundColor: BORDER,
-    marginBottom: 24,
-    marginTop: 8,
   },
 
-  // Breakdown table
+  // ── Cost breakdown ──
   breakdownRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 7,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
   },
@@ -203,171 +238,239 @@ const s = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 8,
-    borderTopWidth: 1,
+    paddingVertical: 10,
+    borderTopWidth: 1.5,
     borderTopColor: NAVY,
-    marginTop: 4,
+    marginTop: 6,
   },
   breakdownLabel: {
-    fontSize: 9,
+    fontSize: 10,
     color: TEXT,
     flex: 1,
   },
-  breakdownAmount: {
-    fontSize: 9,
-    color: NAVY,
-    fontFamily: "Courier-Bold",
-    width: 70,
-    textAlign: "right",
-  },
   breakdownPct: {
-    fontSize: 8,
+    fontSize: 9,
     color: SECONDARY,
-    fontFamily: "Courier",
-    width: 34,
+    width: 36,
     textAlign: "right",
   },
-  breakdownBar: {
-    height: 3,
-    backgroundColor: NAVY,
-    opacity: 0.12,
-    marginVertical: 1,
-    width: 60,
+  breakdownAmount: {
+    fontFamily: "Inter",
+    fontWeight: 600,
+    fontSize: 10,
+    color: NAVY,
+    width: 72,
+    textAlign: "right",
   },
 
-  // Timeline
+  // ── Timeline ──
   phaseRow: {
     flexDirection: "row",
-    paddingVertical: 9,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
-    gap: 12,
+    gap: 14,
+    alignItems: "flex-start",
   },
   phaseNumber: {
-    fontSize: 7,
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 8,
     letterSpacing: 1,
     color: GOLD,
-    fontFamily: "Courier-Bold",
-    width: 20,
+    width: 22,
     marginTop: 1,
   },
   phaseContent: { flex: 1 },
   phaseName: {
-    fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 10,
     color: NAVY,
-    marginBottom: 2,
+    marginBottom: 3,
   },
-  phaseDetail: { fontSize: 8, color: SECONDARY },
-  phaseAmount: {
+  phaseDetail: {
     fontSize: 9,
-    fontFamily: "Courier-Bold",
+    color: SECONDARY,
+  },
+  phaseAmount: {
+    fontFamily: "Inter",
+    fontWeight: 600,
+    fontSize: 10,
     color: NAVY,
     textAlign: "right",
-    width: 60,
+    width: 64,
   },
 
-  // Warnings
+  // ── Cost alerts ──
   warningRow: {
     flexDirection: "row",
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
-    gap: 10,
+    gap: 12,
     alignItems: "flex-start",
   },
   warningDot: {
-    width: 5,
-    height: 5,
-    backgroundColor: "#C47820",
+    width: 6,
+    height: 6,
+    backgroundColor: AMBER,
     borderRadius: 3,
-    marginTop: 3,
+    marginTop: 4,
+    flexShrink: 0,
   },
   warningContent: { flex: 1 },
   warningTitle: {
-    fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 10,
     color: TEXT,
-    marginBottom: 2,
+    marginBottom: 3,
   },
-  warningText: { fontSize: 8, color: SECONDARY, lineHeight: 1.5 },
+  warningText: {
+    fontSize: 9,
+    color: SECONDARY,
+    lineHeight: 1.6,
+  },
   warningImpact: {
-    fontSize: 7,
-    color: "#C47820",
-    marginTop: 3,
-    letterSpacing: 0.3,
+    fontFamily: "Inter",
+    fontWeight: 600,
+    fontSize: 8,
+    color: AMBER,
+    marginTop: 4,
   },
 
-  // Insights
+  // ── Observations ──
   insightRow: {
     flexDirection: "row",
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
-    gap: 10,
+    gap: 12,
+    alignItems: "flex-start",
   },
   insightDot: {
-    width: 5,
-    height: 5,
+    width: 6,
+    height: 6,
     backgroundColor: GOLD,
     borderRadius: 3,
-    marginTop: 3,
+    marginTop: 4,
+    flexShrink: 0,
   },
   insightContent: { flex: 1 },
   insightTitle: {
-    fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 10,
     color: TEXT,
-    marginBottom: 2,
+    marginBottom: 3,
   },
-  insightText: { fontSize: 8, color: SECONDARY, lineHeight: 1.5 },
+  insightText: {
+    fontSize: 9,
+    color: SECONDARY,
+    lineHeight: 1.6,
+  },
 
-  // Tier comparison
+  // ── Tier comparison ──
   tierGrid: {
     flexDirection: "row",
     gap: 8,
   },
   tierCard: {
     flex: 1,
-    padding: 12,
+    padding: 14,
     backgroundColor: LIGHT_BG,
     borderWidth: 1,
     borderColor: BORDER,
   },
   tierCardActive: {
     flex: 1,
-    padding: 12,
+    padding: 14,
     backgroundColor: NAVY,
-    borderWidth: 1,
-    borderColor: NAVY,
   },
-  tierName: { fontSize: 7, letterSpacing: 1.2, color: SECONDARY, textTransform: "uppercase", marginBottom: 5 },
-  tierNameActive: { fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", marginBottom: 5 },
-  tierAmount: { fontSize: 11, fontFamily: "Courier-Bold", color: NAVY },
-  tierAmountActive: { fontSize: 11, fontFamily: "Courier-Bold", color: "#FFFFFF" },
+  tierName: {
+    fontSize: 8,
+    letterSpacing: 1.2,
+    color: SECONDARY,
+    textTransform: "uppercase",
+    marginBottom: 6,
+  },
+  tierNameActive: {
+    fontSize: 8,
+    letterSpacing: 1.2,
+    color: "rgba(255,255,255,0.58)",
+    textTransform: "uppercase",
+    marginBottom: 6,
+  },
+  tierAmount: {
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 12,
+    color: NAVY,
+  },
+  tierAmountActive: {
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 12,
+    color: WHITE,
+  },
 
-  // Footer
+  // ── Disclaimer ──
+  disclaimer: {
+    marginTop: 24,
+    padding: 14,
+    backgroundColor: "#F2F0EB",
+    borderLeftWidth: 3,
+    borderLeftColor: GOLD,
+  },
+  disclaimerText: {
+    fontSize: 8,
+    color: SECONDARY,
+    lineHeight: 1.7,
+  },
+
+  // ── Footer ──
   footer: {
-    marginTop: 36,
+    marginTop: 44,
     paddingTop: 16,
     borderTopWidth: 1,
     borderTopColor: BORDER,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   footerBrand: {
-    fontSize: 8,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Inter",
+    fontWeight: 700,
+    fontSize: 9,
     color: NAVY,
-    letterSpacing: 0.3,
+    marginBottom: 3,
   },
-  footerMeta: { fontSize: 7, color: SECONDARY, textAlign: "right", lineHeight: 1.6 },
-  footerNote: { fontSize: 7, color: "#9CA3AF", marginTop: 8 },
+  footerNote: {
+    fontSize: 8,
+    color: "#9CA3AF",
+  },
+  footerMeta: {
+    fontSize: 8,
+    color: SECONDARY,
+    textAlign: "right",
+    lineHeight: 1.7,
+  },
 
-  spacer: { height: 28 },
-  spacerSm: { height: 14 },
+  spacer: { height: 32 },
+  spacerSm: { height: 16 },
 });
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function SectionHeader({ label }: { label: string }) {
+  return (
+    <View style={s.sectionHeaderRow}>
+      <Text style={s.sectionLabel}>{label}</Text>
+      <View style={s.sectionRule} />
+    </View>
+  );
+}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -403,17 +506,17 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
     <Document
       title={`Estimato Report – ${name}`}
       author="Estimato"
-      subject={`Construction cost projection for ${ht} in ${city}`}
+      subject={`Construction cost estimate for ${ht} in ${city}`}
     >
       <Page size="A4" style={s.page}>
 
-        {/* Header */}
+        {/* ── Header ── */}
         <View style={s.header}>
-          <View>
-            <Text style={s.brandName}>estimato<Text style={s.brandDot}>.</Text></Text>
-          </View>
+          <Text style={s.brandName}>
+            estimato<Text style={s.brandDot}>.</Text>
+          </Text>
           <View style={s.headerRight}>
-            <Text style={s.headerMeta}>Construction Cost Report</Text>
+            <Text style={s.headerTitle}>Construction Cost Report</Text>
             <Text style={s.headerDate}>{today()}</Text>
           </View>
         </View>
@@ -421,25 +524,31 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
 
         <View style={s.body}>
 
-          {/* Greeting */}
-          <Text style={s.greeting}>{name}</Text>
-          <Text style={s.subtitle}>
+          {/* ── Client block ── */}
+          <Text style={s.clientName}>{name}</Text>
+          <Text style={s.projectMeta}>
             {ht} · {city} · {sqft.toLocaleString("en-IN")} sqft · G+{floors - 1} · {tier} finish
           </Text>
 
-          {/* Summary box */}
+          {/* ── Summary box ── */}
           <View style={s.summaryBox}>
-            <Text style={s.summaryLabel}>Estimated total cost</Text>
+            <Text style={s.summaryLabel}>Estimated Total Cost</Text>
             <Text style={s.summaryAmount}>
               {fmtINR(result.totalRange.min)} – {fmtINR(result.totalRange.max)}
             </Text>
             <View style={s.summaryRule} />
             <View style={s.summaryMeta}>
               <Text style={s.summaryMetaItem}>
-                Cost per sqft: <Text style={s.summaryMetaValue}>₹{result.costPerSqft.toLocaleString("en-IN")}</Text>
+                Cost per sqft:{" "}
+                <Text style={s.summaryMetaValue}>
+                  ₹{result.costPerSqft.toLocaleString("en-IN")}
+                </Text>
               </Text>
               <Text style={s.summaryMetaItem}>
-                Timeline: <Text style={s.summaryMetaValue}>{Math.round(result.timeline.totalDays / 30)} months</Text>
+                Timeline:{" "}
+                <Text style={s.summaryMetaValue}>
+                  {monthsStr(result.timeline.totalDays)}
+                </Text>
               </Text>
               <Text style={s.summaryMetaItem}>
                 Confidence: <Text style={s.summaryMetaValue}>±6%</Text>
@@ -447,8 +556,8 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </View>
           </View>
 
-          {/* Cost Breakdown */}
-          <Text style={s.sectionLabel}>Cost breakdown</Text>
+          {/* ── Cost Breakdown ── */}
+          <SectionHeader label="Cost Breakdown" />
           {breakdownEntries.map(([key, value]) => (
             <View key={key} style={s.breakdownRow}>
               <Text style={s.breakdownLabel}>{BREAKDOWN_META[key] ?? key}</Text>
@@ -457,41 +566,61 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </View>
           ))}
           <View style={s.breakdownRowLast}>
-            <Text style={{ ...s.breakdownLabel, fontFamily: "Helvetica-Bold", color: NAVY }}>
+            <Text style={{ ...s.breakdownLabel, fontFamily: "Inter", fontWeight: 700, color: NAVY }}>
               Mid-point total
             </Text>
-            <Text style={{ ...s.breakdownAmount, fontSize: 10 }}>{fmtINR(totalMid)}</Text>
+            <Text style={{ ...s.breakdownAmount, fontSize: 11 }}>
+              {fmtINR(totalMid)}
+            </Text>
           </View>
 
           <View style={s.spacer} />
 
-          {/* Timeline */}
-          <Text style={s.sectionLabel}>Construction timeline</Text>
+          {/* ── Construction Timeline ── */}
+          <SectionHeader label="Construction Timeline" />
           {result.timeline.phases.map((phase, i) => (
             <View key={i} style={s.phaseRow}>
               <Text style={s.phaseNumber}>{String(i + 1).padStart(2, "0")}</Text>
               <View style={s.phaseContent}>
                 <Text style={s.phaseName}>{phase.name}</Text>
                 <Text style={s.phaseDetail}>
-                  {Math.round(phase.durationDays / 30)} months · {phase.paymentPercent}% of total
+                  {monthsStr(phase.durationDays)} · {phase.paymentPercent}% of total
                 </Text>
               </View>
               <Text style={s.phaseAmount}>{fmtINR(phase.cost)}</Text>
             </View>
           ))}
 
+          {/* ── Cost Alerts ── */}
           {warnings.length > 0 && (
             <>
               <View style={s.spacer} />
-              <Text style={s.sectionLabel}>Cost alerts</Text>
-              {warnings.map((w, i) => (
+              {/* wrap=false keeps label with first item — prevents orphaned header */}
+              <View wrap={false}>
+                <SectionHeader label="Cost Alerts" />
+                <View style={s.warningRow}>
+                  <View style={s.warningDot} />
+                  <View style={s.warningContent}>
+                    <Text style={s.warningTitle}>{warnings[0].title}</Text>
+                    <Text style={s.warningText}>{warnings[0].message}</Text>
+                    {warnings[0].estimatedImpact && (
+                      <Text style={s.warningImpact}>
+                        Estimated impact: {warnings[0].estimatedImpact}
+                      </Text>
+                    )}
+                  </View>
+                </View>
+              </View>
+              {warnings.slice(1).map((w, i) => (
                 <View key={i} style={s.warningRow}>
                   <View style={s.warningDot} />
                   <View style={s.warningContent}>
                     <Text style={s.warningTitle}>{w.title}</Text>
                     <Text style={s.warningText}>{w.message}</Text>
                     {w.estimatedImpact && (
-                      <Text style={s.warningImpact}>Estimated impact: {w.estimatedImpact}</Text>
+                      <Text style={s.warningImpact}>
+                        Estimated impact: {w.estimatedImpact}
+                      </Text>
                     )}
                   </View>
                 </View>
@@ -499,11 +628,21 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </>
           )}
 
+          {/* ── Observations ── */}
           {insights.length > 0 && (
             <>
               <View style={s.spacer} />
-              <Text style={s.sectionLabel}>Observations</Text>
-              {insights.map((ins, i) => (
+              <View wrap={false}>
+                <SectionHeader label="Observations" />
+                <View style={s.insightRow}>
+                  <View style={s.insightDot} />
+                  <View style={s.insightContent}>
+                    <Text style={s.insightTitle}>{insights[0].title}</Text>
+                    <Text style={s.insightText}>{insights[0].message}</Text>
+                  </View>
+                </View>
+              </View>
+              {insights.slice(1).map((ins, i) => (
                 <View key={i} style={s.insightRow}>
                   <View style={s.insightDot} />
                   <View style={s.insightContent}>
@@ -515,42 +654,55 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             </>
           )}
 
-          {/* Tier comparison */}
+          {/* ── Finish Level Comparison ── */}
           {result.comparisonScenarios && (
             <>
               <View style={s.spacer} />
-              <Text style={s.sectionLabel}>What if you changed the finish level?</Text>
-              <View style={s.tierGrid}>
-                {(["basic", "standard", "premium", "luxury"] as const).map((t) => {
-                  const activeRef = input.qualityTier === "ultra-luxury" ? "luxury" : (input.qualityTier ?? "standard");
-                  const isActive = t === activeRef;
-                  return (
-                    <View key={t} style={isActive ? s.tierCardActive : s.tierCard}>
-                      <Text style={isActive ? s.tierNameActive : s.tierName}>
-                        {tierLabel(t)}
-                      </Text>
-                      <Text style={isActive ? s.tierAmountActive : s.tierAmount}>
-                        {fmtINR(result.comparisonScenarios[t as keyof typeof result.comparisonScenarios])}
-                      </Text>
-                    </View>
-                  );
-                })}
+              <View wrap={false}>
+                <SectionHeader label="What If You Changed the Finish Level?" />
+                <View style={s.tierGrid}>
+                  {(["basic", "standard", "premium", "luxury"] as const).map((t) => {
+                    const activeRef =
+                      input.qualityTier === "ultra-luxury"
+                        ? "luxury"
+                        : (input.qualityTier ?? "standard");
+                    const isActive = t === activeRef;
+                    return (
+                      <View key={t} style={isActive ? s.tierCardActive : s.tierCard}>
+                        <Text style={isActive ? s.tierNameActive : s.tierName}>
+                          {tierLabel(t)}
+                        </Text>
+                        <Text style={isActive ? s.tierAmountActive : s.tierAmount}>
+                          {fmtINR(
+                            result.comparisonScenarios[
+                              t as keyof typeof result.comparisonScenarios
+                            ]
+                          )}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
               </View>
             </>
           )}
 
-          {/* Exclusions disclaimer */}
-          <View style={{ marginTop: 20, padding: 12, backgroundColor: "#F5F4F0", borderLeftWidth: 2, borderLeftColor: GOLD }}>
-            <Text style={{ fontSize: 7, color: SECONDARY, lineHeight: 1.6 }}>
-              This estimate covers construction cost only. It does not include interior design, modular kitchen, furniture, landscaping, architect fees, structural engineer fees, government approval charges, or utility connection costs.
+          {/* ── Disclaimer ── */}
+          <View style={s.disclaimer}>
+            <Text style={s.disclaimerText}>
+              This estimate covers construction cost only. It does not include interior design,
+              modular kitchen, furniture, landscaping, architect fees, structural engineer fees,
+              government approval charges, or utility connection costs.
             </Text>
           </View>
 
-          {/* Footer */}
+          {/* ── Footer ── */}
           <View style={s.footer}>
             <View>
               <Text style={s.footerBrand}>Estimato · estimato.in</Text>
-              <Text style={s.footerNote}>Rates verified for 2026 · Hosur–Bengaluru belt</Text>
+              <Text style={s.footerNote}>
+                Rates verified for 2026 · Hosur–Bengaluru belt
+              </Text>
             </View>
             <Text style={s.footerMeta}>
               hello@estimato.in{"\n"}
