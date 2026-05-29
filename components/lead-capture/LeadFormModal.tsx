@@ -49,10 +49,8 @@ async function generateAndUploadPDF(
       import("react"),
     ]);
 
-    const logoSrc = `${window.location.origin}/logo.webp`;
-
     const blob = await pdf(
-      React.createElement(ReportDocument, { name, input, result, logoSrc }) as Parameters<typeof pdf>[0]
+      React.createElement(ReportDocument, { name, input, result }) as Parameters<typeof pdf>[0]
     ).toBlob();
 
     const form = new FormData();

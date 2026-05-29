@@ -3,11 +3,17 @@ import {
   Page,
   Text,
   View,
-  Image,
   StyleSheet,
   Font,
 } from "@react-pdf/renderer";
 import type { CalculationResult, PlannerInput } from "@/types";
+
+// Playfair Display — logo text only, NO letterSpacing (custom font glyph-displacement bug)
+Font.register({
+  family: "PlayfairDisplay",
+  src: "https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5/files/playfair-display-latin-700-normal.woff2",
+  fontWeight: 700,
+});
 
 // Inter: body text + numbers — NO letterSpacing (CF font bug displaces glyphs when letterSpacing != 0)
 // Helvetica: all letter-spaced uppercase labels — built-in PDF font, no bug
@@ -115,15 +121,10 @@ const s = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  logoImg: {
-    height: 26,
-    width: 136,   // 26 * 5.25 aspect
-    objectFit: "contain",
-  },
-  // Fallback text logo if no image provided
   brandName: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: 22,
+    fontFamily: "PlayfairDisplay",
+    fontWeight: 700,
+    fontSize: 24,
     color: WHITE,
   },
   brandDot: {
@@ -511,10 +512,9 @@ interface ReportDocumentProps {
   name: string;
   input: Partial<PlannerInput>;
   result: CalculationResult;
-  logoSrc?: string;
 }
 
-export function ReportDocument({ name, input, result, logoSrc }: ReportDocumentProps) {
+export function ReportDocument({ name, input, result }: ReportDocumentProps) {
   const city = input.city ? cityLabel(input.city) : "your city";
   const ht = homeLabel(input.homeType ?? "home");
   const tier = tierLabel(input.qualityTier ?? "economy");
@@ -546,13 +546,9 @@ export function ReportDocument({ name, input, result, logoSrc }: ReportDocumentP
 
         {/* ── Header ── */}
         <View style={s.header}>
-          {logoSrc ? (
-            <Image src={logoSrc} style={s.logoImg} />
-          ) : (
-            <Text style={s.brandName}>
-              estimato<Text style={s.brandDot}>.</Text>
-            </Text>
-          )}
+          <Text style={s.brandName}>
+            estimato<Text style={s.brandDot}>.</Text>
+          </Text>
           <View style={s.headerRight}>
             <Text style={s.headerTitle}>Construction Cost Report</Text>
             <Text style={s.headerDate}>{today()}</Text>
