@@ -37,17 +37,26 @@ interface LeadFormModalProps {
   sourcePage?: string;
 }
 
-async function generatePDF(
+async function generateAndUploadPDF(
   name: string,
   input: Partial<PlannerInput>,
   result: CalculationResult
 ): Promise<string | undefined> {
   try {
-    const res = await fetch("/api/generate-pdf", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, input, result }),
-    });
+    const [{ pdf }, { ReportDocument }, React] = await Promise.all([
+      import("@react-pdf/renderer"),
+      import("@/components/pdf/ReportDocument"),
+      import("react"),
+    ]);
+
+    const blob = await pdf(
+      React.createElement(ReportDocument, { name, input, result }) as Parameters<typeof pdf>[0]
+    ).toBlob();
+
+    const form = new FormData();
+    form.append("file", blob, "report.pdf");
+
+    const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
     if (!res.ok) return undefined;
     const json = await res.json();
     return json.url as string | undefined;
@@ -98,7 +107,7 @@ export function LeadFormModal({
     let pdfUrl: string | undefined;
     if (data.email) {
       setLoadingStep("Generating your report…");
-      pdfUrl = await generatePDF(data.name, input, result);
+      pdfUrl = await generateAndUploadPDF(data.name, input, result);
     }
 
     // Step 2: Submit lead
