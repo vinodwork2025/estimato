@@ -21,6 +21,7 @@ function buildLimiter(requests: number, window: Parameters<typeof Ratelimit.slid
 export const calculateLimiter = buildLimiter(30, "1 m");
 export const submitLeadLimiter = buildLimiter(5, "1 h");
 export const uploadLimiter = buildLimiter(5, "1 h");
+export const generatePdfLimiter = buildLimiter(5, "1 h");
 
 export function getIP(request: Request): string {
   return (
