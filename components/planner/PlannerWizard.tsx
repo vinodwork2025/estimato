@@ -923,7 +923,7 @@ export function PlannerWizard() {
       <header className="sticky top-0 z-30 bg-bg-primary border-b border-border">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" aria-label="Estimato home">
-            <EstimateLogo size="sm" variant="mark" />
+            <EstimateLogo size="md" variant="dark" />
           </Link>
           <span className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.18em]">
             Free · No sign-up

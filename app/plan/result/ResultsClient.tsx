@@ -736,7 +736,7 @@ export function ResultsClient() {
         <header className="sticky top-0 z-30 bg-bg-primary border-b border-border">
           <div className="max-w-4xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
             <Link href="/" aria-label="Estimato home">
-              <EstimateLogo size="sm" variant="mark" />
+              <EstimateLogo size="md" variant="dark" />
             </Link>
             <span className="font-mono text-[12px] text-text-secondary uppercase tracking-[0.18em] hidden md:block">
               Confidence ±6% · BOQ-verified
