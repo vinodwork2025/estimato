@@ -38,7 +38,7 @@ const HOME_TYPES: {
     description: "Premium family home",
     sqftRange: "2,000–5,000 sqft",
     range: "₹50L – 1.2Cr",
-    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/villa.png",
   },
   {
     value: "duplex",
@@ -46,7 +46,7 @@ const HOME_TYPES: {
     description: "Two-level modern home",
     sqftRange: "1,200–3,000 sqft",
     range: "₹40L – 90L",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/duplex.png",
   },
   {
     value: "farmhouse",
@@ -54,7 +54,7 @@ const HOME_TYPES: {
     description: "Open spaces and outdoor living",
     sqftRange: "2,000–6,000 sqft",
     range: "₹35L – 1.5Cr",
-    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/farmhouse.png",
   },
   {
     value: "contemporary",
@@ -62,7 +62,7 @@ const HOME_TYPES: {
     description: "Modern architecture style",
     sqftRange: "1,500–4,000 sqft",
     range: "₹45L – 1Cr",
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/contemporary.png",
     recommended: true,
   },
   {
@@ -71,7 +71,7 @@ const HOME_TYPES: {
     description: "Cost-optimized construction",
     sqftRange: "800–2,000 sqft",
     range: "₹25L – 50L",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/budget.png",
   },
   {
     value: "luxury-villa",
@@ -79,7 +79,7 @@ const HOME_TYPES: {
     description: "High-end finishes and larger spaces",
     sqftRange: "3,000–8,000 sqft",
     range: "₹1.2Cr – 3Cr",
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80",
+    image: "/homes/luxury-villa.png",
   },
 ];
 
@@ -419,13 +419,14 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
                 sizes="(max-width: 768px) 50vw, 33vw"
                 style={{
                   filter: isSelected
-                    ? "grayscale(0.1) brightness(0.68)"
-                    : "grayscale(0.5) sepia(0.2) brightness(0.65) contrast(1.05)",
+                    ? "brightness(0.72) saturate(1.05)"
+                    : "brightness(0.82) saturate(0.95)",
                   transition: "filter 0.3s",
                 }}
               />
 
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,26,50,0.94) 0%, rgba(10,26,50,0.12) 55%)" }} />
+              {/* Strong bottom gradient for text legibility over bright images */}
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(6,16,40,0.97) 0%, rgba(6,16,40,0.78) 30%, rgba(6,16,40,0.20) 58%, rgba(6,16,40,0) 100%)" }} />
 
               {/* Checkmark top-right on selection */}
               {isSelected && (
@@ -443,29 +444,29 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
 
               <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                 <p
-                  className="font-serif text-white leading-tight"
-                  style={{ fontSize: "clamp(15px, 2.2vw, 20px)", fontWeight: 400, letterSpacing: "-0.01em" }}
+                  className="font-serif text-white leading-tight drop-shadow-sm"
+                  style={{ fontSize: "clamp(16px, 2.4vw, 21px)", fontWeight: 500, letterSpacing: "-0.01em" }}
                 >
                   {ht.label}
                 </p>
                 <p
-                  className="font-sans mt-0.5"
-                  style={{ fontSize: "clamp(10px, 1.3vw, 12px)", color: "rgba(255,255,255,0.70)" }}
+                  className="font-sans mt-1"
+                  style={{ fontSize: "clamp(10px, 1.4vw, 12px)", color: "rgba(255,255,255,0.82)", lineHeight: 1.4 }}
                 >
                   {ht.description}
                 </p>
                 <p
                   className="font-mono mt-0.5"
-                  style={{ fontSize: "10px", color: "rgba(255,255,255,0.42)" }}
+                  style={{ fontSize: "10px", color: "rgba(255,255,255,0.50)", letterSpacing: "0.04em" }}
                 >
                   {ht.sqftRange}
                 </p>
                 {isSelected && (
-                  <div className="flex items-center gap-1 mt-1.5">
+                  <div className="flex items-center gap-1 mt-2">
                     <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-                      <path d="M1 3.5L3.2 5.8L8 1" stroke="rgba(197,160,89,0.95)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1 3.5L3.2 5.8L8 1" stroke="rgba(212,180,110,1)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.14em]" style={{ color: "rgba(197,160,89,0.85)" }}>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "rgba(212,180,110,0.95)" }}>
                       Selected
                     </span>
                   </div>
