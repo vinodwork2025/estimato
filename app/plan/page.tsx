@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { PlannerWizard } from "@/components/planner/PlannerWizard";
 
 interface PlanPageProps {
