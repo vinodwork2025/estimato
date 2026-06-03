@@ -5,8 +5,10 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 const URLS = [
   { loc: "/", priority: "1.0", changefreq: "weekly" },
   { loc: "/plan", priority: "0.9", changefreq: "monthly" },
+  { loc: "/construction-cost/hosur", priority: "0.9", changefreq: "weekly" },
   { loc: "/for-architects", priority: "0.7", changefreq: "monthly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
+  { loc: "/methodology", priority: "0.6", changefreq: "monthly" },
 ];
 
 export async function GET() {
