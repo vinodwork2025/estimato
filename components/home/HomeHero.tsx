@@ -6,8 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ease = [0.16, 1, 0.3, 1] as const;
-const MONO = "'SF Mono', 'Fira Mono', 'Consolas', monospace";
+const MONO  = "'SF Mono', 'Fira Mono', 'Consolas', monospace";
 const SERIF = "var(--font-serif, Georgia, 'Times New Roman', serif)";
+
+// White text palette for glass cards
+const W1 = "rgba(255,255,255,0.95)"; // primary — big numbers
+const W2 = "rgba(255,255,255,0.72)"; // secondary — names / values
+const W3 = "rgba(255,255,255,0.42)"; // tertiary — tiny labels
+const WD = "rgba(255,255,255,0.10)"; // dividers
+const WB = "rgba(255,255,255,0.05)"; // subtle footer bg
+const WT = "rgba(255,255,255,0.13)"; // progress track
 
 // ── Count-up ──────────────────────────────────────────────────────────────────
 function useCountUp(target: number, duration = 1800, delay = 900) {
@@ -38,16 +46,17 @@ function fmtINR(n: number): string {
   return `₹${grouped},${last3}`;
 }
 
-// ── Glass card shell ──────────────────────────────────────────────────────────
+// ── True glassmorphism card shell ─────────────────────────────────────────────
 function G({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <div style={{
-      background: "rgba(255,255,255,0.93)",
-      backdropFilter: "blur(30px)",
-      WebkitBackdropFilter: "blur(30px)",
-      border: "1px solid rgba(255,255,255,0.60)",
+      background: "rgba(255,255,255,0.10)",
+      backdropFilter: "blur(36px)",
+      WebkitBackdropFilter: "blur(36px)",
+      border: "1px solid rgba(255,255,255,0.20)",
       borderRadius: 20,
-      boxShadow: "0 24px 64px rgba(9,20,45,0.28), 0 4px 16px rgba(9,20,45,0.12), inset 0 1.5px 0 rgba(255,255,255,0.95)",
+      boxShadow:
+        "0 28px 72px rgba(0,0,0,0.32), 0 4px 16px rgba(0,0,0,0.16), inset 0 1.5px 0 rgba(255,255,255,0.28)",
       overflow: "hidden",
       ...style,
     }}>
@@ -81,12 +90,12 @@ function F({
 
 // ── Card 1: Total Estimated Cost ──────────────────────────────────────────────
 const ROWS = [
-  { label: "Structure",        raw: 3_380_000, color: "#0E2248" },
-  { label: "Finishes",         raw: 1_960_000, color: "#2B5EA7" },
+  { label: "Structure",        raw: 3_380_000, color: "#6B9FD4" },
+  { label: "Finishes",         raw: 1_960_000, color: "#88C0EE" },
   { label: "MEP Services",     raw:   820_000, color: "#C79B4B" },
-  { label: "External Works",   raw:   600_000, color: "#5B8AC4" },
-  { label: "Contingency",      raw:   332_000, color: "#7B93A8" },
-  { label: "Taxes & Others",   raw:   550_000, color: "#B0C4D8" },
+  { label: "External Works",   raw:   600_000, color: "#8FD3C0" },
+  { label: "Contingency",      raw:   332_000, color: "rgba(255,255,255,0.48)" },
+  { label: "Taxes & Others",   raw:   550_000, color: "rgba(255,255,255,0.28)" },
 ];
 const TOTAL = ROWS.reduce((s, r) => s + r.raw, 0);
 
@@ -97,14 +106,14 @@ function CostCard() {
       <div style={{ padding: "18px 18px 0" }}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 10 }}>
           <div>
-            <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8", marginBottom: 7 }}>
+            <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3, marginBottom: 7 }}>
               Total Estimated Cost
             </p>
-            <p style={{ fontFamily: SERIF, fontSize: 29, color: "#0E2248", lineHeight: 1, letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
+            <p style={{ fontFamily: SERIF, fontSize: 29, color: W1, lineHeight: 1, letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
               {fmtINR(animated)}
             </p>
           </div>
-          <span style={{ fontFamily: MONO, fontSize: 7.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "4px 9px", borderRadius: 20, background: "rgba(22,163,74,0.10)", color: "#15803d", border: "1px solid rgba(22,163,74,0.22)", flexShrink: 0, marginTop: 2 }}>
+          <span style={{ fontFamily: MONO, fontSize: 7.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "4px 9px", borderRadius: 20, background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.30)", flexShrink: 0, marginTop: 2 }}>
             BOQ ✓
           </span>
         </div>
@@ -120,15 +129,14 @@ function CostCard() {
           ))}
         </div>
 
-        {/* Breakdown rows */}
         <div style={{ display: "flex", flexDirection: "column", gap: 7.5 }}>
           {ROWS.map((r) => (
             <div key={r.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
                 <div style={{ width: 6, height: 6, borderRadius: 2, background: r.color, flexShrink: 0 }} />
-                <span style={{ fontFamily: MONO, fontSize: 10, color: "#7B93A8" }}>{r.label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 10, color: W3 }}>{r.label}</span>
               </div>
-              <span style={{ fontFamily: MONO, fontSize: 10, color: "#3D5573", fontVariantNumeric: "tabular-nums" }}>
+              <span style={{ fontFamily: MONO, fontSize: 10, color: W2, fontVariantNumeric: "tabular-nums" }}>
                 {fmtINR(r.raw)}
               </span>
             </div>
@@ -136,63 +144,18 @@ function CostCard() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", marginTop: 14, borderTop: "1px solid rgba(13,31,60,0.07)", background: "rgba(13,31,60,0.025)" }}>
-        <span style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.1em", color: "#7B93A8" }}>Est. per sq.ft</span>
-        <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: "#0E2248", fontVariantNumeric: "tabular-nums" }}>₹2,650</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", marginTop: 14, borderTop: `1px solid ${WD}`, background: WB }}>
+        <span style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.1em", color: W3 }}>Est. per sq.ft</span>
+        <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: W1, fontVariantNumeric: "tabular-nums" }}>₹2,650</span>
       </div>
     </G>
   );
 }
 
-// ── Card 2: Material Quantities ───────────────────────────────────────────────
-const MATS = [
-  { label: "Cement", value: "500 Bags",    pct: 72, color: "#6B7280" },
-  { label: "Steel",  value: "8.25 Tonnes", pct: 55, color: "#2B5EA7" },
-  { label: "Bricks", value: "14,200 Nos",  pct: 85, color: "#B45309" },
-  { label: "M-Sand", value: "42.5 Cum",    pct: 40, color: "#C79B4B" },
-];
-
-function MaterialCard() {
-  return (
-    <G style={{ width: 232 }}>
-      <div style={{ padding: "18px 18px 16px" }}>
-        <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8", marginBottom: 16 }}>
-          Material Quantities
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
-          {MATS.map((m, i) => (
-            <div key={m.label}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: 2, background: m.color, flexShrink: 0 }} />
-                  <span style={{ fontFamily: MONO, fontSize: 11, color: "#3D5573" }}>{m.label}</span>
-                </div>
-                <span style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>{m.value}</span>
-              </div>
-              <div style={{ height: 4, borderRadius: 99, background: "rgba(13,31,60,0.07)", overflow: "hidden" }}>
-                <motion.div
-                  style={{ height: "100%", borderRadius: 99, background: m.color }}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${m.pct}%` }}
-                  transition={{ delay: 1.1 + i * 0.13, duration: 0.8, ease }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <button style={{ marginTop: 14, paddingTop: 13, borderTop: "1px solid rgba(13,31,60,0.07)", width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
-          View full BOQ →
-        </button>
-      </div>
-    </G>
-  );
-}
-
-// ── Card 3: City Benchmark ────────────────────────────────────────────────────
+// ── Card 2: City Benchmark ────────────────────────────────────────────────────
 const CITIES = [
   { name: "Hosur",     min: 2450, max: 2850, color: "#C79B4B" },
-  { name: "Bengaluru", min: 3200, max: 3800, color: "#2B5EA7" },
+  { name: "Bengaluru", min: 3200, max: 3800, color: "#6B9FD4" },
 ];
 const CITY_SCALE = 4200;
 
@@ -201,10 +164,10 @@ function CityCard() {
     <G style={{ width: 252 }}>
       <div style={{ padding: "18px 18px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8" }}>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
             City Benchmark
           </p>
-          <span style={{ fontFamily: MONO, fontSize: 8, color: "#059669", padding: "3px 8px", borderRadius: 20, background: "rgba(5,150,105,0.10)", border: "1px solid rgba(5,150,105,0.20)" }}>
+          <span style={{ fontFamily: MONO, fontSize: 8, color: "#4ade80", padding: "3px 8px", borderRadius: 20, background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.25)" }}>
             Q2 2026
           </span>
         </div>
@@ -212,15 +175,12 @@ function CityCard() {
           {CITIES.map((c, i) => (
             <div key={c.name}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 7 }}>
-                <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 600, color: "#0E2248" }}>{c.name}</span>
-                <span style={{ fontFamily: MONO, fontSize: 9.5, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>
+                <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 600, color: W1 }}>{c.name}</span>
+                <span style={{ fontFamily: MONO, fontSize: 9.5, color: W2, fontVariantNumeric: "tabular-nums" }}>
                   ₹{c.min.toLocaleString()}–{c.max.toLocaleString()}
                 </span>
               </div>
-              <div style={{ height: 8, borderRadius: 99, background: "rgba(13,31,60,0.07)", position: "relative" }}>
-                {/* base track */}
-                <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(c.min / CITY_SCALE) * 100}%`, width: `${((c.max - c.min) / CITY_SCALE) * 100}%`, borderRadius: 99, background: "rgba(13,31,60,0.10)" }} />
-                {/* animated fill */}
+              <div style={{ height: 8, borderRadius: 99, background: WT, position: "relative" }}>
                 <motion.div
                   style={{ position: "absolute", top: 0, bottom: 0, left: `${(c.min / CITY_SCALE) * 100}%`, borderRadius: 99, background: c.color }}
                   initial={{ width: 0 }}
@@ -231,7 +191,7 @@ function CityCard() {
             </div>
           ))}
         </div>
-        <button style={{ marginTop: 14, paddingTop: 13, borderTop: "1px solid rgba(13,31,60,0.07)", width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
+        <button style={{ marginTop: 14, paddingTop: 13, borderTop: `1px solid ${WD}`, width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
           View all 12 cities →
         </button>
       </div>
@@ -239,7 +199,7 @@ function CityCard() {
   );
 }
 
-// ── Card 4: Built-up Area ─────────────────────────────────────────────────────
+// ── Card 3: Built-up Area ─────────────────────────────────────────────────────
 function AreaCard() {
   const animated = useCountUp(1600, 1200, 1100);
   return (
@@ -249,13 +209,13 @@ function AreaCard() {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="1" /><path d="M3 9h18M9 21V9" />
           </svg>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.14em", color: "#7B93A8" }}>Built-up Area</p>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.14em", color: W3 }}>Built-up Area</p>
         </div>
-        <p style={{ fontFamily: SERIF, fontSize: 42, color: "#0E2248", lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 4, fontVariantNumeric: "tabular-nums" }}>
+        <p style={{ fontFamily: SERIF, fontSize: 42, color: W1, lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 4, fontVariantNumeric: "tabular-nums" }}>
           {animated.toLocaleString()}
         </p>
-        <p style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", marginBottom: 16 }}>sq.ft</p>
-        <span style={{ fontFamily: MONO, fontSize: 8.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "5px 13px", borderRadius: 20, background: "rgba(13,31,60,0.06)", color: "#3D5573", border: "1px solid rgba(13,31,60,0.09)" }}>
+        <p style={{ fontFamily: MONO, fontSize: 11, color: W3, marginBottom: 16 }}>sq.ft</p>
+        <span style={{ fontFamily: MONO, fontSize: 8.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "5px 13px", borderRadius: 20, background: WT, color: W2, border: `1px solid ${WD}` }}>
           3 BHK Villa
         </span>
       </div>
@@ -263,12 +223,12 @@ function AreaCard() {
   );
 }
 
-// ── Card 5: Project Timeline ──────────────────────────────────────────────────
+// ── Card 4: Project Timeline ──────────────────────────────────────────────────
 const PHASES = [
-  { label: "Planning",  dur: "15 Days",   color: "#C79B4B", w: 10 },
-  { label: "Structure", dur: "2.5 Mo.",   color: "#0E2248", w: 34 },
-  { label: "Finishing", dur: "3 Mo.",     color: "#2B5EA7", w: 43 },
-  { label: "Handover",  dur: "15 Days",   color: "#7B93A8", w: 10 },
+  { label: "Planning",  dur: "15 Days",   color: "#C79B4B",              w: 10 },
+  { label: "Structure", dur: "2.5 Mo.",   color: "#6B9FD4",              w: 34 },
+  { label: "Finishing", dur: "3 Mo.",     color: "#88C0EE",              w: 43 },
+  { label: "Handover",  dur: "15 Days",   color: "rgba(255,255,255,0.35)", w: 10 },
 ];
 const PH_TOT = PHASES.reduce((s, p) => s + p.w, 0);
 
@@ -277,13 +237,12 @@ function TimelineCard() {
     <G style={{ width: 276 }}>
       <div style={{ padding: "18px 18px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8" }}>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
             Project Timeline
           </p>
-          <span style={{ fontFamily: SERIF, fontSize: 15, color: "#0E2248", fontWeight: 400 }}>7.5 Months</span>
+          <span style={{ fontFamily: SERIF, fontSize: 15, color: W1, fontWeight: 400 }}>7.5 Months</span>
         </div>
 
-        {/* Animated segmented bar */}
         <div style={{ display: "flex", borderRadius: 99, overflow: "hidden", height: 11, gap: 2, marginBottom: 16 }}>
           {PHASES.map((p, i) => (
             <motion.div key={p.label}
@@ -299,9 +258,9 @@ function TimelineCard() {
             <div key={p.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
                 <div style={{ width: 9, height: 9, borderRadius: "50%", background: p.color, flexShrink: 0 }} />
-                <span style={{ fontFamily: MONO, fontSize: 11, color: "#3D5573" }}>{p.label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 11, color: W2 }}>{p.label}</span>
               </div>
-              <span style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>{p.dur}</span>
+              <span style={{ fontFamily: MONO, fontSize: 11, color: W3, fontVariantNumeric: "tabular-nums" }}>{p.dur}</span>
             </div>
           ))}
         </div>
@@ -332,26 +291,22 @@ export function HomeHero() {
       </motion.div>
 
       {/* ── Gradient layers ── */}
-      {/* Primary: navy left → transparent right */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
         background: "linear-gradient(to right, rgba(7,16,40,0.97) 0%, rgba(7,16,40,0.94) 16%, rgba(7,16,40,0.82) 33%, rgba(7,16,40,0.42) 54%, rgba(7,16,40,0.12) 72%, transparent 100%)",
       }} />
-      {/* Bottom depth */}
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 pointer-events-none" style={{
         height: 260, background: "linear-gradient(to top, rgba(7,16,40,0.55) 0%, transparent 100%)",
       }} />
-      {/* Subtle top fade */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 pointer-events-none" style={{
         height: 130, background: "linear-gradient(to bottom, rgba(7,16,40,0.32) 0%, transparent 100%)",
       }} />
-      {/* Breathing gold radial — right side ambience */}
       <motion.div aria-hidden="true" className="absolute inset-0 pointer-events-none"
         style={{ background: "radial-gradient(ellipse 58% 52% at 74% 44%, rgba(199,155,75,0.075) 0%, transparent 70%)" }}
         animate={{ opacity: [0.55, 1, 0.55] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* ── Dot grid — left zone (engineering precision feel) ── */}
+      {/* ── Dot grid — left zone ── */}
       <div aria-hidden="true" className="absolute pointer-events-none"
         style={{ top: 0, bottom: 0, left: 0, width: "50%", zIndex: 2 }}>
         <svg width="100%" height="100%" style={{ opacity: 0.045 }}>
@@ -367,11 +322,11 @@ export function HomeHero() {
       {/* ── Content ── */}
       <div className="relative flex mx-auto" style={{ zIndex: 10, maxWidth: 1440, minHeight: "90vh" }}>
 
-        {/* ══ LEFT: text ══════════════════════════════════════════════════════ */}
+        {/* ══ LEFT: text ══ */}
         <div className="flex flex-col justify-center"
           style={{ width: "44%", padding: "80px 52px 80px 64px" }}>
 
-          {/* Eyebrow — live indicator */}
+          {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease }}
@@ -472,10 +427,10 @@ export function HomeHero() {
             transition={{ duration: 0.7, delay: 0.62 }}
             style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 18px", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.09)" }}>
             {[
-              { label: "Verified Rates",   stat: "2,400+" },
-              { label: "Transparent",      stat: "5 Steps" },
-              { label: "City Specific",    stat: "12 Cities" },
-              { label: "BOQ Verified",     stat: "Q2 2026" },
+              { label: "Verified Rates", stat: "2,400+" },
+              { label: "Transparent",    stat: "5 Steps" },
+              { label: "City Specific",  stat: "12 Cities" },
+              { label: "BOQ Verified",   stat: "Q2 2026" },
             ].map((item, i) => (
               <motion.div key={item.label}
                 initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
@@ -491,32 +446,33 @@ export function HomeHero() {
           </motion.div>
         </div>
 
-        {/* ══ RIGHT: card zone ════════════════════════════════════════════════ */}
+        {/* ══ RIGHT: card zone ══ */}
         <div className="relative flex-1 hidden lg:block">
+
           {/* Cost: top right */}
           <F style={{ top: 52, right: 28 }} ed={0.70} ef={{ opacity: 0, y: -22 }} fd={0}>
             <CostCard />
           </F>
-          {/* Materials: mid right */}
-          <F style={{ top: 408, right: 28 }} ed={0.88} fd={1.3}>
-            <MaterialCard />
-          </F>
-          {/* City: bottom left of card zone */}
-          <F style={{ bottom: 168, left: 18 }} ed={1.04} fd={0.65}>
+
+          {/* City: mid-left of card zone */}
+          <F style={{ top: 320, left: 24 }} ed={0.88} fd={0.65}>
             <CityCard />
           </F>
-          {/* Area: bottom centre */}
-          <F style={{ bottom: 40, left: "28%" }} ed={1.18} fd={1.85}>
+
+          {/* Area: bottom left of card zone */}
+          <F style={{ bottom: 48, left: 24 }} ed={1.04} fd={1.85}>
             <AreaCard />
           </F>
+
           {/* Timeline: bottom right */}
-          <F style={{ bottom: 40, right: 28 }} ed={1.30} fd={1.05}>
+          <F style={{ bottom: 48, right: 28 }} ed={1.18} fd={1.05}>
             <TimelineCard />
           </F>
+
         </div>
       </div>
 
-      {/* ── Mobile: horizontal card strip ── */}
+      {/* ── Mobile: card strip ── */}
       <div className="lg:hidden relative z-10 px-5 pb-10 flex gap-3 overflow-x-auto"
         style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
         <div className="flex-shrink-0"><CostCard /></div>
