@@ -510,7 +510,7 @@ export default function HosurHubPage() {
                     priced from a full design brief.
                   </p>
                   <Link
-                    href="/plan"
+                    href="/plan?city=hosur&from=hosur-ultra-luxury"
                     className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70"
                     style={{ color: "var(--accent)" }}
                   >
@@ -1072,7 +1072,7 @@ export default function HosurHubPage() {
                 payment timeline — built from Hosur BOQs.
               </p>
               <Link
-                href="/plan?from=hosur-footer"
+                href="/plan?city=hosur&from=hosur-footer"
                 className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85"
                 style={{
                   background: "var(--accent)",

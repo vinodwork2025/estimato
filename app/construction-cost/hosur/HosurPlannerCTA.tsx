@@ -81,7 +81,7 @@ export function HosurPlannerCTA() {
         </div>
 
         <Link
-          href="/plan?from=hosur-city-hub"
+          href="/plan?city=hosur&from=hosur-city-hub"
           className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.12em] focus:outline-none transition-opacity duration-150 hover:opacity-85"
           style={{
             background: "var(--text-primary)",

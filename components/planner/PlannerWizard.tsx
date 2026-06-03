@@ -493,18 +493,30 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
 
 // ─── Step 2: Location ─────────────────────────────────────────────────────────
 
-function Step2Location({ city, onChange }: { city: string; onChange: (v: string) => void }) {
+function Step2Location({ city, onChange, prefilled }: { city: string; onChange: (v: string) => void; prefilled?: boolean }) {
   return (
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 2 of {DISPLAY_STEPS}
-        </p>
+        <div className="flex items-center gap-3 mb-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary">
+            Step 2 of {DISPLAY_STEPS}
+          </p>
+          {prefilled && (
+            <span
+              className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5"
+              style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}
+            >
+              Pre-filled
+            </span>
+          )}
+        </div>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Where will it stand?
         </h1>
         <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
-          Location affects material costs and labour rates significantly.
+          {prefilled
+            ? "We've selected Hosur based on your search. Change it if needed."
+            : "Location affects material costs and labour rates significantly."}
         </p>
       </motion.div>
 
@@ -1047,13 +1059,28 @@ function Step5Finish({
 
 // ─── Main wizard ──────────────────────────────────────────────────────────────
 
-export function PlannerWizard() {
+interface PlannerWizardProps {
+  defaultCity?: string;
+  sourcePage?: string;
+  ctaVariant?: "primary" | "secondary";
+  partnerId?: string;
+}
+
+export function PlannerWizard({
+  defaultCity = "",
+  sourcePage,
+  partnerId,
+}: PlannerWizardProps = {}) {
   const router = useRouter();
   const { setInput, setResult, setCalculating } = usePlannerStore();
 
   const [step, setStep] = useState(1);
   const [dir, setDir] = useState(1);
-  const [wizard, setWizard] = useState<WizardState>(INITIAL);
+  // Initializer fn runs once — merges defaultCity into INITIAL state
+  const [wizard, setWizard] = useState<WizardState>(() => ({
+    ...INITIAL,
+    city: defaultCity || INITIAL.city,
+  }));
   const [error, setError] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
@@ -1083,10 +1110,14 @@ export function PlannerWizard() {
 
   function handleHomeTypeSelect(ht: HomeType) {
     patch({ homeType: ht });
-    // Desktop only: auto-advance. Mobile uses sticky action bar.
-    if (typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches) {
+    if (defaultCity) {
+      // City pre-filled from city hub — skip location step, go straight to plot.
+      setTimeout(() => goTo(3), 280);
+    } else if (typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches) {
+      // Desktop without pre-fill: auto-advance to location step.
       setTimeout(() => goTo(2), 280);
     }
+    // Mobile without pre-fill: sticky action bar handles step 1 → 2.
   }
 
   async function handleCalculate() {
@@ -1102,7 +1133,10 @@ export function PlannerWizard() {
       const res = await fetch("/api/calculate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fullInput),
+        body: JSON.stringify({
+          ...fullInput,
+          _meta: { sourcePage: sourcePage ?? null, partnerId: partnerId ?? null },
+        }),
       });
 
       if (!res.ok) {
@@ -1209,7 +1243,7 @@ export function PlannerWizard() {
             className="w-full"
           >
             {step === 1 && <Step1HomeType selected={wizard.homeType} onSelect={handleHomeTypeSelect} />}
-            {step === 2 && <Step2Location city={wizard.city} onChange={(v) => patch({ city: v })} />}
+            {step === 2 && <Step2Location city={wizard.city} onChange={(v) => patch({ city: v })} prefilled={!!defaultCity} />}
             {step === 3 && <Step3Plot state={wizard} onChange={patch} />}
             {step === 4 && <Step4Config state={wizard} onChange={patch} />}
             {step === 5 && <Step5Finish state={wizard} onChange={patch} />}
@@ -1252,8 +1286,8 @@ export function PlannerWizard() {
         </div>
       )}
 
-      {/* Mobile sticky action bar — step 1 only, when card selected */}
-      {step === 1 && wizard.homeType && (
+      {/* Mobile sticky action bar — step 1 only, when card selected, no pre-filled city */}
+      {step === 1 && wizard.homeType && !defaultCity && (
         <div
           className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-5 py-4 border-t"
           style={{ background: "var(--navy)", borderColor: "rgba(255,255,255,0.08)" }}
