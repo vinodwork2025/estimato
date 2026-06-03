@@ -1,31 +1,73 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-/**
- * Calculator CTA for the Hosur city hub.
- *
- * PATCH NEEDED (Phase 1 → Phase 2):
- * PlannerWizard does not yet accept `defaultCity`, `prefilledInput`,
- * `sourcePage`, `ctaVariant`, or `partnerId` props. It maintains all
- * wizard state locally. Add an optional `defaultCity?: string` prop to
- * PlannerWizard (or read a `?city=` URL query param on mount) so city
- * hub pages can skip Step 2 and land users on Step 3 directly.
- *
- * Until that patch lands, this component links to /plan with sourcePage
- * context in the URL so analytics can track city-hub referrals.
- */
+const HOME_TYPES = [
+  {
+    value: "villa",
+    label: "Villa",
+    description: "Premium family home",
+    sqftRange: "2,000–5,000 sqft",
+    range: "₹50L – 1.2Cr",
+    image: "/homes/villa.png",
+  },
+  {
+    value: "duplex",
+    label: "Duplex",
+    description: "Two-level modern home",
+    sqftRange: "1,200–3,000 sqft",
+    range: "₹40L – 90L",
+    image: "/homes/duplex.png",
+  },
+  {
+    value: "farmhouse",
+    label: "Farmhouse",
+    description: "Open spaces and outdoor living",
+    sqftRange: "2,000–6,000 sqft",
+    range: "₹35L – 1.5Cr",
+    image: "/homes/farmhouse.png",
+  },
+  {
+    value: "contemporary",
+    label: "Contemporary",
+    description: "Modern architecture style",
+    sqftRange: "1,500–4,000 sqft",
+    range: "₹45L – 1Cr",
+    image: "/homes/contemporary.png",
+    recommended: true,
+  },
+  {
+    value: "budget",
+    label: "Budget Home",
+    description: "Cost-optimized construction",
+    sqftRange: "800–2,000 sqft",
+    range: "₹25L – 50L",
+    image: "/homes/budget.png",
+  },
+  {
+    value: "luxury-villa",
+    label: "Luxury Villa",
+    description: "High-end finishes and larger spaces",
+    sqftRange: "3,000–8,000 sqft",
+    range: "₹1.2Cr – 3Cr",
+    image: "/homes/luxury-villa.png",
+  },
+];
+
 export function HosurPlannerCTA() {
+  const router = useRouter();
+
   return (
     <div
-      className="rounded-sm border"
       style={{
         border: "1px solid var(--border)",
         background: "var(--bg-primary)",
         padding: "clamp(24px, 4vw, 48px)",
+        borderRadius: "2px",
       }}
     >
-      <div className="max-w-2xl">
+      <div className="mb-8">
         <p
           className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4"
           style={{ color: "var(--accent)" }}
@@ -42,72 +84,88 @@ export function HosurPlannerCTA() {
             color: "var(--text-primary)",
           }}
         >
-          Estimate your Hosur project
+          What type of home are you building in Hosur?
         </h2>
         <p
-          className="font-sans mb-6"
+          className="font-sans"
           style={{ fontSize: "16px", lineHeight: 1.7, color: "var(--text-secondary)" }}
         >
-          Answer five questions about your home type, plot size, and finish
-          level. Get a cost range, material quantities, BOQ summary, and a
-          payment timeline — built from real Hosur contractor rates.
-        </p>
-
-        <div className="flex flex-wrap gap-3 mb-8">
-          {[
-            "Construction cost range",
-            "Cost per sq ft",
-            "BOQ summary",
-            "Payment timeline",
-            "Budget guidance",
-          ].map((item) => (
-            <span
-              key={item}
-              className="flex items-center gap-1.5 font-mono text-[11px]"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-                <path
-                  d="M1 3.5L3.2 5.8L8 1"
-                  stroke="var(--accent)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              {item}
-            </span>
-          ))}
-        </div>
-
-        <Link
-          href="/plan?city=hosur&from=hosur-city-hub"
-          className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.12em] focus:outline-none transition-opacity duration-150 hover:opacity-85"
-          style={{
-            background: "var(--text-primary)",
-            color: "#ffffff",
-            borderRadius: "2px",
-          }}
-        >
-          Begin your Hosur estimate
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path
-              d="M1 5h12M9 1l4 4-4 4"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-
-        <p
-          className="font-mono mt-4"
-          style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
-        >
-          Takes under 2 minutes · Hosur rates pre-loaded
+          Select your home type to get a Hosur-specific cost estimate in under 2 minutes.
+          Hosur rates pre-loaded — no city selection needed.
         </p>
       </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {HOME_TYPES.map((ht) => (
+          <button
+            key={ht.value}
+            onClick={() => router.push(`/plan?city=hosur&type=${ht.value}&from=hosur-hub`)}
+            className="group relative overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            style={{
+              borderRadius: "4px",
+              border: "1px solid var(--border)",
+              background: "#fff",
+              cursor: "pointer",
+              transition: "border-color 150ms ease, box-shadow 150ms ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--accent)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(13,31,60,0.10)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+            }}
+          >
+            {ht.recommended && (
+              <span
+                className="absolute top-2 right-2 z-10 font-mono text-[9px] uppercase tracking-[0.18em] px-1.5 py-0.5"
+                style={{ background: "var(--accent)", color: "#fff", borderRadius: "2px" }}
+              >
+                Popular
+              </span>
+            )}
+            <div className="relative h-28 overflow-hidden">
+              <Image
+                src={ht.image}
+                alt={ht.label}
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ filter: "brightness(0.82) saturate(0.95)" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(13,31,60,0.60) 0%, rgba(13,31,60,0.10) 55%, transparent 100%)",
+                }}
+              />
+            </div>
+            <div className="p-3">
+              <p
+                className="font-serif text-[15px] mb-0.5"
+                style={{ color: "var(--text-primary)", lineHeight: 1.2 }}
+              >
+                {ht.label}
+              </p>
+              <p className="font-mono text-[10px]" style={{ color: "var(--text-secondary)" }}>
+                {ht.sqftRange}
+              </p>
+              <p
+                className="font-mono text-[11px] mt-1.5"
+                style={{ color: "var(--accent)", fontWeight: 500 }}
+              >
+                {ht.range}
+              </p>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <p className="font-mono mt-5" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>
+        Click a type to start · Hosur rates pre-loaded · Takes under 2 minutes
+      </p>
     </div>
   );
 }

@@ -848,7 +848,7 @@ export default function HomePage() {
 
                   <p
 
-                    className="font-serif text-navy leading-relaxed"
+                    className="font-serif text-navy leading-relaxed mb-6"
 
                     style={{ fontSize: "clamp(18px, 2.2vw, 22px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.65, maxWidth: "58ch" }}
 
@@ -857,6 +857,26 @@ export default function HomePage() {
                     {HOME.citiesBody}
 
                   </p>
+
+                  <Link
+
+                    href="/construction-cost/hosur"
+
+                    className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors duration-200"
+
+                    style={{ color: "var(--accent)" }}
+
+                  >
+
+                    View Hosur construction costs
+
+                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
+
+                      <path d="M1 4.5h10M7 1l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+
+                    </svg>
+
+                  </Link>
 
                 </AnimateIn>
 
@@ -1015,6 +1035,8 @@ export default function HomePage() {
                 <Link href="/methodology" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Methodology</Link>
 
                 <Link href="/for-architects" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">For architects</Link>
+
+                <Link href="/construction-cost/hosur" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Hosur costs</Link>
 
                 <Link href="/plan" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Start planning</Link>
 

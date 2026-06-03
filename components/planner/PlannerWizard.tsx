@@ -1061,6 +1061,7 @@ function Step5Finish({
 
 interface PlannerWizardProps {
   defaultCity?: string;
+  defaultHomeType?: string;
   sourcePage?: string;
   ctaVariant?: "primary" | "secondary";
   partnerId?: string;
@@ -1068,19 +1069,24 @@ interface PlannerWizardProps {
 
 export function PlannerWizard({
   defaultCity = "",
+  defaultHomeType = "",
   sourcePage,
   partnerId,
 }: PlannerWizardProps = {}) {
   const router = useRouter();
   const { setInput, setResult, setCalculating } = usePlannerStore();
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(() => (defaultCity && defaultHomeType ? 3 : 1));
   const [dir, setDir] = useState(1);
-  // Initializer fn runs once — merges defaultCity into INITIAL state
-  const [wizard, setWizard] = useState<WizardState>(() => ({
-    ...INITIAL,
-    city: defaultCity || INITIAL.city,
-  }));
+  // Initializer fn runs once — merges defaultCity/defaultHomeType into INITIAL state
+  const [wizard, setWizard] = useState<WizardState>(() => {
+    const validTypes = HOME_TYPES.map((h) => h.value as string);
+    return {
+      ...INITIAL,
+      city: defaultCity || INITIAL.city,
+      homeType: validTypes.includes(defaultHomeType) ? (defaultHomeType as HomeType) : INITIAL.homeType,
+    };
+  });
   const [error, setError] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
