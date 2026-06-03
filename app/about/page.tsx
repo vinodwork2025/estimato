@@ -2,11 +2,37 @@ import type { Metadata } from "next";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
+const PAGE_URL = `${SITE_URL}/about`;
+
 export const metadata: Metadata = {
   title: "About Estimato",
   description:
     "Estimato is a home construction cost planning platform for Indian homeowners. Honest numbers. No contractor pitch.",
+  alternates: { canonical: PAGE_URL },
 };
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Estimato",
+    url: SITE_URL,
+    description: "Home construction cost planning platform for Indian homeowners.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ar. Chittrarasan",
+    jobTitle: "Principal Architect",
+    worksFor: {
+      "@type": "Organization",
+      name: "Design Intend",
+      url: "https://designintend.com",
+    },
+    sameAs: ["https://designintend.com"],
+  },
+];
 
 const SECTIONS = [
   {
@@ -35,6 +61,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
 
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+
       <SiteHeader ctaLabel="Start planning" ctaHref="/plan" maxWidth="max-w-5xl" />
 
       <main className="max-w-2xl mx-auto px-6">
@@ -48,6 +78,9 @@ export default function AboutPage() {
           <p className="text-body-lg text-text-secondary leading-relaxed max-w-lg">
             Estimato helps Indian homeowners figure out what their home will actually cost —
             before they talk to a single contractor.
+          </p>
+          <p className="font-mono text-[11px] mt-4" style={{ color: "var(--text-tertiary)" }}>
+            Last updated: June 2026
           </p>
         </div>
 

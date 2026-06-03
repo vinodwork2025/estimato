@@ -153,6 +153,18 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
       operatingSystem: "Web",
       description: "Free construction cost estimator for Hosur homeowners. Pre-filled for your plot size.",
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Ar. Chittrarasan",
+      jobTitle: "Principal Architect",
+      worksFor: {
+        "@type": "Organization",
+        name: "Design Intend",
+        url: "https://designintend.com",
+      },
+      sameAs: ["https://designintend.com"],
+    },
   ];
 
   return (
@@ -204,10 +216,13 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
 
             {/* Eyebrow */}
             <p
-              className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4"
+              className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2"
               style={{ color: "var(--accent)" }}
             >
               {config.eyebrow}
+            </p>
+            <p className="font-mono text-[11px] mb-4" style={{ color: "var(--text-tertiary)" }}>
+              Last updated: June 2026
             </p>
 
             {/* H1 */}

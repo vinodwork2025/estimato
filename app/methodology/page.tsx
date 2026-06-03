@@ -4,10 +4,13 @@ import { SiteHeader } from "@/components/shared/SiteHeader";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { METHODOLOGY } from "@/lib/copy";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
+
 export const metadata: Metadata = {
   title: "How we calculate your projection — Estimato",
   description:
     "The methodology behind Estimato's construction cost projections. Built from verified BOQs, updated quarterly, open to review.",
+  alternates: { canonical: `${SITE_URL}/methodology` },
 };
 
 const DATA_SOURCES = [

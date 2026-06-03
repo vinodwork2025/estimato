@@ -195,6 +195,18 @@ const schemas = [
     description:
       "Free home construction cost calculator for Hosur with BOQ-verified rates. Estimate civil cost, materials, and timeline in under 2 minutes.",
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ar. Chittrarasan",
+    jobTitle: "Principal Architect",
+    worksFor: {
+      "@type": "Organization",
+      name: "Design Intend",
+      url: "https://designintend.com",
+    },
+    sameAs: ["https://designintend.com"],
+  },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -264,10 +276,13 @@ export default function HosurHubPage() {
 
             {/* Eyebrow */}
             <p
-              className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4"
+              className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2"
               style={{ color: "var(--accent)" }}
             >
               Hosur, Tamil Nadu · 2026 · Verified rates
+            </p>
+            <p className="font-mono text-[11px] mb-4" style={{ color: "var(--text-tertiary)" }}>
+              Last updated: June 2026
             </p>
 
             {/* H1 */}

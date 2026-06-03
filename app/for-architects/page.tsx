@@ -3,10 +3,13 @@ import { EstimateLogo } from "@/components/shared/EstimateLogo";
 import { Button } from "@/components/ui/Button";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
+
 export const metadata: Metadata = {
   title: "For architects and builders – Estimato Partner Programme",
   description:
     "Join Estimato's verified partner network. Get qualified home construction leads at ₹3,000 per lead. No commissions. Pay only for real consultations.",
+  alternates: { canonical: `${SITE_URL}/for-architects` },
 };
 
 const HOW_IT_WORKS = [
@@ -64,6 +67,9 @@ export default function ForArchitectsPage() {
         <section className="py-24 px-6 border-b border-border" aria-labelledby="partner-hero">
           <div className="max-w-2xl mx-auto">
             <p className="label-arch mb-4">Partner programme</p>
+            <p className="font-mono text-[11px] mb-3" style={{ color: "var(--text-tertiary)" }}>
+              Last updated: June 2026
+            </p>
             <h1
               id="partner-hero"
               className="font-serif text-navy mb-6"

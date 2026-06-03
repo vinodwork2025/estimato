@@ -18,6 +18,8 @@ import { HOME, CTA } from "@/lib/copy";
 
 
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
+
 export const metadata: Metadata = {
 
   title: "Estimato – Plan before you build",
@@ -25,6 +27,8 @@ export const metadata: Metadata = {
   description:
 
     "Plan your home construction budget in 5 steps. Honest numbers, no contractor pitch. Free for Indian homeowners.",
+
+  alternates: { canonical: SITE_URL },
 
   openGraph: {
 
@@ -398,37 +402,48 @@ function ReportMockup() {
 
 export default function HomePage() {
 
-  const schema = {
-
-    "@context": "https://schema.org",
-
-    "@type": "Organization",
-
-    name: "Estimato",
-
-    url: "https://estimato.in",
-
-    description: "Home construction cost planning platform for Indian homeowners.",
-
-    areaServed: "IN",
-
-    serviceType: "Construction cost estimation",
-
-  };
-
-
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Estimato",
+      url: SITE_URL,
+      description: "Home construction cost planning platform for Indian homeowners.",
+      areaServed: "IN",
+      serviceType: "Construction cost estimation",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Estimato",
+      url: SITE_URL,
+      description: "Home construction cost planning platform for Indian homeowners.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Ar. Chittrarasan",
+      jobTitle: "Principal Architect",
+      worksFor: {
+        "@type": "Organization",
+        name: "Design Intend",
+        url: "https://designintend.com",
+      },
+      sameAs: ["https://designintend.com"],
+    },
+  ];
 
   return (
 
     <>
 
-      <script
-
-        type="application/ld+json"
-
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-
-      />
+      {schemas.map((s, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
+        />
+      ))}
 
 
 
@@ -1054,7 +1069,7 @@ export default function HomePage() {
 
               <p className="font-mono text-[12px] text-white/30 uppercase tracking-[0.1em]">
 
-                Rates verified for 2026 · Hosur–Bengaluru belt
+                Last updated: June 2026 · Rates verified · Hosur–Bengaluru belt
 
               </p>
 

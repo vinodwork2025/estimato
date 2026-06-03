@@ -199,8 +199,8 @@ export default function DuplexHosurPage() {
               <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Duplex</span>
             </nav>
 
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--accent)" }}>
-              Hosur, Tamil Nadu · 2026 · BOQ-verified rates
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
+              Hosur · Last updated: June 2026 · BOQ-verified rates
             </p>
 
             <h1

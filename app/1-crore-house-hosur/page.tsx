@@ -196,8 +196,8 @@ export default function OneCroreHosurPage() {
               </span>
             </nav>
 
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--accent)" }}>
-              Hosur, Tamil Nadu · 2026 · Significant residential build
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
+              Hosur · Last updated: June 2026 · Significant residential build
             </p>
 
             <h1
