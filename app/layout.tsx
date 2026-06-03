@@ -59,6 +59,14 @@ export default function RootLayout({
       className={`${cormorant.variable} ${manrope.variable} ${dmMono.variable}`}
     >
       <head>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-X67731R5LM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X67731R5LM');`,
+          }}
+        />
+        {/* Plausible */}
         <script
           defer
           data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
