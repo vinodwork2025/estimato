@@ -55,8 +55,21 @@ const HOME_TYPES = [
   },
 ];
 
-export function HosurPlannerCTA() {
+interface HosurPlannerCTAProps {
+  sourcePage?: string;
+  plotL?: number;
+  plotW?: number;
+}
+
+export function HosurPlannerCTA({ sourcePage = "hosur-hub", plotL, plotW }: HosurPlannerCTAProps = {}) {
   const router = useRouter();
+
+  function buildHref(type: string) {
+    const p = new URLSearchParams({ city: "hosur", type, from: sourcePage });
+    if (plotL) p.set("length", String(plotL));
+    if (plotW) p.set("width", String(plotW));
+    return `/plan?${p.toString()}`;
+  }
 
   return (
     <div
@@ -99,7 +112,7 @@ export function HosurPlannerCTA() {
         {HOME_TYPES.map((ht) => (
           <button
             key={ht.value}
-            onClick={() => router.push(`/plan?city=hosur&type=${ht.value}&from=hosur-hub`)}
+            onClick={() => router.push(buildHref(ht.value))}
             className="group relative overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               borderRadius: "4px",

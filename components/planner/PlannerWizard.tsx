@@ -1062,6 +1062,8 @@ function Step5Finish({
 interface PlannerWizardProps {
   defaultCity?: string;
   defaultHomeType?: string;
+  defaultPlotL?: string;
+  defaultPlotW?: string;
   sourcePage?: string;
   ctaVariant?: "primary" | "secondary";
   partnerId?: string;
@@ -1070,21 +1072,35 @@ interface PlannerWizardProps {
 export function PlannerWizard({
   defaultCity = "",
   defaultHomeType = "",
+  defaultPlotL = "",
+  defaultPlotW = "",
   sourcePage,
   partnerId,
 }: PlannerWizardProps = {}) {
   const router = useRouter();
   const { setInput, setResult, setCalculating } = usePlannerStore();
 
-  const [step, setStep] = useState(() => (defaultCity && defaultHomeType ? 3 : 1));
+  const [step, setStep] = useState(() => {
+    const hasPlot = defaultCity && defaultHomeType && defaultPlotL && defaultPlotW;
+    if (hasPlot) return 4;
+    if (defaultCity && defaultHomeType) return 3;
+    return 1;
+  });
   const [dir, setDir] = useState(1);
-  // Initializer fn runs once — merges defaultCity/defaultHomeType into INITIAL state
+  // Initializer fn runs once — merges defaultCity/defaultHomeType/plot dims into INITIAL state
   const [wizard, setWizard] = useState<WizardState>(() => {
     const validTypes = HOME_TYPES.map((h) => h.value as string);
+    const pL = parseInt(defaultPlotL || "0");
+    const pW = parseInt(defaultPlotW || "0");
+    const useL = pL >= 15 && pL <= 200 ? pL : INITIAL.plotLength;
+    const useW = pW >= 15 && pW <= 200 ? pW : INITIAL.plotWidth;
     return {
       ...INITIAL,
       city: defaultCity || INITIAL.city,
       homeType: validTypes.includes(defaultHomeType) ? (defaultHomeType as HomeType) : INITIAL.homeType,
+      plotLength: useL,
+      plotWidth: useW,
+      builtUpArea: Math.round(useL * useW * 0.6),
     };
   });
   const [error, setError] = useState<string | null>(null);

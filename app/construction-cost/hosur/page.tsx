@@ -910,19 +910,12 @@ export default function HosurHubPage() {
             </h2>
           </AnimateIn>
 
-          {/*
-           * Internal linking — exactly 4 links per SEO spec.
-           * Links 1 and 2 are active. Links 3 and 4 are pending child pages.
-           * TODO (Phase 2 child pages):
-           *   Link 3 → /construction-cost/hosur/villa   (Villa type hub for Hosur)
-           *   Link 4 → /construction-cost/hosur/budget  (Budget calculator for Hosur)
-           */}
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            {/* Link 1 — Methodology (active) */}
+            {/* 30×40 — most searched plot in Hosur */}
             <StaggerItem>
               <Link
-                href="/methodology"
+                href="/construction-cost/hosur/30x40"
                 className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
                 style={{ border: "1px solid var(--border)" }}
               >
@@ -930,27 +923,27 @@ export default function HosurHubPage() {
                   className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
                   style={{ color: "var(--accent)" }}
                 >
-                  How we calculate
+                  Most searched
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
                   style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
-                  Our methodology
+                  30×40 plot in Hosur
                 </p>
                 <p
                   className="font-sans"
                   style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
-                  How Estimato builds its rates from real Hosur and Bangalore BOQs, and what the numbers include.
+                  Hosur's benchmark plot size. Standard G+1 costs ₹30.2L–₹34.6L at current rates.
                 </p>
               </Link>
             </StaggerItem>
 
-            {/* Link 2 — Calculator hub (active) */}
+            {/* 40×60 — larger family plot */}
             <StaggerItem>
               <Link
-                href="/plan"
+                href="/construction-cost/hosur/40x60"
                 className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
                 style={{ border: "1px solid var(--border)" }}
               >
@@ -958,77 +951,77 @@ export default function HosurHubPage() {
                   className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
                   style={{ color: "var(--accent)" }}
                 >
-                  Free tool
+                  Larger plot
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
                   style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
-                  Full estimate calculator
+                  40×60 plot in Hosur
                 </p>
                 <p
                   className="font-sans"
                   style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
-                  Get a detailed cost range, BOQ summary, and payment timeline for your specific Hosur project.
+                  2,400 sqft plot with 2,880 sqft BUA at G+1. Cost breakdown across all tiers.
                 </p>
               </Link>
             </StaggerItem>
 
-            {/* Link 3 — Villa type hub (TODO: link to /construction-cost/hosur/villa when built) */}
+            {/* Villa construction */}
             <StaggerItem>
-              <div
-                className="block rounded-sm p-6 border"
-                style={{ border: "1px solid var(--border)", opacity: 0.5 }}
-                aria-label="Coming soon"
+              <Link
+                href="/villa-construction-cost/hosur"
+                className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <p
                   className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
-                  style={{ color: "var(--text-tertiary)" }}
+                  style={{ color: "var(--accent)" }}
                 >
-                  Coming soon
+                  Home type
                 </p>
                 <p
-                  className="font-serif mb-2"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-secondary)" }}
+                  className="font-serif mb-2 group-hover:text-navy transition-colors"
+                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
-                  Villa cost in Hosur
+                  Villa construction cost in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-tertiary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
-                  Detailed cost breakdown for villa construction in Hosur across all quality tiers.
+                  Detailed cost breakdown for villa builds in Hosur. Standard range: ₹37.8L–₹84L.
                 </p>
-              </div>
+              </Link>
             </StaggerItem>
 
-            {/* Link 4 — Budget page (TODO: link to /construction-cost/hosur/budget when built) */}
+            {/* ₹50 lakh budget */}
             <StaggerItem>
-              <div
-                className="block rounded-sm p-6 border"
-                style={{ border: "1px solid var(--border)", opacity: 0.5 }}
-                aria-label="Coming soon"
+              <Link
+                href="/50-lakh-house-hosur"
+                className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <p
                   className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
-                  style={{ color: "var(--text-tertiary)" }}
+                  style={{ color: "var(--accent)" }}
                 >
-                  Coming soon
+                  Budget guide
                 </p>
                 <p
-                  className="font-serif mb-2"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-secondary)" }}
+                  className="font-serif mb-2 group-hover:text-navy transition-colors"
+                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
-                  Building in Hosur under ₹50 lakhs
+                  ₹50 lakh house in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-tertiary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
-                  What you can build in Hosur with a ₹25–50 lakh budget and how to prioritise your spend.
+                  What you can build in Hosur with a ₹50 lakh budget — size, quality, and trade-offs.
                 </p>
-              </div>
+              </Link>
             </StaggerItem>
 
           </StaggerContainer>
