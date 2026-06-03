@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,16 +18,69 @@ import type {
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const TOTAL_STEPS = 5;
+const DISPLAY_STEPS = 6;
+const STEP_LABELS = ["Type", "Location", "Size", "Build", "Finish", "Results"];
 
 // ─── Static data ──────────────────────────────────────────────────────────────
 
-const HOME_TYPES: { value: HomeType; label: string; tagline: string; range: string; image: string }[] = [
-  { value: "villa", label: "Villa", tagline: "Independent home with garden", range: "₹50L – 1.2Cr", image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80" },
-  { value: "duplex", label: "Duplex", tagline: "Two floors, connected living", range: "₹40L – 90L", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" },
-  { value: "farmhouse", label: "Farmhouse", tagline: "Open plot, relaxed footprint", range: "₹35L – 1.5Cr", image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" },
-  { value: "contemporary", label: "Contemporary", tagline: "Clean lines, modern architecture", range: "₹45L – 1Cr", image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80" },
-  { value: "budget", label: "Budget Home", tagline: "Practical, no-frills build", range: "₹25L – 50L", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80" },
-  { value: "luxury-villa", label: "Luxury Villa", tagline: "Premium finishes, large footprint", range: "₹1.2Cr – 3Cr", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" },
+const HOME_TYPES: {
+  value: HomeType;
+  label: string;
+  description: string;
+  sqftRange: string;
+  range: string;
+  image: string;
+  recommended?: boolean;
+}[] = [
+  {
+    value: "villa",
+    label: "Villa",
+    description: "Premium family home",
+    sqftRange: "2,000–5,000 sqft",
+    range: "₹50L – 1.2Cr",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    value: "duplex",
+    label: "Duplex",
+    description: "Two-level modern home",
+    sqftRange: "1,200–3,000 sqft",
+    range: "₹40L – 90L",
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    value: "farmhouse",
+    label: "Farmhouse",
+    description: "Open spaces and outdoor living",
+    sqftRange: "2,000–6,000 sqft",
+    range: "₹35L – 1.5Cr",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    value: "contemporary",
+    label: "Contemporary",
+    description: "Modern architecture style",
+    sqftRange: "1,500–4,000 sqft",
+    range: "₹45L – 1Cr",
+    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80",
+    recommended: true,
+  },
+  {
+    value: "budget",
+    label: "Budget Home",
+    description: "Cost-optimized construction",
+    sqftRange: "800–2,000 sqft",
+    range: "₹25L – 50L",
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    value: "luxury-villa",
+    label: "Luxury Villa",
+    description: "High-end finishes and larger spaces",
+    sqftRange: "3,000–8,000 sqft",
+    range: "₹1.2Cr – 3Cr",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80",
+  },
 ];
 
 const QUALITY_OPTIONS: { value: QualityTier; label: string; badge: string; description: string; image: string; materials: string }[] = [
@@ -79,6 +132,14 @@ const INTERIOR_AUTO: Record<QualityTier, InteriorLevel> = {
   luxury: "luxury-furnished",
   "ultra-luxury": "luxury-furnished",
 };
+
+const ESTIMATE_INCLUDES = [
+  "Construction Cost",
+  "Material Quantities",
+  "BOQ Summary",
+  "Cost Per Sq.Ft.",
+  "Budget Guidance",
+];
 
 // ─── Wizard state ─────────────────────────────────────────────────────────────
 
@@ -161,26 +222,6 @@ function buildFullInput(w: WizardState) {
 
 // ─── Shared UI ────────────────────────────────────────────────────────────────
 
-function StepDots({ current }: { current: number }) {
-  return (
-    <div className="flex items-center gap-2">
-      {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-        <div
-          key={i}
-          style={{
-            width: i + 1 === current ? "20px" : "6px",
-            height: "6px",
-            borderRadius: "3px",
-            background: i + 1 <= current ? "var(--accent)" : "#DDE4ED",
-            opacity: i + 1 < current ? 0.45 : 1,
-            transition: "all 0.3s ease",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary mb-3">
@@ -230,23 +271,93 @@ function ToggleRow({ label, hint, checked, onChange }: { label: string; hint: st
   );
 }
 
+// ─── Desktop step breadcrumb ──────────────────────────────────────────────────
+
+function DesktopStepBreadcrumb({ current }: { current: number }) {
+  return (
+    <div className="flex items-center select-none">
+      <span className="font-mono text-[11px] text-text-secondary mr-2.5 shrink-0 tracking-[0.04em]">
+        Step {current} of {DISPLAY_STEPS}
+      </span>
+      <span className="text-border mr-2.5 text-[12px]">·</span>
+      {STEP_LABELS.map((label, i) => {
+        const stepNum = i + 1;
+        const isActive = stepNum === current;
+        const isDone = stepNum < current;
+        return (
+          <span key={label} className="flex items-center shrink-0">
+            <span
+              className="font-mono text-[11px] tracking-[0.05em]"
+              style={{
+                color: isActive ? "var(--navy)" : isDone ? "var(--accent)" : "var(--text-tertiary)",
+                fontWeight: isActive ? 600 : 400,
+                borderBottom: isActive ? "1.5px solid var(--navy)" : "1.5px solid transparent",
+                paddingBottom: "1px",
+                transition: "color 0.2s",
+              }}
+            >
+              {label}
+            </span>
+            {i < STEP_LABELS.length - 1 && (
+              <span className="font-mono text-[10px] text-text-tertiary mx-1.5">→</span>
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Step 1: Home type ────────────────────────────────────────────────────────
 
 function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSelect: (v: HomeType) => void }) {
   return (
-    <div className="px-5 md:px-10 pt-8 pb-12 max-w-5xl mx-auto w-full">
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
-        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 1 of {TOTAL_STEPS}
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-12 max-w-5xl mx-auto w-full">
+
+      {/* Header */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-6">
+        <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-2">
+          Step 1 of {DISPLAY_STEPS}
         </p>
-        <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
-          What are you building?
+
+        {/* Completion promise */}
+        <div className="flex items-center gap-3 mb-5">
+          <span className="font-mono text-[11px] text-text-tertiary">Takes less than 2 minutes</span>
+          <span className="inline-block w-px h-3 bg-border shrink-0" />
+          <span className="font-mono text-[11px] text-text-tertiary">No sign-up required</span>
+        </div>
+
+        <h1 className="font-serif text-navy" style={{ fontSize: "clamp(26px, 4.5vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1 }}>
+          What type of home are you planning?
         </h1>
-        <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
-          Pick the type that best describes your project.
+        <p className="text-text-secondary mt-2.5" style={{ fontSize: "15px", lineHeight: 1.65 }}>
+          Choose the closest option. You can refine details later.
         </p>
       </motion.div>
 
+      {/* Value preview */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease }}
+        className="mb-5 rounded-sm p-4"
+        style={{ background: "rgba(14,33,70,0.035)", border: "1px solid rgba(14,33,70,0.07)" }}
+      >
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-tertiary mb-3">
+          Your estimate includes
+        </p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          {ESTIMATE_INCLUDES.map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none" className="shrink-0">
+                <path d="M1 4L3.5 6.5L9 1" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="font-mono text-[11px] text-text-secondary">{item}</span>
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Card grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {HOME_TYPES.map((ht, i) => {
           const isSelected = selected === ht.value;
@@ -255,28 +366,126 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
               key={ht.value}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.07, ease }}
+              transition={{ duration: 0.5, delay: i * 0.07 + 0.15, ease }}
               onClick={() => onSelect(ht.value)}
               className="relative overflow-hidden text-left focus:outline-none group"
-              style={{ borderRadius: "4px", border: `2px solid ${isSelected ? "var(--accent)" : "transparent"}`, aspectRatio: "3/2", transition: "border-color 0.2s" }}
+              style={{
+                borderRadius: "4px",
+                border: `2px solid ${isSelected ? "var(--accent)" : "transparent"}`,
+                boxShadow: isSelected
+                  ? "0 0 0 1px rgba(168,130,59,0.5), 0 6px 24px rgba(168,130,59,0.20)"
+                  : "0 2px 8px rgba(14,33,70,0.06)",
+                minHeight: "150px",
+                aspectRatio: "3/2",
+                transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
+              }}
+              // CSS hover only on desktop — touch devices don't trigger hover
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(14,33,70,0.14)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 8px rgba(14,33,70,0.06)";
+                } else {
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 1px rgba(168,130,59,0.5), 0 6px 24px rgba(168,130,59,0.20)";
+                }
+              }}
               aria-pressed={isSelected}
             >
-              <Image src={ht.image} alt={ht.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 33vw"
-                style={{ filter: isSelected ? "grayscale(0.2) brightness(0.75)" : "grayscale(0.55) sepia(0.2) brightness(0.7) contrast(1.05)", transition: "filter 0.3s" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(13,31,60,0.85) 0%, rgba(13,31,60,0.1) 55%)" }} />
+              {/* Gold top accent on selection */}
               {isSelected && (
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "var(--accent)" }}>
-                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: "var(--accent)" }} />
+              )}
+
+              {/* Recommended badge */}
+              {ht.recommended && !isSelected && (
+                <div
+                  className="absolute top-3 left-3 z-10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em]"
+                  style={{ background: "rgba(168,130,59,0.88)", color: "white", borderRadius: "2px" }}
+                >
+                  Recommended
+                </div>
+              )}
+
+              <Image
+                src={ht.image}
+                alt={ht.label}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 33vw"
+                style={{
+                  filter: isSelected
+                    ? "grayscale(0.1) brightness(0.68)"
+                    : "grayscale(0.5) sepia(0.2) brightness(0.65) contrast(1.05)",
+                  transition: "filter 0.3s",
+                }}
+              />
+
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,26,50,0.94) 0%, rgba(10,26,50,0.12) 55%)" }} />
+
+              {/* Checkmark top-right on selection */}
+              {isSelected && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute top-3 right-3 z-10 w-6 h-6 rounded-full flex items-center justify-center"
+                  style={{ background: "var(--accent)" }}
+                >
+                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                    <path d="M1 5L4.5 8.5L11 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </motion.div>
               )}
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <p className="font-serif text-white leading-tight mb-1" style={{ fontSize: "clamp(16px, 2.5vw, 22px)", fontWeight: 400, letterSpacing: "-0.01em" }}>{ht.label}</p>
-                <p className="font-mono text-white/60 hidden md:block" style={{ fontSize: "11px" }}>{ht.range}</p>
+
+              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                <p
+                  className="font-serif text-white leading-tight"
+                  style={{ fontSize: "clamp(15px, 2.2vw, 20px)", fontWeight: 400, letterSpacing: "-0.01em" }}
+                >
+                  {ht.label}
+                </p>
+                <p
+                  className="font-sans mt-0.5"
+                  style={{ fontSize: "clamp(10px, 1.3vw, 12px)", color: "rgba(255,255,255,0.70)" }}
+                >
+                  {ht.description}
+                </p>
+                <p
+                  className="font-mono mt-0.5"
+                  style={{ fontSize: "10px", color: "rgba(255,255,255,0.42)" }}
+                >
+                  {ht.sqftRange}
+                </p>
+                {isSelected && (
+                  <div className="flex items-center gap-1 mt-1.5">
+                    <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                      <path d="M1 3.5L3.2 5.8L8 1" stroke="rgba(197,160,89,0.95)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.14em]" style={{ color: "rgba(197,160,89,0.85)" }}>
+                      Selected
+                    </span>
+                  </div>
+                )}
               </div>
             </motion.button>
           );
         })}
       </div>
+
+      {/* Helper text */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6, ease }}
+        className="text-center font-mono text-text-tertiary mt-6"
+        style={{ fontSize: "12px" }}
+      >
+        Not sure? Choose the closest option — you can adjust project specifications later.
+      </motion.p>
     </div>
   );
 }
@@ -288,7 +497,7 @@ function Step2Location({ city, onChange }: { city: string; onChange: (v: string)
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 2 of {TOTAL_STEPS}
+          Step 2 of {DISPLAY_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Where will it stand?
@@ -383,7 +592,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 3 of {TOTAL_STEPS}
+          Step 3 of {DISPLAY_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Tell us about your plot.
@@ -569,7 +778,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
     <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 4 of {TOTAL_STEPS}
+          Step 4 of {DISPLAY_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           How will it be built?
@@ -670,7 +879,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24, ease }} className="mb-8">
         <SectionLabel>Balconies</SectionLabel>
         <div className="flex items-center gap-5">
-          <button type="button" onClick={() => onChange({ balconies: Math.max(0, state.balconies - 1) }) } disabled={state.balconies === 0}
+          <button type="button" onClick={() => onChange({ balconies: Math.max(0, state.balconies - 1) })} disabled={state.balconies === 0}
             className="w-12 h-12 border border-border flex items-center justify-center text-lg focus:outline-none disabled:opacity-30 transition-all"
           >
             −
@@ -719,7 +928,7 @@ function Step5Finish({
     <div className="px-5 md:px-10 pt-8 pb-4 max-w-5xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
-          Step 5 of {TOTAL_STEPS}
+          Step 5 of {DISPLAY_STEPS}
         </p>
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Choose your finish level.
@@ -786,7 +995,7 @@ function Step5Finish({
         })}
       </div>
 
-      {/* Interior level — shown after quality is selected */}
+      {/* Interior level */}
       {state.qualityTier && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="mb-10">
           <SectionLabel>Interior finish level</SectionLabel>
@@ -831,7 +1040,6 @@ function Step5Finish({
           </div>
         </motion.div>
       )}
-
     </div>
   );
 }
@@ -848,7 +1056,6 @@ export function PlannerWizard() {
   const [error, setError] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
-  // Clear any stale isCalculating from persisted store on mount
   useEffect(() => { setCalculating(false); }, [setCalculating]);
 
   function patch(partial: Partial<WizardState>) {
@@ -875,7 +1082,10 @@ export function PlannerWizard() {
 
   function handleHomeTypeSelect(ht: HomeType) {
     patch({ homeType: ht });
-    setTimeout(() => goTo(2), 280);
+    // Desktop only: auto-advance. Mobile uses sticky action bar.
+    if (typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches) {
+      setTimeout(() => goTo(2), 280);
+    }
   }
 
   async function handleCalculate() {
@@ -916,6 +1126,8 @@ export function PlannerWizard() {
   };
 
   const showContinue = step >= 2;
+  const mobilePct = Math.round((step / DISPLAY_STEPS) * 100);
+  const selectedHomeType = HOME_TYPES.find((h) => h.value === wizard.homeType);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -931,24 +1143,58 @@ export function PlannerWizard() {
         </div>
       </header>
 
-      {/* Nav bar */}
+      {/* Nav bar with progress */}
       <div className="sticky top-14 z-20 bg-bg-primary/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-5xl mx-auto px-5 md:px-10 h-12 flex items-center justify-between">
-          {step > 1 ? (
-            <button type="button" onClick={() => goTo(step - 1)}
-              className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-secondary hover:text-text-secondary transition-colors focus:outline-none"
-            >
-              ← Back
-            </button>
-          ) : (
-            <div />
-          )}
-          <StepDots current={step} />
-          <div style={{ width: "48px" }} />
+        <div className="max-w-5xl mx-auto px-5 md:px-10">
+
+          {/* Desktop: single row */}
+          <div className="hidden md:flex items-center h-12 justify-between">
+            <div className="w-16 shrink-0">
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={() => goTo(step - 1)}
+                  className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-secondary hover:text-navy transition-colors focus:outline-none"
+                >
+                  ← Back
+                </button>
+              )}
+            </div>
+            <DesktopStepBreadcrumb current={step} />
+            <div className="w-16 shrink-0" />
+          </div>
+
+          {/* Mobile: back + step text row + progress bar */}
+          <div className="flex md:hidden flex-col py-2.5 gap-1.5">
+            <div className="flex items-center justify-between">
+              <div>
+                {step > 1 ? (
+                  <button
+                    type="button"
+                    onClick={() => goTo(step - 1)}
+                    className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-secondary focus:outline-none"
+                  >
+                    ← Back
+                  </button>
+                ) : (
+                  <div />
+                )}
+              </div>
+              <span className="font-mono text-[11px] text-text-secondary tracking-[0.04em]">
+                {mobilePct}% · Step {step} of {DISPLAY_STEPS}
+              </span>
+            </div>
+            <div className="h-0.5 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
+              <div
+                className="h-full rounded-full transition-all duration-500"
+                style={{ width: `${mobilePct}%`, background: "var(--accent)" }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Step panels — overflow-x-clip clips slide animation without blocking vertical scroll */}
+      {/* Step panels */}
       <div className="flex-1" style={{ overflowX: "clip" }}>
         <AnimatePresence custom={dir} mode="wait">
           <motion.div
@@ -965,12 +1211,7 @@ export function PlannerWizard() {
             {step === 2 && <Step2Location city={wizard.city} onChange={(v) => patch({ city: v })} />}
             {step === 3 && <Step3Plot state={wizard} onChange={patch} />}
             {step === 4 && <Step4Config state={wizard} onChange={patch} />}
-            {step === 5 && (
-              <Step5Finish
-                state={wizard}
-                onChange={patch}
-              />
-            )}
+            {step === 5 && <Step5Finish state={wizard} onChange={patch} />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -1006,6 +1247,33 @@ export function PlannerWizard() {
                 </Button>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Mobile sticky action bar — step 1 only, when card selected */}
+      {step === 1 && wizard.homeType && (
+        <div
+          className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-5 py-4 border-t"
+          style={{ background: "var(--navy)", borderColor: "rgba(255,255,255,0.08)" }}
+        >
+          <div className="flex items-center justify-between max-w-5xl mx-auto gap-4">
+            <div className="min-w-0">
+              <p className="font-mono text-[9px] uppercase tracking-[0.16em] mb-0.5" style={{ color: "rgba(255,255,255,0.42)" }}>
+                Selected
+              </p>
+              <p className="font-sans font-medium truncate" style={{ fontSize: "15px", color: "white" }}>
+                {selectedHomeType?.label}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => goTo(2)}
+              className="shrink-0 flex items-center gap-2 px-5 py-2.5 font-mono text-[12px] uppercase tracking-[0.1em] focus:outline-none transition-opacity duration-150 active:opacity-80"
+              style={{ background: "var(--accent)", color: "white", borderRadius: "2px" }}
+            >
+              Continue →
+            </button>
           </div>
         </div>
       )}
