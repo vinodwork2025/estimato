@@ -78,10 +78,14 @@ export function SiteHeader({
     <motion.header
       className={`sticky top-0 z-50 transition-[background-color,box-shadow] duration-400 ${
         scrolled
-          ? "bg-white/98 shadow-[0_1px_0_rgba(226,221,212,1),0_6px_32px_rgba(14,33,70,0.08)]"
-          : "bg-white/92 shadow-[0_1px_0_rgba(226,221,212,0.7)]"
+          ? "shadow-[0_1px_0_rgba(226,221,212,1),0_8px_36px_rgba(14,33,70,0.10)]"
+          : "shadow-[0_1px_0_rgba(226,221,212,0.8),0_4px_20px_rgba(14,33,70,0.06)]"
       }`}
-      style={{ backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
+      style={{
+        background: scrolled ? "rgba(250,248,245,0.99)" : "rgba(250,248,245,0.96)",
+        backdropFilter: "blur(32px)",
+        WebkitBackdropFilter: "blur(32px)",
+      }}
       animate={{ height: scrolled ? 72 : 92 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
     >

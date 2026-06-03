@@ -1,477 +1,527 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
+const MONO = "'SF Mono', 'Fira Mono', 'Consolas', monospace";
+const SERIF = "var(--font-serif, Georgia, 'Times New Roman', serif)";
 
-// ── Glass card shell — NOT absolute; positioning goes on the wrapper ──────────
-function GlassCard({
-  children,
-  style = {},
-}: {
-  children: React.ReactNode;
-  style?: React.CSSProperties;
-}) {
+// ── Count-up ──────────────────────────────────────────────────────────────────
+function useCountUp(target: number, duration = 1800, delay = 900) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        setVal(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, delay);
+    return () => clearTimeout(t);
+  }, [target, duration, delay]);
+  return val;
+}
+
+// Indian rupee format: 7642000 → ₹76,42,000
+function fmtINR(n: number): string {
+  if (n === 0) return "₹0";
+  const s = Math.round(n).toString();
+  if (s.length <= 3) return `₹${s}`;
+  const last3 = s.slice(-3);
+  const grouped = s.slice(0, -3).replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+  return `₹${grouped},${last3}`;
+}
+
+// ── Glass card shell ──────────────────────────────────────────────────────────
+function G({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
-    <div
-      style={{
-        background: "rgba(255,255,255,0.88)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.45)",
-        borderRadius: 18,
-        boxShadow:
-          "0 12px 40px rgba(13,31,60,0.16), 0 2px 8px rgba(13,31,60,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
-        overflow: "hidden",
-        ...style,
-      }}
-    >
+    <div style={{
+      background: "rgba(255,255,255,0.93)",
+      backdropFilter: "blur(30px)",
+      WebkitBackdropFilter: "blur(30px)",
+      border: "1px solid rgba(255,255,255,0.60)",
+      borderRadius: 20,
+      boxShadow: "0 24px 64px rgba(9,20,45,0.28), 0 4px 16px rgba(9,20,45,0.12), inset 0 1.5px 0 rgba(255,255,255,0.95)",
+      overflow: "hidden",
+      ...style,
+    }}>
       {children}
     </div>
   );
 }
 
-// ── Floating wrapper — absolute position + float animation ───────────────────
-function FloatingCard({
-  children,
-  top,
-  bottom,
-  left,
-  right,
-  floatDelay = 0,
-  entryDelay = 0.8,
-  entryFrom = { opacity: 0, y: 16 },
+// ── Floating card wrapper ─────────────────────────────────────────────────────
+function F({
+  children, style, fd = 0, ed = 0.8,
+  ef = { opacity: 0, y: 20 },
 }: {
   children: React.ReactNode;
-  top?: number | string;
-  bottom?: number | string;
-  left?: number | string;
-  right?: number | string;
-  floatDelay?: number;
-  entryDelay?: number;
-  entryFrom?: { opacity?: number; x?: number; y?: number };
+  style?: React.CSSProperties;
+  fd?: number;
+  ed?: number;
+  ef?: { opacity?: number; x?: number; y?: number };
 }) {
   return (
-    <motion.div
-      className="absolute z-20"
-      style={{ top, bottom, left, right }}
-      initial={entryFrom}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: entryDelay, duration: 0.8, ease }}
-    >
-      <motion.div
-        animate={{ y: [0, -7, 0] }}
-        transition={{ duration: 5, delay: floatDelay, repeat: Infinity, ease: "easeInOut" }}
-      >
+    <motion.div className="absolute z-20" style={style}
+      initial={ef} animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ delay: ed, duration: 0.9, ease }}>
+      <motion.div animate={{ y: [0, -9, 0] }}
+        transition={{ duration: 6, delay: fd, repeat: Infinity, ease: "easeInOut" }}>
         {children}
       </motion.div>
     </motion.div>
   );
 }
 
-// ── Card 1: Total Estimated Cost — top-right ──────────────────────────────────
+// ── Card 1: Total Estimated Cost ──────────────────────────────────────────────
+const ROWS = [
+  { label: "Structure",        raw: 3_380_000, color: "#0E2248" },
+  { label: "Finishes",         raw: 1_960_000, color: "#2B5EA7" },
+  { label: "MEP Services",     raw:   820_000, color: "#C79B4B" },
+  { label: "External Works",   raw:   600_000, color: "#5B8AC4" },
+  { label: "Contingency",      raw:   332_000, color: "#7B93A8" },
+  { label: "Taxes & Others",   raw:   550_000, color: "#B0C4D8" },
+];
+const TOTAL = ROWS.reduce((s, r) => s + r.raw, 0);
+
 function CostCard() {
-  const rows = [
-    { label: "Structure",         value: "₹33,80,000" },
-    { label: "Finishes",          value: "₹19,60,000" },
-    { label: "MEP Services",      value: "₹8,20,000"  },
-    { label: "External Works",    value: "₹6,00,000"  },
-    { label: "Contingency (5%)",  value: "₹3,32,000"  },
-    { label: "Taxes & Others",    value: "₹7,00,000"  },
-  ];
+  const animated = useCountUp(TOTAL, 1900, 900);
   return (
-    <GlassCard style={{ width: 252 }}>
-      <div className="px-4 pt-4 pb-3">
-        <div className="flex items-start justify-between mb-3">
+    <G style={{ width: 276 }}>
+      <div style={{ padding: "18px 18px 0" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 10 }}>
           <div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#7B93A8] mb-1.5">
+            <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8", marginBottom: 7 }}>
               Total Estimated Cost
             </p>
-            <p className="font-serif text-[#0E2248] leading-none" style={{ fontSize: 24, letterSpacing: "-0.03em" }}>
-              ₹76,42,000
+            <p style={{ fontFamily: SERIF, fontSize: 29, color: "#0E2248", lineHeight: 1, letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
+              {fmtINR(animated)}
             </p>
           </div>
-          <span
-            className="font-mono text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded-full mt-0.5 flex-shrink-0"
-            style={{ background: "rgba(13,31,60,0.07)", color: "#0E2248", border: "1px solid rgba(13,31,60,0.12)" }}
-          >
+          <span style={{ fontFamily: MONO, fontSize: 7.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "4px 9px", borderRadius: 20, background: "rgba(22,163,74,0.10)", color: "#15803d", border: "1px solid rgba(22,163,74,0.22)", flexShrink: 0, marginTop: 2 }}>
             BOQ ✓
           </span>
         </div>
-        <div className="space-y-1.5 border-t pt-3" style={{ borderColor: "rgba(13,31,60,0.07)" }}>
-          {rows.map((r) => (
-            <div key={r.label} className="flex justify-between items-baseline">
-              <span className="font-mono text-[10px] text-[#7B93A8]">{r.label}</span>
-              <span className="font-mono text-[10px] text-[#3D5573] tabular-nums">{r.value}</span>
+
+        {/* Proportional stacked bar */}
+        <div style={{ display: "flex", height: 5, borderRadius: 99, overflow: "hidden", gap: 1.5, marginBottom: 14 }}>
+          {ROWS.map((r, i) => (
+            <motion.div key={r.label}
+              style={{ flex: r.raw / TOTAL, background: r.color }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ delay: 1.05 + i * 0.07, duration: 0.35 }}
+            />
+          ))}
+        </div>
+
+        {/* Breakdown rows */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 7.5 }}>
+          {ROWS.map((r) => (
+            <div key={r.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                <div style={{ width: 6, height: 6, borderRadius: 2, background: r.color, flexShrink: 0 }} />
+                <span style={{ fontFamily: MONO, fontSize: 10, color: "#7B93A8" }}>{r.label}</span>
+              </div>
+              <span style={{ fontFamily: MONO, fontSize: 10, color: "#3D5573", fontVariantNumeric: "tabular-nums" }}>
+                {fmtINR(r.raw)}
+              </span>
             </div>
           ))}
         </div>
       </div>
-      <div
-        className="flex justify-between items-center px-4 py-2.5 border-t"
-        style={{ borderColor: "rgba(13,31,60,0.07)", background: "rgba(13,31,60,0.03)" }}
-      >
-        <span className="font-mono text-[9px] uppercase tracking-wider text-[#7B93A8]">Cost per sq.ft</span>
-        <span className="font-mono text-[12px] font-semibold text-[#0E2248] tabular-nums">₹2,650</span>
+
+      {/* Footer */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", marginTop: 14, borderTop: "1px solid rgba(13,31,60,0.07)", background: "rgba(13,31,60,0.025)" }}>
+        <span style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.1em", color: "#7B93A8" }}>Est. per sq.ft</span>
+        <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: "#0E2248", fontVariantNumeric: "tabular-nums" }}>₹2,650</span>
       </div>
-    </GlassCard>
+    </G>
   );
 }
 
-// ── Card 2: Material Quantities — mid-right ────────────────────────────────────
+// ── Card 2: Material Quantities ───────────────────────────────────────────────
+const MATS = [
+  { label: "Cement", value: "500 Bags",    pct: 72, color: "#6B7280" },
+  { label: "Steel",  value: "8.25 Tonnes", pct: 55, color: "#2B5EA7" },
+  { label: "Bricks", value: "14,200 Nos",  pct: 85, color: "#B45309" },
+  { label: "M-Sand", value: "42.5 Cum",    pct: 40, color: "#C79B4B" },
+];
+
 function MaterialCard() {
-  const items = [
-    { label: "Cement",  value: "500 Bags",    pct: 72 },
-    { label: "Steel",   value: "8.25 Tonnes", pct: 55 },
-    { label: "Bricks",  value: "14,200 Nos",  pct: 85 },
-    { label: "M-Sand",  value: "42.5 Cum",    pct: 40 },
-  ];
   return (
-    <GlassCard style={{ width: 210 }}>
-      <div className="px-4 py-4">
-        <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#7B93A8] mb-3.5">
+    <G style={{ width: 232 }}>
+      <div style={{ padding: "18px 18px 16px" }}>
+        <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8", marginBottom: 16 }}>
           Material Quantities
         </p>
-        <div className="space-y-3">
-          {items.map((item) => (
-            <div key={item.label}>
-              <div className="flex justify-between items-baseline mb-1">
-                <span className="font-mono text-[10px] text-[#3D5573]">{item.label}</span>
-                <span className="font-mono text-[10px] text-[#7B93A8] tabular-nums">{item.value}</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+          {MATS.map((m, i) => (
+            <div key={m.label}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: 2, background: m.color, flexShrink: 0 }} />
+                  <span style={{ fontFamily: MONO, fontSize: 11, color: "#3D5573" }}>{m.label}</span>
+                </div>
+                <span style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>{m.value}</span>
               </div>
-              <div className="h-[3px] rounded-full" style={{ background: "rgba(13,31,60,0.08)" }}>
-                <div className="h-full rounded-full" style={{ width: `${item.pct}%`, background: "#C79B4B" }} />
+              <div style={{ height: 4, borderRadius: 99, background: "rgba(13,31,60,0.07)", overflow: "hidden" }}>
+                <motion.div
+                  style={{ height: "100%", borderRadius: 99, background: m.color }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${m.pct}%` }}
+                  transition={{ delay: 1.1 + i * 0.13, duration: 0.8, ease }}
+                />
               </div>
             </div>
           ))}
         </div>
-        <button
-          className="mt-3.5 w-full font-mono text-[9px] uppercase tracking-wider text-[#C79B4B] border-t pt-3 text-left hover:opacity-70 transition-opacity"
-          style={{ borderColor: "rgba(13,31,60,0.07)" }}
-        >
+        <button style={{ marginTop: 14, paddingTop: 13, borderTop: "1px solid rgba(13,31,60,0.07)", width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
           View full BOQ →
         </button>
       </div>
-    </GlassCard>
+    </G>
   );
 }
 
-// ── Card 3: City Benchmark — bottom-left ──────────────────────────────────────
+// ── Card 3: City Benchmark ────────────────────────────────────────────────────
+const CITIES = [
+  { name: "Hosur",     min: 2450, max: 2850, color: "#C79B4B" },
+  { name: "Bengaluru", min: 3200, max: 3800, color: "#2B5EA7" },
+];
+const CITY_SCALE = 4200;
+
 function CityCard() {
   return (
-    <GlassCard style={{ width: 224 }}>
-      <div className="px-4 py-4">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#0E2248" }}>
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <span className="font-mono text-[11px] font-semibold text-[#0E2248] uppercase tracking-wider">Hosur</span>
-          <span className="ml-auto font-mono text-[9px] text-emerald-700 px-2 py-0.5 rounded-full"
-            style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
-            ↑ 3.6%
+    <G style={{ width: 252 }}>
+      <div style={{ padding: "18px 18px 16px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8" }}>
+            City Benchmark
+          </p>
+          <span style={{ fontFamily: MONO, fontSize: 8, color: "#059669", padding: "3px 8px", borderRadius: 20, background: "rgba(5,150,105,0.10)", border: "1px solid rgba(5,150,105,0.20)" }}>
+            Q2 2026
           </span>
         </div>
-        <p className="font-mono text-[9px] uppercase tracking-wider text-[#7B93A8] mb-1.5">
-          Construction Cost Range
-        </p>
-        <p className="font-serif text-[#0E2248] leading-none mb-3" style={{ fontSize: 22, letterSpacing: "-0.025em" }}>
-          ₹2,450 – ₹2,850
-          <span className="text-[12px] text-[#7B93A8] font-sans"> /sq.ft</span>
-        </p>
-        <button className="font-mono text-[9px] uppercase tracking-wider text-[#C79B4B] hover:opacity-70 transition-opacity">
-          View city trends →
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {CITIES.map((c, i) => (
+            <div key={c.name}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 7 }}>
+                <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 600, color: "#0E2248" }}>{c.name}</span>
+                <span style={{ fontFamily: MONO, fontSize: 9.5, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>
+                  ₹{c.min.toLocaleString()}–{c.max.toLocaleString()}
+                </span>
+              </div>
+              <div style={{ height: 8, borderRadius: 99, background: "rgba(13,31,60,0.07)", position: "relative" }}>
+                {/* base track */}
+                <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(c.min / CITY_SCALE) * 100}%`, width: `${((c.max - c.min) / CITY_SCALE) * 100}%`, borderRadius: 99, background: "rgba(13,31,60,0.10)" }} />
+                {/* animated fill */}
+                <motion.div
+                  style={{ position: "absolute", top: 0, bottom: 0, left: `${(c.min / CITY_SCALE) * 100}%`, borderRadius: 99, background: c.color }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((c.max - c.min) / CITY_SCALE) * 100}%` }}
+                  transition={{ delay: 1.2 + i * 0.18, duration: 0.85, ease }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <button style={{ marginTop: 14, paddingTop: 13, borderTop: "1px solid rgba(13,31,60,0.07)", width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
+          View all 12 cities →
         </button>
       </div>
-    </GlassCard>
+    </G>
   );
 }
 
-// ── Card 4: Built-up Area — bottom-center ─────────────────────────────────────
+// ── Card 4: Built-up Area ─────────────────────────────────────────────────────
 function AreaCard() {
+  const animated = useCountUp(1600, 1200, 1100);
   return (
-    <GlassCard style={{ width: 168 }}>
-      <div className="px-4 py-4">
-        <div className="flex items-center gap-1.5 mb-2.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <G style={{ width: 186 }}>
+      <div style={{ padding: "18px 18px 16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 12 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="1" /><path d="M3 9h18M9 21V9" />
           </svg>
-          <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-[#7B93A8]">Built-up Area</p>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.14em", color: "#7B93A8" }}>Built-up Area</p>
         </div>
-        <p className="font-serif text-[#0E2248] leading-none mb-1" style={{ fontSize: 32, letterSpacing: "-0.035em" }}>
-          1,600
+        <p style={{ fontFamily: SERIF, fontSize: 42, color: "#0E2248", lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 4, fontVariantNumeric: "tabular-nums" }}>
+          {animated.toLocaleString()}
         </p>
-        <p className="font-mono text-[10px] text-[#7B93A8] mb-2.5">sq.ft</p>
-        <span
-          className="font-mono text-[9px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
-          style={{ background: "rgba(13,31,60,0.06)", color: "#3D5573", border: "1px solid rgba(13,31,60,0.08)" }}
-        >
+        <p style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", marginBottom: 16 }}>sq.ft</p>
+        <span style={{ fontFamily: MONO, fontSize: 8.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "5px 13px", borderRadius: 20, background: "rgba(13,31,60,0.06)", color: "#3D5573", border: "1px solid rgba(13,31,60,0.09)" }}>
           3 BHK Villa
         </span>
       </div>
-    </GlassCard>
+    </G>
   );
 }
 
-// ── Card 5: Project Timeline — bottom-right ───────────────────────────────────
+// ── Card 5: Project Timeline ──────────────────────────────────────────────────
+const PHASES = [
+  { label: "Planning",  dur: "15 Days",   color: "#C79B4B", w: 10 },
+  { label: "Structure", dur: "2.5 Mo.",   color: "#0E2248", w: 34 },
+  { label: "Finishing", dur: "3 Mo.",     color: "#2B5EA7", w: 43 },
+  { label: "Handover",  dur: "15 Days",   color: "#7B93A8", w: 10 },
+];
+const PH_TOT = PHASES.reduce((s, p) => s + p.w, 0);
+
 function TimelineCard() {
-  const phases = [
-    { label: "Planning",  dur: "15 Days",    color: "#C79B4B", w: 12 },
-    { label: "Structure", dur: "2.5 Months", color: "#0E2248", w: 38 },
-    { label: "Finishing", dur: "3 Months",   color: "#1E3A5F", w: 44 },
-    { label: "Handover",  dur: "15 Days",    color: "#7B93A8", w: 12 },
-  ];
-  const total = phases.reduce((s, p) => s + p.w, 0);
   return (
-    <GlassCard style={{ width: 248 }}>
-      <div className="px-4 py-4">
-        <div className="flex items-center justify-between mb-3.5">
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#7B93A8]">Project Timeline</p>
-          <span className="font-mono text-[11px] font-semibold text-[#0E2248]">7.5 Months</span>
+    <G style={{ width: 276 }}>
+      <div style={{ padding: "18px 18px 16px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: "#7B93A8" }}>
+            Project Timeline
+          </p>
+          <span style={{ fontFamily: SERIF, fontSize: 15, color: "#0E2248", fontWeight: 400 }}>7.5 Months</span>
         </div>
-        {/* Segmented phase bar */}
-        <div className="flex rounded-full overflow-hidden h-2.5 gap-px mb-3.5">
-          {phases.map((p) => (
-            <div key={p.label} style={{ flex: p.w / total, background: p.color }} />
+
+        {/* Animated segmented bar */}
+        <div style={{ display: "flex", borderRadius: 99, overflow: "hidden", height: 11, gap: 2, marginBottom: 16 }}>
+          {PHASES.map((p, i) => (
+            <motion.div key={p.label}
+              style={{ flex: p.w / PH_TOT, background: p.color, transformOrigin: "left" }}
+              initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
+              transition={{ delay: 1.35 + i * 0.20, duration: 0.55, ease }}
+            />
           ))}
         </div>
-        {/* Phase rows */}
-        <div className="space-y-2">
-          {phases.map((p) => (
-            <div key={p.label} className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: p.color }} />
-                <span className="font-mono text-[10px] text-[#3D5573]">{p.label}</span>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {PHASES.map((p) => (
+            <div key={p.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+                <div style={{ width: 9, height: 9, borderRadius: "50%", background: p.color, flexShrink: 0 }} />
+                <span style={{ fontFamily: MONO, fontSize: 11, color: "#3D5573" }}>{p.label}</span>
               </div>
-              <span className="font-mono text-[10px] text-[#7B93A8] tabular-nums">{p.dur}</span>
+              <span style={{ fontFamily: MONO, fontSize: 11, color: "#7B93A8", fontVariantNumeric: "tabular-nums" }}>{p.dur}</span>
             </div>
           ))}
         </div>
       </div>
-    </GlassCard>
+    </G>
   );
 }
 
-// ── Trust bar ─────────────────────────────────────────────────────────────────
-const TRUST = [
-  {
-    label: "Verified Rates", sub: "Built from real BOQs",
-    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>,
-  },
-  {
-    label: "Transparent", sub: "No hidden assumptions",
-    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>,
-  },
-  {
-    label: "City Specific", sub: "12+ cities covered",
-    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>,
-  },
-  {
-    label: "BOQ Verified", sub: "Cross-checked with experts",
-    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14,2 14,8 20,8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>,
-  },
-];
-
-// ── Main ──────────────────────────────────────────────────────────────────────
+// ── Hero ──────────────────────────────────────────────────────────────────────
 export function HomeHero() {
   return (
     <section
       aria-labelledby="hero-heading"
       className="relative w-full overflow-hidden"
-      style={{ background: "#FAF8F5", minHeight: "90vh" }}
+      style={{ minHeight: "90vh" }}
     >
-      <div
-        className="mx-auto grid grid-cols-1 lg:grid-cols-[45fr_55fr]"
-        style={{ maxWidth: 1440, minHeight: "90vh" }}
-      >
+      {/* ── Full-bleed image ── */}
+      <motion.div className="absolute inset-0"
+        initial={{ scale: 1.06, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.6, ease }}>
+        <Image
+          src="/hero-villa.jpg"
+          alt="Premium luxury villa — Estimato construction cost intelligence"
+          fill priority className="object-cover"
+          style={{ objectPosition: "65% center" }}
+          sizes="100vw"
+        />
+      </motion.div>
 
-        {/* ══ LEFT ══════════════════════════════════════════════ */}
-        <div className="flex flex-col justify-center px-8 py-24 lg:py-0 lg:pl-14 xl:pl-20 lg:pr-10 xl:pr-16 relative z-10">
+      {/* ── Gradient layers ── */}
+      {/* Primary: navy left → transparent right */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
+        background: "linear-gradient(to right, rgba(7,16,40,0.97) 0%, rgba(7,16,40,0.94) 16%, rgba(7,16,40,0.82) 33%, rgba(7,16,40,0.42) 54%, rgba(7,16,40,0.12) 72%, transparent 100%)",
+      }} />
+      {/* Bottom depth */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 pointer-events-none" style={{
+        height: 260, background: "linear-gradient(to top, rgba(7,16,40,0.55) 0%, transparent 100%)",
+      }} />
+      {/* Subtle top fade */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 pointer-events-none" style={{
+        height: 130, background: "linear-gradient(to bottom, rgba(7,16,40,0.32) 0%, transparent 100%)",
+      }} />
+      {/* Breathing gold radial — right side ambience */}
+      <motion.div aria-hidden="true" className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 58% 52% at 74% 44%, rgba(199,155,75,0.075) 0%, transparent 70%)" }}
+        animate={{ opacity: [0.55, 1, 0.55] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-          {/* Eyebrow */}
+      {/* ── Dot grid — left zone (engineering precision feel) ── */}
+      <div aria-hidden="true" className="absolute pointer-events-none"
+        style={{ top: 0, bottom: 0, left: 0, width: "50%", zIndex: 2 }}>
+        <svg width="100%" height="100%" style={{ opacity: 0.045 }}>
+          <defs>
+            <pattern id="hgrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hgrid)" />
+        </svg>
+      </div>
+
+      {/* ── Content ── */}
+      <div className="relative flex mx-auto" style={{ zIndex: 10, maxWidth: 1440, minHeight: "90vh" }}>
+
+        {/* ══ LEFT: text ══════════════════════════════════════════════════════ */}
+        <div className="flex flex-col justify-center"
+          style={{ width: "44%", padding: "80px 52px 80px 64px" }}>
+
+          {/* Eyebrow — live indicator */}
           <motion.div
-            initial={{ opacity: 0, x: -14 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease }}
-            className="flex items-center gap-3 mb-9"
-          >
-            <div className="h-px w-7 flex-shrink-0" style={{ background: "#C79B4B", opacity: 0.6 }} />
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#7B93A8]">
-              Free for Indian Homeowners&nbsp;·&nbsp;2026 Verified Rates
+            style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
+            <span className="animate-pulse" style={{
+              width: 7, height: 7, borderRadius: "50%",
+              background: "#22C55E", boxShadow: "0 0 12px rgba(34,197,94,0.75)", flexShrink: 0,
+            }} />
+            <span style={{ fontFamily: MONO, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.16em", color: "rgba(199,155,75,0.82)" }}>
+              Free for Indian Homeowners&nbsp;·&nbsp;2026 Live Rates
             </span>
           </motion.div>
 
           {/* H1 */}
-          <motion.h1
-            id="hero-heading"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.05, delay: 0.1, ease }}
-            className="font-serif text-[#0E2248] mb-7"
-            style={{ fontSize: "clamp(40px, 5vw, 66px)", lineHeight: 1.04, letterSpacing: "-0.033em", fontWeight: 400 }}
-          >
-            Plan your home<br />
-            with numbers that<br />
-            actually{" "}
-            <em className="not-italic" style={{ color: "#C79B4B" }}>hold up.</em>
+          <motion.h1 id="hero-heading"
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.12, ease }}
+            style={{ fontFamily: SERIF, fontSize: "clamp(36px, 4.4vw, 60px)", lineHeight: 1.08, letterSpacing: "-0.026em", fontWeight: 400, color: "#FFFFFF", marginBottom: 28 }}>
+            Plan your home with numbers
+            <br />
+            that actually{" "}
+            <motion.em className="not-italic" style={{ color: "#C79B4B" }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ delay: 0.58, duration: 0.8 }}>
+              hold up.
+            </motion.em>
           </motion.h1>
 
           {/* Gold rule */}
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.65, delay: 0.28, ease }}
-            style={{ width: 40, height: 1, background: "#C79B4B", marginBottom: 26, transformOrigin: "left" }}
+            initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
+            transition={{ duration: 0.55, delay: 0.34, ease }}
+            style={{ width: 46, height: 1.5, background: "#C79B4B", marginBottom: 28, transformOrigin: "left", opacity: 0.9 }}
           />
 
           {/* Sub */}
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.34, ease }}
-            className="text-[#3D5573] mb-10"
-            style={{ fontSize: 17, maxWidth: "44ch", lineHeight: 1.78 }}
-          >
+            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.78, delay: 0.40, ease }}
+            style={{ fontSize: 17, lineHeight: 1.84, color: "rgba(255,255,255,0.62)", maxWidth: "38ch", marginBottom: 44 }}>
             A construction cost projection built from real Hosur and Bengaluru BOQs.
-            Updated quarterly. Seven steps. No contractor pitch.
+            Updated quarterly. Five steps. No contractor pitch.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.44, ease }}
-            className="flex flex-col sm:flex-row gap-3 mb-14"
-          >
-            <Link href="/plan">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto px-9 gap-2 group">
-                Begin your projection
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Button>
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.50, ease }}
+            style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 58 }}>
+            <Link href="/plan"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 10,
+                background: "#C79B4B", color: "#0A1432",
+                padding: "16px 34px", borderRadius: 12, fontWeight: 700, fontSize: 15,
+                letterSpacing: "0.01em", textDecoration: "none",
+                boxShadow: "0 6px 30px rgba(199,155,75,0.52)",
+                transition: "transform 0.16s ease, box-shadow 0.16s ease",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 40px rgba(199,155,75,0.65)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 30px rgba(199,155,75,0.52)";
+              }}>
+              Begin your estimation
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
-            <Link href="/methodology">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto px-8">
-                Read the methodology
-              </Button>
+            <Link href="/methodology"
+              style={{
+                display: "inline-flex", alignItems: "center",
+                background: "rgba(255,255,255,0.08)",
+                backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: "rgba(255,255,255,0.82)",
+                padding: "16px 28px", borderRadius: 12, fontWeight: 500, fontSize: 15,
+                textDecoration: "none",
+                transition: "background 0.16s ease, border-color 0.16s ease",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.30)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)";
+              }}>
+              Read the methodology
             </Link>
           </motion.div>
 
           {/* Trust row */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.56 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 pt-8 border-t"
-            style={{ borderColor: "rgba(13,31,60,0.1)" }}
-          >
-            {TRUST.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.62 + i * 0.08 }}
-              >
-                <div className="mb-2">{item.icon}</div>
-                <p className="font-serif text-[#0E2248] mb-0.5"
-                  style={{ fontSize: 14, fontWeight: 400, letterSpacing: "-0.008em", lineHeight: 1.25 }}>
-                  {item.label}
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.62 }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 18px", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+            {[
+              { label: "Verified Rates",   stat: "2,400+" },
+              { label: "Transparent",      stat: "5 Steps" },
+              { label: "City Specific",    stat: "12 Cities" },
+              { label: "BOQ Verified",     stat: "Q2 2026" },
+            ].map((item, i) => (
+              <motion.div key={item.label}
+                initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.68 + i * 0.08 }}>
+                <p style={{ fontFamily: SERIF, fontSize: 20, color: "rgba(255,255,255,0.94)", fontWeight: 400, lineHeight: 1.1, marginBottom: 5 }}>
+                  {item.stat}
                 </p>
-                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-[#7B93A8] leading-snug">
-                  {item.sub}
+                <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.11em", color: "rgba(255,255,255,0.36)", lineHeight: 1.5 }}>
+                  {item.label}
                 </p>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* ══ RIGHT — image + cards ════════════════════════════ */}
-        <div className="relative hidden lg:block" style={{ minHeight: "90vh" }}>
-
-          {/* Villa image */}
-          <motion.div
-            className="absolute inset-0"
-            initial={{ scale: 1.04, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.3, ease }}
-          >
-            <Image
-              src="/hero-villa.jpg"
-              alt="Contemporary luxury villa — Estimato helps you plan and budget with real numbers"
-              fill
-              priority
-              className="object-cover"
-              style={{ objectPosition: "left center" }}
-              sizes="55vw"
-            />
-          </motion.div>
-
-          {/* Seamless left-edge blend — wide gradient into page bg */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-y-0 left-0 pointer-events-none z-10"
-            style={{
-              width: "45%",
-              background: "linear-gradient(to right, #FAF8F5 0%, rgba(250,248,245,0.7) 40%, rgba(250,248,245,0) 100%)",
-            }}
-          />
-
-          {/* Bottom depth gradient */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-64 pointer-events-none z-10"
-            style={{ background: "linear-gradient(to top, rgba(14,34,72,0.32) 0%, transparent 100%)" }}
-          />
-
-          {/* ── Card 1: Cost — top-right ── */}
-          <FloatingCard top={24} right={20} entryDelay={0.75} entryFrom={{ opacity: 0, y: -16 }} floatDelay={0}>
+        {/* ══ RIGHT: card zone ════════════════════════════════════════════════ */}
+        <div className="relative flex-1 hidden lg:block">
+          {/* Cost: top right */}
+          <F style={{ top: 52, right: 28 }} ed={0.70} ef={{ opacity: 0, y: -22 }} fd={0}>
             <CostCard />
-          </FloatingCard>
-
-          {/* ── Card 2: Materials — mid-right, below cost card ── */}
-          <FloatingCard top={260} right={20} entryDelay={0.92} floatDelay={1.2}>
+          </F>
+          {/* Materials: mid right */}
+          <F style={{ top: 408, right: 28 }} ed={0.88} fd={1.3}>
             <MaterialCard />
-          </FloatingCard>
-
-          {/* ── Card 3: City — bottom-left ── */}
-          <FloatingCard bottom={140} left={20} entryDelay={1.05} floatDelay={0.7}>
+          </F>
+          {/* City: bottom left of card zone */}
+          <F style={{ bottom: 168, left: 18 }} ed={1.04} fd={0.65}>
             <CityCard />
-          </FloatingCard>
-
-          {/* ── Card 4: Area — bottom-center ── */}
-          <FloatingCard bottom={30} left="34%" entryDelay={1.15} floatDelay={1.9}>
+          </F>
+          {/* Area: bottom centre */}
+          <F style={{ bottom: 40, left: "28%" }} ed={1.18} fd={1.85}>
             <AreaCard />
-          </FloatingCard>
-
-          {/* ── Card 5: Timeline — bottom-right ── */}
-          <FloatingCard bottom={30} right={20} entryDelay={1.25} floatDelay={1.0}>
+          </F>
+          {/* Timeline: bottom right */}
+          <F style={{ bottom: 40, right: 28 }} ed={1.30} fd={1.05}>
             <TimelineCard />
-          </FloatingCard>
-
+          </F>
         </div>
       </div>
 
-      {/* Mobile: image below content */}
-      <div className="relative lg:hidden overflow-hidden" style={{ height: "56vw", minHeight: 240 }}>
-        <Image
-          src="/hero-villa.jpg"
-          alt="Contemporary luxury villa"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "30% center" }}
-          sizes="100vw"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, #FAF8F5 0%, transparent 30%)" }}
-        />
+      {/* ── Mobile: horizontal card strip ── */}
+      <div className="lg:hidden relative z-10 px-5 pb-10 flex gap-3 overflow-x-auto"
+        style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+        <div className="flex-shrink-0"><CostCard /></div>
+        <div className="flex-shrink-0"><CityCard /></div>
+        <div className="flex-shrink-0"><AreaCard /></div>
       </div>
     </section>
   );

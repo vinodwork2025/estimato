@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Plan your home build",
   description:
-    "Get an honest construction cost estimate in 7 steps. No contractor pitch, no upsell.",
+    "Get an honest construction cost estimate in 5 steps. No contractor pitch, no upsell.",
 };
 
 export default function PlannerLayout({

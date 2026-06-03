@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
   description:
 
-    "Plan your home construction budget in 7 steps. Honest numbers, no contractor pitch. Free for Indian homeowners.",
+    "Plan your home construction budget in 5 steps. Honest numbers, no contractor pitch. Free for Indian homeowners.",
 
   openGraph: {
 
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
     description:
 
-      "Get an honest home construction estimate in 7 steps. Covers Hosur, Sarjapura, Bengaluru, and 12+ cities.",
+      "Get an honest home construction estimate in 5 steps. Covers Hosur, Sarjapura, Bengaluru, and 12+ cities.",
 
     images: [{ url: "/og-home.png", width: 1200, height: 630 }],
 
@@ -120,7 +120,7 @@ const FAQ_ITEMS: FAQItem[] = [
 
     answer:
 
-      "Yes. After completing the 7 steps, you can request a 12-page PDF report with the full breakdown, timeline, hidden cost warnings, and smart observations. Just enter your WhatsApp number.",
+      "Yes. After completing the 5 steps, you can request a 12-page PDF report with the full breakdown, timeline, hidden cost warnings, and smart observations. Just enter your WhatsApp number.",
 
   },
 
@@ -136,7 +136,7 @@ const HOW_IT_WORKS = [
 
     title: "Tell us about your build",
 
-    body: "Home type, location, plot size, floors, quality tier — 7 considered steps. No sign-up, no obligation.",
+    body: "Home type, location, plot size, floors, quality tier — 5 considered steps. No sign-up, no obligation.",
 
   },
 

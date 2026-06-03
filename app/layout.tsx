@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Estimato",
   },
   description:
-    "Estimato helps Indian homeowners plan their home construction budget in 7 steps, with honest numbers and no contractor pitch.",
+    "Estimato helps Indian homeowners plan their home construction budget in 5 steps, with honest numbers and no contractor pitch.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in"
   ),

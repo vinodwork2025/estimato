@@ -52,7 +52,7 @@ export const QUALITY_TIERS = [
 // ─── CTAs ─────────────────────────────────────────────────────────────────────
 
 export const CTA = {
-  heroPrimary: "Begin your projection",
+  heroPrimary: "Begin your estimation",
   heroSecondary: "Read the methodology",
   navPrimary: "Begin",
   planStart: "Begin",
@@ -70,7 +70,7 @@ export const CTA = {
 export const HOME = {
   heroHeadline: "Plan your home with numbers\nthat actually hold up.",
   heroSubhead:
-    "A construction cost projection built from real Hosur and Bengaluru BOQs. Updated quarterly. Seven steps. No contractor pitch.",
+    "A construction cost projection built from real Hosur and Bengaluru BOQs. Updated quarterly. Five steps. No contractor pitch.",
   heroMethodologyNudge: "Read our methodology before you trust the number.",
   processLabel: "The process",
   processHeadline: "Three steps to a number you can defend.",
@@ -142,7 +142,7 @@ export const HOW_IT_WORKS = [
   {
     step: "01",
     title: "Tell us about the build",
-    body: "Home type, location, plot size, floors, and finishing tier. Seven steps. About three minutes.",
+    body: "Home type, location, plot size, floors, and finishing tier. Five steps. About three minutes.",
   },
   {
     step: "02",

@@ -349,7 +349,7 @@ export default function MethodologyPage() {
             <nav className="flex flex-col sm:flex-row gap-x-8 gap-y-3" aria-label="Footer navigation">
               <Link href="/" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Home</Link>
               <Link href="/about" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">About</Link>
-              <Link href="/plan" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Begin your projection</Link>
+              <Link href="/plan" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Begin your estimation</Link>
             </nav>
           </div>
           <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
