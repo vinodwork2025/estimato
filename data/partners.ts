@@ -14,7 +14,7 @@ export const SEED_PARTNERS: Partner[] = [
     websiteUrl: "https://designintend.com",
     whatsappNumber: "+917397606382",
     email: "vinod@estimato.in",
-    exclusiveCities: ["hosur", "sarjapura", "attibele", "bagalur", "krishnagiri"],
+    exclusiveCities: ["hosur", "bangalore-outskirts", "bangalore-urban", "sarjapura", "attibele", "bagalur", "krishnagiri"],
     status: "active",
     perLeadPrice: 3000,
     isFounding: true,
