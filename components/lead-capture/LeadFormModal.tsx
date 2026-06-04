@@ -57,7 +57,11 @@ async function generateAndUploadPDF(
     form.append("file", blob, "report.pdf");
 
     const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
-    if (!res.ok) return undefined;
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      console.error("[PDF] upload failed", res.status, errBody);
+      return undefined;
+    }
     const json = await res.json();
     return json.url as string | undefined;
   } catch (err) {

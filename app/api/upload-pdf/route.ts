@@ -35,6 +35,16 @@ export async function POST(request: Request) {
     const fileName = `report-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.pdf`;
     const pdfBlob = new Blob([arrayBuffer], { type: "application/pdf" });
 
+    // Ensure bucket exists — creates it on first use if migration hasn't run
+    const { error: bucketError } = await supabase.storage.createBucket("reports", {
+      public: true,
+      fileSizeLimit: 5 * 1024 * 1024,
+      allowedMimeTypes: ["application/pdf"],
+    });
+    if (bucketError && !bucketError.message.includes("already exists")) {
+      console.error("upload-pdf: bucket create error:", bucketError.message);
+    }
+
     const { error } = await supabase.storage
       .from("reports")
       .upload(fileName, pdfBlob, { contentType: "application/pdf", upsert: false });
