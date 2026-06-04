@@ -13,7 +13,7 @@ export const SEED_PARTNERS: Partner[] = [
     logoUrl: "/images/partners/design-intend-logo.svg",
     websiteUrl: "https://designintend.com",
     whatsappNumber: "+917397606382",
-    email: "hello@designintend.com",
+    email: "vinod@estimato.in",
     exclusiveCities: ["hosur", "sarjapura", "attibele", "bagalur", "krishnagiri"],
     status: "active",
     perLeadPrice: 3000,

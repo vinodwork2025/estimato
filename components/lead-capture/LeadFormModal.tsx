@@ -16,7 +16,7 @@ const schema = z.object({
   name: z.string().min(2, "Enter your name").max(100),
   phone: z.string().regex(/^\d{10}$/, "Enter a valid 10-digit number"),
   area: z.string().optional(),
-  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
+  email: z.string().email("Enter a valid email"),
   planningTimeline: z.enum(["within-3-months", "3-6-months", "6-12-months", "exploring"]),
   consentToPartnerShare: z.boolean(),
 });
@@ -104,11 +104,8 @@ export function LeadFormModal({
     });
 
     // Step 1: Generate PDF (non-blocking — failure doesn't stop submission)
-    let pdfUrl: string | undefined;
-    if (data.email) {
-      setLoadingStep("Generating your report…");
-      pdfUrl = await generateAndUploadPDF(data.name, input, result);
-    }
+    setLoadingStep("Generating your report…");
+    let pdfUrl: string | undefined = await generateAndUploadPDF(data.name, input, result);
 
     // Step 2: Submit lead
     setLoadingStep("Submitting…");
@@ -122,7 +119,7 @@ export function LeadFormModal({
           countryCode: "+91",
           city: input.city ?? "",
           area: data.area,
-          email: data.email || undefined,
+          email: data.email,
           planningTimeline: data.planningTimeline,
           consentToPartnerShare: data.consentToPartnerShare,
           calculationInput: input,

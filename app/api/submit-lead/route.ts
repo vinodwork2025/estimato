@@ -14,7 +14,7 @@ const LeadSchema = z.object({
   countryCode: z.string().default("+91"),
   city: z.string().min(2),
   area: z.string().optional(),
-  email: z.string().email().optional().or(z.literal("")),
+  email: z.string().email(),
   planningTimeline: z.enum(["within-3-months", "3-6-months", "6-12-months", "exploring"]),
   consentToPartnerShare: z.boolean(),
   calculationInput: z.object({
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         name: data.name,
         phone: data.phone,
         country_code: data.countryCode,
-        email: data.email || null,
+        email: data.email,
         city: data.city,
         area: data.area || null,
         planning_timeline: data.planningTimeline,
@@ -73,25 +73,23 @@ export async function POST(request: Request) {
     if (error) throw new Error(error.message);
 
     // Send PDF report via email (fire-and-forget)
-    if (data.email) {
-      fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-report`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-internal-secret": process.env.INTERNAL_API_SECRET ?? "",
-        },
-        body: JSON.stringify({
-          leadId: lead.id,
-          email: data.email,
-          name: data.name,
-          city: data.city,
-          homeType: data.calculationInput?.homeType,
-          result: data.calculationResult,
-          partnerName: partner?.name ?? null,
-          pdfUrl: data.pdfUrl || null,
-        }),
-      }).catch(() => {});
-    }
+    fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-report`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-internal-secret": process.env.INTERNAL_API_SECRET ?? "",
+      },
+      body: JSON.stringify({
+        leadId: lead.id,
+        email: data.email,
+        name: data.name,
+        city: data.city,
+        homeType: data.calculationInput?.homeType,
+        result: data.calculationResult,
+        partnerName: partner?.name ?? null,
+        pdfUrl: data.pdfUrl || null,
+      }),
+    }).catch(() => {});
 
     // Notify partner
     if (partner && data.consentToPartnerShare) {
