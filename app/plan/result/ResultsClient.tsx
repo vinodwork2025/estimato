@@ -152,16 +152,16 @@ function HeroSection({
             style={{ width: "48px", height: "2px", background: "var(--accent)", marginBottom: "20px" }}
           />
           {isUltraLuxury ? (
-            <p className="text-text-secondary" style={{ fontSize: "15px", maxWidth: "44ch", lineHeight: 1.65 }}>
+            <p className="text-text-secondary" style={{ fontSize: "17px", maxWidth: "44ch", lineHeight: 1.65 }}>
               Ultra Luxury costs vary based on material and design choices.{" "}
               Get a detailed estimate from our architect.
             </p>
           ) : (
             <>
-              <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
+              <p className="font-mono text-text-secondary" style={{ fontSize: "15px" }}>
                 Based on {tier} tier · {sqft.toLocaleString("en-IN")} sq ft · {city}
               </p>
-              <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "11px", letterSpacing: "0.04em" }}>
+              <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "13px", letterSpacing: "0.04em" }}>
                 Construction cost only. Excludes interiors, furniture, and architect fees.
               </p>
             </>
@@ -195,7 +195,7 @@ function HeroSection({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="font-mono text-text-secondary mt-5"
-          style={{ fontSize: "11px", letterSpacing: "0.06em" }}
+          style={{ fontSize: "13px", letterSpacing: "0.06em" }}
         >
           Free · No sales call · Based on verified BOQs from real {city} projects
         </motion.p>
@@ -226,7 +226,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
           >
             Where does the money go?
           </h2>
-          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "18px", maxWidth: "52ch" }}>
             Seven cost segments — each one a real line item you can discuss with your contractor.
           </p>
         </motion.div>
@@ -254,11 +254,11 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
                   <div className="flex-1 min-w-0">
                     <p
                       className="font-serif text-navy mb-1"
-                      style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+                      style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}
                     >
                       {meta.label}
                     </p>
-                    <p className="text-text-secondary" style={{ fontSize: "14px", lineHeight: 1.55 }}>
+                    <p className="text-text-secondary" style={{ fontSize: "16px", lineHeight: 1.55 }}>
                       {meta.desc}
                     </p>
                   </div>
@@ -269,7 +269,7 @@ function BreakdownSection({ breakdown }: { breakdown: CalculationResult["breakdo
                     >
                       {formatINRShort(amount)}
                     </p>
-                    <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>
+                    <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
                       {pct}% of total
                     </p>
                   </div>
@@ -312,7 +312,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
           >
             How long will it take?
           </h2>
-          <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "18px" }}>
             Total build time:{" "}
             <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>
               {daysToMonths(totalDays)}
@@ -349,18 +349,18 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
               </p>
               <p
                 className="font-mono text-text-secondary mb-3"
-                style={{ fontSize: "12px" }}
+                style={{ fontSize: "14px" }}
               >
                 {daysToMonths(phase.durationDays)}
               </p>
-              <p className="text-text-secondary" style={{ fontSize: "13px", lineHeight: 1.6 }}>
+              <p className="text-text-secondary" style={{ fontSize: "15px", lineHeight: 1.6 }}>
                 {phase.description}
               </p>
               <div
                 className="mt-4 pt-4"
                 style={{ borderTop: "1px solid var(--border)" }}
               >
-                <p className="font-mono text-text-secondary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "12px", letterSpacing: "0.1em" }}>
                   PAYMENT DUE
                 </p>
                 <p
@@ -369,7 +369,7 @@ function TimelineSection({ phases, totalDays }: { phases: CalculationResult["tim
                 >
                   {formatINRShort(phase.cost)}
                 </p>
-                <p className="font-mono text-text-secondary" style={{ fontSize: "10px" }}>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "12px" }}>
                   {phase.paymentPercent}% of total
                 </p>
               </div>
@@ -410,7 +410,7 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
           >
             Things your contractor may not mention.
           </h2>
-          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "18px", maxWidth: "52ch" }}>
             These are real cost risks we surface upfront so you can budget for them.
           </p>
         </motion.div>
@@ -434,11 +434,11 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
               </p>
               <p
                 className="font-serif text-navy mb-2"
-                style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+                style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}
               >
                 {w.title}
               </p>
-              <p className="text-text-secondary mb-4" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+              <p className="text-text-secondary mb-4" style={{ fontSize: "16px", lineHeight: 1.65 }}>
                 {w.message}
               </p>
               {w.estimatedImpact && (
@@ -447,7 +447,7 @@ function WarningsSection({ warnings }: { warnings: CalculationResult["hiddenCost
                   style={{
                     background: "rgba(168,130,59,0.07)",
                     borderRadius: "2px",
-                    fontSize: "12px",
+                    fontSize: "14px",
                     color: "var(--text-secondary)",
                   }}
                 >
@@ -499,7 +499,7 @@ function SmartInsightsSection({ insights }: { insights: CalculationResult["smart
           >
             Specific to your build.
           </h2>
-          <p className="text-text-secondary mt-3" style={{ fontSize: "16px", maxWidth: "52ch" }}>
+          <p className="text-text-secondary mt-3" style={{ fontSize: "18px", maxWidth: "52ch" }}>
             Observations based on your plot, city, configuration, and quality choice.
           </p>
         </motion.div>
@@ -526,11 +526,11 @@ function SmartInsightsSection({ insights }: { insights: CalculationResult["smart
               </p>
               <p
                 className="font-serif text-navy mb-2"
-                style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em" }}
+                style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}
               >
                 {insight.title}
               </p>
-              <p className="text-text-secondary" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+              <p className="text-text-secondary" style={{ fontSize: "16px", lineHeight: 1.65 }}>
                 {insight.message}
               </p>
             </motion.div>
@@ -607,7 +607,7 @@ function OtherTiersSection({
                 <p
                   className="font-serif mb-1"
                   style={{
-                    fontSize: "16px",
+                    fontSize: "18px",
                     fontWeight: 400,
                     color: isSelected ? "white" : "var(--text-primary)",
                     letterSpacing: "-0.01em",
@@ -628,7 +628,7 @@ function OtherTiersSection({
                 </p>
                 <p
                   style={{
-                    fontSize: "12px",
+                    fontSize: "14px",
                     color: isSelected ? "rgba(255,255,255,0.55)" : "var(--text-tertiary)",
                     lineHeight: 1.5,
                   }}
@@ -639,7 +639,7 @@ function OtherTiersSection({
             );
           })}
         </div>
-        <p className="font-mono text-text-secondary mt-4" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+        <p className="font-mono text-text-secondary mt-4" style={{ fontSize: "12px", letterSpacing: "0.08em" }}>
           All figures use the same location, area, and floor count as your estimate. Only the finish level changes.
         </p>
       </div>
@@ -662,7 +662,7 @@ function FooterCTA({ onTalkArchitect }: { onTalkArchitect: () => void }) {
           >
             Want to talk through this with an architect?
           </h2>
-          <p className="text-text-secondary mb-8" style={{ fontSize: "16px", maxWidth: "48ch", lineHeight: 1.7 }}>
+          <p className="text-text-secondary mb-8" style={{ fontSize: "18px", maxWidth: "48ch", lineHeight: 1.7 }}>
             We introduce one verified firm in your area. No cold calls, no pressure. You decide if you want to talk.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">

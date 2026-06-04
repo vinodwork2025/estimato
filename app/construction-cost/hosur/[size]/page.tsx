@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
@@ -315,7 +315,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
             </h2>
             <p
               className="font-sans mb-10"
-              style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}
+              style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}
             >
               Ranges computed from verified Hosur rates × {config.bua.toLocaleString("en-IN")} sqft built-up area.
               All figures are civil construction only — interiors billed separately.
@@ -367,7 +367,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                         <strong>{fmtLakh(range.min)}</strong>
                         <span
                           className="font-mono"
-                          style={{ fontSize: "14px", color: "var(--text-tertiary)", margin: "0 6px" }}
+                          style={{ fontSize: "16px", color: "var(--text-tertiary)", margin: "0 6px" }}
                         >
                           –
                         </span>
@@ -375,7 +375,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                       </p>
                       <p
                         className="font-mono"
-                        style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+                        style={{ fontSize: "13px", color: "var(--text-tertiary)" }}
                       >
                         {fmtRate(perSqft.min)}–{fmtRate(perSqft.max)}/sqft × {config.bua.toLocaleString("en-IN")} sqft
                       </p>
@@ -383,7 +383,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                     <div className="md:pt-1">
                       <p
                         className="font-sans"
-                        style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}
+                        style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                       >
                         {description}
                       </p>
@@ -422,17 +422,17 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                   >
                     Ultra Luxury
                   </p>
-                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>
+                  <p className="font-mono" style={{ fontSize: "18px", color: "var(--text-tertiary)" }}>
                     Custom quote
                   </p>
-                  <p className="font-mono" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>
+                  <p className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
                     ₹5,000+ per sqft
                   </p>
                 </div>
                 <div className="md:pt-1">
                   <p
                     className="font-sans mb-3"
-                    style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}
+                    style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                   >
                     Imported stone, Kohler or Duravit sanitary, Lutron lighting.
                     No standard rate applies — priced from a full design brief.
@@ -470,7 +470,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
           <AnimateIn direction="up" delay={0.1}>
             <p
               className="font-mono mt-8 pt-6 border-t border-border"
-              style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}
+              style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}
             >
               "Rates built from real project BOQs and verified against current Hosur and
               Bangalore contractor quotes, 2026"
@@ -521,14 +521,14 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                 <p
                   key={i}
                   className="font-sans"
-                  style={{ fontSize: "16px", lineHeight: 1.8, color: "var(--text-secondary)" }}
+                  style={{ fontSize: "18px", lineHeight: 1.8, color: "var(--text-secondary)" }}
                 >
                   {para}
                 </p>
               ))}
               <p
                 className="font-mono"
-                style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+                style={{ fontSize: "13px", color: "var(--text-tertiary)" }}
               >
                 As of 2026. Hosur Town Municipality (HTM) jurisdiction. Rates verified against current BOQs.
               </p>
@@ -632,14 +632,14 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
 
                 <p
                   className="font-sans mb-4"
-                  style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}
+                  style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}
                 >
                   {partner.tagline}
                 </p>
 
                 <p
                   className="font-sans mb-6"
-                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}
+                  style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}
                 >
                   Led by {partner.founderName}. {partner.founderBio} Exclusive
                   territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
@@ -698,7 +698,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                     key={s}
                     className="font-mono py-2 border-b last:border-b-0"
                     style={{
-                      fontSize: "12px",
+                      fontSize: "14px",
                       color: "var(--text-secondary)",
                       borderColor: "rgba(196,154,60,0.12)",
                     }}
@@ -752,13 +752,13 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                   </p>
                   <p
                     className="font-serif mb-2 group-hover:text-navy transition-colors"
-                    style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
+                    style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                   >
                     {link.title}
                   </p>
                   <p
                     className="font-sans"
-                    style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
+                    style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                   >
                     {link.desc}
                   </p>
@@ -793,7 +793,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
               <p
                 className="font-sans mb-8 mx-auto"
                 style={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   lineHeight: 1.7,
                   color: "rgba(255,255,255,0.65)",
                   maxWidth: "480px",

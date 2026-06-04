@@ -1,4 +1,4 @@
-import {
+﻿import {
   Document,
   Page,
   Text,
@@ -101,7 +101,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 0,
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 10,
+    fontSize: 12,
     color: TEXT,
   },
 
@@ -129,7 +129,7 @@ const s = StyleSheet.create({
   // Helvetica for letter-spaced uppercase — no glyph-displacement bug
   headerTitle: {
     fontFamily: "Helvetica-Bold",
-    fontSize: 8,
+    fontSize: 10,
     color: "rgba(255,255,255,0.55)",
     letterSpacing: 1.5,
     textTransform: "uppercase",
@@ -137,7 +137,7 @@ const s = StyleSheet.create({
   },
   headerDate: {
     fontFamily: "Helvetica",
-    fontSize: 9,
+    fontSize: 11,
     color: "rgba(255,255,255,0.42)",
   },
   accentLine: {
@@ -155,14 +155,14 @@ const s = StyleSheet.create({
   clientName: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 13,
+    fontSize: 15,
     color: NAVY,
     marginBottom: 5,
   },
   projectMeta: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 10,
+    fontSize: 12,
     color: SECONDARY,
     marginBottom: 28,
     lineHeight: 1.45,
@@ -177,7 +177,7 @@ const s = StyleSheet.create({
   summaryLabel: {
     // Helvetica — letter-spaced, no bug
     fontFamily: "Helvetica-Bold",
-    fontSize: 8,
+    fontSize: 10,
     color: "rgba(255,255,255,0.48)",
     letterSpacing: 2,
     textTransform: "uppercase",
@@ -205,7 +205,7 @@ const s = StyleSheet.create({
   summaryMetaItem: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 11,
     color: "rgba(255,255,255,0.58)",
   },
   summaryMetaValue: {
@@ -223,7 +223,7 @@ const s = StyleSheet.create({
   },
   sectionLabel: {
     fontFamily: "Helvetica-Bold",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1.8,
     textTransform: "uppercase",
     color: GOLD,
@@ -255,14 +255,14 @@ const s = StyleSheet.create({
   breakdownLabel: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 10,
+    fontSize: 12,
     color: TEXT,
     flex: 1,
   },
   breakdownPct: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 11,
     color: SECONDARY,
     width: 36,
     textAlign: "right",
@@ -270,7 +270,7 @@ const s = StyleSheet.create({
   breakdownAmount: {
     fontFamily: "Inter",
     fontWeight: 600,
-    fontSize: 10,
+    fontSize: 12,
     color: NAVY,
     width: 72,
     textAlign: "right",
@@ -288,7 +288,7 @@ const s = StyleSheet.create({
   phaseNumber: {
     // Helvetica-Bold — letterSpacing safe, no ₹ here
     fontFamily: "Helvetica-Bold",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
     color: GOLD,
     width: 22,
@@ -298,20 +298,20 @@ const s = StyleSheet.create({
   phaseName: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 10,
+    fontSize: 12,
     color: NAVY,
     marginBottom: 3,
   },
   phaseDetail: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 11,
     color: SECONDARY,
   },
   phaseAmount: {
     fontFamily: "Inter",
     fontWeight: 600,
-    fontSize: 10,
+    fontSize: 12,
     color: NAVY,
     textAlign: "right",
     width: 64,
@@ -338,21 +338,21 @@ const s = StyleSheet.create({
   warningTitle: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 10,
+    fontSize: 12,
     color: TEXT,
     marginBottom: 3,
   },
   warningText: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 11,
     color: SECONDARY,
     lineHeight: 1.6,
   },
   warningImpact: {
     fontFamily: "Inter",
     fontWeight: 600,
-    fontSize: 8,
+    fontSize: 10,
     color: AMBER,
     marginTop: 4,
   },
@@ -378,14 +378,14 @@ const s = StyleSheet.create({
   insightTitle: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 10,
+    fontSize: 12,
     color: TEXT,
     marginBottom: 3,
   },
   insightText: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 11,
     color: SECONDARY,
     lineHeight: 1.6,
   },
@@ -410,7 +410,7 @@ const s = StyleSheet.create({
   tierName: {
     // Helvetica — letterSpacing safe, no ₹ in tier names
     fontFamily: "Helvetica",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
     color: SECONDARY,
     textTransform: "uppercase",
@@ -418,7 +418,7 @@ const s = StyleSheet.create({
   },
   tierNameActive: {
     fontFamily: "Helvetica",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
     color: "rgba(255,255,255,0.58)",
     textTransform: "uppercase",
@@ -427,13 +427,13 @@ const s = StyleSheet.create({
   tierAmount: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 12,
+    fontSize: 14,
     color: NAVY,
   },
   tierAmountActive: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 12,
+    fontSize: 14,
     color: WHITE,
   },
 
@@ -448,7 +448,7 @@ const s = StyleSheet.create({
   disclaimerText: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 8,
+    fontSize: 10,
     color: SECONDARY,
     lineHeight: 1.7,
   },
@@ -466,20 +466,20 @@ const s = StyleSheet.create({
   footerBrand: {
     fontFamily: "Inter",
     fontWeight: 700,
-    fontSize: 9,
+    fontSize: 11,
     color: NAVY,
     marginBottom: 3,
   },
   footerNote: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 8,
+    fontSize: 10,
     color: "#9CA3AF",
   },
   footerMeta: {
     fontFamily: "Inter",
     fontWeight: 400,
-    fontSize: 8,
+    fontSize: 10,
     color: SECONDARY,
     textAlign: "right",
     lineHeight: 1.7,
@@ -605,7 +605,7 @@ export function ReportDocument({ name, input, result }: ReportDocumentProps) {
             >
               Mid-point total
             </Text>
-            <Text style={{ ...s.breakdownAmount, fontSize: 11 }}>
+            <Text style={{ ...s.breakdownAmount, fontSize: 13 }}>
               {fmtINR(totalMid)}
             </Text>
           </View>

@@ -10,9 +10,9 @@
     --bg-navy: #0D1F3C;
 
     /* ── Text ─────────────────────────────────────────────────────── */
-    --text-primary: #0D1F3C;
-    --text-secondary: #3D5573;
-    --text-tertiary: #7B93A8;
+    --text-primary: #09162A;
+    --text-secondary: #2B3C51;
+    --text-tertiary: #566776;
     --text-inverse: #FFFFFF;
 
     /* ── Accent — Warm Gold ───────────────────────────────────────── */
@@ -49,7 +49,7 @@
 
   body {
     font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -72,6 +72,7 @@
   h1, h2, h3, h4 {
     text-wrap: balance;
     font-feature-settings: "kern" 1, "liga" 1;
+    color: #0D1F3C;
   }
 
   * {
@@ -163,7 +164,7 @@
   /* Architectural label — mono, spaced */
   .label-arch {
     font-family: var(--font-mono), monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-tertiary);

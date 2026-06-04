@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -106,7 +106,7 @@ function CostCard() {
       <div style={{ padding: "18px 18px 0" }}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 10 }}>
           <div>
-            <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3, marginBottom: 7 }}>
+            <p style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3, marginBottom: 7 }}>
               Total Estimated Cost
             </p>
             <p style={{ fontFamily: SERIF, fontSize: 29, color: W1, lineHeight: 1, letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
@@ -134,9 +134,9 @@ function CostCard() {
             <div key={r.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
                 <div style={{ width: 6, height: 6, borderRadius: 2, background: r.color, flexShrink: 0 }} />
-                <span style={{ fontFamily: MONO, fontSize: 10, color: W3 }}>{r.label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 12, color: W3 }}>{r.label}</span>
               </div>
-              <span style={{ fontFamily: MONO, fontSize: 10, color: W2, fontVariantNumeric: "tabular-nums" }}>
+              <span style={{ fontFamily: MONO, fontSize: 12, color: W2, fontVariantNumeric: "tabular-nums" }}>
                 {fmtINR(r.raw)}
               </span>
             </div>
@@ -145,8 +145,8 @@ function CostCard() {
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", marginTop: 14, borderTop: `1px solid ${WD}`, background: WB }}>
-        <span style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.1em", color: W3 }}>Est. per sq.ft</span>
-        <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: W1, fontVariantNumeric: "tabular-nums" }}>₹2,650</span>
+        <span style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.1em", color: W3 }}>Est. per sq.ft</span>
+        <span style={{ fontFamily: MONO, fontSize: 17, fontWeight: 700, color: W1, fontVariantNumeric: "tabular-nums" }}>₹2,650</span>
       </div>
     </G>
   );
@@ -164,10 +164,10 @@ function CityCard() {
     <G style={{ width: 252 }}>
       <div style={{ padding: "18px 18px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
+          <p style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
             City Benchmark
           </p>
-          <span style={{ fontFamily: MONO, fontSize: 8, color: "#4ade80", padding: "3px 8px", borderRadius: 20, background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.25)" }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: "#4ade80", padding: "3px 8px", borderRadius: 20, background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.25)" }}>
             Q2 2026
           </span>
         </div>
@@ -175,8 +175,8 @@ function CityCard() {
           {CITIES.map((c, i) => (
             <div key={c.name}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 7 }}>
-                <span style={{ fontFamily: MONO, fontSize: 12, fontWeight: 600, color: W1 }}>{c.name}</span>
-                <span style={{ fontFamily: MONO, fontSize: 9.5, color: W2, fontVariantNumeric: "tabular-nums" }}>
+                <span style={{ fontFamily: MONO, fontSize: 14, fontWeight: 600, color: W1 }}>{c.name}</span>
+                <span style={{ fontFamily: MONO, fontSize: 11.5, color: W2, fontVariantNumeric: "tabular-nums" }}>
                   ₹{c.min.toLocaleString()}–{c.max.toLocaleString()}
                 </span>
               </div>
@@ -191,7 +191,7 @@ function CityCard() {
             </div>
           ))}
         </div>
-        <button style={{ marginTop: 14, paddingTop: 13, borderTop: `1px solid ${WD}`, width: "100%", fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
+        <button style={{ marginTop: 14, paddingTop: 13, borderTop: `1px solid ${WD}`, width: "100%", fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.13em", color: "#C79B4B", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}>
           View all 12 cities →
         </button>
       </div>
@@ -209,13 +209,13 @@ function AreaCard() {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C79B4B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="1" /><path d="M3 9h18M9 21V9" />
           </svg>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.14em", color: W3 }}>Built-up Area</p>
+          <p style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.14em", color: W3 }}>Built-up Area</p>
         </div>
         <p style={{ fontFamily: SERIF, fontSize: 42, color: W1, lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 4, fontVariantNumeric: "tabular-nums" }}>
           {animated.toLocaleString()}
         </p>
-        <p style={{ fontFamily: MONO, fontSize: 11, color: W3, marginBottom: 16 }}>sq.ft</p>
-        <span style={{ fontFamily: MONO, fontSize: 8.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "5px 13px", borderRadius: 20, background: WT, color: W2, border: `1px solid ${WD}` }}>
+        <p style={{ fontFamily: MONO, fontSize: 13, color: W3, marginBottom: 16 }}>sq.ft</p>
+        <span style={{ fontFamily: MONO, fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "5px 13px", borderRadius: 20, background: WT, color: W2, border: `1px solid ${WD}` }}>
           3 BHK Villa
         </span>
       </div>
@@ -237,10 +237,10 @@ function TimelineCard() {
     <G style={{ width: 276 }}>
       <div style={{ padding: "18px 18px 16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-          <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
+          <p style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.2em", color: W3 }}>
             Project Timeline
           </p>
-          <span style={{ fontFamily: SERIF, fontSize: 15, color: W1, fontWeight: 400 }}>7.5 Months</span>
+          <span style={{ fontFamily: SERIF, fontSize: 17, color: W1, fontWeight: 400 }}>7.5 Months</span>
         </div>
 
         <div style={{ display: "flex", borderRadius: 99, overflow: "hidden", height: 11, gap: 2, marginBottom: 16 }}>
@@ -258,9 +258,9 @@ function TimelineCard() {
             <div key={p.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
                 <div style={{ width: 9, height: 9, borderRadius: "50%", background: p.color, flexShrink: 0 }} />
-                <span style={{ fontFamily: MONO, fontSize: 11, color: W2 }}>{p.label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 13, color: W2 }}>{p.label}</span>
               </div>
-              <span style={{ fontFamily: MONO, fontSize: 11, color: W3, fontVariantNumeric: "tabular-nums" }}>{p.dur}</span>
+              <span style={{ fontFamily: MONO, fontSize: 13, color: W3, fontVariantNumeric: "tabular-nums" }}>{p.dur}</span>
             </div>
           ))}
         </div>
@@ -335,7 +335,7 @@ export function HomeHero() {
               width: 7, height: 7, borderRadius: "50%",
               background: "#22C55E", boxShadow: "0 0 12px rgba(34,197,94,0.75)", flexShrink: 0,
             }} />
-            <span style={{ fontFamily: MONO, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.16em", color: "rgba(199,155,75,0.82)" }}>
+            <span style={{ fontFamily: MONO, fontSize: 15, textTransform: "uppercase", letterSpacing: "0.16em", color: "rgba(199,155,75,0.82)" }}>
               Free for Indian Homeowners&nbsp;·&nbsp;2026 Live Rates
             </span>
           </motion.div>
@@ -366,7 +366,7 @@ export function HomeHero() {
           <motion.p
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.78, delay: 0.40, ease }}
-            style={{ fontSize: 17, lineHeight: 1.84, color: "rgba(255,255,255,0.62)", maxWidth: "38ch", marginBottom: 44 }}>
+            style={{ fontSize: 19, lineHeight: 1.84, color: "rgba(255,255,255,0.62)", maxWidth: "38ch", marginBottom: 44 }}>
             A construction cost projection built from real Hosur and Bengaluru BOQs.
             Updated quarterly. Five steps. No contractor pitch.
           </motion.p>
@@ -380,7 +380,7 @@ export function HomeHero() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: 10,
                 background: "#C79B4B", color: "#0A1432",
-                padding: "16px 34px", borderRadius: 12, fontWeight: 700, fontSize: 15,
+                padding: "16px 34px", borderRadius: 12, fontWeight: 700, fontSize: 17,
                 letterSpacing: "0.01em", textDecoration: "none",
                 boxShadow: "0 6px 30px rgba(199,155,75,0.52)",
                 transition: "transform 0.16s ease, box-shadow 0.16s ease",
@@ -405,7 +405,7 @@ export function HomeHero() {
                 backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
                 border: "1px solid rgba(255,255,255,0.18)",
                 color: "rgba(255,255,255,0.82)",
-                padding: "16px 28px", borderRadius: 12, fontWeight: 500, fontSize: 15,
+                padding: "16px 28px", borderRadius: 12, fontWeight: 500, fontSize: 17,
                 textDecoration: "none",
                 transition: "background 0.16s ease, border-color 0.16s ease",
               }}
@@ -438,7 +438,7 @@ export function HomeHero() {
                 <p style={{ fontFamily: SERIF, fontSize: 20, color: "rgba(255,255,255,0.94)", fontWeight: 400, lineHeight: 1.1, marginBottom: 5 }}>
                   {item.stat}
                 </p>
-                <p style={{ fontFamily: MONO, fontSize: 8.5, textTransform: "uppercase", letterSpacing: "0.11em", color: "rgba(255,255,255,0.36)", lineHeight: 1.5 }}>
+                <p style={{ fontFamily: MONO, fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.11em", color: "rgba(255,255,255,0.36)", lineHeight: 1.5 }}>
                   {item.label}
                 </p>
               </motion.div>

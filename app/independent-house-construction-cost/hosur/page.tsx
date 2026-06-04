@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -261,7 +261,7 @@ export default function IndependentHouseHosurPage() {
             >
               Construction rates by quality tier
             </h2>
-            <p className="font-sans mb-10" style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
+            <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               Cost ranges shown are for independent house BUA of 800 to 2,000 sqft at each quality tier. Civil and structural work only — interiors are separate.
             </p>
           </AnimateIn>
@@ -281,15 +281,15 @@ export default function IndependentHouseHosurPage() {
                       </div>
                       <p className="font-mono tabular-nums" style={{ fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                         {fmtRate(tier.min)}
-                        <span className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
+                        <span className="font-mono" style={{ fontSize: "15px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
                         {fmtRate(tier.max)}
                       </p>
-                      <p className="font-mono" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>per sqft</p>
+                      <p className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>per sqft</p>
                     </div>
                     <div className="md:pt-1">
-                      <p className="font-mono mb-1" style={{ fontSize: "13px", fontWeight: 500, color: "var(--text-primary)" }}>{costMin} – {costMax}</p>
-                      <p className="font-mono mb-2" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
-                      <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
+                      <p className="font-mono mb-1" style={{ fontSize: "15px", fontWeight: 500, color: "var(--text-primary)" }}>{costMin} – {costMax}</p>
+                      <p className="font-mono mb-2" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
+                      <p className="font-sans" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
                     </div>
                     <div className="flex items-center gap-3 md:justify-end">
                       <div className="w-full md:w-28 h-1 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
@@ -306,10 +306,10 @@ export default function IndependentHouseHosurPage() {
               <div className="grid grid-cols-1 md:grid-cols-[200px_1fr_180px] gap-4 md:gap-8 py-7 items-start">
                 <div>
                   <p className="font-serif mb-1" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>Ultra Luxury</p>
-                  <p className="font-mono" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
+                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
                 </div>
                 <div className="md:pt-1">
-                  <p className="font-sans mb-3" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                     Fully custom build. Imported stone, Lutron lighting, home automation, and fully furnished interiors. No published rate — priced from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
@@ -327,7 +327,7 @@ export default function IndependentHouseHosurPage() {
           </StaggerContainer>
 
           <AnimateIn direction="up" delay={0.1}>
-            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
+            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
               "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026"
             </p>
           </AnimateIn>
@@ -343,7 +343,7 @@ export default function IndependentHouseHosurPage() {
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                 Get a personalised estimate for your Hosur home
               </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
+              <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
                 Tell us your plot size, number of floors, and quality level. You get a full cost range with the details below — no sign-up needed.
               </p>
               <ul className="mb-8 space-y-2">
@@ -374,13 +374,13 @@ export default function IndependentHouseHosurPage() {
               The most common build in Hosur
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 An independent house is the default residential build in Hosur — a standalone home on its own plot with its own compound and no shared walls with neighbors. This is what distinguishes it from a rowhouse (shared side walls) and from a villa (larger plot, premium finish, higher ceilings). Hosur's established residential areas — around SIPCOT, Mathigiri, and the older layouts near the bus stand — are almost entirely made up of independent houses on 600 to 2,000 sqft plots. The road infrastructure, water connections, and contractor ecosystems in these areas are all built around this form factor.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The reference build for Hosur contractor quotes is a G+1, 3 BHK, standard quality, on a 30x40 plot with 1,440 sqft of built-up area. At ₹2,100 to ₹2,400 per sqft, that comes to ₹30.2 lakh to ₹34.6 lakh for civil work before interiors. Three decisions at this stage define how the budget moves: whether to invest in a quality elevation now or leave it for later, whether to do a full modular kitchen now or add it after, and whether to complete all flooring in the first construction phase or leave the upper floor in basic cement. Each of these deferred decisions costs more to fix later than to plan correctly from the start.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 Under HTM rules, a 30x40 plot has an FSI of 2.0, meaning you can build up to 2,400 sqft in total across all floors. Most standard independent houses use 1,200 to 1,500 sqft on a G+1 — 60% ground coverage, as permitted — which leaves significant headroom for a future third floor or an upper-floor extension as the family grows. This is one reason why the independent house remains the dominant form in Hosur: it is financeable in phases, extendable as income grows, and well-matched to the plot sizes available in the city's established layouts.
               </p>
             </div>
@@ -417,8 +417,8 @@ export default function IndependentHouseHosurPage() {
                     <span className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5" style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}>Founding partner</span>
                   )}
                 </div>
-                <p className="font-sans mb-4" style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
-                <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                <p className="font-sans mb-4" style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
+                <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
                   Led by {partner.founderName}. {partner.founderBio} Exclusive territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -432,7 +432,7 @@ export default function IndependentHouseHosurPage() {
               <div className="rounded-sm p-5" style={{ background: "rgba(196,154,60,0.04)", border: "1px solid rgba(196,154,60,0.15)" }}>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--accent)" }}>Services</p>
                 {["Architecture & design", "HTM approval support", "Structural drawings", "Turnkey construction", "Interior fit-out", "Project management"].map((s) => (
-                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "12px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
+                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "14px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
                 ))}
               </div>
             </div>
@@ -453,8 +453,8 @@ export default function IndependentHouseHosurPage() {
               <StaggerItem key={href}>
                 <Link href={href} className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy" style={{ border: "1px solid var(--border)" }}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>{eyebrow}</p>
-                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
-                  <p className="font-sans" style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
+                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
+                  <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
                 </Link>
               </StaggerItem>
             ))}
@@ -469,7 +469,7 @@ export default function IndependentHouseHosurPage() {
               <h2 className="font-serif mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF" }}>
                 Start your Hosur estimate
               </h2>
-              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
+              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline built from Hosur BOQs.
               </p>
               <Link href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>

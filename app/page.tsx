@@ -535,7 +535,7 @@ export default function HomePage() {
 
                     </h3>
 
-                    <p className="text-text-secondary leading-relaxed" style={{ fontSize: "15px", maxWidth: "38ch", lineHeight: 1.72 }}>
+                    <p className="text-text-secondary leading-relaxed" style={{ fontSize: "17px", maxWidth: "38ch", lineHeight: 1.72 }}>
 
                       {item.body}
 
@@ -585,7 +585,7 @@ export default function HomePage() {
 
                 </h2>
 
-                <p className="text-text-secondary mb-8 leading-relaxed" style={{ fontSize: "16px", maxWidth: "44ch", lineHeight: 1.72 }}>
+                <p className="text-text-secondary mb-8 leading-relaxed" style={{ fontSize: "18px", maxWidth: "44ch", lineHeight: 1.72 }}>
 
                   Not just a number — a full picture of your construction budget
 
@@ -649,7 +649,7 @@ export default function HomePage() {
 
                             className="font-mono text-text-secondary tabular-nums group-hover:text-text-secondary transition-colors duration-300 block"
 
-                            style={{ fontSize: "11px", letterSpacing: "0.1em" }}
+                            style={{ fontSize: "13px", letterSpacing: "0.1em" }}
 
                           >
 
@@ -691,7 +691,7 @@ export default function HomePage() {
 
                           </h3>
 
-                          <p className="text-text-secondary leading-relaxed" style={{ fontSize: "15px", lineHeight: 1.7 }}>
+                          <p className="text-text-secondary leading-relaxed" style={{ fontSize: "17px", lineHeight: 1.7 }}>
 
                             {item.body}
 
@@ -797,7 +797,7 @@ export default function HomePage() {
 
                     </h3>
 
-                    <p className="text-white/55 leading-relaxed" style={{ fontSize: "16px", lineHeight: 1.7 }}>
+                    <p className="text-white/55 leading-relaxed" style={{ fontSize: "18px", lineHeight: 1.7 }}>
 
                       {item.body}
 
@@ -973,7 +973,7 @@ export default function HomePage() {
 
                 </h2>
 
-                <p className="text-white/55 leading-relaxed mb-12 mx-auto" style={{ fontSize: "17px", maxWidth: "44ch", lineHeight: 1.75 }}>
+                <p className="text-white/55 leading-relaxed mb-12 mx-auto" style={{ fontSize: "19px", maxWidth: "44ch", lineHeight: 1.75 }}>
 
                   Takes 3 minutes. Free. No account needed.
 
@@ -1007,7 +1007,7 @@ export default function HomePage() {
 
                 </div>
 
-                <p className="text-white/25 font-mono mt-10 uppercase tracking-[0.14em]" style={{ fontSize: "10px" }}>
+                <p className="text-white/25 font-mono mt-10 uppercase tracking-[0.14em]" style={{ fontSize: "12px" }}>
 
                   12+ cities · 2026 verified rates · No sign-up
 

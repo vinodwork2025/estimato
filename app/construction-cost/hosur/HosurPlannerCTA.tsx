@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -101,7 +101,7 @@ export function HosurPlannerCTA({ sourcePage = "hosur-hub", plotL, plotW }: Hosu
         </h2>
         <p
           className="font-sans"
-          style={{ fontSize: "16px", lineHeight: 1.7, color: "var(--text-secondary)" }}
+          style={{ fontSize: "18px", lineHeight: 1.7, color: "var(--text-secondary)" }}
         >
           Select your home type to get a Hosur-specific cost estimate in under 2 minutes.
           Hosur rates pre-loaded — no city selection needed.
@@ -176,7 +176,7 @@ export function HosurPlannerCTA({ sourcePage = "hosur-hub", plotL, plotW }: Hosu
         ))}
       </div>
 
-      <p className="font-mono mt-5" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>
+      <p className="font-mono mt-5" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
         Click a type to start · Hosur rates pre-loaded · Takes under 2 minutes
       </p>
     </div>

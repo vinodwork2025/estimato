@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -262,7 +262,7 @@ export default function VillaHosurPage() {
             >
               Construction rates by quality tier
             </h2>
-            <p className="font-sans mb-10" style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
+            <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               Cost ranges shown are for villa BUA of 1,800 to 3,500 sqft at each rate tier. Civil and structural only — interiors are separate.
             </p>
           </AnimateIn>
@@ -286,17 +286,17 @@ export default function VillaHosurPage() {
                       </div>
                       <p className="font-mono tabular-nums" style={{ fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                         {fmtRate(tier.min)}
-                        <span className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
+                        <span className="font-mono" style={{ fontSize: "15px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
                         {fmtRate(tier.max)}
                       </p>
-                      <p className="font-mono" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>per sqft</p>
+                      <p className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>per sqft</p>
                     </div>
                     <div className="md:pt-1">
-                      <p className="font-mono mb-1" style={{ fontSize: "13px", fontWeight: 500, color: "var(--text-primary)" }}>
+                      <p className="font-mono mb-1" style={{ fontSize: "15px", fontWeight: 500, color: "var(--text-primary)" }}>
                         {costMin} – {costMax}
                       </p>
-                      <p className="font-mono mb-2" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
-                      <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
+                      <p className="font-mono mb-2" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
+                      <p className="font-sans" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
                     </div>
                     <div className="flex items-center gap-3 md:justify-end">
                       <div className="w-full md:w-28 h-1 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
@@ -313,10 +313,10 @@ export default function VillaHosurPage() {
               <div className="grid grid-cols-1 md:grid-cols-[200px_1fr_180px] gap-4 md:gap-8 py-7 items-start">
                 <div>
                   <p className="font-serif mb-1" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>Ultra Luxury</p>
-                  <p className="font-mono" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
+                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
                 </div>
                 <div className="md:pt-1">
-                  <p className="font-sans mb-3" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                     Imported stone, designer lighting, fully automated systems. No published rate applies at this tier — each project is quoted from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=villa&from=hosur-villa-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
@@ -334,7 +334,7 @@ export default function VillaHosurPage() {
           </StaggerContainer>
 
           <AnimateIn direction="up" delay={0.1}>
-            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
+            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
               "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026"
             </p>
           </AnimateIn>
@@ -350,7 +350,7 @@ export default function VillaHosurPage() {
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                 Get a personalised villa estimate
               </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
+              <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
                 Five questions about your plot, configuration, and quality level. You get a full cost range with the details below — no sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
@@ -381,13 +381,13 @@ export default function VillaHosurPage() {
               What goes into a villa build in Hosur
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more — typically a 40x45 or larger footprint — with a defined compound wall and gate, a driveway wide enough for two cars, and room heights of 10 to 11 feet rather than the standard 9.5 feet. The elevated ceiling alone adds around 4% to structural cost. The compound wall and gate add another ₹3 to ₹8 lakh depending on the perimeter length and gate design. External elevation treatments — cladding, ACP panels, feature walls — add ₹1.5 to ₹4 lakh on top of the base rate. None of these line items show up in a basic contractor quote.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The typical villa buyer in Hosur in 2026 is an NRI or a senior engineer at one of the semiconductor or EV companies in the Hosur zone, buying a 40x60 or 50x80 plot on the Rayakottai or Doddaballapur side roads, building a 4 to 5 BHK for end-use or for future family occupation. Most of these projects run at premium tier. Building a villa at basic quality misses the point of the form — the structural demands of higher ceilings and a larger footprint already put the cost above basic, and the finish quality is what makes a villa hold its value on resale.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 One cost that most villa budgets miss entirely is landscaping. A basic garden — lawn, border planting, a few feature trees, and a simple pathway — runs ₹2 to ₹6 lakh and is not included in any civil contractor quote. The most common Hosur villa configuration is G+1, 4 BHK with a servant room, 2-car parking, and a BUA of 1,800 to 3,000 sqft at standard or premium quality. That puts the cost between ₹37.8 lakh at the low end and ₹87 lakh at the high end before landscaping and interiors.
               </p>
             </div>
@@ -424,8 +424,8 @@ export default function VillaHosurPage() {
                     <span className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5" style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}>Founding partner</span>
                   )}
                 </div>
-                <p className="font-sans mb-4" style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
-                <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                <p className="font-sans mb-4" style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
+                <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
                   Led by {partner.founderName}. {partner.founderBio} Exclusive territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -439,7 +439,7 @@ export default function VillaHosurPage() {
               <div className="rounded-sm p-5" style={{ background: "rgba(196,154,60,0.04)", border: "1px solid rgba(196,154,60,0.15)" }}>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--accent)" }}>Services</p>
                 {["Architecture & design", "HTM approval support", "Structural drawings", "Turnkey construction", "Interior fit-out", "Project management"].map((s) => (
-                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "12px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
+                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "14px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
                 ))}
               </div>
             </div>
@@ -460,8 +460,8 @@ export default function VillaHosurPage() {
               <StaggerItem key={href}>
                 <Link href={href} className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy" style={{ border: "1px solid var(--border)" }}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>{eyebrow}</p>
-                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
-                  <p className="font-sans" style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
+                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
+                  <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
                 </Link>
               </StaggerItem>
             ))}
@@ -476,7 +476,7 @@ export default function VillaHosurPage() {
               <h2 className="font-serif mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF" }}>
                 Start your villa estimate
               </h2>
-              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
+              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline built from Hosur BOQs.
               </p>
               <Link href="/plan?city=hosur&type=villa&from=hosur-villa-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>

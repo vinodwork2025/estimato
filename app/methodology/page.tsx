@@ -118,7 +118,7 @@ export default function MethodologyPage() {
           </h1>
           <p
             className="text-text-secondary leading-relaxed"
-            style={{ fontSize: "18px", maxWidth: "56ch", lineHeight: 1.75, color: "#3D5573" }}
+            style={{ fontSize: "20px", maxWidth: "56ch", lineHeight: 1.75, color: "#3D5573" }}
           >
             {METHODOLOGY.heroBody}
           </p>
@@ -151,7 +151,7 @@ export default function MethodologyPage() {
                 </h3>
                 <p
                   className="text-text-secondary leading-relaxed"
-                  style={{ fontSize: "16px", maxWidth: "64ch", lineHeight: 1.8 }}
+                  style={{ fontSize: "18px", maxWidth: "64ch", lineHeight: 1.8 }}
                 >
                   {source.body}
                 </p>
@@ -171,7 +171,7 @@ export default function MethodologyPage() {
           </h2>
           <p
             className="text-text-secondary leading-relaxed mb-14"
-            style={{ fontSize: "17px", maxWidth: "56ch", lineHeight: 1.75 }}
+            style={{ fontSize: "19px", maxWidth: "56ch", lineHeight: 1.75 }}
           >
             {METHODOLOGY.formulaIntro}
           </p>
@@ -196,7 +196,7 @@ export default function MethodologyPage() {
                 <span
                   className="font-mono"
                   style={{
-                    fontSize: "14px",
+                    fontSize: "16px",
                     letterSpacing: "0.02em",
                     lineHeight: 2.2,
                     fontWeight: line.isResult ? 500 : 400,
@@ -221,13 +221,13 @@ export default function MethodologyPage() {
           </h2>
           <p
             className="text-text-secondary leading-relaxed mb-6"
-            style={{ fontSize: "17px", maxWidth: "56ch", lineHeight: 1.75 }}
+            style={{ fontSize: "19px", maxWidth: "56ch", lineHeight: 1.75 }}
           >
             {METHODOLOGY.exclusionsIntro}
           </p>
           <div
             className="mb-10 px-5 py-4 font-mono"
-            style={{ background: "rgba(168,130,59,0.06)", border: "1px solid rgba(168,130,59,0.18)", borderRadius: "3px", fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.75 }}
+            style={{ background: "rgba(168,130,59,0.06)", border: "1px solid rgba(168,130,59,0.18)", borderRadius: "3px", fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.75 }}
           >
             This estimate covers construction cost only. It does not include interior design, modular kitchen, furniture, landscaping, architect fees, structural engineer fees, government approval charges, or utility connection costs.
           </div>
@@ -242,7 +242,7 @@ export default function MethodologyPage() {
                 </h3>
                 <p
                   className="leading-relaxed"
-                  style={{ fontSize: "15px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
+                  style={{ fontSize: "17px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
                 >
                   {item.body}
                 </p>
@@ -262,7 +262,7 @@ export default function MethodologyPage() {
           </h2>
           <p
             className="text-text-secondary leading-relaxed mb-14"
-            style={{ fontSize: "17px", maxWidth: "64ch", lineHeight: 1.75 }}
+            style={{ fontSize: "19px", maxWidth: "64ch", lineHeight: 1.75 }}
           >
             {METHODOLOGY.confidenceIntro}
           </p>
@@ -271,7 +271,7 @@ export default function MethodologyPage() {
               <div key={factor.num} className="py-8 border-t border-border flex gap-8 items-start">
                 <span
                   className="font-mono text-text-secondary shrink-0 tabular-nums"
-                  style={{ fontSize: "11px", letterSpacing: "0.12em", marginTop: "4px" }}
+                  style={{ fontSize: "13px", letterSpacing: "0.12em", marginTop: "4px" }}
                 >
                   {factor.num}
                 </span>
@@ -284,7 +284,7 @@ export default function MethodologyPage() {
                   </h3>
                   <p
                     className="leading-relaxed"
-                    style={{ fontSize: "16px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
+                    style={{ fontSize: "18px", color: "#3D5573", lineHeight: 1.75, maxWidth: "60ch" }}
                   >
                     {factor.body}
                   </p>
@@ -305,7 +305,7 @@ export default function MethodologyPage() {
           </h2>
           <p
             className="text-text-secondary leading-relaxed mb-8"
-            style={{ fontSize: "16px", maxWidth: "56ch", lineHeight: 1.8 }}
+            style={{ fontSize: "18px", maxWidth: "56ch", lineHeight: 1.8 }}
           >
             {METHODOLOGY.cadenceBody}
           </p>
@@ -324,14 +324,14 @@ export default function MethodologyPage() {
           </h2>
           <p
             className="text-text-secondary leading-relaxed mb-5 mx-auto"
-            style={{ fontSize: "16px", maxWidth: "56ch", lineHeight: 1.8 }}
+            style={{ fontSize: "18px", maxWidth: "56ch", lineHeight: 1.8 }}
           >
             {METHODOLOGY.challengeBody}
           </p>
           <a
             href={`mailto:${METHODOLOGY.challengeEmail}`}
             className="text-text-primary underline underline-offset-2 decoration-border hover:decoration-text-tertiary transition-colors"
-            style={{ fontSize: "16px" }}
+            style={{ fontSize: "18px" }}
           >
             {METHODOLOGY.challengeEmail}
           </a>

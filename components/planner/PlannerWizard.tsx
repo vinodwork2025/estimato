@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -253,8 +253,8 @@ function ToggleRow({ label, hint, checked, onChange }: { label: string; hint: st
   return (
     <div className="flex items-center justify-between py-4">
       <div>
-        <p style={{ fontSize: "15px", color: "var(--text-primary)", fontWeight: 400 }}>{label}</p>
-        <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{hint}</p>
+        <p style={{ fontSize: "17px", color: "var(--text-primary)", fontWeight: 400 }}>{label}</p>
+        <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>{hint}</p>
       </div>
       <button
         type="button"
@@ -330,7 +330,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(26px, 4.5vw, 40px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1 }}>
           What type of home are you planning?
         </h1>
-        <p className="text-text-secondary mt-2.5" style={{ fontSize: "15px", lineHeight: 1.65 }}>
+        <p className="text-text-secondary mt-2.5" style={{ fontSize: "17px", lineHeight: 1.65 }}>
           Choose the closest option. You can refine details later.
         </p>
       </motion.div>
@@ -457,7 +457,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
                 </p>
                 <p
                   className="font-mono mt-0.5"
-                  style={{ fontSize: "10px", color: "rgba(255,255,255,0.50)", letterSpacing: "0.04em" }}
+                  style={{ fontSize: "12px", color: "rgba(255,255,255,0.50)", letterSpacing: "0.04em" }}
                 >
                   {ht.sqftRange}
                 </p>
@@ -483,7 +483,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6, ease }}
         className="text-center font-mono text-text-tertiary mt-6"
-        style={{ fontSize: "12px" }}
+        style={{ fontSize: "14px" }}
       >
         Not sure? Choose the closest option — you can adjust project specifications later.
       </motion.p>
@@ -513,7 +513,7 @@ function Step2Location({ city, onChange, prefilled }: { city: string; onChange: 
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Where will it stand?
         </h1>
-        <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+        <p className="text-text-secondary mt-3" style={{ fontSize: "18px" }}>
           {prefilled
             ? "We've selected Hosur based on your search. Change it if needed."
             : "Location affects material costs and labour rates significantly."}
@@ -539,11 +539,11 @@ function Step2Location({ city, onChange, prefilled }: { city: string; onChange: 
                   background: isSelected ? "var(--navy)" : "transparent",
                 }}
               >
-                <p style={{ fontSize: "16px", color: isSelected ? "#FFFFFF" : "var(--text-primary)", fontWeight: 400 }}>
+                <p style={{ fontSize: "18px", color: isSelected ? "#FFFFFF" : "var(--text-primary)", fontWeight: 400 }}>
                   {c.label}
                 </p>
                 {"subtitle" in c && c.subtitle && (
-                  <p className="font-mono mt-0.5" style={{ fontSize: "11px", color: isSelected ? "rgba(255,255,255,0.55)" : "var(--text-tertiary)" }}>
+                  <p className="font-mono mt-0.5" style={{ fontSize: "13px", color: isSelected ? "rgba(255,255,255,0.55)" : "var(--text-tertiary)" }}>
                     {c.subtitle}
                   </p>
                 )}
@@ -569,7 +569,7 @@ function Step2Location({ city, onChange, prefilled }: { city: string; onChange: 
                 }}
               >
                 {name} ·{" "}
-                <span style={{ fontSize: "10px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   soon
                 </span>
               </div>
@@ -610,7 +610,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Tell us about your plot.
         </h1>
-        <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+        <p className="text-text-secondary mt-3" style={{ fontSize: "18px" }}>
           Plot dimensions affect foundation and structure costs.
         </p>
       </motion.div>
@@ -620,8 +620,8 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
         <p className="font-mono text-navy leading-none tabular-nums" style={{ fontSize: "clamp(64px, 14vw, 110px)", fontWeight: 300, letterSpacing: "-0.03em" }}>
           {plotArea > 0 ? plotArea.toLocaleString("en-IN") : "—"}
         </p>
-        <p style={{ fontSize: "15px", color: "#7B93A8", marginTop: "8px" }}>square feet</p>
-        <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
+        <p style={{ fontSize: "17px", color: "#7B93A8", marginTop: "8px" }}>square feet</p>
+        <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "13px", letterSpacing: "0.06em" }}>
           {state.plotLength} ft × {state.plotWidth} ft
         </p>
       </motion.div>
@@ -669,7 +669,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
                 value={field === "plotLength" ? state.plotLength : state.plotWidth}
                 onChange={(e) => handleDimension(field, parseInt(e.target.value) || 1)}
                 className="w-full focus:outline-none"
-                style={{ borderBottom: "1px solid #DDE4ED", padding: "8px 0", fontSize: "18px", color: "var(--text-primary)", background: "transparent" }}
+                style={{ borderBottom: "1px solid #DDE4ED", padding: "8px 0", fontSize: "20px", color: "var(--text-primary)", background: "transparent" }}
               />
             </div>
           ))}
@@ -685,7 +685,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
           <p className="font-mono text-navy" style={{ fontSize: "24px", fontWeight: 400, letterSpacing: "-0.015em" }}>
             {Math.round(state.plotLength * state.plotWidth * 0.6).toLocaleString("en-IN")} sqft
           </p>
-          <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "11px" }}>
+          <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "13px" }}>
             60% plot coverage for 1 floor · multiply by floors for multi-storey
           </p>
         </div>
@@ -712,10 +712,10 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
             return (
               <button key={s.value} type="button" onClick={() => onChange({ slope: s.value })}
                 className="text-left focus:outline-none pb-1 transition-colors duration-200"
-                style={{ fontSize: "17px", color: active ? "var(--accent)" : "var(--text-primary)", borderBottom: active ? "2px solid var(--accent)" : "2px solid transparent" }}
+                style={{ fontSize: "19px", color: active ? "var(--accent)" : "var(--text-primary)", borderBottom: active ? "2px solid var(--accent)" : "2px solid transparent" }}
               >
                 {s.label}
-                <span className="block font-mono" style={{ fontSize: "11px", color: active ? "var(--accent)" : "var(--text-tertiary)", marginTop: "2px" }}>
+                <span className="block font-mono" style={{ fontSize: "13px", color: active ? "var(--accent)" : "var(--text-tertiary)", marginTop: "2px" }}>
                   {s.desc}
                 </span>
               </button>
@@ -734,7 +734,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
             </PillBtn>
           ))}
         </div>
-        <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>
+        <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>
           If unsure, choose &ldquo;Don&rsquo;t know&rdquo; — we flag it as a risk.
         </p>
       </motion.div>
@@ -796,7 +796,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           How will it be built?
         </h1>
-        <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+        <p className="text-text-secondary mt-3" style={{ fontSize: "18px" }}>
           Configuration affects structure and finishing costs significantly.
         </p>
       </motion.div>
@@ -813,7 +813,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
                 style={{ borderRadius: "4px", border: "1.5px solid", borderColor: isSelected ? "var(--accent)" : "var(--border)", background: isSelected ? "rgba(168,130,59,0.06)" : "white" }}
               >
                 <p className="font-mono text-navy" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.02em" }}>{f.label}</p>
-                <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "10px" }}>{f.desc}</p>
+                <p className="font-mono text-text-secondary mt-1" style={{ fontSize: "12px" }}>{f.desc}</p>
               </button>
             );
           })}
@@ -847,7 +847,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
           </div>
           <span className="font-mono text-[12px] text-text-secondary shrink-0">sqft</span>
         </div>
-        <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "11px" }}>
+        <p className="font-mono text-text-secondary mt-2" style={{ fontSize: "13px" }}>
           Suggested: {suggestedBUA.toLocaleString("en-IN")} sqft
           ({state.plotLength} × {state.plotWidth} ft × 60%{state.floors > 1 ? ` × ${state.floors} floors` : ""})
           {state.builtUpArea !== suggestedBUA && (
@@ -876,11 +876,11 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
             return (
               <button key={p.value} type="button" onClick={() => onChange({ parking: p.value })}
                 className="text-left focus:outline-none pb-1 transition-colors duration-200"
-                style={{ fontSize: "18px", color: isSelected ? "var(--accent)" : "var(--text-primary)", borderBottom: isSelected ? "2px solid var(--accent)" : "2px solid transparent" }}
+                style={{ fontSize: "20px", color: isSelected ? "var(--accent)" : "var(--text-primary)", borderBottom: isSelected ? "2px solid var(--accent)" : "2px solid transparent" }}
               >
                 {p.label}
                 {p.hint && (
-                  <span className="block font-mono" style={{ fontSize: "11px", color: isSelected ? "var(--accent)" : "var(--text-tertiary)", marginTop: "2px" }}>{p.hint}</span>
+                  <span className="block font-mono" style={{ fontSize: "13px", color: isSelected ? "var(--accent)" : "var(--text-tertiary)", marginTop: "2px" }}>{p.hint}</span>
                 )}
               </button>
             );
@@ -946,7 +946,7 @@ function Step5Finish({
         <h1 className="font-serif text-navy" style={{ fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.05 }}>
           Choose your finish level.
         </h1>
-        <p className="text-text-secondary mt-3" style={{ fontSize: "16px" }}>
+        <p className="text-text-secondary mt-3" style={{ fontSize: "18px" }}>
           This drives a third of your total cost. Choose honestly.
         </p>
       </motion.div>
@@ -992,12 +992,12 @@ function Step5Finish({
               <div className="p-4">
                 <div className="flex items-baseline justify-between mb-1">
                   <p className="font-serif text-navy" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}>{q.label}</p>
-                  <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>₹{rate.toLocaleString("en-IN")}/sqft</p>
+                  <p className="font-mono tabular-nums" style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 500 }}>₹{rate.toLocaleString("en-IN")}/sqft</p>
                 </div>
-                <p className="text-text-secondary mb-2" style={{ fontSize: "13px", lineHeight: 1.6 }}>{q.description}</p>
-                <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{q.materials}</p>
+                <p className="text-text-secondary mb-2" style={{ fontSize: "15px", lineHeight: 1.6 }}>{q.description}</p>
+                <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>{q.materials}</p>
                 <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
-                  <p className="font-mono text-text-secondary" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
+                  <p className="font-mono text-text-secondary" style={{ fontSize: "12px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
                   <p className="font-mono text-navy tabular-nums" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
                     ~{formatINRShort(estimated)}
                   </p>
@@ -1012,7 +1012,7 @@ function Step5Finish({
       {state.qualityTier && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="mb-10">
           <SectionLabel>Interior finish level</SectionLabel>
-          <p className="text-text-secondary mb-4" style={{ fontSize: "14px" }}>
+          <p className="text-text-secondary mb-4" style={{ fontSize: "16px" }}>
             Auto-matched to your quality choice. Override if needed.
           </p>
           <div className="divide-y divide-border border-t border-border">
@@ -1034,16 +1034,16 @@ function Step5Finish({
                   }}
                 >
                   <div>
-                    <p style={{ fontSize: "15px", color: isSelected ? "var(--text-primary)" : "var(--text-secondary)", fontWeight: isSelected ? 500 : 400 }}>
+                    <p style={{ fontSize: "17px", color: isSelected ? "var(--text-primary)" : "var(--text-secondary)", fontWeight: isSelected ? 500 : 400 }}>
                       {opt.label}
                     </p>
-                    <p className="font-mono text-text-secondary" style={{ fontSize: "11px" }}>{opt.desc}</p>
+                    <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>{opt.desc}</p>
                   </div>
                   <div className="text-right shrink-0 ml-4">
-                    <p className="font-mono tabular-nums" style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
+                    <p className="font-mono tabular-nums" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>
                       ₹{rate.toLocaleString("en-IN")}/sqft
                     </p>
-                    <p className="font-mono tabular-nums" style={{ fontSize: "13px", color: isSelected ? "var(--accent)" : "var(--text-tertiary)", fontWeight: isSelected ? 500 : 400 }}>
+                    <p className="font-mono tabular-nums" style={{ fontSize: "15px", color: isSelected ? "var(--accent)" : "var(--text-tertiary)", fontWeight: isSelected ? 500 : 400 }}>
                       {formatINRShort(cost)}
                     </p>
                   </div>
@@ -1319,7 +1319,7 @@ export function PlannerWizard({
               <p className="font-mono text-[9px] uppercase tracking-[0.16em] mb-0.5" style={{ color: "rgba(255,255,255,0.42)" }}>
                 Selected
               </p>
-              <p className="font-sans font-medium truncate" style={{ fontSize: "15px", color: "white" }}>
+              <p className="font-sans font-medium truncate" style={{ fontSize: "17px", color: "white" }}>
                 {selectedHomeType?.label}
               </p>
             </div>

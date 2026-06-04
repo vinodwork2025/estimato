@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,7 +90,7 @@ export function FAQBlock({
                         marginBottom: "16px",
                       }}
                     />
-                    <p className="pb-6 text-text-secondary leading-relaxed" style={{ fontSize: "17px", lineHeight: 1.7 }}>
+                    <p className="pb-6 text-text-secondary leading-relaxed" style={{ fontSize: "19px", lineHeight: 1.7 }}>
                       {item.answer}
                     </p>
                   </motion.div>

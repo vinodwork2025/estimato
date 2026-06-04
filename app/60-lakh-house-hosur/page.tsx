@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -246,7 +246,7 @@ export default function SixtyLakhHosurPage() {
             >
               What ₹60 lakh builds by quality tier
             </h2>
-            <p className="font-sans mb-10" style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
+            <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               BUA figures assume the full budget goes to civil construction. Add ₹4–₹6 lakh for approvals, compound wall, and site preparation.
             </p>
           </AnimateIn>
@@ -269,7 +269,7 @@ export default function SixtyLakhHosurPage() {
                         </span>
                       )}
                     </div>
-                    <p className="font-mono tabular-nums" style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
+                    <p className="font-mono tabular-nums" style={{ fontSize: "16px", color: "var(--text-secondary)" }}>
                       {fmtRate(rateMin)}–{fmtRate(rateMax)}/sqft
                     </p>
                   </div>
@@ -278,7 +278,7 @@ export default function SixtyLakhHosurPage() {
                     <p className="font-mono tabular-nums mb-1" style={{ fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                       {buaMin.toLocaleString("en-IN")}–{buaMax.toLocaleString("en-IN")} sqft
                     </p>
-                    <p className="font-sans" style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                    <p className="font-sans" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                       {desc}
                     </p>
                   </div>
@@ -302,12 +302,12 @@ export default function SixtyLakhHosurPage() {
                   <p className="font-serif mb-1" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     Ultra Luxury
                   </p>
-                  <p className="font-mono" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>
+                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>
                     ₹5,000+/sqft
                   </p>
                 </div>
                 <div className="md:pt-1">
-                  <p className="font-sans mb-2" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  <p className="font-sans mb-2" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                     Imported stone, Kohler or Duravit, Lutron lighting. No standard rate. Contact for custom quote.
                   </p>
                   <Link
@@ -329,7 +329,7 @@ export default function SixtyLakhHosurPage() {
 
           {/* BOQ Credibility */}
           <AnimateIn direction="up" delay={0.1}>
-            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
+            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
               "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026"
             </p>
           </AnimateIn>
@@ -349,7 +349,7 @@ export default function SixtyLakhHosurPage() {
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                 Get a precise estimate for your ₹60 lakh build
               </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
+              <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
                 Enter your plot dimensions, floor count, and quality preference. Get a detailed cost range drawn from verified Hosur rates — including MEP, finishes, and contingency.
               </p>
               <ul className="mb-7 space-y-2">
@@ -362,7 +362,7 @@ export default function SixtyLakhHosurPage() {
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="font-mono text-[11px]" style={{ color: "var(--accent)" }}>—</span>
-                    <span className="font-sans" style={{ fontSize: "14px", color: "var(--text-secondary)" }}>{item}</span>
+                    <span className="font-sans" style={{ fontSize: "16px", color: "var(--text-secondary)" }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -398,19 +398,19 @@ export default function SixtyLakhHosurPage() {
 
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 At ₹60 lakh, you are at the entry point of premium-quality construction in Hosur. This is the budget where a genuine quality decision opens up. Standard quality gives you 2,500 to 2,857 sqft — enough for a 3 or 4 BHK G+1 on a 30x50 or 40x50 plot with full fittings. Premium quality, at rates of ₹2,500 to ₹2,900 per sqft, gives you 2,068 to 2,400 sqft with Jaquar sanitary, Somany Duragres floor tile, Legrand switches, and a properly designed exterior elevation. The trade is clear: about 400 sqft less space in exchange for a meaningfully better material and finish quality throughout.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.1}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 This budget is common among buyers who have already invested ₹40–₹50 lakh in a 40x60 or 30x50 plot and want a home they will live in for 20 years or more. At ₹60 lakh, the upgrade from standard to premium is a matter of reducing BUA by roughly 400 sqft but gaining materials that perform better over time — porcelain that does not fade, chrome fittings that do not corrode in two years, electrical switches that still look good after a decade. For a long-term home, the premium path is often the wiser financial decision. For a first home with young children and growing space needs, standard on a larger footprint makes equal sense.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.15}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 At basic quality, ₹60 lakh can build up to 3,243 sqft — large enough for a 4 BHK G+1 with a servant quarter on a 30x50 or 40x50 plot. This option is less commonly chosen at ₹60 lakh because the quality gap between basic and standard is visible in day-to-day use, and the additional space rarely justifies it. The most practical use of this budget remains standard quality on a 30x50 or 40x50 plot, with a proper 3–4 BHK configuration, two-car parking provision, and a small garden or sit-out area. That configuration, built well, holds its value and remains liveable for a generation.
               </p>
             </AnimateIn>
@@ -474,10 +474,10 @@ export default function SixtyLakhHosurPage() {
                     </span>
                   )}
                 </div>
-                <p className="font-sans mb-4" style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}>
+                <p className="font-sans mb-4" style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}>
                   {partner.tagline}
                 </p>
-                <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
                   Led by {partner.founderName}. {partner.founderBio} Exclusive territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -516,7 +516,7 @@ export default function SixtyLakhHosurPage() {
                   Services
                 </p>
                 {["Architecture & design", "HTM approval support", "Structural drawings", "Turnkey construction", "Interior fit-out", "Project management"].map((s) => (
-                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "12px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>
+                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "14px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>
                     {s}
                   </p>
                 ))}
@@ -551,10 +551,10 @@ export default function SixtyLakhHosurPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>
                     {eyebrow}
                   </p>
-                  <p className="font-serif mb-2" style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
+                  <p className="font-serif mb-2" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     {title}
                   </p>
-                  <p className="font-sans" style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+                  <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}>
                     {desc}
                   </p>
                 </Link>
@@ -576,7 +576,7 @@ export default function SixtyLakhHosurPage() {
               >
                 Get your ₹60 lakh estimate
               </h2>
-              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
+              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
               </p>
               <Link

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -246,7 +246,7 @@ export default function OneCroreHosurPage() {
             >
               What ₹1 crore builds by quality tier
             </h2>
-            <p className="font-sans mb-10" style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
+            <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               BUA figures assume the full ₹1 crore goes to civil construction. At this budget, also account for ₹8–₹12 lakh for statutory approvals, compound wall, and site preparation.
             </p>
           </AnimateIn>
@@ -269,7 +269,7 @@ export default function OneCroreHosurPage() {
                         </span>
                       )}
                     </div>
-                    <p className="font-mono tabular-nums" style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
+                    <p className="font-mono tabular-nums" style={{ fontSize: "16px", color: "var(--text-secondary)" }}>
                       {fmtRate(rateMin)}–{fmtRate(rateMax)}/sqft
                     </p>
                   </div>
@@ -278,7 +278,7 @@ export default function OneCroreHosurPage() {
                     <p className="font-mono tabular-nums mb-1" style={{ fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                       {buaMin.toLocaleString("en-IN")}–{buaMax.toLocaleString("en-IN")} sqft
                     </p>
-                    <p className="font-sans" style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                    <p className="font-sans" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                       {desc}
                     </p>
                   </div>
@@ -302,12 +302,12 @@ export default function OneCroreHosurPage() {
                   <p className="font-serif mb-1" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     Ultra Luxury
                   </p>
-                  <p className="font-mono" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>
+                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>
                     ₹5,000+/sqft
                   </p>
                 </div>
                 <div className="md:pt-1">
-                  <p className="font-sans mb-2" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  <p className="font-sans mb-2" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                     Imported stone, Kohler or Duravit, Lutron smart lighting. No standard rate applies — every project is priced from a full design brief.
                   </p>
                   <Link
@@ -329,7 +329,7 @@ export default function OneCroreHosurPage() {
 
           {/* BOQ Credibility */}
           <AnimateIn direction="up" delay={0.1}>
-            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
+            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
               "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026"
             </p>
           </AnimateIn>
@@ -349,7 +349,7 @@ export default function OneCroreHosurPage() {
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                 Get a detailed estimate for your ₹1 crore build
               </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
+              <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
                 Configure your plot, floors, and quality tier. Get a cost range with phase-wise payment schedule — drawn from verified Hosur BOQ data.
               </p>
               <ul className="mb-7 space-y-2">
@@ -362,7 +362,7 @@ export default function OneCroreHosurPage() {
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="font-mono text-[11px]" style={{ color: "var(--accent)" }}>—</span>
-                    <span className="font-sans" style={{ fontSize: "14px", color: "var(--text-secondary)" }}>{item}</span>
+                    <span className="font-sans" style={{ fontSize: "16px", color: "var(--text-secondary)" }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -398,19 +398,19 @@ export default function OneCroreHosurPage() {
 
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 At ₹1 crore, you are building one of the more substantial homes in Hosur's residential market. Standard quality at this budget delivers 4,166 to 4,761 sqft — a full G+2 home on a 40x60 plot with a two-car garage, servant quarter, proper staircase with landing, and enough space for five bedrooms plus a study or home office. The home at this scale has genuine presence. Premium quality brings it to 3,448 to 4,000 sqft with Italian-grade porcelain tile, Jaquar fittings throughout, Legrand electrical, and an architect-designed elevation. The exterior of a ₹1 crore premium build in Hosur is visually distinct from anything at the ₹60 lakh range.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.1}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 In Hosur's current market in 2026, ₹1 crore builds are concentrated in gated layouts along the ECR road and Rayakottai road corridors, where larger plots with good road access and planned infrastructure attract buyers at this price point. The most common configuration for a ₹1 crore build here: a 40x60 plot purchased at ₹50–₹80 lakh, a G+2 structure at standard to premium quality, 4 to 5 bedrooms, two-car covered parking, a separate ground-floor servant quarter, and a designed roof terrace. Total project cost including land, civil, interiors, and approvals typically runs ₹1.5 to ₹1.8 crore at this configuration. The civil construction figure of ₹1 crore covers the building itself.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.15}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The shift that happens at ₹1 crore — and above — is that the question is no longer "how much can I build" but "how do I want to live in this home." The size is not in question. What changes is the quality of every daily experience: the tile that your feet touch every morning, the tap fittings that will last a decade, the light switches that look the same in ten years, the ceiling height that makes rooms feel different. These are the choices that ₹1 crore unlocks, and they are choices best made with an architect and a proper BOQ — not improvised on site. Design Intend, Estimato's Hosur partner, works at this level with a full design-to-construction process.
               </p>
             </AnimateIn>
@@ -474,10 +474,10 @@ export default function OneCroreHosurPage() {
                     </span>
                   )}
                 </div>
-                <p className="font-sans mb-4" style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}>
+                <p className="font-sans mb-4" style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}>
                   {partner.tagline}
                 </p>
-                <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
                   Led by {partner.founderName}. {partner.founderBio} Exclusive territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -516,7 +516,7 @@ export default function OneCroreHosurPage() {
                   Services
                 </p>
                 {["Architecture & design", "HTM approval support", "Structural drawings", "Turnkey construction", "Interior fit-out", "Project management"].map((s) => (
-                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "12px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>
+                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "14px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>
                     {s}
                   </p>
                 ))}
@@ -551,10 +551,10 @@ export default function OneCroreHosurPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>
                     {eyebrow}
                   </p>
-                  <p className="font-serif mb-2" style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
+                  <p className="font-serif mb-2" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     {title}
                   </p>
-                  <p className="font-sans" style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+                  <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}>
                     {desc}
                   </p>
                 </Link>
@@ -576,7 +576,7 @@ export default function OneCroreHosurPage() {
               >
                 Start your ₹1 crore estimate
               </h2>
-              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
+              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
               </p>
               <Link

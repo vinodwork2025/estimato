@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -260,7 +260,7 @@ export default function DuplexHosurPage() {
             >
               Construction rates by quality tier
             </h2>
-            <p className="font-sans mb-10" style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
+            <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               Cost ranges shown are for duplex BUA of 1,400 to 2,800 sqft at each quality tier. Civil and structural only — interiors, furniture, and landscaping are separate.
             </p>
           </AnimateIn>
@@ -280,15 +280,15 @@ export default function DuplexHosurPage() {
                       </div>
                       <p className="font-mono tabular-nums" style={{ fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                         {fmtRate(tier.min)}
-                        <span className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
+                        <span className="font-mono" style={{ fontSize: "15px", color: "var(--text-tertiary)", margin: "0 5px" }}>–</span>
                         {fmtRate(tier.max)}
                       </p>
-                      <p className="font-mono" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>per sqft</p>
+                      <p className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>per sqft</p>
                     </div>
                     <div className="md:pt-1">
-                      <p className="font-mono mb-1" style={{ fontSize: "13px", fontWeight: 500, color: "var(--text-primary)" }}>{costMin} – {costMax}</p>
-                      <p className="font-mono mb-2" style={{ fontSize: "11px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
-                      <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
+                      <p className="font-mono mb-1" style={{ fontSize: "15px", fontWeight: 500, color: "var(--text-primary)" }}>{costMin} – {costMax}</p>
+                      <p className="font-mono mb-2" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
+                      <p className="font-sans" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
                     </div>
                     <div className="flex items-center gap-3 md:justify-end">
                       <div className="w-full md:w-28 h-1 rounded-full overflow-hidden" style={{ background: "var(--border)" }}>
@@ -305,10 +305,10 @@ export default function DuplexHosurPage() {
               <div className="grid grid-cols-1 md:grid-cols-[200px_1fr_180px] gap-4 md:gap-8 py-7 items-start">
                 <div>
                   <p className="font-serif mb-1" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>Ultra Luxury</p>
-                  <p className="font-mono" style={{ fontSize: "14px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
+                  <p className="font-mono" style={{ fontSize: "16px", color: "var(--text-tertiary)" }}>₹5,000+ per sqft</p>
                 </div>
                 <div className="md:pt-1">
-                  <p className="font-sans mb-3" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
                     Fully custom build with imported materials, smart home integration, and designer interiors throughout both units. No published rate — quoted from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
@@ -326,7 +326,7 @@ export default function DuplexHosurPage() {
           </StaggerContainer>
 
           <AnimateIn direction="up" delay={0.1}>
-            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
+            <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
               "Rates built from real project BOQs and verified against current Hosur and Bangalore contractor quotes, 2026"
             </p>
           </AnimateIn>
@@ -342,7 +342,7 @@ export default function DuplexHosurPage() {
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
                 Get a personalised duplex estimate
               </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
+              <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
                 Tell us your plot, floor count, and quality level. You get a full cost range and the details below — no sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
@@ -373,13 +373,13 @@ export default function DuplexHosurPage() {
               What separates a duplex from a G+1 house
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 A duplex in Hosur is not just a two-floor home. It is a G+1 where each floor functions as a fully independent unit — its own entrance from the street, its own kitchen, its own electricity meter, and ideally its own staircase. This structure serves two distinct purposes in Hosur: it allows a joint family to live in proximity while maintaining separate households, or it lets the builder live on one floor and rent out the other for steady income. The critical difference from a standard G+1 is in the layout planning, not the structural frame.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The extra cost of a duplex over a comparable G+1 falls into four items. A second kitchen adds ₹2.5 to ₹5 lakh at standard quality. A separate entry path — whether a second staircase or a separate ground-floor lobby — adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is not required but is strongly recommended for a functional duplex: a 100mm hollow block or mineral wool layer between the slab and the floor finish above adds ₹80,000 to ₹1.5 lakh but eliminates the most common complaint in duplex rentals. Double the electrical panels and metering adds another ₹40,000 to ₹80,000. The total duplex premium over a standard G+1 is ₹4 to ₹9 lakh.
               </p>
-              <p className="font-sans" style={{ fontSize: "17px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+              <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The most common mistake in Hosur duplex builds is treating the separate entrance as an afterthought. Builders often start with a standard G+1 design and ask the contractor to add a second staircase during construction. Retrofitting a second staircase costs 2 to 3 times what it costs to plan it into the original architectural drawing. The rental income math for a Hosur duplex near the Electronic City Road or SIPCOT area works well in 2026 — ₹8,000 to ₹14,000 per floor per month means a ₹35 to ₹40 lakh construction investment in the rental unit pays back in 12 to 16 years, not counting land appreciation.
               </p>
             </div>
@@ -416,8 +416,8 @@ export default function DuplexHosurPage() {
                     <span className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5" style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}>Founding partner</span>
                   )}
                 </div>
-                <p className="font-sans mb-4" style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
-                <p className="font-sans mb-6" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                <p className="font-sans mb-4" style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}>{partner.tagline}</p>
+                <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}>
                   Led by {partner.founderName}. {partner.founderBio} Exclusive territory: Hosur, Sarjapura, Attibele, Bagalur, and Krishnagiri.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -431,7 +431,7 @@ export default function DuplexHosurPage() {
               <div className="rounded-sm p-5" style={{ background: "rgba(196,154,60,0.04)", border: "1px solid rgba(196,154,60,0.15)" }}>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--accent)" }}>Services</p>
                 {["Architecture & design", "HTM approval support", "Structural drawings", "Turnkey construction", "Interior fit-out", "Project management"].map((s) => (
-                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "12px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
+                  <p key={s} className="font-mono py-2 border-b last:border-b-0" style={{ fontSize: "14px", color: "var(--text-secondary)", borderColor: "rgba(196,154,60,0.12)" }}>{s}</p>
                 ))}
               </div>
             </div>
@@ -452,8 +452,8 @@ export default function DuplexHosurPage() {
               <StaggerItem key={href}>
                 <Link href={href} className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy" style={{ border: "1px solid var(--border)" }}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--accent)" }}>{eyebrow}</p>
-                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
-                  <p className="font-sans" style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
+                  <p className="font-serif mb-2 group-hover:text-navy transition-colors" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{title}</p>
+                  <p className="font-sans" style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{desc}</p>
                 </Link>
               </StaggerItem>
             ))}
@@ -468,7 +468,7 @@ export default function DuplexHosurPage() {
               <h2 className="font-serif mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF" }}>
                 Start your duplex estimate
               </h2>
-              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
+              <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline built from Hosur BOQs.
               </p>
               <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>

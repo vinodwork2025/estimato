@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
@@ -382,7 +382,7 @@ export default function HosurHubPage() {
             </h2>
             <p
               className="font-sans mb-10"
-              style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}
+              style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}
             >
               All rates are range-based. The final number for your project
               depends on your exact specifications. Run the estimate tool below
@@ -437,7 +437,7 @@ export default function HosurHubPage() {
                         {fmtRate(tier.min)}
                         <span
                           className="font-mono"
-                          style={{ fontSize: "14px", color: "var(--text-tertiary)", margin: "0 6px" }}
+                          style={{ fontSize: "16px", color: "var(--text-tertiary)", margin: "0 6px" }}
                         >
                           –
                         </span>
@@ -445,7 +445,7 @@ export default function HosurHubPage() {
                       </p>
                       <p
                         className="font-mono"
-                        style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+                        style={{ fontSize: "13px", color: "var(--text-tertiary)" }}
                       >
                         per sq ft
                       </p>
@@ -455,13 +455,13 @@ export default function HosurHubPage() {
                     <div className="md:pt-1">
                       <p
                         className="font-sans mb-1"
-                        style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}
+                        style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                       >
                         {description}
                       </p>
                       <p
                         className="font-mono"
-                        style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+                        style={{ fontSize: "13px", color: "var(--text-tertiary)" }}
                       >
                         {typical}
                       </p>
@@ -504,13 +504,13 @@ export default function HosurHubPage() {
                   </p>
                   <p
                     className="font-mono"
-                    style={{ fontSize: "16px", color: "var(--text-tertiary)" }}
+                    style={{ fontSize: "18px", color: "var(--text-tertiary)" }}
                   >
                     Custom quote
                   </p>
                   <p
                     className="font-mono"
-                    style={{ fontSize: "11px", color: "var(--text-tertiary)" }}
+                    style={{ fontSize: "13px", color: "var(--text-tertiary)" }}
                   >
                     per sq ft
                   </p>
@@ -518,7 +518,7 @@ export default function HosurHubPage() {
                 <div className="md:pt-1">
                   <p
                     className="font-sans mb-3"
-                    style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}
+                    style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                   >
                     Imported stone, Kohler or Duravit sanitary, Lutron
                     lighting. No standard rate applies — every project is
@@ -554,7 +554,7 @@ export default function HosurHubPage() {
           <AnimateIn direction="up" delay={0.1}>
             <p
               className="font-mono mt-8 pt-6 border-t border-border"
-              style={{ fontSize: "12px", color: "var(--text-tertiary)", lineHeight: 1.7 }}
+              style={{ fontSize: "14px", color: "var(--text-tertiary)", lineHeight: 1.7 }}
             >
               "Rates built from real project BOQs and verified against current Hosur and
               Bangalore contractor quotes, 2026"
@@ -605,7 +605,7 @@ export default function HosurHubPage() {
             </h2>
             <p
               className="font-sans mb-10"
-              style={{ fontSize: "16px", color: "var(--text-secondary)", maxWidth: "520px", lineHeight: 1.65 }}
+              style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "520px", lineHeight: 1.65 }}
             >
               Phase-wise breakdown for a standard G+1 home in Hosur. Total
               build time:{" "}
@@ -645,7 +645,7 @@ export default function HosurHubPage() {
                       </div>
                       <p
                         className="font-sans md:pt-5"
-                        style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.65 }}
+                        style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                       >
                         {phase.description}
                       </p>
@@ -676,13 +676,13 @@ export default function HosurHubPage() {
                         <div>
                           <p
                             className="font-mono tabular-nums"
-                            style={{ fontSize: "15px", fontWeight: 400, color: "var(--text-primary)" }}
+                            style={{ fontSize: "17px", fontWeight: 400, color: "var(--text-primary)" }}
                           >
                             {weekLabel(phase.durationDays)}
                           </p>
                           <p
                             className="font-mono"
-                            style={{ fontSize: "10px", color: "var(--text-tertiary)" }}
+                            style={{ fontSize: "12px", color: "var(--text-tertiary)" }}
                           >
                             {phase.durationDays} days
                           </p>
@@ -690,13 +690,13 @@ export default function HosurHubPage() {
                         <div className="text-right">
                           <p
                             className="font-mono tabular-nums"
-                            style={{ fontSize: "15px", fontWeight: 400, color: "var(--text-primary)" }}
+                            style={{ fontSize: "17px", fontWeight: 400, color: "var(--text-primary)" }}
                           >
                             {phase.paymentPercent}%
                           </p>
                           <p
                             className="font-mono"
-                            style={{ fontSize: "10px", color: "var(--text-tertiary)" }}
+                            style={{ fontSize: "12px", color: "var(--text-tertiary)" }}
                           >
                             payment
                           </p>
@@ -808,14 +808,14 @@ export default function HosurHubPage() {
 
                 <p
                   className="font-sans mb-4"
-                  style={{ fontSize: "14px", color: "var(--accent)", lineHeight: 1.5 }}
+                  style={{ fontSize: "16px", color: "var(--accent)", lineHeight: 1.5 }}
                 >
                   {partner.tagline}
                 </p>
 
                 <p
                   className="font-sans mb-6"
-                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.7 }}
+                  style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7 }}
                 >
                   Led by {partner.founderName}. {partner.founderBio} Exclusive
                   territory: Hosur, Sarjapura, Attibele, Bagalur, and
@@ -887,7 +887,7 @@ export default function HosurHubPage() {
                     key={s}
                     className="font-mono py-2 border-b last:border-b-0"
                     style={{
-                      fontSize: "12px",
+                      fontSize: "14px",
                       color: "var(--text-secondary)",
                       borderColor: "rgba(196,154,60,0.12)",
                     }}
@@ -942,13 +942,13 @@ export default function HosurHubPage() {
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
+                  style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
                   30×40 plot in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
                   Hosur's benchmark plot size. Standard G+1 costs ₹30.2L–₹34.6L at current rates.
                 </p>
@@ -970,13 +970,13 @@ export default function HosurHubPage() {
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
+                  style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
                   40×60 plot in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
                   2,400 sqft plot with 2,880 sqft BUA at G+1. Cost breakdown across all tiers.
                 </p>
@@ -998,13 +998,13 @@ export default function HosurHubPage() {
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
+                  style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
                   Villa construction cost in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
                   Detailed cost breakdown for villa builds in Hosur. Standard range: ₹37.8L–₹84L.
                 </p>
@@ -1026,13 +1026,13 @@ export default function HosurHubPage() {
                 </p>
                 <p
                   className="font-serif mb-2 group-hover:text-navy transition-colors"
-                  style={{ fontSize: "18px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
+                  style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}
                 >
                   ₹50 lakh house in Hosur
                 </p>
                 <p
                   className="font-sans"
-                  style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.6 }}
+                  style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
                   What you can build in Hosur with a ₹50 lakh budget — size, quality, and trade-offs.
                 </p>
@@ -1070,7 +1070,7 @@ export default function HosurHubPage() {
               <p
                 className="font-sans mb-8 mx-auto"
                 style={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   lineHeight: 1.7,
                   color: "rgba(255,255,255,0.65)",
                   maxWidth: "480px",
