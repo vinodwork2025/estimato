@@ -60,7 +60,8 @@ async function generateAndUploadPDF(
     if (!res.ok) return undefined;
     const json = await res.json();
     return json.url as string | undefined;
-  } catch {
+  } catch (err) {
+    console.error("[PDF] generation/upload failed:", err);
     return undefined;
   }
 }

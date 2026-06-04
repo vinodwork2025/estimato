@@ -66,7 +66,7 @@ export function buildReportEmailHtml({
               </td>
             </tr>
           </table>
-          ${pdfUrl ? "" : `<p style="font-size:12px;color:#9CA3A3;margin-top:16px;">Your full breakdown is visible at <a href="${siteUrl}/plan/result" style="color:#0E2146;">estimato.in/plan/result</a></p>`}
+          ${pdfUrl ? "" : `<p style="font-size:12px;color:#9CA3A3;margin-top:16px;">Recalculate or update your estimate at <a href="${siteUrl}/plan" style="color:#0E2146;">estimato.in/plan</a></p>`}
         </td></tr>
         <tr><td style="padding:24px 40px;border-top:1px solid #E8E6E0;background:#FAFAF7;">
           <p style="font-size:12px;color:#9CA3A3;margin:0;">Estimato · estimato.in · No spam. <a href="${siteUrl}" style="color:#9CA3A3;">Unsubscribe</a></p>
