@@ -25,7 +25,7 @@ export async function notifyPartnerByEmail(
 
   await resend.emails.send({
     from: FROM_LEADS,
-    to: [partner.email, "vinod@optiscaleadvisors.com"],
+    to: ["vinod@estimato.in", "vinod@optiscaleadvisors.com"],
     subject,
     html: buildPartnerEmailHtml(partner, lead, priority),
   });

@@ -62,7 +62,7 @@ export async function POST(request: Request) {
         area: data.area || null,
         planning_timeline: data.planningTimeline,
         consent_to_partner_share: data.consentToPartnerShare,
-        assigned_partner_id: partner ? partner.id : null,
+        assigned_partner_id: partner && /^[0-9a-f-]{36}$/i.test(partner.id) ? partner.id : null,
         calculation_input: data.calculationInput,
         calculation_result: data.calculationResult,
         source_page: data.sourcePage || null,

@@ -199,6 +199,7 @@ export function LeadFormModal({
           type="email"
           placeholder="ravi@example.com"
           hint="Your PDF report will be sent here"
+          required
           autoComplete="email"
           error={errors.email?.message}
           {...register("email")}
