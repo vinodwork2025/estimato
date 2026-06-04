@@ -2,7 +2,7 @@ export const runtime = 'edge';
 
 import { NextResponse } from "next/server";
 import type { CalculationResult } from "@/types";
-import { buildReportEmailHtml } from "@/lib/email/report-html";
+import { buildReportEmailHtml, FROM_REPORTS } from "@/lib/email/report-html";
 
 export async function POST(request: Request) {
   const secret = request.headers.get("x-internal-secret");
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const subject = `Your home construction estimate is ready, ${name.split(" ")[0]}`;
 
     const { error: sendError } = await resend.emails.send({
-      from: "reports@estimato.in",
+      from: FROM_REPORTS,
       replyTo: "hello@estimato.in",
       to: email,
       subject,

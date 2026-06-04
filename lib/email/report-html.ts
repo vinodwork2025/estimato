@@ -1,4 +1,7 @@
 import { escapeHtml } from "@/lib/security/html";
+
+export const FROM_REPORTS = "Estimato <reports@estimato.in>";
+export const FROM_LEADS   = "Estimato <leads@estimato.in>";
 import { formatINRShort } from "@/lib/utils";
 import type { CalculationResult } from "@/types";
 

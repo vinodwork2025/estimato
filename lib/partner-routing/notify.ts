@@ -1,4 +1,5 @@
 import type { Partner, Lead } from "@/types";
+import { FROM_LEADS } from "@/lib/email/report-html";
 
 export function isWhatsAppConfigured(partner: Partner): boolean {
   if (partner.whatsappNumber.includes("XXXXXXXXXX")) {
@@ -23,7 +24,7 @@ export async function notifyPartnerByEmail(
     : `New consultation request from ${lead.name} in ${lead.city}`;
 
   await resend.emails.send({
-    from: "leads@estimato.in",
+    from: FROM_LEADS,
     to: [partner.email, "vinod@optiscaleadvisors.com"],
     subject,
     html: buildPartnerEmailHtml(partner, lead, priority),

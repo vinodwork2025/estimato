@@ -6,7 +6,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { matchPartnerForCity } from "@/lib/partner-routing/match";
 import { notifyPartnerByEmail } from "@/lib/partner-routing/notify";
 import { submitLeadLimiter, getIP } from "@/lib/security/ratelimit";
-import { buildReportEmailHtml } from "@/lib/email/report-html";
+import { buildReportEmailHtml, FROM_REPORTS } from "@/lib/email/report-html";
 import type { Lead, PlannerInput, CalculationResult } from "@/types";
 
 const LeadSchema = z.object({
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
     const emailPromises: Promise<unknown>[] = [
       // User report email
       resend.emails.send({
-        from: "reports@estimato.in",
+        from: FROM_REPORTS,
         replyTo: "hello@estimato.in",
         to: data.email,
         subject,
