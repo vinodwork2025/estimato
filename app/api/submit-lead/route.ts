@@ -6,6 +6,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { matchPartnerForCity } from "@/lib/partner-routing/match";
 import { notifyPartnerByEmail } from "@/lib/partner-routing/notify";
 import { submitLeadLimiter, getIP } from "@/lib/security/ratelimit";
+import { buildReportEmailHtml } from "@/lib/email/report-html";
 import type { Lead, PlannerInput, CalculationResult } from "@/types";
 
 const LeadSchema = z.object({
@@ -72,26 +73,31 @@ export async function POST(request: Request) {
 
     if (error) throw new Error(error.message);
 
-    // Send PDF report via email (fire-and-forget)
-    fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/send-report`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-internal-secret": process.env.INTERNAL_API_SECRET ?? "",
-      },
-      body: JSON.stringify({
-        leadId: lead.id,
-        email: data.email,
-        name: data.name,
-        city: data.city,
-        homeType: data.calculationInput?.homeType,
-        result: data.calculationResult,
-        partnerName: partner?.name ?? null,
-        pdfUrl: data.pdfUrl || null,
-      }),
-    }).catch(() => {});
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Notify partner
+    const firstName = data.name.split(" ")[0];
+    const subject = `Your home construction estimate is ready, ${firstName}`;
+
+    const emailPromises: Promise<unknown>[] = [
+      // User report email
+      resend.emails.send({
+        from: "reports@estimato.in",
+        replyTo: "hello@estimato.in",
+        to: data.email,
+        subject,
+        html: buildReportEmailHtml({
+          name: data.name,
+          city: data.city,
+          homeType: data.calculationInput?.homeType,
+          result: data.calculationResult as unknown as CalculationResult,
+          partnerName: partner?.name ?? null,
+          pdfUrl: data.pdfUrl || null,
+        }),
+      }).catch((err) => console.error("user-email error:", err)),
+    ];
+
+    // Partner notification
     if (partner && data.consentToPartnerShare) {
       const isPriority = data.planningTimeline === "within-3-months";
       const leadPayload: Lead = {
@@ -99,7 +105,7 @@ export async function POST(request: Request) {
         name: data.name,
         phone: data.phone,
         countryCode: data.countryCode,
-        email: data.email || undefined,
+        email: data.email,
         city: data.city,
         area: data.area,
         planningTimeline: data.planningTimeline,
@@ -108,14 +114,20 @@ export async function POST(request: Request) {
         calculationResult: data.calculationResult as unknown as CalculationResult,
       };
 
-      notifyPartnerByEmail(partner, leadPayload, isPriority).then(() => {
-        supabase
-          .from("leads")
-          .update({ partner_notified_at: new Date().toISOString() })
-          .eq("id", lead.id)
-          .then(() => {});
-      }).catch(() => {});
+      emailPromises.push(
+        notifyPartnerByEmail(partner, leadPayload, isPriority)
+          .then(() =>
+            supabase
+              .from("leads")
+              .update({ partner_notified_at: new Date().toISOString() })
+              .eq("id", lead.id)
+          )
+          .catch((err) => console.error("partner-email error:", err))
+      );
     }
+
+    // Await all emails before returning — required on CF Workers edge runtime
+    await Promise.allSettled(emailPromises);
 
     return NextResponse.json({
       success: true,
