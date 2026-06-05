@@ -2,13 +2,18 @@
 const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
-  serverExternalPackages: ["@react-pdf/renderer"],
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // @react-pdf/renderer browser build doesn't use canvas,
-      // but webpack may try to resolve it as a transitive dep — stub it out.
-      config.resolve.alias = { ...config.resolve.alias, canvas: false };
-    }
+  // react-pdf must NOT be in serverExternalPackages — it needs to be bundled so
+  // CF Workers can use it. We force the browser build everywhere via webpack alias
+  // so no native Node.js addons (@napi-rs/canvas) are pulled in.
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      // Force browser build for ALL environments (client + CF Workers edge).
+      // Browser build is pure JS, no native deps, works in any V8 environment.
+      "@react-pdf/renderer": "@react-pdf/renderer/lib/react-pdf.browser.js",
+      canvas: false,
+      "@napi-rs/canvas": false,
+    };
     return config;
   },
   images: {

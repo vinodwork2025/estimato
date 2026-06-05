@@ -13,13 +13,15 @@ import type { CalculationResult, PlannerInput } from "@/types";
 //
 // Fonts are self-hosted full Inter WOFF (inter-ui@3.19.3) — not CDN subsets.
 // latin-ext subsets from @fontsource only cover U+0100+, missing A–Z → PDF throws.
-// WOFF uses zlib (no WASM/Brotli needed), works in all browser environments.
+// WOFF uses zlib (no WASM/Brotli needed), works in browser and CF Workers.
+// Absolute URL required: relative paths fail in CF Workers fetch context.
+const _FONT_BASE = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in");
 Font.register({
   family: "Inter",
   fonts: [
-    { src: "/fonts/inter-400.woff", fontWeight: 400 },
-    { src: "/fonts/inter-600.woff", fontWeight: 600 },
-    { src: "/fonts/inter-700.woff", fontWeight: 700 },
+    { src: `${_FONT_BASE}/fonts/inter-400.woff`, fontWeight: 400 },
+    { src: `${_FONT_BASE}/fonts/inter-600.woff`, fontWeight: 600 },
+    { src: `${_FONT_BASE}/fonts/inter-700.woff`, fontWeight: 700 },
   ],
 });
 

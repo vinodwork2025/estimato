@@ -37,35 +37,25 @@ interface LeadFormModalProps {
   sourcePage?: string;
 }
 
-async function generateAndUploadPDF(
+async function generatePDF(
   name: string,
   input: Partial<PlannerInput>,
   result: CalculationResult
 ): Promise<string | undefined> {
   try {
-    const [{ pdf }, { ReportDocument }, React] = await Promise.all([
-      import("@react-pdf/renderer"),
-      import("@/components/pdf/ReportDocument"),
-      import("react"),
-    ]);
-
-    const blob = await pdf(
-      React.createElement(ReportDocument, { name, input, result }) as Parameters<typeof pdf>[0]
-    ).toBlob();
-
-    const form = new FormData();
-    form.append("file", blob, "report.pdf");
-
-    const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
+    const res = await fetch("/api/generate-pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, input, result }),
+    });
+    const json = await res.json().catch(() => ({}));
     if (!res.ok) {
-      const errBody = await res.json().catch(() => ({}));
-      console.error("[PDF] upload failed", res.status, errBody);
+      console.error("[PDF] server error:", res.status, json?.error ?? json);
       return undefined;
     }
-    const json = await res.json();
-    return json.url as string | undefined;
+    return json.pdfUrl as string | undefined;
   } catch (err) {
-    console.error("[PDF] generation/upload failed:", err);
+    console.error("[PDF] generate-pdf fetch failed:", err);
     return undefined;
   }
 }
@@ -108,9 +98,9 @@ export function LeadFormModal({
       partner_consent: data.consentToPartnerShare,
     });
 
-    // Step 1: Generate PDF (non-blocking — failure doesn't stop submission)
+    // Step 1: Generate PDF server-side (failure doesn't stop submission)
     setLoadingStep("Generating your report…");
-    let pdfUrl: string | undefined = await generateAndUploadPDF(data.name, input, result);
+    let pdfUrl: string | undefined = await generatePDF(data.name, input, result);
 
     // Step 2: Submit lead
     setLoadingStep("Submitting…");
