@@ -22,21 +22,21 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 
 export const metadata: Metadata = {
 
-  title: "Estimato – Plan before you build",
+  title: "Construction Cost Calculator India | Estimato",
 
   description:
 
-    "Plan your home construction budget in 5 steps. Honest numbers, no contractor pitch. Free for Indian homeowners.",
+    "Get an instant construction cost estimate for any city in India. Rates built from real project BOQs, verified against current contractor quotes.",
 
   alternates: { canonical: SITE_URL },
 
   openGraph: {
 
-    title: "Estimato – Plan before you build",
+    title: "Construction Cost Calculator India | Estimato",
 
     description:
 
-      "Get an honest home construction estimate in 5 steps. Covers Hosur, Sarjapura, Bengaluru, and 12+ cities.",
+      "Get an instant construction cost estimate for any city in India. Rates built from real project BOQs, verified against current contractor quotes.",
 
     images: [{ url: "/og-home.png", width: 1200, height: 630 }],
 

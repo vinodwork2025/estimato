@@ -84,9 +84,9 @@ const _20x30: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "20×30 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "20×30 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 20×30 house in Hosur in 2026 costs ₹15.1–₹17.3 lakh at standard quality for a G+1 with 720 sqft. Full breakdown by quality tier.",
+      "Cost to build a 20×30 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "20×30 plot · Hosur · 2026",
     headline: "20×30 house construction cost in Hosur",
     lead:
@@ -165,9 +165,9 @@ const _30x40: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "30×40 House Construction Cost in Hosur 2026 – G+1 Verified Rates",
+    title: "30×40 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 30×40 house in Hosur in 2026 costs ₹30.2–₹34.6 lakh at standard quality for a 1,440 sqft G+1. The benchmark plot size. Verified 2026 rates.",
+      "Cost to build a 30×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "30×40 plot · Hosur · 2026",
     headline: "30×40 house construction cost in Hosur",
     lead:
@@ -251,9 +251,9 @@ const _30x50: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "30×50 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "30×50 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 30×50 house in Hosur in 2026 costs ₹37.8–₹43.2 lakh at standard quality for a 1,800 sqft G+1. Detailed breakdown by quality tier.",
+      "Cost to build a 30×50 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "30×50 plot · Hosur · 2026",
     headline: "30×50 house construction cost in Hosur",
     lead:
@@ -332,9 +332,9 @@ const _40x60: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "40×60 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "40×60 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 40×60 house in Hosur in 2026 costs ₹60.5–₹69.1 lakh at standard quality for a 2,880 sqft G+1. Full breakdown by quality tier.",
+      "Cost to build a 40×60 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "40×60 plot · Hosur · 2026",
     headline: "40×60 house construction cost in Hosur",
     lead:
@@ -413,9 +413,9 @@ const _20x40: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "20×40 House Construction Cost in Hosur 2026 – Narrow Plot G+1 Rates",
+    title: "20×40 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 20×40 house in Hosur in 2026 costs ₹20.2–₹23 lakh at standard quality for a 960 sqft G+1. Layout tips for narrow plots. Verified 2026 rates.",
+      "Cost to build a 20×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "20×40 plot · Hosur · 2026",
     headline: "20×40 house construction cost in Hosur",
     lead:
@@ -494,9 +494,9 @@ const _30x30: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "30×30 House Construction Cost in Hosur 2026 – Square Plot Rates",
+    title: "30×30 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 30×30 house in Hosur in 2026 costs ₹22.7–₹25.9 lakh at standard quality for a 1,080 sqft G+1. Square plot layout options and verified 2026 rates.",
+      "Cost to build a 30×30 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "30×30 plot · Hosur · 2026",
     headline: "30×30 house construction cost in Hosur",
     lead:
@@ -575,9 +575,9 @@ const _40x40: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "40×40 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "40×40 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 40×40 house in Hosur in 2026 costs ₹40.3–₹46.1 lakh at standard quality for a 1,920 sqft G+1. Spacious square plot layout options and verified rates.",
+      "Cost to build a 40×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "40×40 plot · Hosur · 2026",
     headline: "40×40 house construction cost in Hosur",
     lead:
@@ -656,9 +656,9 @@ const _50x80: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "50×80 House Construction Cost in Hosur 2026 – Villa Scale Rates",
+    title: "50×80 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 50×80 house in Hosur in 2026 costs ₹1 crore to ₹1.15 crore at standard quality for a 4,800 sqft G+1. Verified rates for large plots.",
+      "Cost to build a 50×80 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "50×80 plot · Hosur · 2026",
     headline: "50×80 house construction cost in Hosur",
     lead:
@@ -737,9 +737,9 @@ const _30x60: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "30×60 House Construction Cost in Hosur 2026 – Deep Plot G+1 Rates",
+    title: "30×60 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 30×60 house in Hosur in 2026 costs ₹45.4–₹51.8 lakh at standard quality for a 2,160 sqft G+1. Layout options for long deep plots. Verified rates.",
+      "Cost to build a 30×60 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "30×60 plot · Hosur · 2026",
     headline: "30×60 house construction cost in Hosur",
     lead:
@@ -818,9 +818,9 @@ const _40x50: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "40×50 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "40×50 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 40×50 house in Hosur in 2026 costs ₹50.4–₹57.6 lakh at standard quality for a 2,400 sqft G+1. Well-proportioned mid-size plot breakdown.",
+      "Cost to build a 40×50 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "40×50 plot · Hosur · 2026",
     headline: "40×50 house construction cost in Hosur",
     lead:
@@ -899,9 +899,9 @@ const _25x40: PlotPageConfig = (() => {
     floors: 2,
     floorLabel: "G+1",
     bua,
-    title: "25×40 House Construction Cost in Hosur 2026 – G+1 Rates",
+    title: "25×40 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 25×40 house in Hosur in 2026 costs ₹25.2–₹28.8 lakh at standard quality for a 1,200 sqft G+1. Standard layout plot breakdown. Verified 2026 rates.",
+      "Cost to build a 25×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "25×40 plot · Hosur · 2026",
     headline: "25×40 house construction cost in Hosur",
     lead:
@@ -980,9 +980,9 @@ const _60x40: PlotPageConfig = (() => {
     floors: 3,
     floorLabel: "G+2",
     bua,
-    title: "60×40 House Construction Cost in Hosur 2026 – G+2 Wide Frontage Rates",
+    title: "60×40 House Construction Cost in Hosur | Estimato",
     metaDesc:
-      "Building a 60×40 G+2 house in Hosur in 2026 costs ₹90.7–₹1.04 crore at standard quality for 4,320 sqft. Wide frontage plot breakdown and verified 2026 rates.",
+      "Cost to build a 60×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
     eyebrow: "60×40 plot · Hosur · 2026",
     headline: "60×40 house construction cost in Hosur",
     lead:

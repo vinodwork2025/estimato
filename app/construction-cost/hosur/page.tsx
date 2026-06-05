@@ -15,14 +15,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 const PAGE_URL = `${SITE_URL}/construction-cost/hosur`;
 
 export const metadata: Metadata = {
-  title: "House Construction Cost in Hosur 2026 – Verified Rates by Quality Tier",
+  title: "Construction Cost Calculator in Hosur | Estimato",
   description:
-    "Hosur construction costs in 2026: ₹1,850–₹2,400/sqft for standard builds, ₹2,500–₹2,900 for premium. BOQ-verified rates for G+1 homes. Free estimate, no sign-up.",
+    "Get a construction cost estimate for Hosur in minutes. Rates built from real project BOQs, verified against current Hosur contractor quotes, 2026.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "House Construction Cost in Hosur 2026",
+    title: "Construction Cost Calculator in Hosur | Estimato",
     description:
-      "Verified Hosur construction rates by quality tier. Standard G+1 homes run ₹25–₹29 lakhs. Free estimate tool.",
+      "Get a construction cost estimate for Hosur in minutes. Rates built from real project BOQs, verified against current Hosur contractor quotes, 2026.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",

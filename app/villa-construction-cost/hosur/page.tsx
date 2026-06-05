@@ -18,14 +18,14 @@ function fmtRate(n: number): string {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Villa Construction Cost in Hosur 2026 – Rates by Quality Tier",
+  title: "Villa Construction Cost in Hosur | Estimato",
   description:
-    "Building a villa in Hosur in 2026 costs ₹37.8 lakh to ₹84 lakh at standard quality for 1,800–3,500 sqft. Premium villas run ₹45–101 lakh. BOQ-verified rates.",
+    "What it costs to build a villa in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Villa Construction Cost in Hosur 2026 – Rates by Quality Tier",
+    title: "Villa Construction Cost in Hosur | Estimato",
     description:
-      "Standard villa in Hosur: ₹37.8–₹84 lakh for 1,800–3,500 sqft. Premium runs ₹45–101 lakh. BOQ-verified 2026 rates.",
+      "What it costs to build a villa in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",

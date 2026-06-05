@@ -12,14 +12,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 const PAGE_URL = `${SITE_URL}/50-lakh-house-hosur`;
 
 export const metadata: Metadata = {
-  title: "₹50 Lakh House in Hosur 2026 – 3 BHK G+1 at Standard Quality",
+  title: "What Can You Build for ₹50 Lakh in Hosur? | Estimato",
   description:
-    "₹50 lakh is the most common construction budget in Hosur. Get a full breakdown by quality tier — standard G+1 3 BHK, modular kitchen, and what the numbers include in 2026.",
+    "See what a ₹50 lakh budget builds in Hosur. Plot size, quality tier, and finish level, based on real contractor rates. Plan before you spend.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "₹50 Lakh House in Hosur 2026 – 3 BHK G+1 at Standard Quality",
+    title: "What Can You Build for ₹50 Lakh in Hosur? | Estimato",
     description:
-      "At standard quality, ₹50 lakh buys 2,083–2,380 sqft in Hosur in 2026. Includes modular kitchen and quality flooring. Full breakdown.",
+      "See what a ₹50 lakh budget builds in Hosur. Plot size, quality tier, and finish level, based on real contractor rates. Plan before you spend.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",

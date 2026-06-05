@@ -12,14 +12,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 const PAGE_URL = `${SITE_URL}/1-crore-house-hosur`;
 
 export const metadata: Metadata = {
-  title: "₹1 Crore House in Hosur 2026 – Luxury and Premium Builds",
+  title: "What Can You Build for ₹1 Crore in Hosur? | Estimato",
   description:
-    "₹1 crore in Hosur in 2026: standard quality 4,166–4,761 sqft, premium 3,448–4,000 sqft. Full breakdown of configurations, quality tiers, and what drives cost at this level.",
+    "See what a ₹1 crore budget builds in Hosur. Plot size, quality tier, and finish level, based on real contractor rates. Plan before you spend.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "₹1 Crore House in Hosur 2026 – Luxury and Premium Builds",
+    title: "What Can You Build for ₹1 Crore in Hosur? | Estimato",
     description:
-      "A ₹1 crore build in Hosur in 2026 delivers a full 5 BHK G+2 at standard or an architect-grade villa at premium. See what the numbers look like across all tiers.",
+      "See what a ₹1 crore budget builds in Hosur. Plot size, quality tier, and finish level, based on real contractor rates. Plan before you spend.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",

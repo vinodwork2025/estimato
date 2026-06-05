@@ -18,14 +18,14 @@ function fmtRate(n: number): string {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Duplex Construction Cost in Hosur 2026 – Verified Rates",
+  title: "Duplex Construction Cost in Hosur | Estimato",
   description:
-    "A duplex in Hosur costs ₹29.4–₹67.2 lakh at standard quality. Includes second kitchen, separate entrance. BOQ-verified 2026 rates.",
+    "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Duplex Construction Cost in Hosur 2026 – Verified Rates",
+    title: "Duplex Construction Cost in Hosur | Estimato",
     description:
-      "Standard duplex in Hosur: ₹29.4–₹67.2 lakh for 1,400–2,800 sqft. Separate entrances, second kitchen included in scope. BOQ-verified.",
+      "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",

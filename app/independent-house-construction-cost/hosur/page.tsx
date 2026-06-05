@@ -18,14 +18,14 @@ function fmtRate(n: number): string {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Independent House Construction Cost in Hosur 2026",
+  title: "Independent House Construction Cost in Hosur | Estimato",
   description:
-    "Independent house in Hosur costs ₹16.8–₹48 lakh at standard quality. Most 30×40 G+1 builds land ₹30–₹35 lakh. Verified 2026 rates.",
+    "What it costs to build an independent house in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Independent House Construction Cost in Hosur 2026",
+    title: "Independent House Construction Cost in Hosur | Estimato",
     description:
-      "Standard independent house in Hosur: ₹16.8–₹48 lakh for 800–2,000 sqft. Typical 30×40 G+1 runs ₹30–₹35 lakh. BOQ-verified.",
+      "What it costs to build an independent house in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",
