@@ -1,24 +1,54 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, createElement } from "react";
 import { Button } from "@/components/ui/Button";
 import { maskPhone } from "@/lib/utils";
+import type { PlannerInput, CalculationResult } from "@/types";
 
 interface SuccessStateProps {
+  name: string;
   phone: string;
   partnerMatched: boolean;
   partnerName: string | null;
-  pdfUrl?: string;
+  input: Partial<PlannerInput>;
+  result: CalculationResult;
   onClose: () => void;
 }
 
-export function SuccessState({ phone, partnerMatched, partnerName, pdfUrl, onClose }: SuccessStateProps) {
+export function SuccessState({ name, phone, partnerMatched, partnerName, input, result, onClose }: SuccessStateProps) {
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfError, setPdfError] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(onClose, 10000);
+    const timer = setTimeout(onClose, 12000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
   const maskedPhone = `+91 ${maskPhone(phone)}`;
+
+  async function handleDownloadPDF() {
+    setPdfLoading(true);
+    setPdfError(false);
+    try {
+      const [{ pdf }, { ReportDocument }] = await Promise.all([
+        import("@react-pdf/renderer"),
+        import("@/components/pdf/ReportDocument"),
+      ]);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const blob = await pdf(createElement(ReportDocument as any, { name, input, result })).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `estimato-report-${Date.now()}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("[PDF download]", err);
+      setPdfError(true);
+    } finally {
+      setPdfLoading(false);
+    }
+  }
 
   return (
     <div className="text-center py-4">
@@ -29,18 +59,16 @@ export function SuccessState({ phone, partnerMatched, partnerName, pdfUrl, onClo
       </div>
 
       <h3 className="text-lg font-semibold text-text-primary mb-2">
-        {pdfUrl ? "Report ready!" : "Your report is on its way!"}
+        Report sent to your email!
       </h3>
 
-      {pdfUrl ? (
-        <p className="text-sm text-text-secondary mb-1">
-          PDF sent to your email · also available below
-        </p>
-      ) : (
-        <p className="text-sm text-text-secondary mb-1">
-          Sent to <span className="font-mono font-medium text-text-primary tabular-nums">{maskedPhone}</span>
-        </p>
-      )}
+      <p className="text-sm text-text-secondary mb-1">
+        Check your inbox — the full report with cost breakdown, timeline, and alerts is there.
+      </p>
+
+      <p className="text-sm text-text-secondary mb-1">
+        Also confirmed on <span className="font-mono font-medium text-text-primary tabular-nums">{maskedPhone}</span>
+      </p>
 
       {partnerMatched && partnerName && (
         <p className="text-sm text-text-secondary mt-3 px-4">
@@ -56,14 +84,18 @@ export function SuccessState({ phone, partnerMatched, partnerName, pdfUrl, onClo
         </p>
       )}
 
+      {pdfError && (
+        <p className="text-xs text-error mt-2">PDF generation failed. Try again or check your email report.</p>
+      )}
+
       <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
-        {pdfUrl && (
-          <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="primary">
-              Download PDF report
-            </Button>
-          </a>
-        )}
+        <Button
+          variant="primary"
+          loading={pdfLoading}
+          onClick={handleDownloadPDF}
+        >
+          {pdfLoading ? "Generating PDF…" : "Download PDF"}
+        </Button>
         <Button variant="ghost" onClick={onClose}>
           Back to results
         </Button>

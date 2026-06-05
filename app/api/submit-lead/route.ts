@@ -90,9 +90,13 @@ export async function POST(request: Request) {
           name: data.name,
           city: data.city,
           homeType: data.calculationInput?.homeType,
+          input: {
+            floors: (data.calculationInput?.configuration as Record<string, unknown>)?.floors as number | undefined,
+            builtUpArea: (data.calculationInput?.configuration as Record<string, unknown>)?.builtUpArea as number | undefined,
+            qualityTier: data.calculationInput?.qualityTier,
+          },
           result: data.calculationResult as unknown as CalculationResult,
           partnerName: partner?.name ?? null,
-          pdfUrl: data.pdfUrl || null,
         }),
       }).catch((err) => console.error("user-email error:", err)),
     ];

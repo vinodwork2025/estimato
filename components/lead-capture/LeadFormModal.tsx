@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createElement } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -30,39 +30,11 @@ interface LeadFormModalProps {
     partnerMatched: boolean;
     partnerName: string | null;
     phone: string;
-    pdfUrl?: string;
+    name: string;
   }) => void;
   input: Partial<PlannerInput>;
   result: CalculationResult;
   sourcePage?: string;
-}
-
-async function generateAndUploadPDF(
-  name: string,
-  input: Partial<PlannerInput>,
-  result: CalculationResult
-): Promise<string | undefined> {
-  try {
-    const [{ pdf }, { ReportDocument }] = await Promise.all([
-      import("@react-pdf/renderer"),
-      import("@/components/pdf/ReportDocument"),
-    ]);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const blob = await pdf(createElement(ReportDocument as any, { name, input, result })).toBlob();
-
-    const form = new FormData();
-    form.append("file", blob, "report.pdf");
-    const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      console.error("[PDF] upload error:", res.status, json?.error ?? json);
-      return undefined;
-    }
-    return json.url as string | undefined;
-  } catch (err) {
-    console.error("[PDF] generation failed:", err);
-    return undefined;
-  }
 }
 
 export function LeadFormModal({
@@ -74,7 +46,6 @@ export function LeadFormModal({
   sourcePage,
 }: LeadFormModalProps) {
   const [loading, setLoading] = useState(false);
-  const [loadingStep, setLoadingStep] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -97,18 +68,12 @@ export function LeadFormModal({
   async function onSubmit(data: FormData) {
     setLoading(true);
     setServerError(null);
-    track("pdf_form_submitted", {
+    track("lead_form_submitted", {
       planning_timeline: data.planningTimeline,
       city: input.city ?? "",
       partner_consent: data.consentToPartnerShare,
     });
 
-    // Step 1: Generate PDF in browser, upload to Supabase (failure doesn't stop submission)
-    setLoadingStep("Generating your report…");
-    let pdfUrl: string | undefined = await generateAndUploadPDF(data.name, input, result);
-
-    // Step 2: Submit lead
-    setLoadingStep("Submitting…");
     try {
       const res = await fetch("/api/submit-lead", {
         method: "POST",
@@ -125,7 +90,6 @@ export function LeadFormModal({
           calculationInput: input,
           calculationResult: result,
           sourcePage,
-          pdfUrl,
         }),
       });
 
@@ -136,13 +100,12 @@ export function LeadFormModal({
         partnerMatched: json.partnerMatched,
         partnerName: json.partnerName,
         phone: data.phone,
-        pdfUrl,
+        name: data.name,
       });
     } catch {
       setServerError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
-      setLoadingStep(null);
     }
   }
 
@@ -193,7 +156,7 @@ export function LeadFormModal({
           label="Email"
           type="email"
           placeholder="ravi@example.com"
-          hint="Your PDF report will be sent here"
+          hint="Your full report will be sent here"
           required
           autoComplete="email"
           error={errors.email?.message}
@@ -234,7 +197,7 @@ export function LeadFormModal({
           loading={loading}
           className="w-full h-12 mt-2"
         >
-          {loadingStep ?? "Send my report"}
+          {loading ? "Sending…" : "Send my report"}
         </Button>
 
         <p className="text-xs text-center text-text-tertiary">

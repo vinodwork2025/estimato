@@ -16,7 +16,7 @@ import type { CalculationResult, PlannerInput, QualityTier } from "@/types";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string; pdfUrl?: string };
+type SuccessData = { partnerMatched: boolean; partnerName: string | null; phone: string; name: string };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -794,10 +794,12 @@ export function ResultsClient() {
       {success && (
         <Modal open={true} onClose={() => setSuccess(null)} title="Report sent!">
           <SuccessState
+            name={success.name}
             phone={success.phone}
             partnerMatched={success.partnerMatched}
             partnerName={success.partnerName}
-            pdfUrl={success.pdfUrl}
+            input={input}
+            result={result}
             onClose={() => setSuccess(null)}
           />
         </Modal>
