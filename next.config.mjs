@@ -3,6 +3,14 @@ const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   serverExternalPackages: ["@react-pdf/renderer"],
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // @react-pdf/renderer browser build doesn't use canvas,
+      // but webpack may try to resolve it as a transitive dep — stub it out.
+      config.resolve.alias = { ...config.resolve.alias, canvas: false };
+    }
+    return config;
+  },
   images: {
     remotePatterns: [
       {

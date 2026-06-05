@@ -10,21 +10,16 @@ import type { CalculationResult, PlannerInput } from "@/types";
 
 // Inter: body text + numbers — NO letterSpacing (custom font glyph-displacement bug when letterSpacing != 0)
 // Helvetica: all letter-spaced uppercase labels + logo — built-in PDF font, guaranteed color rendering
+//
+// Fonts are self-hosted full Inter WOFF (inter-ui@3.19.3) — not CDN subsets.
+// latin-ext subsets from @fontsource only cover U+0100+, missing A–Z → PDF throws.
+// WOFF uses zlib (no WASM/Brotli needed), works in all browser environments.
 Font.register({
   family: "Inter",
   fonts: [
-    {
-      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-400-normal.woff2",
-      fontWeight: 400,
-    },
-    {
-      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-600-normal.woff2",
-      fontWeight: 600,
-    },
-    {
-      src: "https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-ext-700-normal.woff2",
-      fontWeight: 700,
-    },
+    { src: "/fonts/inter-400.woff", fontWeight: 400 },
+    { src: "/fonts/inter-600.woff", fontWeight: 600 },
+    { src: "/fonts/inter-700.woff", fontWeight: 700 },
   ],
 });
 
