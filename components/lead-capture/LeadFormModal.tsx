@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, createElement } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -37,25 +37,30 @@ interface LeadFormModalProps {
   sourcePage?: string;
 }
 
-async function generatePDF(
+async function generateAndUploadPDF(
   name: string,
   input: Partial<PlannerInput>,
   result: CalculationResult
 ): Promise<string | undefined> {
   try {
-    const res = await fetch("/api/generate-pdf", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, input, result }),
-    });
+    const [{ pdf }, { ReportDocument }] = await Promise.all([
+      import("@react-pdf/renderer"),
+      import("@/components/pdf/ReportDocument"),
+    ]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const blob = await pdf(createElement(ReportDocument as any, { name, input, result })).toBlob();
+
+    const form = new FormData();
+    form.append("file", blob, "report.pdf");
+    const res = await fetch("/api/upload-pdf", { method: "POST", body: form });
     const json = await res.json().catch(() => ({}));
     if (!res.ok) {
-      console.error("[PDF] server error:", res.status, json?.error ?? json);
+      console.error("[PDF] upload error:", res.status, json?.error ?? json);
       return undefined;
     }
-    return json.pdfUrl as string | undefined;
+    return json.url as string | undefined;
   } catch (err) {
-    console.error("[PDF] generate-pdf fetch failed:", err);
+    console.error("[PDF] generation failed:", err);
     return undefined;
   }
 }
@@ -98,9 +103,9 @@ export function LeadFormModal({
       partner_consent: data.consentToPartnerShare,
     });
 
-    // Step 1: Generate PDF server-side (failure doesn't stop submission)
+    // Step 1: Generate PDF in browser, upload to Supabase (failure doesn't stop submission)
     setLoadingStep("Generating your report…");
-    let pdfUrl: string | undefined = await generatePDF(data.name, input, result);
+    let pdfUrl: string | undefined = await generateAndUploadPDF(data.name, input, result);
 
     // Step 2: Submit lead
     setLoadingStep("Submitting…");
