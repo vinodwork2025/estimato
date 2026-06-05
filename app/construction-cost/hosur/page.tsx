@@ -181,7 +181,6 @@ const schemas = [
     dateModified: "2026-06-03",
     inLanguage: "en-IN",
     isPartOf: { "@type": "WebSite", url: SITE_URL, name: "Estimato" },
-    breadcrumb: { "@type": "BreadcrumbList" },
     mainEntity: { "@type": "WebApplication", name: "Hosur Construction Cost Calculator" },
   },
   {
