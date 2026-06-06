@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -123,6 +124,53 @@ const FLOOR_OPTIONS = [
   { value: 2, label: "G+1", desc: "Two floors" },
   { value: 3, label: "G+2", desc: "Three floors" },
   { value: 4, label: "G+3", desc: "Four floors" },
+];
+
+// ─── Finish level design data ──────────────────────────────────────────────────
+
+const FINISH_IMAGES: Record<string, string> = {
+  basic: "/finishes/basic.webp",
+  standard: "/finishes/standard.webp",
+  premium: "/finishes/premium.webp",
+  luxury: "/finishes/luxury.webp",
+  "ultra-luxury": "/finishes/ultra-luxury.webp",
+};
+
+const FINISH_COPY: Record<string, { badge: string; statement: string }> = {
+  basic:         { badge: "Budget-friendly", statement: "Built on trusted essentials for practical homeowners." },
+  standard:      { badge: "Most popular",    statement: "Branded materials with enhanced comfort and aesthetics." },
+  premium:       { badge: "Design-focused",  statement: "Contemporary villa-grade specifications with premium finishes." },
+  luxury:        { badge: "Heritage quality",statement: "Architect-selected materials and elevated detailing." },
+  "ultra-luxury":{ badge: "Custom quote",    statement: "Bespoke villa specifications without compromise." },
+};
+
+const FINISH_BRANDS: Record<string, string[]> = {
+  basic:         ["Tata Steel", "Ramco Cement", "Parryware", "Anchor", "Local Tiles"],
+  standard:      ["Tata Steel", "Ultratech", "Kajaria", "Hindware", "Anchor"],
+  premium:       ["Tata Steel", "Ultratech", "Kajaria", "Jaquar", "Legrand"],
+  luxury:        ["Tata Steel", "Ultratech", "Kajaria Prima", "Kohler", "Schneider"],
+  "ultra-luxury":["Tata Steel", "Ultratech Premium", "Italian Marble", "Duravit", "Grohe", "Jung", "Hafele"],
+};
+
+const TIER_ORDER: QualityTier[] = ["basic", "standard", "premium", "luxury", "ultra-luxury"];
+const TIER_LABEL: Record<string, string> = {
+  basic: "Basic", standard: "Standard", premium: "Premium",
+  luxury: "Luxury", "ultra-luxury": "Ultra Luxury",
+};
+
+const COMPARE_ROWS: { label: string; values: Record<string, string> }[] = [
+  { label: "Steel",     values: { basic: "Tata Steel",        standard: "Tata Steel",       premium: "Tata Steel",       luxury: "Tata Steel",        "ultra-luxury": "Tata Steel" } },
+  { label: "Cement",    values: { basic: "Ramco",             standard: "Ultratech",         premium: "Ultratech",        luxury: "Ultratech",         "ultra-luxury": "Ultratech Premium" } },
+  { label: "Flooring",  values: { basic: "Local Tiles",       standard: "Kajaria",           premium: "Kajaria / Somany", luxury: "Kajaria Prima",     "ultra-luxury": "Italian Marble" } },
+  { label: "Sanitary",  values: { basic: "Parryware",         standard: "Hindware",          premium: "Jaquar",           luxury: "Kohler",            "ultra-luxury": "Duravit / Grohe" } },
+  { label: "Electrical",values: { basic: "Anchor",            standard: "Anchor",            premium: "Legrand",          luxury: "Schneider",         "ultra-luxury": "Jung" } },
+  { label: "Plumbing",  values: { basic: "Standard ISI",      standard: "Standard ISI",      premium: "Jaquar CP",        luxury: "Kohler CP",         "ultra-luxury": "Grohe CP" } },
+  { label: "Doors",     values: { basic: "Flush Doors",       standard: "Solid Flush",       premium: "Solid Wood",       luxury: "Engineered Wood",   "ultra-luxury": "Hafele Hardware" } },
+  { label: "Kitchen",   values: { basic: "Masonry Platform",  standard: "Basic Modular",     premium: "Full Modular",     luxury: "Designer Modular",  "ultra-luxury": "Bespoke" } },
+  { label: "Wardrobes", values: { basic: "Painted Ply",       standard: "Basic Modular",     premium: "Premium Modular",  luxury: "Architect Modular", "ultra-luxury": "Custom Fitted" } },
+  { label: "Ceiling",   values: { basic: "Plain Plaster",     standard: "POP False Ceiling", premium: "L-Panel + LED",    luxury: "Coffered + LED",    "ultra-luxury": "Designer Coffered" } },
+  { label: "Paint",     values: { basic: "Tractor Emulsion",  standard: "Apcolite Sheen",    premium: "Royale Luxury",    luxury: "Dulux Velvet Touch","ultra-luxury": "Imported Matte" } },
+  { label: "Built for", values: { basic: "Budget-conscious families", standard: "Most Indian homeowners", premium: "Quality seekers", luxury: "High-end buyers", "ultra-luxury": "No-compromise builds" } },
 ];
 
 const INTERIOR_AUTO: Record<QualityTier, InteriorLevel> = {
@@ -929,6 +977,113 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
   );
 }
 
+// ─── Compare modal ────────────────────────────────────────────────────────────
+
+function CompareModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[300] flex items-end sm:items-center justify-center"
+      style={{ background: "rgba(0,0,0,0.62)", backdropFilter: "blur(3px)", WebkitBackdropFilter: "blur(3px)" }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div
+        className="relative bg-white w-full sm:max-w-5xl flex flex-col rounded-t-xl sm:rounded-xl shadow-2xl"
+        style={{ maxHeight: "90vh" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-start justify-between px-5 sm:px-8 py-4 sm:py-5 border-b border-border shrink-0">
+          <div>
+            <h2 className="font-serif text-navy" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
+              Finish Level Comparison
+            </h2>
+            <p className="font-mono mt-0.5" style={{ fontSize: "11px", color: "var(--text-tertiary)", letterSpacing: "0.06em" }}>
+              All five tiers · Hosur 2026 rates
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-text-secondary hover:text-text-primary transition-colors focus:outline-none flex items-center justify-center"
+            style={{ minWidth: 44, minHeight: 44 }}
+            aria-label="Close comparison"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Table — scrollable both axes on mobile */}
+        <div className="overflow-auto flex-1">
+          <table style={{ minWidth: "700px", borderCollapse: "collapse", width: "100%" }}>
+            <thead>
+              <tr style={{ background: "var(--navy)", position: "sticky", top: 0, zIndex: 2 }}>
+                <th
+                  className="text-left px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em]"
+                  style={{ color: "rgba(255,255,255,0.42)", minWidth: "110px", position: "sticky", left: 0, background: "var(--navy)" }}
+                >
+                  Feature
+                </th>
+                {TIER_ORDER.map((tier) => (
+                  <th key={tier}
+                    className="text-left px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em]"
+                    style={{ color: tier === "ultra-luxury" ? "#C49A3C" : "rgba(255,255,255,0.88)", minWidth: "128px" }}
+                  >
+                    {TIER_LABEL[tier]}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARE_ROWS.map((row, i) => (
+                <tr key={row.label} style={{ background: i % 2 === 0 ? "#F7F9FB" : "white" }}>
+                  <td
+                    className="px-5 py-3 font-mono text-[10px] uppercase tracking-[0.14em]"
+                    style={{ color: "var(--text-tertiary)", position: "sticky", left: 0, background: i % 2 === 0 ? "#F7F9FB" : "white" }}
+                  >
+                    {row.label}
+                  </td>
+                  {TIER_ORDER.map((tier) => (
+                    <td key={tier} className="px-4 py-3" style={{ fontSize: "13px", color: "var(--text-primary)", lineHeight: 1.45 }}>
+                      {row.values[tier]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Footer note */}
+        <div className="px-5 sm:px-8 py-3 border-t border-border shrink-0" style={{ background: "#FAFBFC" }}>
+          <p className="font-mono text-text-tertiary text-center" style={{ fontSize: "11px", letterSpacing: "0.04em" }}>
+            Specifications are indicative. Final material choice is confirmed with your contractor.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Step 5: Quality + Interiors ──────────────────────────────────────────────
 
 function Step5Finish({
@@ -938,8 +1093,11 @@ function Step5Finish({
   state: WizardState;
   onChange: (p: Partial<WizardState>) => void;
 }) {
+  const [showCompare, setShowCompare] = useState(false);
+
   return (
-    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-8 max-w-5xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-8 max-w-7xl mx-auto w-full">
+      {/* Header */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 5 of {DISPLAY_STEPS}
@@ -952,64 +1110,174 @@ function Step5Finish({
         </p>
       </motion.div>
 
-      {/* Quality tier cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+      {/* Cards — horizontal carousel on mobile, 2-col on md, 5-col on xl */}
+      <div className="flex md:grid md:grid-cols-2 xl:grid-cols-5 gap-4 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none -mx-5 md:mx-0 px-5 md:px-0 pb-4 md:pb-0 mb-10">
         {QUALITY_OPTIONS.map((q, i) => {
           const rate = getBaseRate(state.city || "hosur", q.value);
           const estimated = state.builtUpArea * rate;
           const isSelected = state.qualityTier === q.value;
+          const copy = FINISH_COPY[q.value];
+          const brands = FINISH_BRANDS[q.value];
+
           return (
-            <motion.button
+            <motion.div
               key={q.value}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              onClick={() => onChange({ qualityTier: q.value, interiorLevel: INTERIOR_AUTO[q.value] })}
-              className="relative overflow-hidden text-left focus:outline-none group"
+              transition={{ duration: 0.5, delay: i * 0.07, ease }}
+              className="group shrink-0 snap-start flex flex-col cursor-pointer"
               style={{
-                borderRadius: "4px",
-                border: "2px solid",
-                borderColor: isSelected ? "var(--accent)" : "var(--border)",
+                width: "82vw",
+                maxWidth: "320px",
+                borderRadius: "20px",
                 background: "white",
-                transition: "border-color 0.2s, box-shadow 0.2s",
-                boxShadow: isSelected ? "0 0 0 3px rgba(168,130,59,0.1)" : "none",
+                boxShadow: isSelected
+                  ? "0 0 0 2px #D97706, 0 12px 40px rgba(0,0,0,0.14)"
+                  : "0 8px 30px rgba(0,0,0,0.08)",
+                transition: "box-shadow 0.3s ease, transform 0.3s ease",
+                overflow: "hidden",
               }}
-              aria-pressed={isSelected}
+              // On md+, override inline width — grid controls sizing
+              onClick={() => onChange({ qualityTier: q.value, interiorLevel: INTERIOR_AUTO[q.value] })}
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 48px rgba(0,0,0,0.14)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = isSelected
+                  ? "0 0 0 2px #D97706, 0 12px 40px rgba(0,0,0,0.14)"
+                  : "0 8px 30px rgba(0,0,0,0.08)";
+              }}
             >
-              <div className="relative h-36 overflow-hidden">
-                <Image src={q.image} alt={q.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw"
-                  style={{ filter: isSelected ? "grayscale(0.1) brightness(0.9)" : "grayscale(0.5) sepia(0.15) brightness(0.85)", transition: "filter 0.3s" }} />
-                {q.value === "standard" && (
-                  <div className="absolute top-3 left-3 px-2 py-1 font-mono text-[12px] uppercase tracking-[0.12em]" style={{ background: "var(--accent)", color: "white", borderRadius: "2px" }}>
-                    Most popular
-                  </div>
-                )}
+              {/* Hero image */}
+              <div className="relative overflow-hidden shrink-0" style={{ height: "200px" }}>
+                <Image
+                  src={FINISH_IMAGES[q.value]}
+                  alt={`${q.label} finish level interior — Hosur home construction`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  sizes="(max-width: 768px) 82vw, (max-width: 1280px) 50vw, 20vw"
+                  loading={i < 2 ? "eager" : "lazy"}
+                />
+                {/* Tier badge */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span
+                    className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-1"
+                    style={{
+                      borderRadius: "3px",
+                      background: isSelected ? "#D97706" : "rgba(13,31,60,0.70)",
+                      color: "white",
+                      backdropFilter: "blur(6px)",
+                      WebkitBackdropFilter: "blur(6px)",
+                    }}
+                  >
+                    {copy.badge}
+                  </span>
+                </div>
+                {/* Selected checkmark */}
                 {isSelected && (
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--accent)" }}>
-                    <svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M1 5L5 9L12 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <motion.div
+                    initial={{ scale: 0 }} animate={{ scale: 1 }}
+                    className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center"
+                    style={{ background: "#D97706" }}
+                  >
+                    <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
+                      <path d="M1 5L5 9L12 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </motion.div>
                 )}
               </div>
-              <div className="p-4">
-                <div className="flex items-baseline justify-between mb-1">
-                  <p className="font-serif text-navy" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.01em" }}>{q.label}</p>
-                  <p className="font-mono tabular-nums" style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 500 }}>₹{rate.toLocaleString("en-IN")}/sqft</p>
-                </div>
-                <p className="text-text-secondary mb-2" style={{ fontSize: "15px", lineHeight: 1.6 }}>{q.description}</p>
-                <p className="font-mono text-text-secondary" style={{ fontSize: "13px" }}>{q.materials}</p>
-                <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
-                  <p className="font-mono text-text-secondary" style={{ fontSize: "12px", letterSpacing: "0.1em" }}>ESTIMATED FOR YOUR BUILD</p>
-                  <p className="font-mono text-navy tabular-nums" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "-0.015em" }}>
-                    ~{formatINRShort(estimated)}
+
+              {/* Body */}
+              <div className="flex flex-col flex-1 p-4">
+                {/* Name + rate */}
+                <div className="flex items-baseline justify-between mb-1.5">
+                  <p className="font-serif text-navy" style={{ fontSize: "17px", fontWeight: 400, letterSpacing: "-0.01em" }}>
+                    {q.label}
+                  </p>
+                  <p className="font-mono tabular-nums shrink-0 ml-2" style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>
+                    {q.value === "ultra-luxury" ? "Custom" : `₹${rate.toLocaleString("en-IN")}/sqft`}
                   </p>
                 </div>
+
+                {/* Positioning statement */}
+                <p className="text-text-secondary mb-3" style={{ fontSize: "13px", lineHeight: 1.55 }}>
+                  {copy.statement}
+                </p>
+
+                {/* Brand chips — monochrome text tags */}
+                <div className="mb-3">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] mb-1.5" style={{ color: "var(--text-tertiary)" }}>
+                    Trusted brands
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {brands.map((brand) => (
+                      <span
+                        key={brand}
+                        className="font-mono text-[8px] uppercase tracking-[0.04em] px-1.5 py-0.5 border border-border"
+                        style={{ borderRadius: "2px", color: "var(--text-tertiary)", opacity: 0.7 }}
+                      >
+                        {brand}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex-1" />
+
+                {/* Estimated cost */}
+                <div className="pt-3 mb-3" style={{ borderTop: "1px solid var(--border)" }}>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] mb-0.5" style={{ color: "var(--text-tertiary)" }}>
+                    Estimated cost
+                  </p>
+                  <p className="font-mono text-navy tabular-nums" style={{ fontSize: "21px", fontWeight: 400, letterSpacing: "-0.02em" }}>
+                    {q.value === "ultra-luxury" ? "Custom quote" : `~${formatINRShort(estimated)}`}
+                  </p>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onChange({ qualityTier: q.value, interiorLevel: INTERIOR_AUTO[q.value] });
+                    }}
+                    className="w-full py-2.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-all duration-200 focus:outline-none"
+                    style={{
+                      borderRadius: "4px",
+                      background: isSelected ? "#D97706" : "var(--navy)",
+                      color: "white",
+                      border: "none",
+                    }}
+                    aria-pressed={isSelected}
+                  >
+                    {isSelected ? "✓ Selected" : "Select finish"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setShowCompare(true); }}
+                    className="w-full py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-all duration-200 focus:outline-none"
+                    style={{
+                      borderRadius: "4px",
+                      border: "1px solid var(--border)",
+                      color: "var(--text-secondary)",
+                      background: "transparent",
+                    }}
+                  >
+                    Compare all →
+                  </button>
+                </div>
               </div>
-            </motion.button>
+            </motion.div>
           );
         })}
       </div>
 
-      {/* Interior level */}
+      {/* Interior finish level — unchanged logic */}
       {state.qualityTier && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="mb-10">
           <SectionLabel>Interior finish level</SectionLabel>
@@ -1053,6 +1321,12 @@ function Step5Finish({
             })}
           </div>
         </motion.div>
+      )}
+
+      {/* Compare modal portal */}
+      {showCompare && createPortal(
+        <CompareModal onClose={() => setShowCompare(false)} />,
+        document.body
       )}
     </div>
   );
