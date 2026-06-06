@@ -235,7 +235,7 @@ function PillBtn({ active, onClick, children }: { active: boolean; onClick: () =
     <button
       type="button"
       onClick={onClick}
-      className="px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-all duration-200 focus:outline-none"
+      className="px-4 py-2.5 min-h-[44px] font-mono text-[11px] uppercase tracking-[0.1em] transition-all duration-200 focus:outline-none"
       style={{
         borderRadius: "2px",
         border: "1px solid",
@@ -495,7 +495,7 @@ function Step1HomeType({ selected, onSelect }: { selected: HomeType | null; onSe
 
 function Step2Location({ city, onChange, prefilled }: { city: string; onChange: (v: string) => void; prefilled?: boolean }) {
   return (
-    <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary">
@@ -602,7 +602,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
   }
 
   return (
-    <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 3 of {DISPLAY_STEPS}
@@ -664,6 +664,7 @@ function Step3Plot({ state, onChange }: { state: WizardState; onChange: (p: Part
               </label>
               <input
                 type="number"
+                inputMode="numeric"
                 min={15}
                 max={200}
                 value={field === "plotLength" ? state.plotLength : state.plotWidth}
@@ -788,7 +789,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
   }
 
   return (
-    <div className="px-5 md:px-10 pt-8 pb-12 max-w-3xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-12 max-w-3xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 4 of {DISPLAY_STEPS}
@@ -866,7 +867,7 @@ function Step4Config({ state, onChange }: { state: WizardState; onChange: (p: Pa
       {/* Parking */}
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2, ease }} className="mb-8">
         <SectionLabel>Parking</SectionLabel>
-        <div className="flex gap-8 border-b border-border pb-6">
+        <div className="flex flex-wrap gap-4 md:gap-8 border-b border-border pb-6">
           {([
             { value: "none" as ParkingType, label: "None", hint: "" },
             { value: "covered" as ParkingType, label: "Covered", hint: "+3%" },
@@ -938,7 +939,7 @@ function Step5Finish({
   onChange: (p: Partial<WizardState>) => void;
 }) {
   return (
-    <div className="px-5 md:px-10 pt-8 pb-4 max-w-5xl mx-auto w-full">
+    <div className="px-5 md:px-10 pt-8 pb-28 md:pb-8 max-w-5xl mx-auto w-full">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="mb-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-secondary mb-3">
           Step 5 of {DISPLAY_STEPS}

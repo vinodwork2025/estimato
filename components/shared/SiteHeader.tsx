@@ -44,7 +44,7 @@ function MagneticCTA({
     <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className="flex-shrink-0">
       <motion.div style={{ x: sx, y: sy }}>
         <Link href={href}>
-          <Button variant={variant} size="sm">{label}</Button>
+          <Button variant={variant} size="md">{label}</Button>
         </Link>
       </motion.div>
     </div>

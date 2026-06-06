@@ -38,7 +38,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
       className={cn(
         "w-full max-w-[560px] rounded-card p-0 shadow-xl backdrop:bg-black/50",
         "m-auto fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-        "max-h-[90vh] overflow-y-auto",
+        "max-h-[90vh] overflow-y-auto overscroll-contain",
         "max-sm:max-w-full max-sm:max-h-full max-sm:h-full max-sm:rounded-none max-sm:m-0 max-sm:inset-0 max-sm:translate-none",
         className
       )}

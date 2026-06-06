@@ -320,11 +320,11 @@ export function HomeHero() {
       </div>
 
       {/* ── Content ── */}
-      <div className="relative flex mx-auto" style={{ zIndex: 10, maxWidth: 1440, minHeight: "90vh" }}>
+      <div className="relative flex flex-col lg:flex-row mx-auto" style={{ zIndex: 10, maxWidth: 1440, minHeight: "90vh" }}>
 
         {/* ══ LEFT: text ══ */}
-        <div className="flex flex-col justify-center"
-          style={{ width: "44%", padding: "80px 52px 80px 64px" }}>
+        <div className="flex flex-col justify-center w-full lg:w-[44%]"
+          style={{ padding: "clamp(48px,8vw,80px) clamp(20px,5vw,52px) clamp(32px,5vw,80px) clamp(20px,5vw,64px)" }}>
 
           {/* Eyebrow */}
           <motion.div
@@ -425,7 +425,8 @@ export function HomeHero() {
           <motion.div
             initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.62 }}
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 18px", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+            className="grid grid-cols-2 md:grid-cols-4"
+            style={{ gap: "12px 18px", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.09)" }}>
             {[
               { label: "Verified Rates", stat: "2,400+" },
               { label: "Transparent",    stat: "5 Steps" },
@@ -473,8 +474,8 @@ export function HomeHero() {
       </div>
 
       {/* ── Mobile: card strip ── */}
-      <div className="lg:hidden relative z-10 px-5 pb-10 flex gap-3 overflow-x-auto"
-        style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+      <div className="lg:hidden relative z-10 px-5 pt-4 pb-10 flex gap-3 overflow-x-auto hide-scrollbar"
+        style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
         <div className="flex-shrink-0"><CostCard /></div>
         <div className="flex-shrink-0"><CityCard /></div>
         <div className="flex-shrink-0"><AreaCard /></div>
