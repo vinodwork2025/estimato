@@ -1110,8 +1110,8 @@ function Step5Finish({
         </p>
       </motion.div>
 
-      {/* Cards — horizontal carousel on mobile, 2-col on md, 5-col on xl */}
-      <div className="flex md:grid md:grid-cols-2 xl:grid-cols-5 gap-4 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none -mx-5 md:mx-0 px-5 md:px-0 pb-4 md:pb-0 mb-10">
+      {/* Cards — horizontal carousel on mobile, 2-col on md, 5-col on lg+ */}
+      <div className="flex md:grid md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none -mx-5 md:mx-0 px-5 md:px-0 pb-4 md:pb-0 mb-10">
         {QUALITY_OPTIONS.map((q, i) => {
           const rate = getBaseRate(state.city || "hosur", q.value);
           const estimated = state.builtUpArea * rate;
@@ -1125,10 +1125,8 @@ function Step5Finish({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.07, ease }}
-              className="group shrink-0 snap-start flex flex-col cursor-pointer"
+              className="group shrink-0 snap-start flex flex-col cursor-pointer w-[82vw] max-w-[320px] md:w-auto md:max-w-none"
               style={{
-                width: "82vw",
-                maxWidth: "320px",
                 borderRadius: "20px",
                 background: "white",
                 boxShadow: isSelected
