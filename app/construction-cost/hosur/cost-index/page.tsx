@@ -10,19 +10,19 @@ import { SEED_PARTNERS } from "@/data/partners";
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
-const PAGE_URL = `${SITE_URL}/construction-cost/hosur/market-report`;
+const PAGE_URL = `${SITE_URL}/construction-cost/hosur/cost-index`;
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Hosur Construction Market Report 2026 | Cost Index & Intelligence | Estimato",
+  title: "Hosur Construction Cost Index 2026 | Construction Intelligence | Estimato",
   description:
-    "Comprehensive 2026 Hosur construction market report. Cost index by typology and tier, 7-year price history, corridor analysis, budget scenarios, hidden costs, and 2027–2028 forecast.",
+    "Comprehensive 2026 Hosur construction cost index. Cost data by typology and tier, 7-year price history, corridor analysis, budget scenarios, hidden costs, and 2027–2028 forecast.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Hosur Construction Market Report 2026 | Cost Index & Intelligence | Estimato",
+    title: "Hosur Construction Cost Index 2026 | Construction Intelligence | Estimato",
     description:
-      "Comprehensive 2026 Hosur construction market report. Cost index by typology and tier, 7-year price history, corridor analysis, budget scenarios, hidden costs, and 2027–2028 forecast.",
+      "Comprehensive 2026 Hosur construction cost index. Cost data by typology and tier, 7-year price history, corridor analysis, budget scenarios, hidden costs, and 2027–2028 forecast.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",
@@ -48,15 +48,15 @@ const schemas = [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Construction Cost", item: `${SITE_URL}/construction-cost` },
       { "@type": "ListItem", position: 3, name: "Hosur", item: `${SITE_URL}/construction-cost/hosur` },
-      { "@type": "ListItem", position: 4, name: "Hosur Construction Market Report 2026", item: PAGE_URL },
+      { "@type": "ListItem", position: 4, name: "Hosur Construction Cost Index 2026", item: PAGE_URL },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Hosur Construction Market Report 2026",
+    headline: "Hosur Construction Cost Index 2026",
     description:
-      "Comprehensive construction market intelligence for Hosur, Tamil Nadu. Includes cost index by typology and tier, 7-year price history, material price index, labor rates, location corridor analysis, budget scenarios, hidden cost index, specification benchmarks, and 2027–2028 market forecast.",
+      "Comprehensive construction cost intelligence for Hosur, Tamil Nadu. Includes cost index by typology and tier, 7-year price history, material price index, labor rates, location corridor analysis, budget scenarios, hidden cost index, specification benchmarks, and 2027–2028 market forecast.",
     url: PAGE_URL,
     datePublished: "2026-06-01",
     dateModified: "2026-06-08",
@@ -69,7 +69,7 @@ const schemas = [
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": PAGE_URL,
-    name: "Hosur Construction Market Report 2026",
+    name: "Hosur Construction Cost Index 2026",
     url: PAGE_URL,
     description:
       "The definitive construction economics and cost index reference for Hosur and the South Bangalore expansion corridor, published June 2026.",
@@ -456,7 +456,7 @@ const INTERNAL_LINKS = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function MarketReportHosurPage() {
+export default function CostIndexHosurPage() {
   const partner = SEED_PARTNERS.find((p) => p.id === "design-intend")!;
 
   return (
@@ -481,11 +481,11 @@ export default function MarketReportHosurPage() {
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
               <Link href="/construction-cost/hosur" className="font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-200" style={{ color: "var(--text-tertiary)" }}>Hosur</Link>
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Market Report</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Cost Index</span>
             </nav>
 
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
-              Published: June 2026 · Construction Market Intelligence Division
+              Published: June 2026 · Construction Cost Intelligence Division
             </p>
 
             <h1
@@ -499,7 +499,7 @@ export default function MarketReportHosurPage() {
               }}
             >
               Hosur Construction
-              <br className="hidden md:block" /> Market Report 2026
+              <br className="hidden md:block" /> Cost Index 2026
             </h1>
 
             <p
@@ -917,7 +917,7 @@ export default function MarketReportHosurPage() {
               Hosur 2026 — key facts
             </h2>
             <p className="font-sans mb-8" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Atomic data points for reference and citation. All figures are from the Estimato Hosur Construction Market Report, June 2026.
+              Atomic data points for reference and citation. All figures are from the Estimato Hosur Construction Cost Index, June 2026.
             </p>
           </AnimateIn>
 
@@ -936,7 +936,7 @@ export default function MarketReportHosurPage() {
                 ))}
               </ul>
               <p className="font-mono mt-8 pt-6 border-t" style={{ fontSize: "13px", color: "var(--text-tertiary)", borderColor: "rgba(196,154,60,0.2)" }}>
-                Source: Estimato Hosur Construction Market Report, 2026. Last updated June 2026. Confidence level: High (validated via active project BOQs and commercial trading invoices).
+                Source: Estimato Hosur Construction Cost Index, 2026. Last updated June 2026. Confidence level: High (validated via active project BOQs and commercial trading invoices).
               </p>
             </div>
           </AnimateIn>
@@ -952,7 +952,7 @@ export default function MarketReportHosurPage() {
               Hosur construction market 2026
             </h2>
           </AnimateIn>
-          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-market-report-faq" />
+          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-cost-index-faq" />
         </section>
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
@@ -1029,7 +1029,7 @@ export default function MarketReportHosurPage() {
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, BOQ summary, and payment timeline built from Hosur project data.
               </p>
-              <Link href="/plan?city=hosur&from=hosur-market-report-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
+              <Link href="/plan?city=hosur&from=hosur-cost-index-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
                 Begin my estimate →
               </Link>
             </AnimateIn>

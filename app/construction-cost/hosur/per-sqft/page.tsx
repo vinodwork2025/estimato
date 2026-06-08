@@ -219,7 +219,7 @@ export default function PerSqftHosurPage() {
             >
               Real 2026 rates by typology and quality tier, built from project BOQs.
               Covers independent houses, duplexes, contemporary villas, and luxury villas.
-              <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>Source: Estimato Hosur Construction Market Report, 2026.</span>
+              <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>Source: Estimato Hosur Construction Cost Index, 2026.</span>
             </p>
 
             {/* Quick Answer Box */}
@@ -335,7 +335,7 @@ export default function PerSqftHosurPage() {
 
           <AnimateIn direction="up" delay={0.1}>
             <p className="font-mono mt-10 pt-6 border-t border-border" style={{ fontSize: "13px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
-              Source: Estimato Hosur Construction Market Report, 2026. Last updated June 2026. Rates cover civil work, finishes, and MEP. Excludes land, approvals, and external development charges.
+              Source: Estimato Hosur Construction Cost Index, 2026. Last updated June 2026. Rates cover civil work, finishes, and MEP. Excludes land, approvals, and external development charges.
             </p>
           </AnimateIn>
         </section>

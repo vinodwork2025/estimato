@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-// ─── Rate data (averages, mins, maxes from Estimato Hosur Market Report 2026) ─
+// ─── Rate data (averages, mins, maxes from Estimato Hosur Cost Index 2026) ─
 
 const RATES = {
   "Independent House": {

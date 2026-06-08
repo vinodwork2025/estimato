@@ -34,6 +34,7 @@ const nextConfig = {
       { source: "/60-lakh-house-hosur", destination: "/construction-cost/hosur/60-lakh-house", permanent: true },
       { source: "/1-crore-house-hosur", destination: "/construction-cost/hosur/1-crore-house", permanent: true },
       { source: "/construction-cost/hosur/60x40", destination: "/construction-cost/hosur/40x60", permanent: true },
+      { source: "/construction-cost/hosur/market-report", destination: "/construction-cost/hosur/cost-index", permanent: true },
     ];
   },
   async headers() {

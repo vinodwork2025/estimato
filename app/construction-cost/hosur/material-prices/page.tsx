@@ -266,7 +266,7 @@ export default function MaterialPricesHosurPage() {
             >
               Current Hosur prices for cement, steel, sand, aggregates, tiles, and labor.
               With 1-year, 3-year, and 5-year price changes.
-              <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>Source: Estimato Hosur Construction Market Report, 2026.</span>
+              <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>Source: Estimato Hosur Construction Cost Index, 2026.</span>
             </p>
 
             {/* Quick Answer Box */}
@@ -358,7 +358,7 @@ export default function MaterialPricesHosurPage() {
 
           <AnimateIn direction="up" delay={0.1}>
             <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "13px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
-              Source: Estimato Hosur Construction Market Report, 2026. Last updated June 2026. Prices include delivery within central Hosur. Sites beyond 15 km carry a 5–8% surcharge on bulk materials.
+              Source: Estimato Hosur Construction Cost Index, 2026. Last updated June 2026. Prices include delivery within central Hosur. Sites beyond 15 km carry a 5–8% surcharge on bulk materials.
             </p>
           </AnimateIn>
         </section>
@@ -417,7 +417,7 @@ export default function MaterialPricesHosurPage() {
 
           <AnimateIn direction="up" delay={0.1}>
             <p className="font-mono mt-8 pt-6 border-t border-border" style={{ fontSize: "13px", color: "var(--text-tertiary)", lineHeight: 1.7 }}>
-              Source: Estimato Hosur Construction Market Report, 2026. Last updated June 2026. Rates for standard Hosur project conditions; specialized or premium projects may carry higher rates.
+              Source: Estimato Hosur Construction Cost Index, 2026. Last updated June 2026. Rates for standard Hosur project conditions; specialized or premium projects may carry higher rates.
             </p>
           </AnimateIn>
         </section>
@@ -501,7 +501,7 @@ export default function MaterialPricesHosurPage() {
                 className="font-mono mt-8 pt-6 border-t"
                 style={{ fontSize: "13px", color: "var(--text-tertiary)", borderColor: "var(--border)" }}
               >
-                Source: Estimato Hosur Construction Market Report, 2026. Last updated June 2026.
+                Source: Estimato Hosur Construction Cost Index, 2026. Last updated June 2026.
               </p>
             </div>
           </AnimateIn>
