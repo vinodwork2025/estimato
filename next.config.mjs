@@ -24,6 +24,18 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/villa-construction-cost/hosur", destination: "/construction-cost/hosur/villa", permanent: true },
+      { source: "/duplex-construction-cost/hosur", destination: "/construction-cost/hosur/duplex", permanent: true },
+      { source: "/independent-house-construction-cost/hosur", destination: "/construction-cost/hosur/independent-house", permanent: true },
+      { source: "/40-lakh-house-hosur", destination: "/construction-cost/hosur/40-lakh-house", permanent: true },
+      { source: "/50-lakh-house-hosur", destination: "/construction-cost/hosur/50-lakh-house", permanent: true },
+      { source: "/60-lakh-house-hosur", destination: "/construction-cost/hosur/60-lakh-house", permanent: true },
+      { source: "/1-crore-house-hosur", destination: "/construction-cost/hosur/1-crore-house", permanent: true },
+      { source: "/construction-cost/hosur/60x40", destination: "/construction-cost/hosur/40x60", permanent: true },
+    ];
+  },
   async headers() {
     const csp = [
       "default-src 'self'",

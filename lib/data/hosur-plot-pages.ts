@@ -372,6 +372,16 @@ const _40x60: PlotPageConfig = (() => {
         answer:
           "Hosur Town Municipality (HTM) allows an FSI of 2.0 for residential plots. For a 40×60 plot (2,400 sqft), the maximum total built-up area across all floors is 4,800 sqft. A standard G+1 at 60% coverage uses 2,880 sqft, leaving 1,920 sqft of FSI headroom — enough for a full additional floor or a significant expansion.",
       },
+      {
+        question: "How does a 40×60 plot compare to a 60×40 in Hosur?",
+        answer:
+          "Both are 2,400 sqft plots, but the orientation is different. The 40×60 has a 40-foot frontage and is 60 feet deep — it is shown as a G+1 because the standard use case is a deep home. The 60×40 has a 60-foot frontage and is only 40 feet deep — it is typically built to G+2 because the wide facade makes multi-floor construction more natural. A 60×40 G+2 (4,320 sqft BUA) costs more than a 40×60 G+1 (2,880 sqft BUA). The 60×40 wide frontage also typically commands a higher resale land price per sqft.",
+      },
+      {
+        question: "Can I do a multi-unit or joint-family arrangement on a 40×60 G+2?",
+        answer:
+          "Yes. A 40×60 G+2 at 60% coverage gives 4,320 sqft total BUA — three floors of 1,440 sqft each. Each floor can function as a fully independent 3 BHK unit with a separate kitchen, entrance, and metering. This is popular for joint families in Hosur where two or three generations want separate but connected living, or for homeowners who want to live in one unit and rent the other floors at ₹10,000–₹16,000 per month per unit in 2026.",
+      },
     ],
     internalLinks: [
       {
@@ -705,10 +715,10 @@ const _50x80: PlotPageConfig = (() => {
         desc: "The most common large family plot in Hosur — compare cost and layout.",
       },
       {
-        href: "/construction-cost/hosur/60x40",
+        href: "/construction-cost/hosur/40x60",
         eyebrow: "Similar area",
-        title: "60×40 plot in Hosur",
-        desc: "Same plot area as 50×80? No — 60×40 is 2,400 sqft. Different scale and layout.",
+        title: "40×60 plot in Hosur",
+        desc: "Common large family plot in Hosur — compare cost and layout with the 50×80.",
       },
       {
         href: "/construction-cost/hosur",
@@ -969,87 +979,6 @@ const _25x40: PlotPageConfig = (() => {
   };
 })();
 
-const _60x40: PlotPageConfig = (() => {
-  const bua = calcBua(60, 40, 3); // G+2 — wide frontage plots are routinely built to 3 floors
-  return {
-    slug: "60x40",
-    display: "60×40",
-    L: 60,
-    W: 40,
-    plotSqft: 2400,
-    floors: 3,
-    floorLabel: "G+2",
-    bua,
-    title: "60×40 House Construction Cost in Hosur | Estimato",
-    metaDesc:
-      "Cost to build a 60×40 house in Hosur. Real BOQ-backed rates across five quality tiers, verified against current Hosur contractor quotes.",
-    eyebrow: "60×40 plot · Hosur · 2026",
-    headline: "60×40 house construction cost in Hosur",
-    lead:
-      "A 60×40 plot (2,400 sqft) has exceptional road frontage — 60 feet facing the road. Wide-frontage plots in Hosur are routinely built to G+2 because the wide facade allows light and air on all three floors without the extra depth that G+2 on a narrow plot requires.",
-    quickAnswerStd: tierRange(bua, "standard"),
-    tierRanges: allRanges(bua),
-    body: [
-      "The 60-foot frontage is the defining feature of this plot. After setbacks, there is approximately 57 feet of usable width per floor — enough to place 4–5 rooms side by side on each level without any room feeling forced. This is the layout geometry that villa and large independent homes aspire to: rooms arranged side by side with road-facing windows rather than running front-to-back in a narrow stack. Natural light reaches every room from at least two sides, and cross-ventilation is straightforward to achieve in any design.",
-      "G+2 is the standard reference case for a 60×40 plot in Hosur because the wide frontage means a third floor is well-lit and well-ventilated without height issues. A G+2 at 60% coverage gives 4,320 sqft total BUA — a 5–6 BHK home with the option to have each floor as a fully independent living unit (separate kitchens, entrances, metering). This makes the 60×40 a strong choice for joint families where two or three generations want separate but connected living. Each floor of 1,440 sqft is a comfortable 3–4 BHK unit.",
-      "The 60×40 plot is also the context where road-facing elevation design has the most impact. A 60-foot facade is wide enough to divide into clearly articulated sections — a projecting bay, recessed balconies, feature cladding panels on one half — without looking monotonous. Premium elevation treatment on a 60-foot frontage costs ₹4–8 lakh but produces a result that standard smaller plots cannot replicate regardless of budget. Buyers who care about how their home looks from the road will find a 60×40 plot more rewarding than an equivalent-area but narrower plot.",
-    ],
-    faqs: [
-      {
-        question: "What is the construction cost for a G+2 house on a 60×40 plot in Hosur in 2026?",
-        answer:
-          "At standard quality (₹2,100–₹2,400 per sqft), a 60×40 G+2 with 4,320 sqft of built-up area costs ₹90.7–₹103.7 lakh in Hosur in 2026. At basic quality, ₹79.9–₹88.6 lakh. At premium quality, ₹108–₹125.3 lakh. Luxury tier: ₹129.6–₹172.8 lakh.",
-      },
-      {
-        question: "Why is G+2 shown for a 60×40 plot instead of G+1?",
-        answer:
-          "Wide-frontage plots in Hosur are routinely built to G+2 because the 60-foot width provides natural light and ventilation on all three floors without the narrow-plot constraints that make G+2 impractical on smaller plots. A G+1 on a 60×40 is possible, but most families who buy a 60×40 plot are intending a substantial family home or multi-unit build, and G+2 is the reference case for that use.",
-      },
-      {
-        question: "How does a 60×40 compare to a 40×60 in Hosur?",
-        answer:
-          "Both are 2,400 sqft plots, but the orientation is different. The 40×60 has a 40-foot frontage and is 60 feet deep — it is shown as a G+1 because the standard use case is a deep home. The 60×40 has a 60-foot frontage and is only 40 feet deep — it is shown as G+2 because the wide facade makes multi-floor construction more natural. A 60×40 G+2 (4,320 sqft BUA) costs more than a 40×60 G+1 (2,880 sqft BUA). The 60×40 wide frontage also typically commands a higher resale land price per sqft.",
-      },
-      {
-        question: "Can I do a duplex or multi-unit arrangement on a 60×40 G+2?",
-        answer:
-          "Yes — this is one of the best applications for this plot. Each floor of 1,440 sqft is a fully viable 3 BHK independent unit. Three floors with separate kitchens, entrances, and metering gives a 3-unit arrangement. In Hosur, this is popular for joint families (one unit per nuclear family) or for homeowners who want to live in one unit and rent the other two at ₹10,000–₹16,000 per month per unit in 2026.",
-      },
-      {
-        question: "What is the road width required for a 60×40 plot to have dual parking?",
-        answer:
-          "Dual car parking on a 60-foot frontage requires 20–24 feet of frontage for parking and 36–40 feet for the main entrance and facade elements. This works on most standard 30-foot roads. On a 20-foot road, dual parking is tight but possible if the driveway is designed for tandem (one car behind the other) rather than side-by-side arrangement.",
-      },
-    ],
-    internalLinks: [
-      {
-        href: "/construction-cost/hosur/40x60",
-        eyebrow: "Same area, different orientation",
-        title: "40×60 plot in Hosur",
-        desc: "Narrower frontage, more depth — how the 40×60 compares to the 60×40.",
-      },
-      {
-        href: "/construction-cost/hosur/50x80",
-        eyebrow: "Step up",
-        title: "50×80 plot in Hosur",
-        desc: "Large-format plot — how a 50×80 build compares to a 60×40.",
-      },
-      {
-        href: "/construction-cost/hosur",
-        eyebrow: "City rates",
-        title: "Hosur construction rates",
-        desc: "Full rate table for all quality tiers in Hosur 2026.",
-      },
-      {
-        href: "/methodology",
-        eyebrow: "How we calculate",
-        title: "Our methodology",
-        desc: "How Estimato builds its rate database from real Hosur and Bangalore BOQs.",
-      },
-    ],
-  };
-})();
-
 // ─── Exported map ─────────────────────────────────────────────────────────────
 
 export const PLOT_PAGES: Record<string, PlotPageConfig> = {
@@ -1064,7 +993,6 @@ export const PLOT_PAGES: Record<string, PlotPageConfig> = {
   "30x60": _30x60,
   "40x50": _40x50,
   "25x40": _25x40,
-  "60x40": _60x40,
 };
 
 export const PLOT_SLUGS = Object.keys(PLOT_PAGES);

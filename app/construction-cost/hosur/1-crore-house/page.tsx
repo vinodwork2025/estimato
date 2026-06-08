@@ -9,7 +9,7 @@ import { SEED_PARTNERS } from "@/data/partners";
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
-const PAGE_URL = `${SITE_URL}/1-crore-house-hosur`;
+const PAGE_URL = `${SITE_URL}/construction-cost/hosur/1-crore-house`;
 
 export const metadata: Metadata = {
   title: "What Can You Build for ₹1 Crore in Hosur? | Estimato",
@@ -149,13 +149,13 @@ const INTERNAL_LINKS = [
     desc: "BOQ-based rate verification for Hosur and Bangalore.",
   },
   {
-    href: "/60-lakh-house-hosur",
+    href: "/construction-cost/hosur/60-lakh-house",
     eyebrow: "Budget below",
     title: "₹60 lakh house in Hosur",
     desc: "How ₹1 crore compares to the tier below.",
   },
   {
-    href: "/villa-construction-cost/hosur",
+    href: "/construction-cost/hosur/villa",
     eyebrow: "Villa guide",
     title: "Villa construction cost in Hosur",
     desc: "Detailed guide for villa builds across all quality tiers.",

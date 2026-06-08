@@ -20,13 +20,13 @@ Estimato helps homeowners in Hosur and the Bengaluru region plan their construct
 - /construction-cost/hosur/30x50 — 30×50 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹37.8L–₹43.2L.
 - /construction-cost/hosur/40x40 — 40×40 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹40.3L–₹46.1L.
 - /construction-cost/hosur/50x80 — 50×80 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹100.8L–₹115.2L.
-- /villa-construction-cost/hosur — Villa construction cost in Hosur 2026. Standard range ₹37.8L–₹84L.
-- /duplex-construction-cost/hosur — Duplex construction cost in Hosur 2026. Standard range ₹29.4L–₹67.2L.
-- /independent-house-construction-cost/hosur — Independent house cost in Hosur 2026. Standard range ₹16.8L–₹48L.
-- /40-lakh-house-hosur — What ₹40 lakh builds in Hosur in 2026. Standard: 1,670–1,904 sqft.
-- /50-lakh-house-hosur — What ₹50 lakh builds in Hosur in 2026. Standard: 2,083–2,380 sqft.
-- /60-lakh-house-hosur — What ₹60 lakh builds in Hosur in 2026. Standard: 2,500–2,857 sqft.
-- /1-crore-house-hosur — What ₹1 crore builds in Hosur in 2026. Standard: 4,166–4,761 sqft.
+- /construction-cost/hosur/villa — Villa construction cost in Hosur 2026. Standard range ₹37.8L–₹84L.
+- /construction-cost/hosur/duplex — Duplex construction cost in Hosur 2026. Standard range ₹29.4L–₹67.2L.
+- /construction-cost/hosur/independent-house — Independent house cost in Hosur 2026. Standard range ₹16.8L–₹48L.
+- /construction-cost/hosur/40-lakh-house — What ₹40 lakh builds in Hosur in 2026. Standard: 1,670–1,904 sqft.
+- /construction-cost/hosur/50-lakh-house — What ₹50 lakh builds in Hosur in 2026. Standard: 2,083–2,380 sqft.
+- /construction-cost/hosur/60-lakh-house — What ₹60 lakh builds in Hosur in 2026. Standard: 2,500–2,857 sqft.
+- /construction-cost/hosur/1-crore-house — What ₹1 crore builds in Hosur in 2026. Standard: 4,166–4,761 sqft.
 - /methodology — How Estimato calculates cost projections — data sources, formula, exclusions.
 
 ## Entity pages

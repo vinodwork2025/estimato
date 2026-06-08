@@ -9,7 +9,7 @@ import { SEED_PARTNERS } from "@/data/partners";
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
-const PAGE_URL = `${SITE_URL}/duplex-construction-cost/hosur`;
+const PAGE_URL = `${SITE_URL}/construction-cost/hosur/villa`;
 
 function fmtRate(n: number): string {
   return "₹" + n.toLocaleString("en-IN");
@@ -18,14 +18,14 @@ function fmtRate(n: number): string {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Duplex Construction Cost in Hosur | Estimato",
+  title: "Villa Construction Cost in Hosur | Estimato",
   description:
-    "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
+    "What it costs to build a villa in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Duplex Construction Cost in Hosur | Estimato",
+    title: "Villa Construction Cost in Hosur | Estimato",
     description:
-      "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
+      "What it costs to build a villa in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",
@@ -51,17 +51,17 @@ const schemas = [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Construction Cost", item: `${SITE_URL}/construction-cost` },
       { "@type": "ListItem", position: 3, name: "Hosur", item: `${SITE_URL}/construction-cost/hosur` },
-      { "@type": "ListItem", position: 4, name: "Duplex Construction Cost Hosur", item: PAGE_URL },
+      { "@type": "ListItem", position: 4, name: "Villa Construction Cost Hosur", item: PAGE_URL },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": PAGE_URL,
-    name: "Duplex Construction Cost in Hosur 2026",
+    name: "Villa Construction Cost in Hosur 2026",
     url: PAGE_URL,
     description:
-      "BOQ-verified duplex construction rates for Hosur 2026. Covers standard through luxury tier with cost ranges and FAQ.",
+      "BOQ-verified villa construction rates for Hosur 2026 across all quality tiers, with cost ranges, content, and FAQ.",
     dateModified: "2026-06-03",
     inLanguage: "en-IN",
     isPartOf: { "@type": "WebSite", url: SITE_URL, name: "Estimato" },
@@ -75,103 +75,103 @@ const RATE_BANDS = [
     key: "basic",
     label: "Basic",
     badge: null,
-    buaRange: "1,400–2,800 sqft",
-    costMin: "₹25.9L",
-    costMax: "₹57.4L",
-    note: "Functional construction. Rarely chosen for duplexes — the second kitchen and separate entry are hard to do well at basic spec.",
+    buaRange: "1,800–3,500 sqft",
+    costMin: "₹33.3L",
+    costMax: "₹71.75L",
+    note: "Functional. Standard local materials. Uncommon for villa builds.",
   },
   {
     key: "standard",
     label: "Standard",
-    badge: "Most common",
-    buaRange: "1,400–2,800 sqft",
-    costMin: "₹29.4L",
-    costMax: "₹67.2L",
-    note: "Branded fittings, separate electrical panels, modular kitchens on both floors. The practical choice for rental-income duplexes.",
+    badge: "Common entry point",
+    buaRange: "1,800–3,500 sqft",
+    costMin: "₹37.8L",
+    costMax: "₹84L",
+    note: "Branded fittings, better flooring, defined elevation treatment.",
   },
   {
     key: "premium",
     label: "Premium",
-    badge: null,
-    buaRange: "1,400–2,800 sqft",
-    costMin: "₹35L",
-    costMax: "₹81.2L",
-    note: "Better flooring, Jaquar fittings, sound insulation between floors, ACP or stone elevation.",
+    badge: "Most typical for villas",
+    buaRange: "1,800–3,500 sqft",
+    costMin: "₹45L",
+    costMax: "₹101.5L",
+    note: "Quality materials throughout. Somany, Jaquar, Legrand fittings.",
   },
   {
     key: "luxury",
     label: "Luxury",
     badge: null,
-    buaRange: "1,400–2,800 sqft",
-    costMin: "₹42L",
-    costMax: "₹112L",
-    note: "High-end finishes throughout both units. Italian marble, Kohler sanitary, fully furnished interiors.",
+    buaRange: "1,800–3,500 sqft",
+    costMin: "₹54L",
+    costMax: "₹140L",
+    note: "High-end finishes. Italian marble, Kohler sanitary, full elevation cladding.",
   },
 ];
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: "How much does it cost to build a duplex in Hosur in 2026?",
+    question: "What is the cost to build a villa in Hosur in 2026?",
     answer:
-      "A standard-quality duplex in Hosur costs between ₹29.4 lakh and ₹67.2 lakh for a built-up area of 1,400 to 2,800 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. Premium duplexes in the same range run ₹35 lakh to ₹81.2 lakh. These figures cover civil and structural work only — the second kitchen, separate entrances, and double electrical panels are included in a proper duplex BOQ but interior finishes are priced separately.",
+      "A standard-quality villa in Hosur costs between ₹37.8 lakh and ₹84 lakh for a built-up area of 1,800 to 3,500 sqft, based on a rate of ₹2,100 to ₹2,400 per sqft. Premium villas in the same BUA range run ₹45 lakh to ₹101.5 lakh. Most Hosur villas are built at premium or luxury tier — the basic rate is rarely appropriate for a villa build.",
   },
   {
-    question: "What is a duplex and how is it different from a G+1 house?",
+    question: "What defines a villa vs an independent house in Hosur?",
     answer:
-      "A G+1 house is simply a two-floor home treated as one unit — one family, one kitchen, one entrance. A duplex is a G+1 where the ground and first floors are functionally independent: separate entrances from the street, separate kitchens, and usually separate electricity meters. The two units can house two branches of the same family or be set up for rental income from one floor. The structural frame may look the same on paper, but the internal layout and MEP costs differ significantly.",
+      "In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more (typically 40x45 or larger), built with a defined compound wall, gate, driveway, and higher room heights of 10 to 11 feet. An independent house is a standalone home too, but typically on a smaller plot (30x40 or 20x30), with standard ceiling heights of 9.5 feet and a simpler elevation. A 30x40 plot with a standard G+1 is an independent house — not a villa.",
   },
   {
-    question: "Can I get rental income from a duplex in Hosur?",
+    question: "What plot size do I need for a villa in Hosur?",
     answer:
-      "Yes. A standard duplex in Hosur's residential zones near Electronic City Road rents for ₹8,000 to ₹14,000 per floor in 2026. A ₹35 to ₹40 lakh investment in the rental unit can pay back in 12 to 16 years at current rents, assuming steady occupancy. The rental yield is better if the duplex is near the Hosur SIPCOT or Mathigiri industrial zones where worker housing demand is consistent.",
+      "Genuine villas in Hosur start at 40x50 plots (2,000 sqft). The most common villa plots are 40x60 (2,400 sqft) and 50x80 (4,000 sqft). A 30x40 plot can technically have a standalone home, but the result is effectively an independent house in scale and finish. For a comfortable G+1 villa with a 2-car driveway and landscaped compound, a 40x60 plot is the practical minimum.",
   },
   {
-    question: "What plot size works for a duplex in Hosur?",
+    question: "What quality tier is typical for villas in Hosur?",
     answer:
-      "Most Hosur duplex plots are 30x40 to 40x50 sqft. A 30x40 plot (1,200 sqft) can comfortably hold a duplex with two 2 BHK units of around 700 sqft each. Smaller plots (20x40, 30x30) can technically support a duplex but the unit sizes become tight and the separate entrance path needs to be planned very carefully in the original design. Going below 20x30 makes a proper duplex impractical.",
+      "Most villa builds in Hosur in 2026 are at premium or luxury tier. Building a villa at basic quality — at ₹1,850 to ₹2,050 per sqft — defeats the purpose of the form factor. The structural requirements (higher ceiling heights, compound wall, gate, wider driveway) already push costs above the basic threshold. Standard is the absolute floor for a villa that will hold its value.",
   },
   {
-    question: "What are the extra construction costs in a duplex vs a standard G+1?",
+    question: "What are the extra costs in a villa build that a standard house does not have?",
     answer:
-      "Four items add cost above a standard G+1. A second kitchen adds ₹2.5 to ₹5 lakh depending on quality. A separate staircase or second entrance lobby adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is strongly recommended — it adds ₹80,000 to ₹1.5 lakh but makes both units genuinely independent. Double the metering and electrical panels adds another ₹40,000 to ₹80,000. Total duplex premium over a comparable G+1 is typically ₹4 to ₹9 lakh.",
+      "Four costs stand out. First, higher ceiling height (10 to 11 ft vs 9.5 ft standard) adds around 4% to structural cost. Second, exterior elevation treatments — cladding, ACP panels, feature walls — add ₹1.5 to ₹4 lakh. Third, the compound wall and gate add ₹3 to ₹8 lakh depending on perimeter length and design. Fourth, landscaping is a separate line item that most villa builders underestimate: a basic garden runs ₹2 to ₹6 lakh and is not included in civil contractor quotes.",
   },
   {
-    question: "Is a duplex a good investment in Hosur in 2026?",
+    question: "How long does it take to build a villa in Hosur?",
     answer:
-      "For homeowners who want to live on one floor and rent the other, a duplex in Hosur makes strong financial sense in 2026. Land costs remain lower than Bengaluru, construction quality has improved significantly, and rental demand near industrial and tech zones is steady. The key is planning the separate entrance from the original design — retrofitting a second staircase costs 2 to 3 times what it costs to build it in from the start. Get the layout right in the architectural drawing stage and the numbers work well.",
+      "A 2,000 to 2,800 sqft villa at premium quality takes 12 to 16 months from foundation to handover. Foundation and structure take 14 to 16 weeks for a villa given the larger footprint and higher ceiling heights. Brickwork and plastering add another 5 to 7 weeks. Finishing — where most of the quality investment shows — takes 14 to 18 weeks. Add 4 to 6 weeks for HTM approvals and material lead times for premium fittings.",
   },
 ];
 
 const INTERNAL_LINKS = [
   {
-    href: "/villa-construction-cost/hosur",
+    href: "/construction-cost/hosur/duplex",
     eyebrow: "Home type comparison",
-    title: "Villa construction cost in Hosur",
-    desc: "Compare duplex costs with villa builds in Hosur.",
+    title: "Duplex construction cost in Hosur",
+    desc: "Compare villa costs with duplex builds across all quality tiers.",
   },
   {
-    href: "/construction-cost/hosur/30x50",
+    href: "/construction-cost/hosur/40x60",
     eyebrow: "Plot size",
-    title: "30×50 plot in Hosur",
-    desc: "How a duplex fits on a 30×50 plot with cost breakdown.",
+    title: "40×60 plot in Hosur",
+    desc: "Cost breakdown for a 40×60 plot — a common villa plot size in Hosur.",
   },
   {
     href: "/construction-cost/hosur",
     eyebrow: "Rate data",
     title: "Hosur construction rates",
-    desc: "Full rate table for Hosur across all quality tiers.",
+    desc: "Full rate table and cost data for Hosur across all quality tiers.",
   },
   {
     href: "/methodology",
     eyebrow: "How we calculate",
     title: "How we calculate",
-    desc: "Data sources behind Estimato's Hosur rate database.",
+    desc: "How Estimato builds its rate database from real Hosur BOQs.",
   },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function DuplexHosurPage() {
+export default function VillaHosurPage() {
   const partner = SEED_PARTNERS.find((p) => p.id === "design-intend")!;
 
   return (
@@ -196,7 +196,7 @@ export default function DuplexHosurPage() {
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
               <Link href="/construction-cost/hosur" className="font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-200" style={{ color: "var(--text-tertiary)" }}>Hosur</Link>
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Duplex</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Villa</span>
             </nav>
 
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
@@ -213,7 +213,7 @@ export default function DuplexHosurPage() {
                 color: "var(--text-primary)",
               }}
             >
-              Duplex construction cost
+              Villa construction cost
               <br className="hidden md:block" /> in Hosur
             </h1>
 
@@ -221,7 +221,8 @@ export default function DuplexHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              Cost ranges for duplex construction in Hosur — a G+1 with two independent units, separate entrances, and two kitchens. BOQ-verified rates for 1,400 to 2,800 sqft BUA.
+              Cost ranges for villa construction in Hosur, built from real project BOQs.
+              Covers all quality tiers from standard to luxury for typical BUA of 1,800 to 3,500 sqft.
               <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>As of 2026.</span>
             </p>
 
@@ -237,9 +238,10 @@ export default function DuplexHosurPage() {
                 className="font-sans"
                 style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}
               >
-                A duplex in Hosur in 2026 costs <strong>₹29.4 lakh to ₹67.2 lakh</strong> at standard quality for a built-up area of 1,400 to 2,800 sqft. Premium duplexes in the same range run{" "}
-                <strong>₹35 lakh to ₹81.2 lakh</strong>. The base construction rate is{" "}
-                <strong>₹2,100–₹2,400 per sqft for standard</strong> quality, with a 1.00x city multiplier for Hosur. A duplex adds a second kitchen (₹2.5–₹5L), a separate entry path, and double electrical metering on top of a standard G+1 build.
+                Building a villa in Hosur in 2026 costs <strong>₹37.8 lakh to ₹84 lakh</strong> at standard quality for a built-up area of 1,800 to 3,500 sqft. Premium villas in the same range run{" "}
+                <strong>₹45 lakh to ₹101.5 lakh</strong>. Luxury tier goes from{" "}
+                <strong>₹54 lakh to ₹140 lakh</strong>. The base construction rate in Hosur is{" "}
+                <strong>₹2,100–₹2,400 per sqft for standard</strong> and ₹2,500–₹2,900 per sqft for premium, with a 1.00x city multiplier. Most Hosur villa projects land at premium or luxury tier.
               </p>
             </div>
           </AnimateIn>
@@ -251,7 +253,7 @@ export default function DuplexHosurPage() {
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="rate-bands-heading">
           <AnimateIn direction="up">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>
-              Hosur 2026 · Duplex · 1,400–2,800 sqft BUA
+              Hosur 2026 · Villa · 1,800–3,500 sqft BUA
             </p>
             <h2
               id="rate-bands-heading"
@@ -261,7 +263,7 @@ export default function DuplexHosurPage() {
               Construction rates by quality tier
             </h2>
             <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Cost ranges shown are for duplex BUA of 1,400 to 2,800 sqft at each quality tier. Civil and structural only — interiors, furniture, and landscaping are separate.
+              Cost ranges shown are for villa BUA of 1,800 to 3,500 sqft at each rate tier. Civil and structural only — interiors are separate.
             </p>
           </AnimateIn>
 
@@ -273,9 +275,13 @@ export default function DuplexHosurPage() {
                   <div className="grid grid-cols-1 md:grid-cols-[200px_1fr_180px] gap-4 md:gap-8 py-7 items-start">
                     <div>
                       <div className="flex items-center gap-3 mb-1 flex-wrap">
-                        <p className="font-serif" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>{label}</p>
+                        <p className="font-serif" style={{ fontSize: "22px", fontWeight: 400, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
+                          {label}
+                        </p>
                         {badge && (
-                          <span className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5" style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}>{badge}</span>
+                          <span className="font-mono text-[9px] uppercase tracking-[0.14em] px-2 py-0.5" style={{ background: "rgba(196,154,60,0.12)", color: "var(--accent)", borderRadius: "2px" }}>
+                            {badge}
+                          </span>
                         )}
                       </div>
                       <p className="font-mono tabular-nums" style={{ fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
@@ -286,7 +292,9 @@ export default function DuplexHosurPage() {
                       <p className="font-mono" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>per sqft</p>
                     </div>
                     <div className="md:pt-1">
-                      <p className="font-mono mb-1" style={{ fontSize: "15px", fontWeight: 500, color: "var(--text-primary)" }}>{costMin} – {costMax}</p>
+                      <p className="font-mono mb-1" style={{ fontSize: "15px", fontWeight: 500, color: "var(--text-primary)" }}>
+                        {costMin} – {costMax}
+                      </p>
                       <p className="font-mono mb-2" style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>for {buaRange}</p>
                       <p className="font-sans" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{note}</p>
                     </div>
@@ -309,9 +317,9 @@ export default function DuplexHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Fully custom build with imported materials, smart home integration, and designer interiors throughout both units. No published rate — quoted from a full design brief.
+                    Imported stone, designer lighting, fully automated systems. No published rate applies at this tier — each project is quoted from a full design brief.
                   </p>
-                  <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
+                  <Link href="/plan?city=hosur&type=villa&from=hosur-villa-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
                     Speak to Design Intend
                     <svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4h9M7 1l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </Link>
@@ -340,10 +348,10 @@ export default function DuplexHosurPage() {
             <div className="rounded-sm p-7 md:p-10" style={{ border: "1px solid var(--border)", background: "var(--bg-primary)" }}>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Free estimate tool</p>
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-                Get a personalised duplex estimate
+                Get a personalised villa estimate
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Tell us your plot, floor count, and quality level. You get a full cost range and the details below — no sign-up required.
+                Five questions about your plot, configuration, and quality level. You get a full cost range with the details below — no sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
                 {["Construction cost range", "Cost per sq ft", "BOQ summary", "Payment timeline", "Budget guidance"].map((item) => (
@@ -353,11 +361,11 @@ export default function DuplexHosurPage() {
                 ))}
               </ul>
               <Link
-                href="/plan?city=hosur&type=duplex&from=hosur-duplex-page"
+                href="/plan?city=hosur&type=villa&from=hosur-villa-page"
                 className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85"
                 style={{ background: "var(--text-primary)", color: "#ffffff", borderRadius: "2px" }}
               >
-                Start duplex estimate →
+                Start villa estimate →
               </Link>
             </div>
           </AnimateIn>
@@ -368,19 +376,19 @@ export default function DuplexHosurPage() {
         {/* ── CONTENT BODY ────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="content-heading">
           <AnimateIn direction="up">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Duplex builds in Hosur</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Villa builds in Hosur</p>
             <h2 id="content-heading" className="font-serif mb-8" style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              What separates a duplex from a G+1 house
+              What goes into a villa build in Hosur
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                A duplex in Hosur is not just a two-floor home. It is a G+1 where each floor functions as a fully independent unit — its own entrance from the street, its own kitchen, its own electricity meter, and ideally its own staircase. This structure serves two distinct purposes in Hosur: it allows a joint family to live in proximity while maintaining separate households, or it lets the builder live on one floor and rent out the other for steady income. The critical difference from a standard G+1 is in the layout planning, not the structural frame.
+                In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more — typically a 40x45 or larger footprint — with a defined compound wall and gate, a driveway wide enough for two cars, and room heights of 10 to 11 feet rather than the standard 9.5 feet. The elevated ceiling alone adds around 4% to structural cost. The compound wall and gate add another ₹3 to ₹8 lakh depending on the perimeter length and gate design. External elevation treatments — cladding, ACP panels, feature walls — add ₹1.5 to ₹4 lakh on top of the base rate. None of these line items show up in a basic contractor quote.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The extra cost of a duplex over a comparable G+1 falls into four items. A second kitchen adds ₹2.5 to ₹5 lakh at standard quality. A separate entry path — whether a second staircase or a separate ground-floor lobby — adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is not required but is strongly recommended for a functional duplex: a 100mm hollow block or mineral wool layer between the slab and the floor finish above adds ₹80,000 to ₹1.5 lakh but eliminates the most common complaint in duplex rentals. Double the electrical panels and metering adds another ₹40,000 to ₹80,000. The total duplex premium over a standard G+1 is ₹4 to ₹9 lakh.
+                The typical villa buyer in Hosur in 2026 is an NRI or a senior engineer at one of the semiconductor or EV companies in the Hosur zone, buying a 40x60 or 50x80 plot on the Rayakottai or Doddaballapur side roads, building a 4 to 5 BHK for end-use or for future family occupation. Most of these projects run at premium tier. Building a villa at basic quality misses the point of the form — the structural demands of higher ceilings and a larger footprint already put the cost above basic, and the finish quality is what makes a villa hold its value on resale.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The most common mistake in Hosur duplex builds is treating the separate entrance as an afterthought. Builders often start with a standard G+1 design and ask the contractor to add a second staircase during construction. Retrofitting a second staircase costs 2 to 3 times what it costs to plan it into the original architectural drawing. The rental income math for a Hosur duplex near the Electronic City Road or SIPCOT area works well in 2026 — ₹8,000 to ₹14,000 per floor per month means a ₹35 to ₹40 lakh construction investment in the rental unit pays back in 12 to 16 years, not counting land appreciation.
+                One cost that most villa budgets miss entirely is landscaping. A basic garden — lawn, border planting, a few feature trees, and a simple pathway — runs ₹2 to ₹6 lakh and is not included in any civil contractor quote. The most common Hosur villa configuration is G+1, 4 BHK with a servant room, 2-car parking, and a BUA of 1,800 to 3,000 sqft at standard or premium quality. That puts the cost between ₹37.8 lakh at the low end and ₹87 lakh at the high end before landscaping and interiors.
               </p>
             </div>
           </AnimateIn>
@@ -393,10 +401,10 @@ export default function DuplexHosurPage() {
           <AnimateIn direction="up">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Common questions</p>
             <h2 id="faq-heading" className="font-serif mb-10" style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              Duplex construction in Hosur
+              Villa construction in Hosur
             </h2>
           </AnimateIn>
-          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-duplex-faq" />
+          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-villa-faq" />
         </section>
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
@@ -466,12 +474,12 @@ export default function DuplexHosurPage() {
             <AnimateIn direction="up">
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4" style={{ color: "rgba(196,154,60,0.85)" }}>Free · No sign-up · Under 2 minutes</p>
               <h2 className="font-serif mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF" }}>
-                Start your duplex estimate
+                Start your villa estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline built from Hosur BOQs.
               </p>
-              <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
+              <Link href="/plan?city=hosur&type=villa&from=hosur-villa-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
                 Begin my estimate →
               </Link>
             </AnimateIn>

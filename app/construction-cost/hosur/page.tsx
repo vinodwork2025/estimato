@@ -985,7 +985,7 @@ export default function HosurHubPage() {
             {/* Villa construction */}
             <StaggerItem>
               <Link
-                href="/villa-construction-cost/hosur"
+                href="/construction-cost/hosur/villa"
                 className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
                 style={{ border: "1px solid var(--border)" }}
               >
@@ -1013,7 +1013,7 @@ export default function HosurHubPage() {
             {/* ₹50 lakh budget */}
             <StaggerItem>
               <Link
-                href="/50-lakh-house-hosur"
+                href="/construction-cost/hosur/50-lakh-house"
                 className="block rounded-sm p-6 border transition-colors duration-200 group hover:border-navy"
                 style={{ border: "1px solid var(--border)" }}
               >

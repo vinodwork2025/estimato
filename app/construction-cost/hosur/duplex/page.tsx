@@ -9,7 +9,7 @@ import { SEED_PARTNERS } from "@/data/partners";
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
-const PAGE_URL = `${SITE_URL}/independent-house-construction-cost/hosur`;
+const PAGE_URL = `${SITE_URL}/construction-cost/hosur/duplex`;
 
 function fmtRate(n: number): string {
   return "₹" + n.toLocaleString("en-IN");
@@ -18,14 +18,14 @@ function fmtRate(n: number): string {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Independent House Construction Cost in Hosur | Estimato",
+  title: "Duplex Construction Cost in Hosur | Estimato",
   description:
-    "What it costs to build an independent house in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
+    "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Independent House Construction Cost in Hosur | Estimato",
+    title: "Duplex Construction Cost in Hosur | Estimato",
     description:
-      "What it costs to build an independent house in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
+      "What it costs to build a duplex in Hosur. Real project BOQ rates, five quality tiers, an instant range. No guesswork.",
     url: PAGE_URL,
     type: "website",
     siteName: "Estimato",
@@ -51,17 +51,17 @@ const schemas = [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Construction Cost", item: `${SITE_URL}/construction-cost` },
       { "@type": "ListItem", position: 3, name: "Hosur", item: `${SITE_URL}/construction-cost/hosur` },
-      { "@type": "ListItem", position: 4, name: "Independent House Construction Cost Hosur", item: PAGE_URL },
+      { "@type": "ListItem", position: 4, name: "Duplex Construction Cost Hosur", item: PAGE_URL },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": PAGE_URL,
-    name: "Independent House Construction Cost in Hosur 2026",
+    name: "Duplex Construction Cost in Hosur 2026",
     url: PAGE_URL,
     description:
-      "BOQ-verified independent house construction rates for Hosur 2026 across all quality tiers, with cost ranges, content, and FAQ.",
+      "BOQ-verified duplex construction rates for Hosur 2026. Covers standard through luxury tier with cost ranges and FAQ.",
     dateModified: "2026-06-03",
     inLanguage: "en-IN",
     isPartOf: { "@type": "WebSite", url: SITE_URL, name: "Estimato" },
@@ -75,103 +75,103 @@ const RATE_BANDS = [
     key: "basic",
     label: "Basic",
     badge: null,
-    buaRange: "800–2,000 sqft",
-    costMin: "₹14.8L",
-    costMax: "₹41L",
-    note: "Functional construction. Standard local materials. Used for budget first homes or rental properties where finish quality is not the priority.",
+    buaRange: "1,400–2,800 sqft",
+    costMin: "₹25.9L",
+    costMax: "₹57.4L",
+    note: "Functional construction. Rarely chosen for duplexes — the second kitchen and separate entry are hard to do well at basic spec.",
   },
   {
     key: "standard",
     label: "Standard",
-    badge: "Most common in Hosur",
-    buaRange: "800–2,000 sqft",
-    costMin: "₹16.8L",
-    costMax: "₹48L",
-    note: "Branded fittings, vitrified tiles, modular kitchen. The benchmark for most Hosur contractor quotes.",
+    badge: "Most common",
+    buaRange: "1,400–2,800 sqft",
+    costMin: "₹29.4L",
+    costMax: "₹67.2L",
+    note: "Branded fittings, separate electrical panels, modular kitchens on both floors. The practical choice for rental-income duplexes.",
   },
   {
     key: "premium",
     label: "Premium",
     badge: null,
-    buaRange: "800–2,000 sqft",
-    costMin: "₹20L",
-    costMax: "₹58L",
-    note: "Somany or equivalent tiles, Jaquar fittings, Legrand switches, better elevation treatment.",
+    buaRange: "1,400–2,800 sqft",
+    costMin: "₹35L",
+    costMax: "₹81.2L",
+    note: "Better flooring, Jaquar fittings, sound insulation between floors, ACP or stone elevation.",
   },
   {
     key: "luxury",
     label: "Luxury",
     badge: null,
-    buaRange: "800–2,000 sqft",
-    costMin: "₹24L",
-    costMax: "₹80L",
-    note: "High-end stone, Kohler sanitary, architect-curated interiors, feature elevation with cladding.",
+    buaRange: "1,400–2,800 sqft",
+    costMin: "₹42L",
+    costMax: "₹112L",
+    note: "High-end finishes throughout both units. Italian marble, Kohler sanitary, fully furnished interiors.",
   },
 ];
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: "What is the cost to build an independent house in Hosur in 2026?",
+    question: "How much does it cost to build a duplex in Hosur in 2026?",
     answer:
-      "A standard-quality independent house in Hosur costs between ₹16.8 lakh and ₹48 lakh for a built-up area of 800 to 2,000 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. The most common Hosur build — a G+1 on a 30x40 plot with 1,440 sqft BUA at standard quality — lands between ₹30 lakh and ₹35 lakh for civil and structural work before interiors.",
+      "A standard-quality duplex in Hosur costs between ₹29.4 lakh and ₹67.2 lakh for a built-up area of 1,400 to 2,800 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. Premium duplexes in the same range run ₹35 lakh to ₹81.2 lakh. These figures cover civil and structural work only — the second kitchen, separate entrances, and double electrical panels are included in a proper duplex BOQ but interior finishes are priced separately.",
   },
   {
-    question: "What is the standard configuration for an independent house in Hosur?",
+    question: "What is a duplex and how is it different from a G+1 house?",
     answer:
-      "The benchmark independent house in Hosur is G+1, 3 BHK, standard quality, on a 30x40 plot with around 1,440 sqft of built-up area. This is the exact build that most Hosur contractor quotes use as a reference point. Ground floor typically has a living room, dining, kitchen, 1 bedroom, and a bathroom. First floor has 2 bedrooms, a common bathroom, and a utility area. This configuration works well for a family of four and leaves FSI headroom for a future extension.",
+      "A G+1 house is simply a two-floor home treated as one unit — one family, one kitchen, one entrance. A duplex is a G+1 where the ground and first floors are functionally independent: separate entrances from the street, separate kitchens, and usually separate electricity meters. The two units can house two branches of the same family or be set up for rental income from one floor. The structural frame may look the same on paper, but the internal layout and MEP costs differ significantly.",
   },
   {
-    question: "What is the FSI rule for residential plots in Hosur?",
+    question: "Can I get rental income from a duplex in Hosur?",
     answer:
-      "Under HTM (Hosur Town Municipality) rules, residential plots generally have an FSI of 2.0, meaning you can build up to twice the plot area as total built-up space across all floors. Ground floor coverage is typically 60 to 65% of the plot. A 30x40 plot (1,200 sqft) can have up to 2,400 sqft of total built-up area. Most standard independent houses use 1,200 to 1,500 sqft on a G+1, leaving significant FSI headroom for a future second floor or extension.",
+      "Yes. A standard duplex in Hosur's residential zones near Electronic City Road rents for ₹8,000 to ₹14,000 per floor in 2026. A ₹35 to ₹40 lakh investment in the rental unit can pay back in 12 to 16 years at current rents, assuming steady occupancy. The rental yield is better if the duplex is near the Hosur SIPCOT or Mathigiri industrial zones where worker housing demand is consistent.",
   },
   {
-    question: "How long does construction take for a typical Hosur independent house?",
+    question: "What plot size works for a duplex in Hosur?",
     answer:
-      "A standard G+1 independent house of 1,200 to 1,500 sqft in Hosur takes 9 to 11 months from foundation to handover. Foundation and structure take 10 to 12 weeks. Brickwork and plastering add 4 to 5 weeks. Finishing — flooring, painting, fixtures, and fit-out — takes 10 to 14 weeks. Add 2 to 4 weeks for HTM approval, material lead times, and any weather pauses during the northeast monsoon in October and November.",
+      "Most Hosur duplex plots are 30x40 to 40x50 sqft. A 30x40 plot (1,200 sqft) can comfortably hold a duplex with two 2 BHK units of around 700 sqft each. Smaller plots (20x40, 30x30) can technically support a duplex but the unit sizes become tight and the separate entrance path needs to be planned very carefully in the original design. Going below 20x30 makes a proper duplex impractical.",
   },
   {
-    question: "What are the most common mistakes first-time builders make in Hosur?",
+    question: "What are the extra construction costs in a duplex vs a standard G+1?",
     answer:
-      "Three mistakes come up repeatedly. First, leaving the elevation treatment for later — a decision that saves ₹80,000 to ₹1.5 lakh now but costs significantly more to add after the structure is complete, since scaffolding has to be re-erected. Second, not deciding on flooring before the structure starts — the slab finish affects flooring costs downstream. Third, skipping the modular kitchen at build time — retrofitting a modular kitchen after plastering requires breaking walls for plumbing and electrical, adding 30 to 40% to the cost vs planning it into the original drawing.",
+      "Four items add cost above a standard G+1. A second kitchen adds ₹2.5 to ₹5 lakh depending on quality. A separate staircase or second entrance lobby adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is strongly recommended — it adds ₹80,000 to ₹1.5 lakh but makes both units genuinely independent. Double the metering and electrical panels adds another ₹40,000 to ₹80,000. Total duplex premium over a comparable G+1 is typically ₹4 to ₹9 lakh.",
   },
   {
-    question: "How is an independent house different from a villa in Hosur?",
+    question: "Is a duplex a good investment in Hosur in 2026?",
     answer:
-      "An independent house is a standalone home on its own plot — the defining feature is that it does not share walls with neighbors, unlike a rowhouse. A villa is also a standalone home, but the term implies a larger scale (40x50 plot or more), higher ceiling heights of 10 to 11 feet, a defined compound with a gated driveway, and premium or luxury finish quality. In Hosur, an independent house is typically on a 600 to 1,500 sqft plot at standard quality. A villa starts at 1,800 sqft plot and almost always runs at premium or luxury tier.",
+      "For homeowners who want to live on one floor and rent the other, a duplex in Hosur makes strong financial sense in 2026. Land costs remain lower than Bengaluru, construction quality has improved significantly, and rental demand near industrial and tech zones is steady. The key is planning the separate entrance from the original design — retrofitting a second staircase costs 2 to 3 times what it costs to build it in from the start. Get the layout right in the architectural drawing stage and the numbers work well.",
   },
 ];
 
 const INTERNAL_LINKS = [
   {
-    href: "/duplex-construction-cost/hosur",
+    href: "/construction-cost/hosur/villa",
     eyebrow: "Home type comparison",
-    title: "Duplex construction cost in Hosur",
-    desc: "How an independent house compares to a duplex build in Hosur.",
+    title: "Villa construction cost in Hosur",
+    desc: "Compare duplex costs with villa builds in Hosur.",
   },
   {
-    href: "/construction-cost/hosur/30x40",
+    href: "/construction-cost/hosur/30x50",
     eyebrow: "Plot size",
-    title: "30×40 plot in Hosur",
-    desc: "The most common independent house plot size and its cost range.",
+    title: "30×50 plot in Hosur",
+    desc: "How a duplex fits on a 30×50 plot with cost breakdown.",
   },
   {
     href: "/construction-cost/hosur",
     eyebrow: "Rate data",
     title: "Hosur construction rates",
-    desc: "Full rate table and quality tier breakdown for Hosur.",
+    desc: "Full rate table for Hosur across all quality tiers.",
   },
   {
     href: "/methodology",
     eyebrow: "How we calculate",
     title: "How we calculate",
-    desc: "Rate methodology and what the numbers include.",
+    desc: "Data sources behind Estimato's Hosur rate database.",
   },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function IndependentHouseHosurPage() {
+export default function DuplexHosurPage() {
   const partner = SEED_PARTNERS.find((p) => p.id === "design-intend")!;
 
   return (
@@ -196,7 +196,7 @@ export default function IndependentHouseHosurPage() {
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
               <Link href="/construction-cost/hosur" className="font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-200" style={{ color: "var(--text-tertiary)" }}>Hosur</Link>
               <span className="font-mono text-[11px]" style={{ color: "var(--border)" }}>/</span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Independent House</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--text-primary)" }}>Duplex</span>
             </nav>
 
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
@@ -213,15 +213,15 @@ export default function IndependentHouseHosurPage() {
                 color: "var(--text-primary)",
               }}
             >
-              Independent house
-              <br className="hidden md:block" /> construction cost in Hosur
+              Duplex construction cost
+              <br className="hidden md:block" /> in Hosur
             </h1>
 
             <p
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              Cost ranges for independent house construction in Hosur — the most common build type in the city. BOQ-verified rates for 800 to 2,000 sqft BUA across all quality tiers.
+              Cost ranges for duplex construction in Hosur — a G+1 with two independent units, separate entrances, and two kitchens. BOQ-verified rates for 1,400 to 2,800 sqft BUA.
               <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>As of 2026.</span>
             </p>
 
@@ -237,10 +237,9 @@ export default function IndependentHouseHosurPage() {
                 className="font-sans"
                 style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}
               >
-                An independent house in Hosur in 2026 costs <strong>₹16.8 lakh to ₹48 lakh</strong> at standard quality for a built-up area of 800 to 2,000 sqft. The most common build — a G+1 on a 30x40 plot with 1,440 sqft BUA — lands between{" "}
-                <strong>₹30 lakh and ₹35 lakh</strong> at standard quality. The base rate in Hosur is{" "}
-                <strong>₹2,100–₹2,400 per sqft for standard</strong>, with a 1.00x city multiplier. Premium builds run ₹2,500–₹2,900 per sqft, adding up to{" "}
-                <strong>₹20 lakh to ₹58 lakh</strong> for the same BUA range.
+                A duplex in Hosur in 2026 costs <strong>₹29.4 lakh to ₹67.2 lakh</strong> at standard quality for a built-up area of 1,400 to 2,800 sqft. Premium duplexes in the same range run{" "}
+                <strong>₹35 lakh to ₹81.2 lakh</strong>. The base construction rate is{" "}
+                <strong>₹2,100–₹2,400 per sqft for standard</strong> quality, with a 1.00x city multiplier for Hosur. A duplex adds a second kitchen (₹2.5–₹5L), a separate entry path, and double electrical metering on top of a standard G+1 build.
               </p>
             </div>
           </AnimateIn>
@@ -252,7 +251,7 @@ export default function IndependentHouseHosurPage() {
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="rate-bands-heading">
           <AnimateIn direction="up">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>
-              Hosur 2026 · Independent House · 800–2,000 sqft BUA
+              Hosur 2026 · Duplex · 1,400–2,800 sqft BUA
             </p>
             <h2
               id="rate-bands-heading"
@@ -262,7 +261,7 @@ export default function IndependentHouseHosurPage() {
               Construction rates by quality tier
             </h2>
             <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Cost ranges shown are for independent house BUA of 800 to 2,000 sqft at each quality tier. Civil and structural work only — interiors are separate.
+              Cost ranges shown are for duplex BUA of 1,400 to 2,800 sqft at each quality tier. Civil and structural only — interiors, furniture, and landscaping are separate.
             </p>
           </AnimateIn>
 
@@ -310,9 +309,9 @@ export default function IndependentHouseHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Fully custom build. Imported stone, Lutron lighting, home automation, and fully furnished interiors. No published rate — priced from a full design brief.
+                    Fully custom build with imported materials, smart home integration, and designer interiors throughout both units. No published rate — quoted from a full design brief.
                   </p>
-                  <Link href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
+                  <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
                     Speak to Design Intend
                     <svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4h9M7 1l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </Link>
@@ -341,10 +340,10 @@ export default function IndependentHouseHosurPage() {
             <div className="rounded-sm p-7 md:p-10" style={{ border: "1px solid var(--border)", background: "var(--bg-primary)" }}>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Free estimate tool</p>
               <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-                Get a personalised estimate for your Hosur home
+                Get a personalised duplex estimate
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Tell us your plot size, number of floors, and quality level. You get a full cost range with the details below — no sign-up needed.
+                Tell us your plot, floor count, and quality level. You get a full cost range and the details below — no sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
                 {["Construction cost range", "Cost per sq ft", "BOQ summary", "Payment timeline", "Budget guidance"].map((item) => (
@@ -354,11 +353,11 @@ export default function IndependentHouseHosurPage() {
                 ))}
               </ul>
               <Link
-                href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-page"
+                href="/plan?city=hosur&type=duplex&from=hosur-duplex-page"
                 className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85"
                 style={{ background: "var(--text-primary)", color: "#ffffff", borderRadius: "2px" }}
               >
-                Start my estimate →
+                Start duplex estimate →
               </Link>
             </div>
           </AnimateIn>
@@ -369,19 +368,19 @@ export default function IndependentHouseHosurPage() {
         {/* ── CONTENT BODY ────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="content-heading">
           <AnimateIn direction="up">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Independent house builds in Hosur</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Duplex builds in Hosur</p>
             <h2 id="content-heading" className="font-serif mb-8" style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              The most common build in Hosur
+              What separates a duplex from a G+1 house
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                An independent house is the default residential build in Hosur — a standalone home on its own plot with its own compound and no shared walls with neighbors. This is what distinguishes it from a rowhouse (shared side walls) and from a villa (larger plot, premium finish, higher ceilings). Hosur's established residential areas — around SIPCOT, Mathigiri, and the older layouts near the bus stand — are almost entirely made up of independent houses on 600 to 2,000 sqft plots. The road infrastructure, water connections, and contractor ecosystems in these areas are all built around this form factor.
+                A duplex in Hosur is not just a two-floor home. It is a G+1 where each floor functions as a fully independent unit — its own entrance from the street, its own kitchen, its own electricity meter, and ideally its own staircase. This structure serves two distinct purposes in Hosur: it allows a joint family to live in proximity while maintaining separate households, or it lets the builder live on one floor and rent out the other for steady income. The critical difference from a standard G+1 is in the layout planning, not the structural frame.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The reference build for Hosur contractor quotes is a G+1, 3 BHK, standard quality, on a 30x40 plot with 1,440 sqft of built-up area. At ₹2,100 to ₹2,400 per sqft, that comes to ₹30.2 lakh to ₹34.6 lakh for civil work before interiors. Three decisions at this stage define how the budget moves: whether to invest in a quality elevation now or leave it for later, whether to do a full modular kitchen now or add it after, and whether to complete all flooring in the first construction phase or leave the upper floor in basic cement. Each of these deferred decisions costs more to fix later than to plan correctly from the start.
+                The extra cost of a duplex over a comparable G+1 falls into four items. A second kitchen adds ₹2.5 to ₹5 lakh at standard quality. A separate entry path — whether a second staircase or a separate ground-floor lobby — adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is not required but is strongly recommended for a functional duplex: a 100mm hollow block or mineral wool layer between the slab and the floor finish above adds ₹80,000 to ₹1.5 lakh but eliminates the most common complaint in duplex rentals. Double the electrical panels and metering adds another ₹40,000 to ₹80,000. The total duplex premium over a standard G+1 is ₹4 to ₹9 lakh.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                Under HTM rules, a 30x40 plot has an FSI of 2.0, meaning you can build up to 2,400 sqft in total across all floors. Most standard independent houses use 1,200 to 1,500 sqft on a G+1 — 60% ground coverage, as permitted — which leaves significant headroom for a future third floor or an upper-floor extension as the family grows. This is one reason why the independent house remains the dominant form in Hosur: it is financeable in phases, extendable as income grows, and well-matched to the plot sizes available in the city's established layouts.
+                The most common mistake in Hosur duplex builds is treating the separate entrance as an afterthought. Builders often start with a standard G+1 design and ask the contractor to add a second staircase during construction. Retrofitting a second staircase costs 2 to 3 times what it costs to plan it into the original architectural drawing. The rental income math for a Hosur duplex near the Electronic City Road or SIPCOT area works well in 2026 — ₹8,000 to ₹14,000 per floor per month means a ₹35 to ₹40 lakh construction investment in the rental unit pays back in 12 to 16 years, not counting land appreciation.
               </p>
             </div>
           </AnimateIn>
@@ -394,10 +393,10 @@ export default function IndependentHouseHosurPage() {
           <AnimateIn direction="up">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Common questions</p>
             <h2 id="faq-heading" className="font-serif mb-10" style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              Independent house construction in Hosur
+              Duplex construction in Hosur
             </h2>
           </AnimateIn>
-          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-indhouse-faq" />
+          <FAQBlock items={FAQ_ITEMS} schemaId="hosur-duplex-faq" />
         </section>
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
@@ -467,12 +466,12 @@ export default function IndependentHouseHosurPage() {
             <AnimateIn direction="up">
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4" style={{ color: "rgba(196,154,60,0.85)" }}>Free · No sign-up · Under 2 minutes</p>
               <h2 className="font-serif mb-4" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF" }}>
-                Start your Hosur estimate
+                Start your duplex estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
                 Five questions. A cost range, material quantities, and a payment timeline built from Hosur BOQs.
               </p>
-              <Link href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
+              <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-footer" className="inline-flex items-center gap-2 px-8 py-4 font-mono text-[12px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85" style={{ background: "var(--accent)", color: "#ffffff", borderRadius: "2px" }}>
                 Begin my estimate →
               </Link>
             </AnimateIn>
