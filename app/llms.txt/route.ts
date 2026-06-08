@@ -14,6 +14,10 @@ Estimato helps homeowners in Hosur and the Bengaluru region plan their construct
 
 - /plan — Free 5-step construction cost estimator. Pre-loads Hosur rates. No sign-up required.
 - /construction-cost/hosur — House construction cost rates in Hosur 2026. BOQ-verified, all quality tiers.
+- /construction-cost/hosur/per-sqft — Construction cost per sqft in Hosur 2026. Ranges: Basic ₹1,400–₹1,600 · Standard ₹1,650–₹1,950 · Premium ₹2,000–₹2,650 · Luxury ₹3,200–₹5,200.
+- /construction-cost/hosur/calculator — Interactive construction cost calculator for Hosur. Select home type, quality tier, built-up area; returns base/low/high estimate with component breakdown.
+- /construction-cost/hosur/material-prices — Construction material price index for Hosur, June 2026. Cement ₹370–₹390/bag, TMT steel ₹58,000–₹62,000/MT, M-sand ₹55–₹65/cft. Dataset schema.
+- /construction-cost/hosur/market-report — Hosur Construction Market Intelligence Report 2026. 7-year cost history, corridor analysis, budget scenarios ₹40L–₹2Cr, spec benchmarks, 3-scenario forecast.
 - /construction-cost/hosur/30x40 — 30×40 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹30.2L–₹34.6L.
 - /construction-cost/hosur/40x60 — 40×60 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹60.5L–₹69.1L.
 - /construction-cost/hosur/20x30 — 20×30 plot cost breakdown for Hosur 2026. Standard G+1 costs ₹15.1L–₹17.3L.
