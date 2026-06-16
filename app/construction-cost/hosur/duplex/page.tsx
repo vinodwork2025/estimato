@@ -78,7 +78,7 @@ const RATE_BANDS = [
     buaRange: "1,400–2,800 sqft",
     costMin: "₹25.9L",
     costMax: "₹57.4L",
-    note: "Functional construction. Rarely chosen for duplexes — the second kitchen and separate entry are hard to do well at basic spec.",
+    note: "Functional construction. Rarely chosen for duplexes. The second kitchen and separate entry are hard to do well at basic spec.",
   },
   {
     key: "standard",
@@ -113,12 +113,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How much does it cost to build a duplex in Hosur in 2026?",
     answer:
-      "A standard-quality duplex in Hosur costs between ₹29.4 lakh and ₹67.2 lakh for a built-up area of 1,400 to 2,800 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. Premium duplexes in the same range run ₹35 lakh to ₹81.2 lakh. These figures cover civil and structural work only — the second kitchen, separate entrances, and double electrical panels are included in a proper duplex BOQ but interior finishes are priced separately.",
+      "A standard-quality duplex in Hosur costs between ₹29.4 lakh and ₹67.2 lakh for a built-up area of 1,400 to 2,800 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. Premium duplexes in the same range run ₹35 lakh to ₹81.2 lakh. These figures cover civil and structural work only. The second kitchen, separate entrances, and double electrical panels are included in a proper duplex BOQ but interior finishes are priced separately.",
   },
   {
     question: "What is a duplex and how is it different from a G+1 house?",
     answer:
-      "A G+1 house is simply a two-floor home treated as one unit — one family, one kitchen, one entrance. A duplex is a G+1 where the ground and first floors are functionally independent: separate entrances from the street, separate kitchens, and usually separate electricity meters. The two units can house two branches of the same family or be set up for rental income from one floor. The structural frame may look the same on paper, but the internal layout and MEP costs differ significantly.",
+      "A G+1 house is simply a two-floor home treated as one unit: one family, one kitchen, one entrance. A duplex is a G+1 where the ground and first floors are functionally independent: separate entrances from the street, separate kitchens, and usually separate electricity meters. The two units can house two branches of the same family or be set up for rental income from one floor. The structural frame may look the same on paper, but the internal layout and MEP costs differ a great deal.",
   },
   {
     question: "Can I get rental income from a duplex in Hosur?",
@@ -133,12 +133,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What are the extra construction costs in a duplex vs a standard G+1?",
     answer:
-      "Four items add cost above a standard G+1. A second kitchen adds ₹2.5 to ₹5 lakh depending on quality. A separate staircase or second entrance lobby adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is strongly recommended — it adds ₹80,000 to ₹1.5 lakh but makes both units genuinely independent. Double the metering and electrical panels adds another ₹40,000 to ₹80,000. Total duplex premium over a comparable G+1 is typically ₹4 to ₹9 lakh.",
+      "Four items add cost above a standard G+1. A second kitchen adds ₹2.5 to ₹5 lakh depending on quality. A separate staircase or second entrance lobby adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is strongly recommended. It adds ₹80,000 to ₹1.5 lakh but makes both units genuinely independent. Double the metering and electrical panels adds another ₹40,000 to ₹80,000. Total duplex premium over a comparable G+1 is typically ₹4 to ₹9 lakh.",
   },
   {
     question: "Is a duplex a good investment in Hosur in 2026?",
     answer:
-      "For homeowners who want to live on one floor and rent the other, a duplex in Hosur makes strong financial sense in 2026. Land costs remain lower than Bengaluru, construction quality has improved significantly, and rental demand near industrial and tech zones is steady. The key is planning the separate entrance from the original design — retrofitting a second staircase costs 2 to 3 times what it costs to build it in from the start. Get the layout right in the architectural drawing stage and the numbers work well.",
+      "For homeowners who want to live on one floor and rent the other, a duplex in Hosur makes strong financial sense in 2026. Land costs remain lower than Bengaluru, construction quality has improved a great deal, and rental demand near industrial and tech zones is steady. The key is planning the separate entrance from the original design. Retrofitting a second staircase costs 2 to 3 times what it costs to build it in from the start. Get the layout right in the architectural drawing stage and the numbers work well.",
   },
 ];
 
@@ -221,7 +221,7 @@ export default function DuplexHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              Cost ranges for duplex construction in Hosur — a G+1 with two independent units, separate entrances, and two kitchens. BOQ-verified rates for 1,400 to 2,800 sqft BUA.
+              Cost ranges for duplex construction in Hosur: a G+1 with two independent units, separate entrances, and two kitchens. BOQ-verified rates for 1,400 to 2,800 sqft BUA.
               <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>As of 2026.</span>
             </p>
 
@@ -261,7 +261,7 @@ export default function DuplexHosurPage() {
               Construction rates by quality tier
             </h2>
             <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Cost ranges shown are for duplex BUA of 1,400 to 2,800 sqft at each quality tier. Civil and structural only — interiors, furniture, and landscaping are separate.
+              Cost ranges shown are for duplex BUA of 1,400 to 2,800 sqft at each quality tier. Civil and structural only. Interiors, furniture, and landscaping are separate.
             </p>
           </AnimateIn>
 
@@ -309,7 +309,7 @@ export default function DuplexHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Fully custom build with imported materials, smart home integration, and designer interiors throughout both units. No published rate — quoted from a full design brief.
+                    Fully custom build with imported materials, smart home integration, and designer interiors throughout both units. No published rate. Quoted from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=duplex&from=hosur-duplex-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
                     Speak to Design Intend
@@ -343,7 +343,7 @@ export default function DuplexHosurPage() {
                 Get a personalised duplex estimate
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Tell us your plot, floor count, and quality level. You get a full cost range and the details below — no sign-up required.
+                Tell us your plot, floor count, and quality level. You get a full cost range and the details below. No sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
                 {["Construction cost range", "Cost per sq ft", "BOQ summary", "Payment timeline", "Budget guidance"].map((item) => (
@@ -374,13 +374,13 @@ export default function DuplexHosurPage() {
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                A duplex in Hosur is not just a two-floor home. It is a G+1 where each floor functions as a fully independent unit — its own entrance from the street, its own kitchen, its own electricity meter, and ideally its own staircase. This structure serves two distinct purposes in Hosur: it allows a joint family to live in proximity while maintaining separate households, or it lets the builder live on one floor and rent out the other for steady income. The critical difference from a standard G+1 is in the layout planning, not the structural frame.
+                A duplex in Hosur is not just a two-floor home. It is a G+1 where each floor functions as a fully independent unit: its own entrance from the street, its own kitchen, its own electricity meter, and ideally its own staircase. This structure serves two distinct purposes in Hosur: it allows a joint family to live in proximity while maintaining separate households, or it lets the builder live on one floor and rent out the other for steady income. The critical difference from a standard G+1 is in the layout planning, not the structural frame.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The extra cost of a duplex over a comparable G+1 falls into four items. A second kitchen adds ₹2.5 to ₹5 lakh at standard quality. A separate entry path — whether a second staircase or a separate ground-floor lobby — adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is not required but is strongly recommended for a functional duplex: a 100mm hollow block or mineral wool layer between the slab and the floor finish above adds ₹80,000 to ₹1.5 lakh but eliminates the most common complaint in duplex rentals. Double the electrical panels and metering adds another ₹40,000 to ₹80,000. The total duplex premium over a standard G+1 is ₹4 to ₹9 lakh.
+                The extra cost of a duplex over a comparable G+1 falls into four items. A second kitchen adds ₹2.5 to ₹5 lakh at standard quality. A separate entry path (whether a second staircase or a separate ground-floor lobby) adds ₹1 to ₹2 lakh in structural and finishing cost. Sound insulation between floors is not required but is strongly recommended for a functional duplex: a 100mm hollow block or mineral wool layer between the slab and the floor finish above adds ₹80,000 to ₹1.5 lakh but eliminates the most common complaint in duplex rentals. Double the electrical panels and metering adds another ₹40,000 to ₹80,000. The total duplex premium over a standard G+1 is ₹4 to ₹9 lakh.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The most common mistake in Hosur duplex builds is treating the separate entrance as an afterthought. Builders often start with a standard G+1 design and ask the contractor to add a second staircase during construction. Retrofitting a second staircase costs 2 to 3 times what it costs to plan it into the original architectural drawing. The rental income math for a Hosur duplex near the Electronic City Road or SIPCOT area works well in 2026 — ₹8,000 to ₹14,000 per floor per month means a ₹35 to ₹40 lakh construction investment in the rental unit pays back in 12 to 16 years, not counting land appreciation.
+                The most common mistake in Hosur duplex builds is treating the separate entrance as an afterthought. Builders often start with a standard G+1 design and ask the contractor to add a second staircase during construction. Retrofitting a second staircase costs 2 to 3 times what it costs to plan it into the original architectural drawing. The rental income math for a Hosur duplex near the Electronic City Road or SIPCOT area works well in 2026. At ₹8,000 to ₹14,000 per floor per month, a ₹35 to ₹40 lakh construction investment in the rental unit pays back in 12 to 16 years, not counting land appreciation.
               </p>
             </div>
           </AnimateIn>

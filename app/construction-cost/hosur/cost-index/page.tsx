@@ -248,10 +248,10 @@ const HOUSE_TYPE_COMPARISON = [
   },
   {
     attr: "Risk profile",
-    independent: "Low — easily handled by local contractors",
-    duplex: "Medium — internal double-height elements need supervision",
-    villa: "High — specialized engineering for cantilevers and glass facades",
-    luxuryVilla: "High — specialty materials, long lead times, custom craft crews",
+    independent: "Low. Easily handled by local contractors",
+    duplex: "Medium. Internal double-height elements need supervision",
+    villa: "High. Specialized engineering for cantilevers and glass facades",
+    luxuryVilla: "High. Specialty materials, long lead times, custom craft crews",
   },
 ];
 
@@ -260,7 +260,7 @@ const HIDDEN_COSTS = [
     item: "Deep borewell drilling",
     cost: "₹1,40,000–₹2,80,000",
     freq: "65% omission rate",
-    detail: "Water table varies significantly. Elevated areas like Bagalur Road require 800–1,200 ft deep drilling. Cost includes submersible pump and wiring.",
+    detail: "Water table depth varies a great deal. Elevated areas like Bagalur Road require 800–1,200 ft deep drilling. Cost includes submersible pump and wiring.",
   },
   {
     item: "HNTDA / DTCP approvals",
@@ -418,7 +418,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How much has construction cost increased in Hosur since 2020?",
     answer:
-      "Construction costs in Hosur have risen from ₹1,200 per sqft in 2020 to ₹2,050 per sqft in 2026 — a cumulative increase of 70.8% over six years. The steepest increases were in 2021 (+12.5%) and 2022 (+11.1%) due to post-COVID demand and global commodity inflation.",
+      "Construction costs in Hosur have risen from ₹1,200 per sqft in 2020 to ₹2,050 per sqft in 2026. That is a cumulative increase of 70.8% over six years. The steepest increases were in 2021 (+12.5%) and 2022 (+11.1%) due to post-COVID demand and global commodity inflation.",
   },
   {
     question: "What will construction cost in Hosur be in 2027 and 2028?",
@@ -438,7 +438,7 @@ const INTERNAL_LINKS = [
     href: "/construction-cost/hosur/per-sqft",
     eyebrow: "Rate reference",
     title: "Construction cost per sqft",
-    desc: "Per-sqft rates by typology and tier — from basic to luxury villa.",
+    desc: "Per-sqft rates by typology and tier, from basic to luxury villa.",
   },
   {
     href: "/construction-cost/hosur/material-prices",
@@ -876,7 +876,7 @@ export default function CostIndexHosurPage() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] mb-4" style={{ color: "var(--accent)" }}>Primary causes of budget overruns</p>
                 <div className="space-y-4">
                   {[
-                    { heading: "Shared boundary disputes", detail: "Many plots in developing areas like Bagalur Road lack clear physical boundary lines. Homeowners often discover coordinate overlaps with adjacent properties only after construction starts — halting work for 3–6 months with contractor retention fees accumulating." },
+                    { heading: "Shared boundary disputes", detail: "Many plots in developing areas like Bagalur Road lack clear physical boundary lines. Homeowners often discover coordinate overlaps with adjacent properties only after construction starts, halting work for 3–6 months with contractor retention fees accumulating." },
                     { heading: "Inadequate concrete curing", detail: "Summer temperatures in Hosur frequently exceed 38°C. Local contractors often fail to extend structural slab curing cycles to the required 14–21 days, leading to micro-cracking that requires expensive retrofitted crystalline waterproofing later." },
                   ].map(({ heading, detail }) => (
                     <div key={heading} className="rounded-sm p-5" style={{ border: "1px solid var(--border)" }}>
@@ -894,7 +894,7 @@ export default function CostIndexHosurPage() {
                 <div className="space-y-4">
                   {[
                     { heading: "Fly ash/solid blocks over clay bricks", detail: "Certified solid concrete blocks reduce mortar joint volumes by up to 35% and speed up masonry schedules by 40% compared to traditional red clay bricks." },
-                    { heading: "Multi-chambered UPVC over basic aluminium", detail: "Upgrading to multi-chambered UPVC profiles with double-glazed glass units blocks external noise — essential in a town with expanding industrial and transit infrastructure." },
+                    { heading: "Multi-chambered UPVC over basic aluminium", detail: "Upgrading to multi-chambered UPVC profiles with double-glazed glass units blocks external noise, essential in a town with expanding industrial and transit infrastructure." },
                   ].map(({ heading, detail }) => (
                     <div key={heading} className="rounded-sm p-5" style={{ border: "1px solid var(--border)" }}>
                       <p className="font-serif mb-2" style={{ fontSize: "18px", fontWeight: 400, color: "var(--text-primary)" }}>{heading}</p>
@@ -914,7 +914,7 @@ export default function CostIndexHosurPage() {
           <AnimateIn direction="up">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Section 14 · Verified data facts</p>
             <h2 id="facts-heading" className="font-serif mb-2" style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-              Hosur 2026 — key facts
+              Hosur 2026: key facts
             </h2>
             <p className="font-sans mb-8" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
               Atomic data points for reference and citation. All figures are from the Estimato Hosur Construction Cost Index, June 2026.

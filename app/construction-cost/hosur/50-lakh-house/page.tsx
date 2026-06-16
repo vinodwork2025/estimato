@@ -100,7 +100,7 @@ const RATE_TIERS = [
     rateMax: TIER_RATES.luxury.max,
     buaMin: 1250,
     buaMax: 1666,
-    desc: "Italian marble, Kohler. A compact luxury home — architect design required.",
+    desc: "Italian marble, Kohler. A compact luxury home. Architect design required.",
   },
 ];
 
@@ -108,7 +108,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What does ₹50 lakh buy in terms of construction in Hosur?",
     answer:
-      "At standard quality — the most common choice for first-home buyers in Hosur — ₹50 lakh buys 2,083 to 2,380 sqft of built-up area. That is a comfortable G+1 home on a 30x40 plot, with a 3 BHK configuration, proper staircase, two bathrooms, and a covered entry. The civil cost includes structure, brickwork, plastering, basic waterproofing, standard flooring, doors and windows, electrical wiring, and plumbing rough-in. It does not include a modular kitchen or wardrobes — those are interiors and cost an additional ₹5–₹8 lakh.",
+      "At standard quality (the most common choice for first-home buyers in Hosur) ₹50 lakh buys 2,083 to 2,380 sqft of built-up area. That is a comfortable G+1 home on a 30x40 plot, with a 3 BHK configuration, proper staircase, two bathrooms, and a covered entry. The civil cost includes structure, brickwork, plastering, basic waterproofing, standard flooring, doors and windows, electrical wiring, and plumbing rough-in. It does not include a modular kitchen or wardrobes. Those are interiors and cost an additional ₹5–₹8 lakh.",
   },
   {
     question: "Is ₹50 lakh enough for a 3 BHK G+1 in Hosur?",
@@ -118,22 +118,22 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Can I include a modular kitchen in a ₹50 lakh Hosur build?",
     answer:
-      "Not if you want to stay within ₹50 lakh for everything. A basic modular kitchen in Hosur costs ₹2.5–₹4 lakh, a mid-range one ₹4–₹7 lakh. The smart approach: allocate the full ₹50 lakh to civil construction to get a solid G+1 at standard quality, then budget ₹6–₹10 lakh separately for interiors — kitchen, wardrobes, painting, and accessories. This phased approach is what most experienced Hosur homeowners do, and it results in a better home than trying to compress everything into one number.",
+      "Not if you want to stay within ₹50 lakh for everything. A basic modular kitchen in Hosur costs ₹2.5–₹4 lakh, a mid-range one ₹4–₹7 lakh. The smart approach: allocate the full ₹50 lakh to civil construction to get a solid G+1 at standard quality, then budget ₹6–₹10 lakh separately for interiors: kitchen, wardrobes, painting, and accessories. This phased approach is what most experienced Hosur homeowners do, and it results in a better home than trying to compress everything into one number.",
   },
   {
     question: "What plot size works best with a ₹50 lakh budget?",
     answer:
-      "A 30x40 plot is the natural match for a ₹50 lakh build at standard quality. The plot gives you 1,200 sqft of gross area, and at 65% ground coverage you get 780 sqft per floor. A G+1 on this plot gives you around 1,560 sqft of BUA — comfortably within ₹50 lakh at standard rates. Going to a 40x60 plot and trying to build across the full footprint at standard quality pushes the BUA above 2,500 sqft, which would cost ₹52–₹60 lakh in civil work alone.",
+      "A 30x40 plot is the natural match for a ₹50 lakh build at standard quality. The plot gives you 1,200 sqft of gross area, and at 65% ground coverage you get 780 sqft per floor. A G+1 on this plot gives you around 1,560 sqft of BUA, comfortably within ₹50 lakh at standard rates. Going to a 40x60 plot and trying to build across the full footprint at standard quality pushes the BUA above 2,500 sqft, which would cost ₹52–₹60 lakh in civil work alone.",
   },
   {
     question: "How do I split ₹50 lakh between structure and interiors?",
     answer:
-      "The advised split for a first home in Hosur: put ₹44–₹46 lakh into civil construction and hold ₹4–₹6 lakh for interiors post-handover. This gets you a complete, move-in-ready shell at standard quality with basic flooring and fittings. Interiors — kitchen, wardrobes, feature walls, lighting — can be done in phases after you move in. Trying to do a full interior fit-out within the same ₹50 lakh means either cutting civil quality or ending up with a builder-grade kitchen that you will want to replace in five years.",
+      "The advised split for a first home in Hosur: put ₹44–₹46 lakh into civil construction and hold ₹4–₹6 lakh for interiors post-handover. This gets you a complete, move-in-ready shell at standard quality with basic flooring and fittings. Interiors (kitchen, wardrobes, feature walls, lighting) can be done in phases after you move in. Trying to do a full interior fit-out within the same ₹50 lakh means either cutting civil quality or ending up with a builder-grade kitchen that you will want to replace in five years.",
   },
   {
     question: "What quality tier is realistic at ₹50 lakh?",
     answer:
-      "Standard quality is the natural fit for ₹50 lakh in Hosur in 2026. At standard, you get Kajaria or equivalent tile, CP fittings from Hindware or similar, basic modular electrical points with MCB panels, standard plaster finish, and a simple but well-designed exterior. Premium quality is achievable at ₹50 lakh if you accept a smaller BUA — 1,724 to 2,000 sqft. For most families, standard quality across 2,000+ sqft is more useful than premium quality across 1,700 sqft.",
+      "Standard quality is the natural fit for ₹50 lakh in Hosur in 2026. At standard, you get Kajaria or equivalent tile, CP fittings from Hindware or similar, basic modular electrical points with MCB panels, standard plaster finish, and a simple but well-designed exterior. Premium quality is achievable at ₹50 lakh if you accept a smaller BUA of 1,724 to 2,000 sqft. For most families, standard quality across 2,000+ sqft is more useful than premium quality across 1,700 sqft.",
   },
 ];
 
@@ -213,7 +213,7 @@ export default function FiftyLakhHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              The most common Hosur construction budget in 2026 — what it delivers, where it stretches, and where it stops.
+              The most common Hosur construction budget in 2026: what it delivers, where it stretches, and where it stops.
             </p>
 
             {/* Quick Answer Box */}
@@ -225,7 +225,7 @@ export default function FiftyLakhHosurPage() {
                 Quick answer
               </p>
               <p className="font-sans" style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}>
-                With <strong>₹50 lakh</strong> in Hosur in 2026 you can build roughly <strong>2,083 to 2,380 sq ft</strong> at standard quality — enough for a full 3 BHK G+1 with modular kitchen provision. At basic quality the range stretches to <strong>2,702 sq ft</strong>. Premium finish limits you to <strong>1,724–2,000 sq ft</strong>. Standard rates in Hosur run <strong>₹2,100–₹2,400/sqft</strong>. The extra ₹10 lakh over the ₹40L budget unlocks Kajaria-grade flooring, wardrobes in two bedrooms, and a basic elevation design.
+                With <strong>₹50 lakh</strong> in Hosur in 2026 you can build roughly <strong>2,083 to 2,380 sq ft</strong> at standard quality. That is enough for a full 3 BHK G+1 with modular kitchen provision. At basic quality the range stretches to <strong>2,702 sq ft</strong>. Premium finish limits you to <strong>1,724–2,000 sq ft</strong>. Standard rates in Hosur run <strong>₹2,100–₹2,400/sqft</strong>. The extra ₹10 lakh over the ₹40L budget unlocks Kajaria-grade flooring, wardrobes in two bedrooms, and a basic elevation design.
               </p>
             </div>
           </AnimateIn>
@@ -352,7 +352,7 @@ export default function FiftyLakhHosurPage() {
                 Get a personalised estimate for your ₹50 lakh build
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
-                Enter your plot size, floors, and finish level. You get a detailed cost range and phase-wise payment schedule — drawn from verified Hosur rates.
+                Enter your plot size, floors, and finish level. You get a detailed cost range and phase-wise payment schedule, drawn from verified Hosur rates.
               </p>
               <ul className="mb-7 space-y-2">
                 {[
@@ -401,19 +401,19 @@ export default function FiftyLakhHosurPage() {
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                In 2026, ₹50 lakh is the most commonly searched construction budget among Hosur first-home buyers — and for good reason. At standard quality, it gives you 2,083 to 2,380 sqft of built-up area. On a 30x40 plot, that translates to a full G+1 with three bedrooms, two bathrooms, a separate kitchen and dining area, a sit-out, and a covered staircase. The home is complete and liveable. What it includes at standard quality: Kajaria or equivalent tile, mid-range electrical fittings, plumbing rough-in for two bathrooms, and basic plaster-paint finish inside and out.
+                In 2026, ₹50 lakh is the most commonly searched construction budget among Hosur first-home buyers, and for good reason. At standard quality, it gives you 2,083 to 2,380 sqft of built-up area. On a 30x40 plot, that translates to a full G+1 with three bedrooms, two bathrooms, a separate kitchen and dining area, a sit-out, and a covered staircase. The home is complete and liveable. What it includes at standard quality: Kajaria or equivalent tile, mid-range electrical fittings, plumbing rough-in for two bathrooms, and basic plaster-paint finish inside and out.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.1}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The extra ₹10 lakh over a ₹40 lakh budget makes a real difference. It unlocks the modular kitchen provision (civil cutouts, plumbing points, chimney provision), wardrobes in at least two bedrooms if you handle them as civil carpentry, Kajaria-equivalent flooring throughout, a basic elevation design with texture or cladding on the front face, and enough contingency to handle site surprises without stopping construction. At basic quality, ₹50 lakh can build 2,439 to 2,702 sqft — large enough for a small 3 BHK villa on a 30x40 or 30x50 plot. The trade-off is finish level and material durability.
+                The extra ₹10 lakh over a ₹40 lakh budget makes a real difference. It unlocks the modular kitchen provision (civil cutouts, plumbing points, chimney provision), wardrobes in at least two bedrooms if you handle them as civil carpentry, Kajaria-equivalent flooring throughout, a basic elevation design with texture or cladding on the front face, and enough contingency to handle site surprises without stopping construction. At basic quality, ₹50 lakh can build 2,439 to 2,702 sqft, large enough for a small 3 BHK villa on a 30x40 or 30x50 plot. The trade-off is finish level and material durability.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.15}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The typical person building at ₹50 lakh in Hosur in 2026 is an employee of one of the EV, electronics, or manufacturing companies in the Hosur industrial zone — buying a 30x40 plot in a DTCP-approved layout and building a family home near their workplace. The advice for this profile: do not try to stretch ₹50 lakh across a 40x60 plot at standard quality. The numbers do not work without cutting structural quality. Build well on a 30x40 plot, get the structure right, and invest in interiors over time. A well-built 1,900 sqft home is better than an under-built 2,600 sqft one.
+                The typical person building at ₹50 lakh in Hosur in 2026 is an employee of one of the EV, electronics, or manufacturing companies in the Hosur industrial zone, buying a 30x40 plot in a DTCP-approved layout and building a family home near their workplace. The advice for this profile: do not try to stretch ₹50 lakh across a 40x60 plot at standard quality. The numbers do not work without cutting structural quality. Build well on a 30x40 plot, get the structure right, and invest in interiors over time. A well-built 1,900 sqft home is better than an under-built 2,600 sqft one.
               </p>
             </AnimateIn>
           </div>
@@ -434,7 +434,7 @@ export default function FiftyLakhHosurPage() {
               className="font-serif mb-10"
               style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}
             >
-              ₹50 lakh in Hosur — answered
+              ₹50 lakh in Hosur: answered
             </h2>
           </AnimateIn>
           <FAQBlock items={FAQ_ITEMS} schemaId="hosur-50l-faq" />
@@ -579,7 +579,7 @@ export default function FiftyLakhHosurPage() {
                 Get your ₹50 lakh estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
-                Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
+                Five questions. A cost range, material quantities, and a payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href="/plan?city=hosur&from=hosur-50lakh-footer"

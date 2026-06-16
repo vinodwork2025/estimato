@@ -70,7 +70,7 @@ const RATE_TIERS = [
     rateMax: TIER_RATES.basic.max,
     buaMin: 4878,
     buaMax: 5405,
-    desc: "A very large home. Rarely built at basic quality at ₹1 crore — the size outpaces practical need.",
+    desc: "A very large home. Rarely built at basic quality at ₹1 crore. The size outpaces practical need.",
   },
   {
     key: "standard",
@@ -106,32 +106,32 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What does ₹1 crore buy in Hosur in 2026?",
     answer:
-      "At standard quality, ₹1 crore in Hosur in 2026 buys 4,166 to 4,761 sqft of built-up area — enough for a full 5 BHK G+2 home with a double garage, servant quarter, landscaped garden, and proper elevation treatment. At premium quality the BUA is 3,448 to 4,000 sqft, with Italian-grade tile, Jaquar fittings throughout, and an architect-designed exterior. At luxury quality, you are looking at 2,500 to 3,333 sqft with imported marble, Kohler sanitary, Lutron lighting, and a fully architect-curated interior.",
+      "At standard quality, ₹1 crore in Hosur in 2026 buys 4,166 to 4,761 sqft of built-up area. That is enough for a full 5 BHK G+2 home with a double garage, servant quarter, landscaped garden, and proper elevation treatment. At premium quality the BUA is 3,448 to 4,000 sqft, with Italian-grade tile, Jaquar fittings throughout, and an architect-designed exterior. At luxury quality, you are looking at 2,500 to 3,333 sqft with imported marble, Kohler sanitary, Lutron lighting, and a fully architect-curated interior.",
   },
   {
     question: "Is ₹1 crore enough for a luxury home in Hosur?",
     answer:
-      "Yes — but with a clear definition of luxury. At ₹1 crore, Hosur luxury rates of ₹3,000–₹4,000/sqft deliver 2,500 to 3,333 sqft. A well-designed 2,800–3,000 sqft home on a 40x50 plot with imported marble, Kohler sanitary, Legrand or Lutron electrical, and a designed elevation and landscape is a genuine luxury home by Hosur standards. What ₹1 crore does not reach: Kohler-throughout plus full smart home automation plus imported stone throughout in a 4,000+ sqft home. That requires ₹1.5 crore or more.",
+      "Yes, but with a clear definition of luxury. At ₹1 crore, Hosur luxury rates of ₹3,000–₹4,000/sqft deliver 2,500 to 3,333 sqft. A well-designed 2,800–3,000 sqft home on a 40x50 plot with imported marble, Kohler sanitary, Legrand or Lutron electrical, and a designed elevation and landscape is a genuine luxury home by Hosur standards. What ₹1 crore does not reach: Kohler-throughout plus full smart home automation plus imported stone throughout in a 4,000+ sqft home. That requires ₹1.5 crore or more.",
   },
   {
     question: "What configuration fits a ₹1 crore budget in Hosur?",
     answer:
-      "The most common configuration at ₹1 crore in Hosur is a 40x60 plot with a G+2 structure at standard to premium quality — 4 to 5 bedrooms, two-car parking, a servant quarter, and a rooftop terrace. At standard quality this fits comfortably. At premium quality on the same plot you would need to reduce floors to G+1 with a partial G+2 to keep within budget. The most practical high-value configuration: 40x60 plot, G+2, premium finish, 4 BHK with study, two-car parking, servant quarter on ground floor, roof garden.",
+      "The most common configuration at ₹1 crore in Hosur is a 40x60 plot with a G+2 structure at standard to premium quality, with 4 to 5 bedrooms, two-car parking, a servant quarter, and a rooftop terrace. At standard quality this fits comfortably. At premium quality on the same plot you would need to reduce floors to G+1 with a partial G+2 to keep within budget. The most practical high-value configuration: 40x60 plot, G+2, premium finish, 4 BHK with study, two-car parking, servant quarter on ground floor, roof garden.",
   },
   {
     question: "Should I do premium on a large plot or luxury on a smaller one?",
     answer:
-      "This is the central decision at ₹1 crore. Premium on a 40x60 G+2 gives you more rooms, more parking, and more flexibility for a growing family or multigenerational living. Luxury on a 30x50 G+1 gives you a home that feels significantly more refined in every material and detail — marble that ages well, fittings that last, lighting that is designed rather than installed. For families who will live there for 20+ years and value daily quality of life, the luxury-on-smaller path often wins. For families who need the rooms and the space now, premium-on-larger is the answer.",
+      "This is the central decision at ₹1 crore. Premium on a 40x60 G+2 gives you more rooms, more parking, and more flexibility for a growing family or multigenerational living. Luxury on a 30x50 G+1 gives you a home that feels much more refined in every material and detail: marble that ages well, fittings that last, lighting that is designed rather than installed. For families who will live there for 20+ years and value daily quality of life, the luxury-on-smaller path often wins. For families who need the rooms and the space now, premium-on-larger is the answer.",
   },
   {
     question: "How does a ₹1 crore Hosur build compare to equivalent Bangalore construction?",
     answer:
-      "At Bangalore's 1.25x urban multiplier, a ₹1 crore budget delivers approximately 20–25% less BUA than the same budget in Hosur. The Hosur standard-quality range of 4,166–4,761 sqft would cost ₹1.22–₹1.43 crore in Bangalore urban areas at equivalent quality. A premium Hosur build at 3,448–4,000 sqft would cost ₹1.29–₹1.5 crore in Bengaluru city. Land costs compound this gap further — a 40x60 plot in Hosur can cost ₹40–₹80 lakh; the same plot in Sarjapura or Whitefield can cost ₹1.5–₹3 crore.",
+      "At Bangalore's 1.25x urban multiplier, a ₹1 crore budget delivers approximately 20–25% less BUA than the same budget in Hosur. The Hosur standard-quality range of 4,166–4,761 sqft would cost ₹1.22–₹1.43 crore in Bangalore urban areas at equivalent quality. A premium Hosur build at 3,448–4,000 sqft would cost ₹1.29–₹1.5 crore in Bengaluru city. Land costs compound this gap further. A 40x60 plot in Hosur can cost ₹40–₹80 lakh; the same plot in Sarjapura or Whitefield can cost ₹1.5–₹3 crore.",
   },
   {
     question: "What are the key cost drivers at ₹1 crore in Hosur?",
     answer:
-      "At ₹1 crore, structural complexity becomes a cost driver that does not appear at smaller budgets. A G+2 home requires larger beams, deeper foundations, and more reinforcement than a G+1 — adding roughly 6–8% to civil cost per additional floor above G+1. Other key drivers: basement (adds 22% on the basement footprint), two-car covered parking with a proper ramp (adds 6%), imported stone throughout (replaces 40% of finish cost with 2–3x priced material), and smart home electrical (adds ₹8–₹15 lakh depending on coverage). At ₹1 crore, the decisions about structural configuration and material specification drive final cost more than floor area alone.",
+      "At ₹1 crore, structural complexity becomes a cost driver that does not appear at smaller budgets. A G+2 home requires larger beams, deeper foundations, and more reinforcement than a G+1, adding roughly 6–8% to civil cost per additional floor above G+1. Other key drivers: basement (adds 22% on the basement footprint), two-car covered parking with a proper ramp (adds 6%), imported stone throughout (replaces 40% of finish cost with 2–3x priced material), and smart home electrical (adds ₹8–₹15 lakh depending on coverage). At ₹1 crore, the decisions about structural configuration and material specification drive final cost more than floor area alone.",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function OneCroreHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              At this budget, the question is not how much sqft — it is how you want to live. Here is what the numbers look like across every quality tier.
+              At this budget, the question is not how much sqft, it is how you want to live. Here is what the numbers look like across every quality tier.
             </p>
 
             {/* Quick Answer Box */}
@@ -223,7 +223,7 @@ export default function OneCroreHosurPage() {
                 Quick answer
               </p>
               <p className="font-sans" style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}>
-                With <strong>₹1 crore</strong> in Hosur in 2026 you can build roughly <strong>4,166 to 4,761 sq ft</strong> at standard quality — a full G+2 villa with parking and servant quarter. Premium quality limits you to <strong>3,448–4,000 sq ft</strong> with Italian-grade tile and Jaquar fittings. Luxury finishes bring the range to <strong>2,500–3,333 sq ft</strong> with imported marble and Kohler sanitary. Standard rates run <strong>₹2,100–₹2,400/sqft</strong>. At ₹1 crore, material and design choices drive cost more than floor area.
+                With <strong>₹1 crore</strong> in Hosur in 2026 you can build roughly <strong>4,166 to 4,761 sq ft</strong> at standard quality. That is a full G+2 villa with parking and servant quarter. Premium quality limits you to <strong>3,448–4,000 sq ft</strong> with Italian-grade tile and Jaquar fittings. Luxury finishes bring the range to <strong>2,500–3,333 sq ft</strong> with imported marble and Kohler sanitary. Standard rates run <strong>₹2,100–₹2,400/sqft</strong>. At ₹1 crore, material and design choices drive cost more than floor area.
               </p>
             </div>
           </AnimateIn>
@@ -308,7 +308,7 @@ export default function OneCroreHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-2" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Imported stone, Kohler or Duravit, Lutron smart lighting. No standard rate applies — every project is priced from a full design brief.
+                    Imported stone, Kohler or Duravit, Lutron smart lighting. No standard rate applies. Every project is priced from a full design brief.
                   </p>
                   <Link
                     href="/plan?city=hosur&from=hosur-1cr-ultra"
@@ -350,7 +350,7 @@ export default function OneCroreHosurPage() {
                 Get a detailed estimate for your ₹1 crore build
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
-                Configure your plot, floors, and quality tier. Get a cost range with phase-wise payment schedule — drawn from verified Hosur BOQ data.
+                Configure your plot, floors, and quality tier. Get a cost range with phase-wise payment schedule, drawn from verified Hosur BOQ data.
               </p>
               <ul className="mb-7 space-y-2">
                 {[
@@ -399,7 +399,7 @@ export default function OneCroreHosurPage() {
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                At ₹1 crore, you are building one of the more substantial homes in Hosur's residential market. Standard quality at this budget delivers 4,166 to 4,761 sqft — a full G+2 home on a 40x60 plot with a two-car garage, servant quarter, proper staircase with landing, and enough space for five bedrooms plus a study or home office. The home at this scale has genuine presence. Premium quality brings it to 3,448 to 4,000 sqft with Italian-grade porcelain tile, Jaquar fittings throughout, Legrand electrical, and an architect-designed elevation. The exterior of a ₹1 crore premium build in Hosur is visually distinct from anything at the ₹60 lakh range.
+                At ₹1 crore, you are building one of the more substantial homes in Hosur's residential market. Standard quality at this budget delivers 4,166 to 4,761 sqft. That is a full G+2 home on a 40x60 plot with a two-car garage, servant quarter, proper staircase with landing, and enough space for five bedrooms plus a study or home office. The home at this scale has genuine presence. Premium quality brings it to 3,448 to 4,000 sqft with Italian-grade porcelain tile, Jaquar fittings throughout, Legrand electrical, and an architect-designed elevation. The exterior of a ₹1 crore premium build in Hosur is visually distinct from anything at the ₹60 lakh range.
               </p>
             </AnimateIn>
 
@@ -411,7 +411,7 @@ export default function OneCroreHosurPage() {
 
             <AnimateIn direction="up" delay={0.15}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The shift that happens at ₹1 crore — and above — is that the question is no longer "how much can I build" but "how do I want to live in this home." The size is not in question. What changes is the quality of every daily experience: the tile that your feet touch every morning, the tap fittings that will last a decade, the light switches that look the same in ten years, the ceiling height that makes rooms feel different. These are the choices that ₹1 crore unlocks, and they are choices best made with an architect and a proper BOQ — not improvised on site. Design Intend, Estimato's Hosur partner, works at this level with a full design-to-construction process.
+                The shift that happens at ₹1 crore, and above, is that the question is no longer "how much can I build" but "how do I want to live in this home." The size is not in question. What changes is the quality of every daily experience: the tile that your feet touch every morning, the tap fittings that will last a decade, the light switches that look the same in ten years, the ceiling height that makes rooms feel different. These are the choices that ₹1 crore unlocks, and they are choices best made with an architect and a proper BOQ, not improvised on site. Design Intend, Estimato's Hosur partner, works at this level with a full design-to-construction process.
               </p>
             </AnimateIn>
           </div>
@@ -432,7 +432,7 @@ export default function OneCroreHosurPage() {
               className="font-serif mb-10"
               style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}
             >
-              ₹1 crore in Hosur — answered
+              ₹1 crore in Hosur: answered
             </h2>
           </AnimateIn>
           <FAQBlock items={FAQ_ITEMS} schemaId="hosur-1cr-faq" />
@@ -577,7 +577,7 @@ export default function OneCroreHosurPage() {
                 Start your ₹1 crore estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
-                Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
+                Five questions. A cost range, material quantities, and a payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href="/plan?city=hosur&from=hosur-1crore-footer"

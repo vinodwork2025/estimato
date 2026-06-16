@@ -202,7 +202,7 @@ const INTERNAL_LINKS = [
     href: "/construction-cost/hosur/per-sqft",
     eyebrow: "Rate reference",
     title: "Construction cost per sqft",
-    desc: "Per-sqft rates by typology and tier — from basic to luxury villa.",
+    desc: "Per-sqft rates by typology and tier, from basic to luxury villa.",
   },
   {
     href: "/construction-cost/hosur/calculator",

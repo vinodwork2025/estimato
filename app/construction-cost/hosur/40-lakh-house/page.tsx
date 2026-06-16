@@ -100,7 +100,7 @@ const RATE_TIERS = [
     rateMax: TIER_RATES.luxury.max,
     buaMin: 1000,
     buaMax: 1333,
-    desc: "Italian marble, Kohler sanitary. Very limited BUA — not practical at ₹40L.",
+    desc: "Italian marble, Kohler sanitary. Very limited BUA. Not practical at ₹40L.",
   },
 ];
 
@@ -113,7 +113,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What type of house fits a ₹40 lakh budget in Hosur?",
     answer:
-      "The most practical configuration at ₹40 lakh in Hosur is a ground-floor 3 BHK of around 1,100–1,300 sqft at standard quality, or a G+1 with a smaller footprint — 600–700 sqft per floor. On a 30x40 plot you can build G+1 at basic quality, but you will be making compromises on finish level throughout. A G at standard quality on the same plot is a more honest spend of ₹40 lakh.",
+      "The most practical configuration at ₹40 lakh in Hosur is a ground-floor 3 BHK of around 1,100–1,300 sqft at standard quality, or a G+1 with a smaller footprint of 600–700 sqft per floor. On a 30x40 plot you can build G+1 at basic quality, but you will be making compromises on finish level throughout. A G at standard quality on the same plot is a more honest spend of ₹40 lakh.",
   },
   {
     question: "What quality can you expect at ₹40 lakh construction cost?",
@@ -123,7 +123,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Should I build G or G+1 on a ₹40 lakh budget in Hosur?",
     answer:
-      "If your plot allows it and you need space now, build G at standard quality with provision for a future first floor. Adding a first floor later on a ready structure costs about ₹8–₹12 lakh at standard quality depending on size. Stretching the current ₹40 lakh to do G+1 immediately usually means cutting structural quality to afford the second floor — which is a poor trade. Build G well first.",
+      "If your plot allows it and you need space now, build G at standard quality with provision for a future first floor. Adding a first floor later on a ready structure costs about ₹8–₹12 lakh at standard quality depending on size. Stretching the current ₹40 lakh to do G+1 immediately usually means cutting structural quality to afford the second floor, which is a poor trade. Build G well first.",
   },
   {
     question: "What are the hidden costs that eat into a ₹40 lakh budget?",
@@ -133,7 +133,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Is ₹40 lakh enough for a 30x40 plot G+1 in 2026?",
     answer:
-      "At basic quality, yes. At standard quality, you will need to reduce BUA or defer interiors. The numbers: a 30x40 plot allows roughly 800 sqft ground coverage at 65% FSI utilisation. A true G+1 would be around 1,500–1,600 sqft. At standard quality (₹2,100–₹2,400/sqft) that costs ₹31.5–₹38.4 lakh in civil work alone — before approvals, compound wall, or interiors. The ₹40L total budget is tight but workable if you phase interiors.",
+      "At basic quality, yes. At standard quality, you will need to reduce BUA or defer interiors. The numbers: a 30x40 plot allows roughly 800 sqft ground coverage at 65% FSI utilisation. A true G+1 would be around 1,500–1,600 sqft. At standard quality (₹2,100–₹2,400/sqft) that costs ₹31.5–₹38.4 lakh in civil work alone, before approvals, compound wall, or interiors. The ₹40L total budget is tight but workable if you phase interiors.",
   },
 ];
 
@@ -213,7 +213,7 @@ export default function FortyLakhHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              What this budget realistically builds in Hosur in 2026 — by quality tier, with honest numbers.
+              What this budget realistically builds in Hosur in 2026, by quality tier, with honest numbers.
             </p>
 
             {/* Quick Answer Box */}
@@ -225,7 +225,7 @@ export default function FortyLakhHosurPage() {
                 Quick answer
               </p>
               <p className="font-sans" style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}>
-                With <strong>₹40 lakh</strong> in Hosur in 2026 you can build roughly <strong>1,670 to 1,904 sq ft</strong> at standard quality. At basic quality the range stretches to <strong>2,160 sq ft</strong>. Premium finish limits you to <strong>1,379–1,600 sq ft</strong>. Hosur construction rates run <strong>₹1,850–₹2,050/sqft</strong> at basic and <strong>₹2,100–₹2,400/sqft</strong> at standard — making ₹40 lakh a workable entry-level budget for a standalone home on a 30x40 plot.
+                With <strong>₹40 lakh</strong> in Hosur in 2026 you can build roughly <strong>1,670 to 1,904 sq ft</strong> at standard quality. At basic quality the range stretches to <strong>2,160 sq ft</strong>. Premium finish limits you to <strong>1,379–1,600 sq ft</strong>. Hosur construction rates run <strong>₹1,850–₹2,050/sqft</strong> at basic and <strong>₹2,100–₹2,400/sqft</strong> at standard, making ₹40 lakh a workable entry-level budget for a standalone home on a 30x40 plot.
               </p>
             </div>
           </AnimateIn>
@@ -352,7 +352,7 @@ export default function FortyLakhHosurPage() {
                 Get a precise estimate for your ₹40 lakh build
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
-                Tell us your plot size, floors, and configuration. You get a cost range, BOQ summary, and payment timeline — built from Hosur rates.
+                Tell us your plot size, floors, and configuration. You get a cost range, BOQ summary, and payment timeline, built from Hosur rates.
               </p>
               <ul className="mb-7 space-y-2">
                 {[
@@ -401,19 +401,19 @@ export default function FortyLakhHosurPage() {
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                In Hosur in 2026, ₹40 lakh marks the entry point for a proper standalone home — not a compromise structure, but a real family house with durable construction. At standard quality on a 30x40 plot, you can build a G+1 with roughly 1,670 to 1,904 sqft of built-up area, which is comfortable for a nuclear family of four. The house will have good structural quality, decent flooring, and standard electrical work. What it will not have is modular interiors, branded bathroom fittings like Jaquar, or premium elevation treatment. Those belong to a higher budget.
+                In Hosur in 2026, ₹40 lakh marks the entry point for a proper standalone home, not a compromise structure, but a real family house with durable construction. At standard quality on a 30x40 plot, you can build a G+1 with roughly 1,670 to 1,904 sqft of built-up area, which is comfortable for a nuclear family of four. The house will have good structural quality, decent flooring, and standard electrical work. What it will not have is modular interiors, branded bathroom fittings like Jaquar, or premium elevation treatment. Those belong to a higher budget.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.1}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The single biggest decision at ₹40 lakh is how to divide the money between structure and interiors. Most experienced Hosur contractors advise putting the full budget into civil and structural work and phasing interiors — kitchen, wardrobes, bathroom accessories — into a separate spend of ₹5–₹8 lakh after handover. Trying to fit both into ₹40 lakh means cutting quality on the structure, which is a decision that cannot be undone. Common compromises when people try to do everything at once: no covered parking, basic electrical points with no provision for future additions, local tile brand with no warranty, and bare plaster on the exterior with no paint.
+                The single biggest decision at ₹40 lakh is how to divide the money between structure and interiors. Most experienced Hosur contractors advise putting the full budget into civil and structural work and phasing interiors (kitchen, wardrobes, bathroom accessories) into a separate spend of ₹5–₹8 lakh after handover. Trying to fit both into ₹40 lakh means cutting quality on the structure, which is a decision that cannot be undone. Common compromises when people try to do everything at once: no covered parking, basic electrical points with no provision for future additions, local tile brand with no warranty, and bare plaster on the exterior with no paint.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.15}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                This budget was viable for a 30x40 G+1 standard build in 2023 and 2024. By 2026, material and labour costs have pushed things up — a true standard-quality G+1 on the same plot now costs ₹42–₹46 lakh in civil work. The ₹40 lakh figure still works if you build G at standard quality or G+1 at basic, and phase the upgrade later. Anyone who received a contractor quote of ₹40 lakh for a G+1 standard in 2024 should get a fresh quote before starting — the gap between old quotes and current site costs has been the single biggest cause of mid-build budget overruns in Hosur this year.
+                This budget was viable for a 30x40 G+1 standard build in 2023 and 2024. By 2026, material and labour costs have pushed things up. A true standard-quality G+1 on the same plot now costs ₹42–₹46 lakh in civil work. The ₹40 lakh figure still works if you build G at standard quality or G+1 at basic, and phase the upgrade later. Anyone who received a contractor quote of ₹40 lakh for a G+1 standard in 2024 should get a fresh quote before starting. The gap between old quotes and current site costs has been the single biggest cause of mid-build budget overruns in Hosur this year.
               </p>
             </AnimateIn>
           </div>
@@ -434,7 +434,7 @@ export default function FortyLakhHosurPage() {
               className="font-serif mb-10"
               style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}
             >
-              ₹40 lakh in Hosur — answered
+              ₹40 lakh in Hosur: answered
             </h2>
           </AnimateIn>
           <FAQBlock items={FAQ_ITEMS} schemaId="hosur-40l-faq" />
@@ -579,7 +579,7 @@ export default function FortyLakhHosurPage() {
                 Get your ₹40 lakh estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
-                Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
+                Five questions. A cost range, material quantities, and a payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href="/plan?city=hosur&from=hosur-40lakh-footer"

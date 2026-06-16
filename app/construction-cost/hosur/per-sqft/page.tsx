@@ -117,7 +117,7 @@ const DRIVERS = [
   {
     heading: "Site distance from Hosur grid",
     detail:
-      "Sites more than 15 km from central Hosur — outer Bagalur, Denkanikottai Road — carry a 5 to 8% transport surcharge on concrete and aggregates.",
+      "Sites more than 15 km from central Hosur (outer Bagalur, Denkanikottai Road) carry a 5 to 8% transport surcharge on concrete and aggregates.",
   },
 ];
 

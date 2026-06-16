@@ -318,7 +318,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
               style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}
             >
               Ranges computed from verified Hosur rates × {config.bua.toLocaleString("en-IN")} sqft built-up area.
-              All figures are civil construction only — interiors billed separately.
+              All figures are civil construction only. Interiors billed separately.
             </p>
           </AnimateIn>
 
@@ -435,7 +435,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                     style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                   >
                     Imported stone, Kohler or Duravit sanitary, Lutron lighting.
-                    No standard rate applies — priced from a full design brief.
+                    No standard rate applies. Priced from a full design brief.
                   </p>
                   <Link
                     href={`/plan?city=hosur&from=${sourcePage}-ultra`}
@@ -800,7 +800,7 @@ export default function PlotSizePage({ params }: { params: { size: string } }) {
                 }}
               >
                 Your plot dimensions are pre-filled. Five questions and you get a
-                cost range, material list, and payment timeline — built from Hosur BOQs.
+                cost range, material list, and payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href={`/plan?city=hosur&type=contemporary&length=${config.L}&width=${config.W}&from=${sourcePage}`}

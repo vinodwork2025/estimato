@@ -85,7 +85,7 @@ export function HosurPlannerCTA({ sourcePage = "hosur-hub", plotL, plotW }: Hosu
           className="font-mono text-[11px] uppercase tracking-[0.2em] mb-4"
           style={{ color: "var(--accent)" }}
         >
-          Free estimate — No sign-up
+          Free estimate · No sign-up
         </p>
         <h2
           className="font-serif mb-3"
@@ -104,7 +104,7 @@ export function HosurPlannerCTA({ sourcePage = "hosur-hub", plotL, plotW }: Hosu
           style={{ fontSize: "18px", lineHeight: 1.7, color: "var(--text-secondary)" }}
         >
           Select your home type to get a Hosur-specific cost estimate in under 2 minutes.
-          Hosur rates pre-loaded — no city selection needed.
+          Hosur rates pre-loaded. No city selection needed.
         </p>
       </div>
 

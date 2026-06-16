@@ -117,7 +117,7 @@ const INTERNAL_LINKS = [
     href: "/construction-cost/hosur/per-sqft",
     eyebrow: "Rate reference",
     title: "Construction cost per sqft",
-    desc: "Per-sqft rates by typology and tier — from basic to luxury villa.",
+    desc: "Per-sqft rates by typology and tier, from basic to luxury villa.",
   },
   {
     href: "/construction-cost/hosur/material-prices",
@@ -196,7 +196,7 @@ export default function CalculatorHosurPage() {
                 style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}
               >
                 A <strong>2,000 sqft standard independent house</strong> in Hosur in 2026 costs{" "}
-                <strong>₹36,00,000</strong> at the average rate of ₹1,800 per sqft. The range is ₹33,00,000 to ₹39,00,000 depending on site and design complexity. Structure and foundation alone are ₹12,96,000 — 36% of the budget.
+                <strong>₹36,00,000</strong> at the average rate of ₹1,800 per sqft. The range is ₹33,00,000 to ₹39,00,000 depending on site and design complexity. Structure and foundation alone are ₹12,96,000, which is 36% of the budget.
               </p>
             </div>
           </AnimateIn>

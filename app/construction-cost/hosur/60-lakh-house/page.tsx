@@ -89,7 +89,7 @@ const RATE_TIERS = [
     rateMax: TIER_RATES.premium.max,
     buaMin: 2068,
     buaMax: 2400,
-    desc: "Jaquar, Somany Duragres, Legrand switches. A smaller but significantly better-finished home.",
+    desc: "Jaquar, Somany Duragres, Legrand switches. A smaller but much better-finished home.",
   },
   {
     key: "luxury",
@@ -106,7 +106,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is the difference between ₹50 lakh and ₹60 lakh construction in Hosur?",
     answer:
-      "The extra ₹10 lakh opens two paths. On the first path, you keep standard quality and build a larger home — 2,500 to 2,857 sqft instead of 2,083 to 2,380 sqft. That extra 400 to 500 sqft is meaningful: it is the difference between a compact 3 BHK and a proper 3 BHK with a study or a pooja room. On the second path, you keep the same BUA and step up to premium quality — Jaquar fittings, Somany Duragres tile, Legrand electrical, and a better elevation finish. Most families with a ₹60 lakh budget choose the first path unless they are building a forever home they intend to live in for 20+ years.",
+      "The extra ₹10 lakh opens two paths. On the first path, you keep standard quality and build a larger home: 2,500 to 2,857 sqft instead of 2,083 to 2,380 sqft. That extra 400 to 500 sqft is meaningful: it is the difference between a compact 3 BHK and a proper 3 BHK with a study or a pooja room. On the second path, you keep the same BUA and step up to premium quality: Jaquar fittings, Somany Duragres tile, Legrand electrical, and a better elevation finish. Most families with a ₹60 lakh budget choose the first path unless they are building a forever home they intend to live in for 20+ years.",
   },
   {
     question: "Can I get premium quality materials within a ₹60 lakh budget?",
@@ -116,12 +116,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What plot and configuration works well at ₹60 lakh?",
     answer:
-      "A 30x50 plot with a G+1 at standard quality is an excellent fit for ₹60 lakh. Ground coverage at 65% gives 975 sqft per floor, and a G+1 delivers around 1,950 sqft of BUA — well within the budget at standard rates. A 40x50 plot works too, giving up to 1,300 sqft per floor and 2,600 sqft for G+1. For premium quality, a 30x40 plot with 1,500–1,600 sqft BUA gives you a tight but well-finished home without overspending on civil work.",
+      "A 30x50 plot with a G+1 at standard quality is an excellent fit for ₹60 lakh. Ground coverage at 65% gives 975 sqft per floor, and a G+1 delivers around 1,950 sqft of BUA, well within the budget at standard rates. A 40x50 plot works too, giving up to 1,300 sqft per floor and 2,600 sqft for G+1. For premium quality, a 30x40 plot with 1,500–1,600 sqft BUA gives you a tight but well-finished home without overspending on civil work.",
   },
   {
     question: "Is it better to build standard on a larger plot or premium on a smaller one?",
     answer:
-      "It depends entirely on how long you plan to live there and what matters more to you — space or finish quality. Standard quality on a larger plot (say, 2,500 sqft BUA) gives the family more room to live, work, and grow. Premium quality on a smaller plot (say, 2,000 sqft BUA) gives you a home that looks and feels significantly better, is easier to maintain, and is likely to hold its value better. If you are building for 20+ years and care about daily quality of life, premium on a smaller plot is worth considering seriously.",
+      "It depends entirely on how long you plan to live there and what matters more to you: space or finish quality. Standard quality on a larger plot (say, 2,500 sqft BUA) gives the family more room to live, work, and grow. Premium quality on a smaller plot (say, 2,000 sqft BUA) gives you a home that looks and feels much better, is easier to maintain, and is likely to hold its value better. If you are building for 20+ years and care about daily quality of life, premium on a smaller plot is worth considering seriously.",
   },
   {
     question: "What does ₹60 lakh cover in terms of MEP and finishes?",
@@ -158,7 +158,7 @@ const INTERNAL_LINKS = [
     href: "/construction-cost/hosur/1-crore-house",
     eyebrow: "Budget above",
     title: "₹1 crore house in Hosur",
-    desc: "What a significantly larger budget unlocks in Hosur.",
+    desc: "What a much larger budget unlocks in Hosur.",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function SixtyLakhHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              At ₹60 lakh you can choose standard quality on a larger plot or step into premium materials — here is what each path delivers.
+              At ₹60 lakh you can choose standard quality on a larger plot or step into premium materials. Here is what each path delivers.
             </p>
 
             {/* Quick Answer Box */}
@@ -223,7 +223,7 @@ export default function SixtyLakhHosurPage() {
                 Quick answer
               </p>
               <p className="font-sans" style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}>
-                With <strong>₹60 lakh</strong> in Hosur in 2026 you can build roughly <strong>2,500 to 2,857 sq ft</strong> at standard quality. At basic quality the range stretches to <strong>3,243 sq ft</strong> — large enough for a 4 BHK G+1. Premium finish limits you to <strong>2,068–2,400 sq ft</strong> with Jaquar fittings, Somany tile, and a designed elevation. The decision between standard-larger and premium-smaller is the defining choice at this budget level.
+                With <strong>₹60 lakh</strong> in Hosur in 2026 you can build roughly <strong>2,500 to 2,857 sq ft</strong> at standard quality. At basic quality the range stretches to <strong>3,243 sq ft</strong>, large enough for a 4 BHK G+1. Premium finish limits you to <strong>2,068–2,400 sq ft</strong> with Jaquar fittings, Somany tile, and a designed elevation. The decision between standard-larger and premium-smaller is the defining choice at this budget level.
               </p>
             </div>
           </AnimateIn>
@@ -350,7 +350,7 @@ export default function SixtyLakhHosurPage() {
                 Get a precise estimate for your ₹60 lakh build
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "500px" }}>
-                Enter your plot dimensions, floor count, and quality preference. Get a detailed cost range drawn from verified Hosur rates — including MEP, finishes, and contingency.
+                Enter your plot dimensions, floor count, and quality preference. Get a detailed cost range drawn from verified Hosur rates, including MEP, finishes, and contingency.
               </p>
               <ul className="mb-7 space-y-2">
                 {[
@@ -399,19 +399,19 @@ export default function SixtyLakhHosurPage() {
           <div className="space-y-8 max-w-2xl">
             <AnimateIn direction="up" delay={0.05}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                At ₹60 lakh, you are at the entry point of premium-quality construction in Hosur. This is the budget where a genuine quality decision opens up. Standard quality gives you 2,500 to 2,857 sqft — enough for a 3 or 4 BHK G+1 on a 30x50 or 40x50 plot with full fittings. Premium quality, at rates of ₹2,500 to ₹2,900 per sqft, gives you 2,068 to 2,400 sqft with Jaquar sanitary, Somany Duragres floor tile, Legrand switches, and a properly designed exterior elevation. The trade is clear: about 400 sqft less space in exchange for a meaningfully better material and finish quality throughout.
+                At ₹60 lakh, you are at the entry point of premium-quality construction in Hosur. This is the budget where a genuine quality decision opens up. Standard quality gives you 2,500 to 2,857 sqft, enough for a 3 or 4 BHK G+1 on a 30x50 or 40x50 plot with full fittings. Premium quality, at rates of ₹2,500 to ₹2,900 per sqft, gives you 2,068 to 2,400 sqft with Jaquar sanitary, Somany Duragres floor tile, Legrand switches, and a properly designed exterior elevation. The trade is clear: about 400 sqft less space in exchange for a meaningfully better material and finish quality throughout.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.1}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                This budget is common among buyers who have already invested ₹40–₹50 lakh in a 40x60 or 30x50 plot and want a home they will live in for 20 years or more. At ₹60 lakh, the upgrade from standard to premium is a matter of reducing BUA by roughly 400 sqft but gaining materials that perform better over time — porcelain that does not fade, chrome fittings that do not corrode in two years, electrical switches that still look good after a decade. For a long-term home, the premium path is often the wiser financial decision. For a first home with young children and growing space needs, standard on a larger footprint makes equal sense.
+                This budget is common among buyers who have already invested ₹40–₹50 lakh in a 40x60 or 30x50 plot and want a home they will live in for 20 years or more. At ₹60 lakh, the upgrade from standard to premium is a matter of reducing BUA by roughly 400 sqft but gaining materials that perform better over time: porcelain that does not fade, chrome fittings that do not corrode in two years, electrical switches that still look good after a decade. For a long-term home, the premium path is often the wiser financial decision. For a first home with young children and growing space needs, standard on a larger footprint makes equal sense.
               </p>
             </AnimateIn>
 
             <AnimateIn direction="up" delay={0.15}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                At basic quality, ₹60 lakh can build up to 3,243 sqft — large enough for a 4 BHK G+1 with a servant quarter on a 30x50 or 40x50 plot. This option is less commonly chosen at ₹60 lakh because the quality gap between basic and standard is visible in day-to-day use, and the additional space rarely justifies it. The most practical use of this budget remains standard quality on a 30x50 or 40x50 plot, with a proper 3–4 BHK configuration, two-car parking provision, and a small garden or sit-out area. That configuration, built well, holds its value and remains liveable for a generation.
+                At basic quality, ₹60 lakh can build up to 3,243 sqft, large enough for a 4 BHK G+1 with a servant quarter on a 30x50 or 40x50 plot. This option is less commonly chosen at ₹60 lakh because the quality gap between basic and standard is visible in day-to-day use, and the additional space rarely justifies it. The most practical use of this budget remains standard quality on a 30x50 or 40x50 plot, with a proper 3–4 BHK configuration, two-car parking provision, and a small garden or sit-out area. That configuration, built well, holds its value and remains liveable for a generation.
               </p>
             </AnimateIn>
           </div>
@@ -432,7 +432,7 @@ export default function SixtyLakhHosurPage() {
               className="font-serif mb-10"
               style={{ fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}
             >
-              ₹60 lakh in Hosur — answered
+              ₹60 lakh in Hosur: answered
             </h2>
           </AnimateIn>
           <FAQBlock items={FAQ_ITEMS} schemaId="hosur-60l-faq" />
@@ -577,7 +577,7 @@ export default function SixtyLakhHosurPage() {
                 Get your ₹60 lakh estimate
               </h2>
               <p className="font-sans mb-8 mx-auto" style={{ fontSize: "18px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px" }}>
-                Five questions. A cost range, material quantities, and a payment timeline — built from Hosur BOQs.
+                Five questions. A cost range, material quantities, and a payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href="/plan?city=hosur&from=hosur-60lakh-footer"

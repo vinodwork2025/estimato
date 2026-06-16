@@ -113,12 +113,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is the cost to build a villa in Hosur in 2026?",
     answer:
-      "A standard-quality villa in Hosur costs between ₹37.8 lakh and ₹84 lakh for a built-up area of 1,800 to 3,500 sqft, based on a rate of ₹2,100 to ₹2,400 per sqft. Premium villas in the same BUA range run ₹45 lakh to ₹101.5 lakh. Most Hosur villas are built at premium or luxury tier — the basic rate is rarely appropriate for a villa build.",
+      "A standard-quality villa in Hosur costs between ₹37.8 lakh and ₹84 lakh for a built-up area of 1,800 to 3,500 sqft, based on a rate of ₹2,100 to ₹2,400 per sqft. Premium villas in the same BUA range run ₹45 lakh to ₹101.5 lakh. Most Hosur villas are built at premium or luxury tier. The basic rate is rarely appropriate for a villa build.",
   },
   {
     question: "What defines a villa vs an independent house in Hosur?",
     answer:
-      "In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more (typically 40x45 or larger), built with a defined compound wall, gate, driveway, and higher room heights of 10 to 11 feet. An independent house is a standalone home too, but typically on a smaller plot (30x40 or 20x30), with standard ceiling heights of 9.5 feet and a simpler elevation. A 30x40 plot with a standard G+1 is an independent house — not a villa.",
+      "In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more (typically 40x45 or larger), built with a defined compound wall, gate, driveway, and higher room heights of 10 to 11 feet. An independent house is a standalone home too, but typically on a smaller plot (30x40 or 20x30), with standard ceiling heights of 9.5 feet and a simpler elevation. A 30x40 plot with a standard G+1 is an independent house, not a villa.",
   },
   {
     question: "What plot size do I need for a villa in Hosur?",
@@ -128,17 +128,17 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What quality tier is typical for villas in Hosur?",
     answer:
-      "Most villa builds in Hosur in 2026 are at premium or luxury tier. Building a villa at basic quality — at ₹1,850 to ₹2,050 per sqft — defeats the purpose of the form factor. The structural requirements (higher ceiling heights, compound wall, gate, wider driveway) already push costs above the basic threshold. Standard is the absolute floor for a villa that will hold its value.",
+      "Most villa builds in Hosur in 2026 are at premium or luxury tier. Building a villa at basic quality (at ₹1,850 to ₹2,050 per sqft) defeats the purpose of the form factor. The structural requirements (higher ceiling heights, compound wall, gate, wider driveway) already push costs above the basic threshold. Standard is the absolute floor for a villa that will hold its value.",
   },
   {
     question: "What are the extra costs in a villa build that a standard house does not have?",
     answer:
-      "Four costs stand out. First, higher ceiling height (10 to 11 ft vs 9.5 ft standard) adds around 4% to structural cost. Second, exterior elevation treatments — cladding, ACP panels, feature walls — add ₹1.5 to ₹4 lakh. Third, the compound wall and gate add ₹3 to ₹8 lakh depending on perimeter length and design. Fourth, landscaping is a separate line item that most villa builders underestimate: a basic garden runs ₹2 to ₹6 lakh and is not included in civil contractor quotes.",
+      "Four costs stand out. First, higher ceiling height (10 to 11 ft vs 9.5 ft standard) adds around 4% to structural cost. Second, exterior elevation treatments (cladding, ACP panels, feature walls) add ₹1.5 to ₹4 lakh. Third, the compound wall and gate add ₹3 to ₹8 lakh depending on perimeter length and design. Fourth, landscaping is a separate line item that most villa builders underestimate: a basic garden runs ₹2 to ₹6 lakh and is not included in civil contractor quotes.",
   },
   {
     question: "How long does it take to build a villa in Hosur?",
     answer:
-      "A 2,000 to 2,800 sqft villa at premium quality takes 12 to 16 months from foundation to handover. Foundation and structure take 14 to 16 weeks for a villa given the larger footprint and higher ceiling heights. Brickwork and plastering add another 5 to 7 weeks. Finishing — where most of the quality investment shows — takes 14 to 18 weeks. Add 4 to 6 weeks for HTM approvals and material lead times for premium fittings.",
+      "A 2,000 to 2,800 sqft villa at premium quality takes 12 to 16 months from foundation to handover. Foundation and structure take 14 to 16 weeks for a villa given the larger footprint and higher ceiling heights. Brickwork and plastering add another 5 to 7 weeks. Finishing (where most of the quality investment shows) takes 14 to 18 weeks. Add 4 to 6 weeks for HTM approvals and material lead times for premium fittings.",
   },
 ];
 
@@ -153,7 +153,7 @@ const INTERNAL_LINKS = [
     href: "/construction-cost/hosur/40x60",
     eyebrow: "Plot size",
     title: "40×60 plot in Hosur",
-    desc: "Cost breakdown for a 40×60 plot — a common villa plot size in Hosur.",
+    desc: "Cost breakdown for a 40×60 plot, a common villa plot size in Hosur.",
   },
   {
     href: "/construction-cost/hosur",
@@ -263,7 +263,7 @@ export default function VillaHosurPage() {
               Construction rates by quality tier
             </h2>
             <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Cost ranges shown are for villa BUA of 1,800 to 3,500 sqft at each rate tier. Civil and structural only — interiors are separate.
+              Cost ranges shown are for villa BUA of 1,800 to 3,500 sqft at each rate tier. Civil and structural only. Interiors are separate.
             </p>
           </AnimateIn>
 
@@ -317,7 +317,7 @@ export default function VillaHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Imported stone, designer lighting, fully automated systems. No published rate applies at this tier — each project is quoted from a full design brief.
+                    Imported stone, designer lighting, fully automated systems. No published rate applies at this tier. Each project is quoted from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=villa&from=hosur-villa-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
                     Speak to Design Intend
@@ -351,7 +351,7 @@ export default function VillaHosurPage() {
                 Get a personalised villa estimate
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Five questions about your plot, configuration, and quality level. You get a full cost range with the details below — no sign-up required.
+                Five questions about your plot, configuration, and quality level. You get a full cost range with the details below. No sign-up required.
               </p>
               <ul className="mb-8 space-y-2">
                 {["Construction cost range", "Cost per sq ft", "BOQ summary", "Payment timeline", "Budget guidance"].map((item) => (
@@ -382,13 +382,13 @@ export default function VillaHosurPage() {
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more — typically a 40x45 or larger footprint — with a defined compound wall and gate, a driveway wide enough for two cars, and room heights of 10 to 11 feet rather than the standard 9.5 feet. The elevated ceiling alone adds around 4% to structural cost. The compound wall and gate add another ₹3 to ₹8 lakh depending on the perimeter length and gate design. External elevation treatments — cladding, ACP panels, feature walls — add ₹1.5 to ₹4 lakh on top of the base rate. None of these line items show up in a basic contractor quote.
+                In Hosur, a villa is a standalone home on a plot of 1,800 sqft or more (typically a 40x45 or larger footprint), with a defined compound wall and gate, a driveway wide enough for two cars, and room heights of 10 to 11 feet rather than the standard 9.5 feet. The elevated ceiling alone adds around 4% to structural cost. The compound wall and gate add another ₹3 to ₹8 lakh depending on the perimeter length and gate design. External elevation treatments (cladding, ACP panels, feature walls) add ₹1.5 to ₹4 lakh on top of the base rate. None of these line items show up in a basic contractor quote.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                The typical villa buyer in Hosur in 2026 is an NRI or a senior engineer at one of the semiconductor or EV companies in the Hosur zone, buying a 40x60 or 50x80 plot on the Rayakottai or Doddaballapur side roads, building a 4 to 5 BHK for end-use or for future family occupation. Most of these projects run at premium tier. Building a villa at basic quality misses the point of the form — the structural demands of higher ceilings and a larger footprint already put the cost above basic, and the finish quality is what makes a villa hold its value on resale.
+                The typical villa buyer in Hosur in 2026 is an NRI or a senior engineer at one of the semiconductor or EV companies in the Hosur zone, buying a 40x60 or 50x80 plot on the Rayakottai or Doddaballapur side roads, building a 4 to 5 BHK for end-use or for future family occupation. Most of these projects run at premium tier. Building a villa at basic quality misses the point of the form. The structural demands of higher ceilings and a larger footprint already put the cost above basic, and the finish quality is what makes a villa hold its value on resale.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                One cost that most villa budgets miss entirely is landscaping. A basic garden — lawn, border planting, a few feature trees, and a simple pathway — runs ₹2 to ₹6 lakh and is not included in any civil contractor quote. The most common Hosur villa configuration is G+1, 4 BHK with a servant room, 2-car parking, and a BUA of 1,800 to 3,000 sqft at standard or premium quality. That puts the cost between ₹37.8 lakh at the low end and ₹87 lakh at the high end before landscaping and interiors.
+                One cost that most villa budgets miss entirely is landscaping. A basic garden (lawn, border planting, a few feature trees, and a simple pathway) runs ₹2 to ₹6 lakh and is not included in any civil contractor quote. The most common Hosur villa configuration is G+1, 4 BHK with a servant room, 2-car parking, and a BUA of 1,800 to 3,000 sqft at standard or premium quality. That puts the cost between ₹37.8 lakh at the low end and ₹87 lakh at the high end before landscaping and interiors.
               </p>
             </div>
           </AnimateIn>

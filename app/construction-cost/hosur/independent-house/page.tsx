@@ -113,7 +113,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is the cost to build an independent house in Hosur in 2026?",
     answer:
-      "A standard-quality independent house in Hosur costs between ₹16.8 lakh and ₹48 lakh for a built-up area of 800 to 2,000 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. The most common Hosur build — a G+1 on a 30x40 plot with 1,440 sqft BUA at standard quality — lands between ₹30 lakh and ₹35 lakh for civil and structural work before interiors.",
+      "A standard-quality independent house in Hosur costs between ₹16.8 lakh and ₹48 lakh for a built-up area of 800 to 2,000 sqft, at a rate of ₹2,100 to ₹2,400 per sqft. The most common Hosur build, a G+1 on a 30x40 plot with 1,440 sqft BUA at standard quality, lands between ₹30 lakh and ₹35 lakh for civil and structural work before interiors.",
   },
   {
     question: "What is the standard configuration for an independent house in Hosur?",
@@ -128,17 +128,17 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How long does construction take for a typical Hosur independent house?",
     answer:
-      "A standard G+1 independent house of 1,200 to 1,500 sqft in Hosur takes 9 to 11 months from foundation to handover. Foundation and structure take 10 to 12 weeks. Brickwork and plastering add 4 to 5 weeks. Finishing — flooring, painting, fixtures, and fit-out — takes 10 to 14 weeks. Add 2 to 4 weeks for HTM approval, material lead times, and any weather pauses during the northeast monsoon in October and November.",
+      "A standard G+1 independent house of 1,200 to 1,500 sqft in Hosur takes 9 to 11 months from foundation to handover. Foundation and structure take 10 to 12 weeks. Brickwork and plastering add 4 to 5 weeks. Finishing (flooring, painting, fixtures, and fit-out) takes 10 to 14 weeks. Add 2 to 4 weeks for HTM approval, material lead times, and any weather pauses during the northeast monsoon in October and November.",
   },
   {
     question: "What are the most common mistakes first-time builders make in Hosur?",
     answer:
-      "Three mistakes come up repeatedly. First, leaving the elevation treatment for later — a decision that saves ₹80,000 to ₹1.5 lakh now but costs significantly more to add after the structure is complete, since scaffolding has to be re-erected. Second, not deciding on flooring before the structure starts — the slab finish affects flooring costs downstream. Third, skipping the modular kitchen at build time — retrofitting a modular kitchen after plastering requires breaking walls for plumbing and electrical, adding 30 to 40% to the cost vs planning it into the original drawing.",
+      "Three mistakes come up repeatedly. First, leaving the elevation treatment for later, a decision that saves ₹80,000 to ₹1.5 lakh now but costs a great deal more to add after the structure is complete, since scaffolding has to be re-erected. Second, not deciding on flooring before the structure starts. The slab finish affects flooring costs downstream. Third, skipping the modular kitchen at build time. Retrofitting a modular kitchen after plastering requires breaking walls for plumbing and electrical, adding 30 to 40% to the cost vs planning it into the original drawing.",
   },
   {
     question: "How is an independent house different from a villa in Hosur?",
     answer:
-      "An independent house is a standalone home on its own plot — the defining feature is that it does not share walls with neighbors, unlike a rowhouse. A villa is also a standalone home, but the term implies a larger scale (40x50 plot or more), higher ceiling heights of 10 to 11 feet, a defined compound with a gated driveway, and premium or luxury finish quality. In Hosur, an independent house is typically on a 600 to 1,500 sqft plot at standard quality. A villa starts at 1,800 sqft plot and almost always runs at premium or luxury tier.",
+      "An independent house is a standalone home on its own plot. The defining feature is that it does not share walls with neighbors, unlike a rowhouse. A villa is also a standalone home, but the term implies a larger scale (40x50 plot or more), higher ceiling heights of 10 to 11 feet, a defined compound with a gated driveway, and premium or luxury finish quality. In Hosur, an independent house is typically on a 600 to 1,500 sqft plot at standard quality. A villa starts at 1,800 sqft plot and almost always runs at premium or luxury tier.",
   },
 ];
 
@@ -221,7 +221,7 @@ export default function IndependentHouseHosurPage() {
               className="font-sans mb-8"
               style={{ fontSize: "clamp(16px, 2vw, 18px)", lineHeight: 1.7, color: "var(--text-secondary)", maxWidth: "600px" }}
             >
-              Cost ranges for independent house construction in Hosur — the most common build type in the city. BOQ-verified rates for 800 to 2,000 sqft BUA across all quality tiers.
+              Cost ranges for independent house construction in Hosur, the most common build type in the city. BOQ-verified rates for 800 to 2,000 sqft BUA across all quality tiers.
               <span className="font-mono text-[13px] ml-2" style={{ color: "var(--text-tertiary)" }}>As of 2026.</span>
             </p>
 
@@ -237,7 +237,7 @@ export default function IndependentHouseHosurPage() {
                 className="font-sans"
                 style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.8, color: "var(--text-primary)" }}
               >
-                An independent house in Hosur in 2026 costs <strong>₹16.8 lakh to ₹48 lakh</strong> at standard quality for a built-up area of 800 to 2,000 sqft. The most common build — a G+1 on a 30x40 plot with 1,440 sqft BUA — lands between{" "}
+                An independent house in Hosur in 2026 costs <strong>₹16.8 lakh to ₹48 lakh</strong> at standard quality for a built-up area of 800 to 2,000 sqft. The most common build, a G+1 on a 30x40 plot with 1,440 sqft BUA, lands between{" "}
                 <strong>₹30 lakh and ₹35 lakh</strong> at standard quality. The base rate in Hosur is{" "}
                 <strong>₹2,100–₹2,400 per sqft for standard</strong>, with a 1.00x city multiplier. Premium builds run ₹2,500–₹2,900 per sqft, adding up to{" "}
                 <strong>₹20 lakh to ₹58 lakh</strong> for the same BUA range.
@@ -262,7 +262,7 @@ export default function IndependentHouseHosurPage() {
               Construction rates by quality tier
             </h2>
             <p className="font-sans mb-10" style={{ fontSize: "18px", color: "var(--text-secondary)", maxWidth: "560px", lineHeight: 1.65 }}>
-              Cost ranges shown are for independent house BUA of 800 to 2,000 sqft at each quality tier. Civil and structural work only — interiors are separate.
+              Cost ranges shown are for independent house BUA of 800 to 2,000 sqft at each quality tier. Civil and structural work only. Interiors are separate.
             </p>
           </AnimateIn>
 
@@ -310,7 +310,7 @@ export default function IndependentHouseHosurPage() {
                 </div>
                 <div className="md:pt-1">
                   <p className="font-sans mb-3" style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                    Fully custom build. Imported stone, Lutron lighting, home automation, and fully furnished interiors. No published rate — priced from a full design brief.
+                    Fully custom build. Imported stone, Lutron lighting, home automation, and fully furnished interiors. No published rate. Priced from a full design brief.
                   </p>
                   <Link href="/plan?city=hosur&type=contemporary&from=hosur-indhouse-ultra" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-70" style={{ color: "var(--accent)" }}>
                     Speak to Design Intend
@@ -344,7 +344,7 @@ export default function IndependentHouseHosurPage() {
                 Get a personalised estimate for your Hosur home
               </h2>
               <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Tell us your plot size, number of floors, and quality level. You get a full cost range with the details below — no sign-up needed.
+                Tell us your plot size, number of floors, and quality level. You get a full cost range with the details below. No sign-up needed.
               </p>
               <ul className="mb-8 space-y-2">
                 {["Construction cost range", "Cost per sq ft", "BOQ summary", "Payment timeline", "Budget guidance"].map((item) => (
@@ -375,13 +375,13 @@ export default function IndependentHouseHosurPage() {
             </h2>
             <div className="space-y-6" style={{ maxWidth: "680px" }}>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                An independent house is the default residential build in Hosur — a standalone home on its own plot with its own compound and no shared walls with neighbors. This is what distinguishes it from a rowhouse (shared side walls) and from a villa (larger plot, premium finish, higher ceilings). Hosur's established residential areas — around SIPCOT, Mathigiri, and the older layouts near the bus stand — are almost entirely made up of independent houses on 600 to 2,000 sqft plots. The road infrastructure, water connections, and contractor ecosystems in these areas are all built around this form factor.
+                An independent house is the default residential build in Hosur: a standalone home on its own plot with its own compound and no shared walls with neighbors. This is what distinguishes it from a rowhouse (shared side walls) and from a villa (larger plot, premium finish, higher ceilings). Hosur's established residential areas (around SIPCOT, Mathigiri, and the older layouts near the bus stand) are almost entirely made up of independent houses on 600 to 2,000 sqft plots. The road infrastructure, water connections, and contractor ecosystems in these areas are all built around this form factor.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
                 The reference build for Hosur contractor quotes is a G+1, 3 BHK, standard quality, on a 30x40 plot with 1,440 sqft of built-up area. At ₹2,100 to ₹2,400 per sqft, that comes to ₹30.2 lakh to ₹34.6 lakh for civil work before interiors. Three decisions at this stage define how the budget moves: whether to invest in a quality elevation now or leave it for later, whether to do a full modular kitchen now or add it after, and whether to complete all flooring in the first construction phase or leave the upper floor in basic cement. Each of these deferred decisions costs more to fix later than to plan correctly from the start.
               </p>
               <p className="font-sans" style={{ fontSize: "19px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
-                Under HTM rules, a 30x40 plot has an FSI of 2.0, meaning you can build up to 2,400 sqft in total across all floors. Most standard independent houses use 1,200 to 1,500 sqft on a G+1 — 60% ground coverage, as permitted — which leaves significant headroom for a future third floor or an upper-floor extension as the family grows. This is one reason why the independent house remains the dominant form in Hosur: it is financeable in phases, extendable as income grows, and well-matched to the plot sizes available in the city's established layouts.
+                Under HTM rules, a 30x40 plot has an FSI of 2.0, meaning you can build up to 2,400 sqft in total across all floors. Most standard independent houses use 1,200 to 1,500 sqft on a G+1 (60% ground coverage, as permitted), which leaves a lot of headroom for a future third floor or an upper-floor extension as the family grows. This is one reason why the independent house remains the dominant form in Hosur: it is financeable in phases, extendable as income grows, and well-matched to the plot sizes available in the city's established layouts.
               </p>
             </div>
           </AnimateIn>

@@ -135,7 +135,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Is Hosur a good place to build for investment or end-use?",
     answer:
-      "Hosur has grown steadily, with semiconductor and electronics manufacturing expanding in the region. Construction and land costs remain lower than Bengaluru, which makes it practical for families working in Hosur's industrial and tech zones. Rental demand is rising. For end-use, infrastructure has improved significantly in the past three years and new township projects have raised quality standards across the area.",
+      "Hosur has grown steadily, with semiconductor and electronics manufacturing expanding in the region. Construction and land costs remain lower than Bengaluru, which makes it practical for families working in Hosur's industrial and tech zones. Rental demand is rising. For end-use, infrastructure has improved a great deal in the past three years and new township projects have raised quality standards across the area.",
   },
 ];
 
@@ -344,7 +344,7 @@ export default function HosurHubPage() {
                 <strong>₹25 to ₹29 lakhs</strong> at current Hosur rates before
                 interiors. Premium builds run{" "}
                 <strong>₹2,500 to ₹2,900 per sq ft</strong>. Hosur uses a 1.00x
-                base multiplier — it is the reference city in our rate database.
+                base multiplier (it is the reference city in our rate database).
               </p>
             </div>
           </AnimateIn>
@@ -520,7 +520,7 @@ export default function HosurHubPage() {
                     style={{ fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.65 }}
                   >
                     Imported stone, Kohler or Duravit sanitary, Lutron
-                    lighting. No standard rate applies — every project is
+                    lighting. No standard rate applies. Every project is
                     priced from a full design brief.
                   </p>
                   <Link
@@ -1033,7 +1033,7 @@ export default function HosurHubPage() {
                   className="font-sans"
                   style={{ fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.6 }}
                 >
-                  What you can build in Hosur with a ₹50 lakh budget — size, quality, and trade-offs.
+                  What you can build in Hosur with a ₹50 lakh budget: size, quality, and trade-offs.
                 </p>
               </Link>
             </StaggerItem>
@@ -1076,7 +1076,7 @@ export default function HosurHubPage() {
                 }}
               >
                 Five questions. A cost range, material quantities, and a
-                payment timeline — built from Hosur BOQs.
+                payment timeline, built from Hosur BOQs.
               </p>
               <Link
                 href="/plan?city=hosur&from=hosur-footer"
