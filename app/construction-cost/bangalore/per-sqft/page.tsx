@@ -7,6 +7,7 @@ import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/shared/AnimateIn";
 import { SEED_PARTNERS } from "@/data/partners";
 import { BANGALORE_RATES } from "@/lib/data/bangalore-plot-pages";
+import { BangalorePlannerCTA } from "../BangalorePlannerCTA";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimato.in";
 const PAGE_URL = `${SITE_URL}/construction-cost/bangalore/per-sqft`;
@@ -333,6 +334,15 @@ export default function BangalorePerSqftPage() {
         </section>
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
+
+        <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
+
+        {/* ── CALCULATOR WIDGET ─────────────────────────────────────────────── */}
+        <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20">
+          <AnimateIn direction="up">
+            <BangalorePlannerCTA sourcePage="blr-per-sqft" />
+          </AnimateIn>
+        </section>
 
         {/* ── FAQ ──────────────────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="faq-heading">

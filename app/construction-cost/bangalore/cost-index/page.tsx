@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/shared/AnimateIn";
+import { BangalorePlannerCTA } from "../BangalorePlannerCTA";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -628,6 +629,15 @@ export default function BangaloreCostIndexPage() {
         </section>
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
+
+        <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
+
+        {/* ── CALCULATOR WIDGET ─────────────────────────────────────────────── */}
+        <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20">
+          <AnimateIn direction="up">
+            <BangalorePlannerCTA sourcePage="blr-cost-index" />
+          </AnimateIn>
+        </section>
 
         {/* ── FAQ ──────────────────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20" aria-labelledby="faq-heading">

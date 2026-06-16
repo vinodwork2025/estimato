@@ -7,6 +7,7 @@ import { FAQBlock, type FAQItem } from "@/components/shared/FAQBlock";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/shared/AnimateIn";
 import { SEED_PARTNERS } from "@/data/partners";
 import { BANGALORE_RATES } from "@/lib/data/bangalore-plot-pages";
+import { BangalorePlannerCTA } from "./BangalorePlannerCTA";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -384,33 +385,10 @@ export default function BangaloreHubPage() {
 
         <div className="max-w-5xl mx-auto px-5 md:px-10"><div className="h-px" style={{ background: "var(--border)" }} /></div>
 
-        {/* ── ESTIMATOR CTA ─────────────────────────────────────────────────── */}
+        {/* ── CALCULATOR WIDGET ─────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-5 md:px-10 py-14 md:py-20">
           <AnimateIn direction="up">
-            <div className="rounded-sm p-7 md:p-10" style={{ border: "1px solid var(--border)", background: "var(--bg-primary)" }}>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--accent)" }}>Free estimate tool</p>
-              <h2 className="font-serif mb-3" style={{ fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 400, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-                Get a Bangalore-specific cost estimate
-              </h2>
-              <p className="font-sans mb-6" style={{ fontSize: "18px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "520px" }}>
-                Five questions. A personalised cost range, material quantities, and a payment timeline
-                built from real Bangalore BOQs. No sign-up required. Bangalore rates pre-loaded.
-              </p>
-              <ul className="mb-8 space-y-2">
-                {["Construction cost range by tier", "Cost per sqft for your build", "BOQ summary with key quantities", "Payment milestone timeline", "Comparison with Hosur rates"].map((item) => (
-                  <li key={item} className="flex items-center gap-3 font-mono text-[12px]" style={{ color: "var(--text-secondary)" }}>
-                    <span style={{ color: "var(--accent)" }}>+</span> {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/plan?city=bangalore&from=blr-hub-cta"
-                className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-opacity hover:opacity-85"
-                style={{ background: "var(--text-primary)", color: "#ffffff", borderRadius: "2px" }}
-              >
-                Start Bangalore estimate →
-              </Link>
-            </div>
+            <BangalorePlannerCTA />
           </AnimateIn>
         </section>
 
