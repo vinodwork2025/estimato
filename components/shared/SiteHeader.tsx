@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { EstimateLogo } from "@/components/shared/EstimateLogo";
 
 const NAV_LINKS = [
-  { href: "/construction-cost/hosur", label: "Hosur costs" },
+  { href: "/construction-cost", label: "Construction costs" },
   { href: "/about", label: "About" },
   { href: "/for-architects", label: "For architects" },
 ];

@@ -873,25 +873,63 @@ export default function HomePage() {
 
                   </p>
 
-                  <Link
+                  <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
 
-                    href="/construction-cost/hosur"
+                    <Link
 
-                    className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors duration-200"
+                      href="/construction-cost/bangalore"
 
-                    style={{ color: "var(--accent)" }}
+                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors duration-200"
 
-                  >
+                      style={{ color: "var(--accent)" }}
 
-                    View Hosur construction costs
+                    >
 
-                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
+                      Bangalore costs
 
-                      <path d="M1 4.5h10M7 1l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
 
-                    </svg>
+                        <path d="M1 4.5h10M7 1l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
 
-                  </Link>
+                      </svg>
+
+                    </Link>
+
+                    <Link
+
+                      href="/construction-cost/hosur"
+
+                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors duration-200"
+
+                      style={{ color: "var(--accent)" }}
+
+                    >
+
+                      Hosur costs
+
+                      <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
+
+                        <path d="M1 4.5h10M7 1l4 3.5-4 3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+
+                      </svg>
+
+                    </Link>
+
+                    <Link
+
+                      href="/construction-cost"
+
+                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors duration-200"
+
+                      style={{ color: "var(--text-secondary)" }}
+
+                    >
+
+                      See all cities →
+
+                    </Link>
+
+                  </div>
 
                 </AnimateIn>
 
@@ -1051,7 +1089,7 @@ export default function HomePage() {
 
                 <Link href="/for-architects" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">For architects</Link>
 
-                <Link href="/construction-cost/hosur" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Hosur costs</Link>
+                <Link href="/construction-cost" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Construction costs</Link>
 
                 <Link href="/plan" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Start planning</Link>
 
