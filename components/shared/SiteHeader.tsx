@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
@@ -9,10 +9,106 @@ import { EstimateLogo } from "@/components/shared/EstimateLogo";
 
 const NAV_LINKS = [
   { href: "/construction-cost", label: "Construction costs" },
-  { href: "/interior-cost-calculator", label: "Interior costs" },
   { href: "/about", label: "About" },
   { href: "/for-architects", label: "For architects" },
 ];
+
+const TOOLS_ITEMS = [
+  { href: "/interior-cost-calculator", label: "Interior cost calculator", desc: "Kitchen to curtains — full scope estimate" },
+  { href: "/building-material-prices", label: "Material price tracker",   desc: "Cement, steel, sand — verified monthly rates" },
+];
+
+function ToolsDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const isActive = TOOLS_ITEMS.some(t => pathname.startsWith(t.href));
+
+  useEffect(() => {
+    function onOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onOutside);
+    return () => document.removeEventListener("mousedown", onOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative hidden md:block">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="relative inline-flex items-center gap-1.5 text-[13.5px] font-medium tracking-[-0.01em] py-1 group"
+        style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 0" }}
+      >
+        <span className={`transition-colors duration-200 ${isActive ? "text-navy" : "text-text-secondary group-hover:text-navy"}`}>
+          Free tools
+        </span>
+        <svg
+          width="10" height="6" viewBox="0 0 10 6" fill="none"
+          className="transition-transform duration-200"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: isActive ? "#0E2146" : undefined }}
+        >
+          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        {/* Active underline */}
+        <span
+          className="absolute -bottom-0.5 left-0 h-px bg-navy transition-all duration-300 ease-out"
+          style={{ width: isActive ? "100%" : "0%" }}
+          aria-hidden="true"
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "absolute", top: "calc(100% + 12px)", right: 0,
+              minWidth: 260, background: "rgba(250,248,245,0.99)",
+              border: "1px solid rgba(226,221,212,0.9)",
+              borderRadius: 4, boxShadow: "0 8px 32px rgba(14,33,70,0.12)",
+              backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
+              overflow: "hidden", zIndex: 100,
+            }}
+          >
+            {/* Gold top bar */}
+            <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #C49A3C 30%, #C49A3C 70%, transparent)" }} />
+
+            <div style={{ padding: "6px 0" }}>
+              {TOOLS_ITEMS.map(item => {
+                const active = pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    style={{
+                      display: "block", padding: "11px 18px",
+                      background: active ? "rgba(196,154,60,0.06)" : "transparent",
+                      textDecoration: "none", transition: "background 120ms",
+                      borderLeft: active ? "2px solid #C49A3C" : "2px solid transparent",
+                    }}
+                    className="group/item hover:bg-[rgba(14,33,70,0.03)]"
+                  >
+                    <p className="font-sans" style={{ fontSize: 13, fontWeight: 600, color: active ? "#0E2146" : "var(--text-primary)", marginBottom: 2 }}>
+                      {item.label}
+                    </p>
+                    <p className="font-sans" style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.4 }}>
+                      {item.desc}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 function MagneticCTA({
   href,
@@ -102,7 +198,7 @@ export function SiteHeader({
 
       <div className={`${maxWidth} mx-auto px-6 h-full flex items-center justify-between`}>
 
-        {/* Left — logo, scales subtly on scroll */}
+        {/* Left — logo */}
         <motion.div
           animate={{ scale: scrolled ? 0.88 : 1 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -128,7 +224,6 @@ export function SiteHeader({
                 <span className={`transition-colors duration-200 ${active ? "text-navy" : "text-text-secondary group-hover:text-navy"}`}>
                   {label}
                 </span>
-                {/* Animated underline */}
                 <span
                   className="absolute -bottom-0.5 left-0 h-px bg-navy transition-all duration-300 ease-out"
                   style={{ width: active ? "100%" : "0%" }}
@@ -143,6 +238,8 @@ export function SiteHeader({
               </Link>
             );
           })}
+
+          {showNav && <ToolsDropdown />}
 
           <MagneticCTA href={ctaHref} label={ctaLabel} variant={ctaVariant} />
         </nav>
