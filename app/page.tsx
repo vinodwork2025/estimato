@@ -457,13 +457,13 @@ export default function HomePage() {
 
         <main>
 
-          {/* â”€â”€ Hero â”€â”€ */}
+          {/* â"€â"€ Hero â"€â"€ */}
 
           <HomeHero />
 
 
 
-          {/* â”€â”€ Three steps — architectural numerals â”€â”€ */}
+          {/* â"€â"€ Three steps — architectural numerals â"€â"€ */}
 
           <section className="py-28 md:py-36 px-6 bg-white border-t border-border" aria-labelledby="how-heading">
 
@@ -553,7 +553,7 @@ export default function HomePage() {
 
 
 
-          {/* â”€â”€ What you get — sticky editorial left, report mockup right â”€â”€ */}
+          {/* â"€â"€ What you get — sticky editorial left, report mockup right â"€â"€ */}
 
           <section className="py-28 md:py-36 px-6 bg-bg-primary border-t border-border" aria-labelledby="what-heading">
 
@@ -717,7 +717,7 @@ export default function HomePage() {
 
 
 
-          {/* â”€â”€ Why different — navy, 2×2 editorial grid â”€â”€ */}
+          {/* â"€â"€ Why different — navy, 2×2 editorial grid â"€â"€ */}
 
           <section className="py-28 md:py-36 px-6 bg-navy" aria-labelledby="why-heading">
 
@@ -815,7 +815,7 @@ export default function HomePage() {
 
 
 
-          {/* â”€â”€ Cities — editorial with large numeral â”€â”€ */}
+          {/* â"€â"€ Cities — editorial with large numeral â"€â"€ */}
 
           <section className="py-24 md:py-32 px-6 bg-white border-t border-border" aria-labelledby="cities-heading">
 
@@ -941,7 +941,52 @@ export default function HomePage() {
 
 
 
-          {/* â”€â”€ FAQ â”€â”€ */}
+          {/* ── Interior calculator promo ── */}
+
+          <section className="py-16 md:py-20 px-6 bg-bg-primary border-t border-border">
+
+            <div className="max-w-6xl mx-auto">
+
+              <AnimateIn>
+
+                <Link
+                  href="/interior-cost-calculator"
+                  className="group flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-sm p-8 md:p-10 border transition-colors duration-200 hover:border-accent"
+                  style={{ border: "1px solid var(--border)", background: "var(--bg-primary)" }}
+                >
+
+                  <div>
+
+                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--accent)" }}>
+                      New · Free tool
+                    </p>
+
+                    <p className="font-serif mb-2" style={{ fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.15, color: "var(--text-primary)" }}>
+                      Interior cost calculator
+                    </p>
+
+                    <p className="font-sans" style={{ fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.6, maxWidth: "52ch" }}>
+                      Estimate modular kitchen, wardrobes, flooring, false ceiling, and furniture costs for Bangalore and Hosur. Range shown instantly — no sign-up.
+                    </p>
+
+                  </div>
+
+                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] shrink-0 group-hover:gap-3 transition-all" style={{ color: "var(--accent)" }}>
+                    Try the calculator
+                    <svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4h9M7 1l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </div>
+
+                </Link>
+
+              </AnimateIn>
+
+            </div>
+
+          </section>
+
+
+
+          {/* â"€â"€ FAQ â"€â"€ */}
 
           <section className="py-20 md:py-28 px-6 bg-bg-primary border-t border-border" aria-labelledby="faq-heading">
 
@@ -979,7 +1024,7 @@ export default function HomePage() {
 
 
 
-          {/* â”€â”€ Final CTA — cinematic â”€â”€ */}
+          {/* â"€â"€ Final CTA — cinematic â"€â"€ */}
 
           <section className="py-36 px-6 bg-navy border-t border-white/8">
 
@@ -1061,7 +1106,7 @@ export default function HomePage() {
 
 
 
-        {/* â”€â”€ Footer â”€â”€ */}
+        {/* â"€â"€ Footer â"€â"€ */}
 
         <footer className="bg-navy border-t border-white/10 px-6 py-12">
 
@@ -1090,6 +1135,8 @@ export default function HomePage() {
                 <Link href="/for-architects" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">For architects</Link>
 
                 <Link href="/construction-cost" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Construction costs</Link>
+
+                <Link href="/interior-cost-calculator" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Interior costs</Link>
 
                 <Link href="/plan" className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 hover:text-white/90 transition-colors">Start planning</Link>
 
