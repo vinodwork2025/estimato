@@ -56,6 +56,12 @@ Estimato helps homeowners in Hosur and the Bengaluru region plan their construct
 - /interior-cost-calculator — Free interior cost estimator for Bangalore and Hosur. Inputs: city, property type, BHK, carpet area, current state (bare shell/semi-finished/renovation), scope (modular kitchen, wardrobes, false ceiling, painting, flooring, electrical, TV and storage, loose furniture, soft furnishings, lighting), finish level (Basic/Standard/Premium/Ultra Luxury). Returns a total cost range (min–max) and per-sqft equivalent. Ultra Luxury returns a custom-quote path only. Rates verified against Bangalore and Hosur designer quotes, 2026.
 - Interior rate benchmarks (Standard tier, Bangalore Urban, all scope): Modular kitchen ₹2.5L–₹4.5L · Wardrobes per bedroom ₹1.1L–₹2L · Flooring ₹150–₹300/sqft · Electrical ₹130–₹220/sqft · False ceiling ₹100–₹160/sqft (60% of carpet area) · TV and storage ₹80K–₹1.5L · Loose furniture ₹1.5L–₹3L · Soft furnishings ₹90K–₹1.6L · Lighting ₹80K–₹1.5L. Design and management fee 8–12% added when modular or furniture work is selected. City multipliers: Hosur 0.92 · Bangalore Outskirts 0.98 · Bangalore Urban 1.08.
 
+## Building material prices
+
+- /building-material-prices — Index of all cities with live material price data. Current cities: Hosur, Bangalore.
+- /building-material-prices/hosur — Building material prices in Hosur, June 2026. Updated monthly from Design Intend procurement records. Cement ₹370–₹390/bag · TMT steel ₹58–₹62/kg · M-sand ₹55–₹65/cft · River sand ₹65–₹80/cft · Aggregate 20mm ₹42–₹52/cft · Red bricks ₹8–₹10/piece · Concrete blocks 8 inch ₹40–₹48/piece. All prices ex-dealer, excluding GST (18%) and transport. Dataset schema present. MoM change tracked.
+- /building-material-prices/bangalore — Building material prices in Bangalore, June 2026. Updated monthly from Design Intend procurement records. Cement ₹380–₹420/bag · TMT steel ₹59–₹63/kg · M-sand ₹60–₹70/cft · River sand ₹70–₹90/cft · Aggregate 20mm ₹44–₹55/cft · Red bricks ₹9–₹11/piece · Concrete blocks 8 inch ₹42–₹52/piece. All prices ex-dealer, excluding GST (18%) and transport. Dataset schema present. MoM change tracked.
+
 ## City index
 
 - /construction-cost — City index listing all covered cities. Live: Bangalore, Hosur. Coming soon: Chennai, Coimbatore, Hyderabad, Pune.
