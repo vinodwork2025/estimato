@@ -9,6 +9,7 @@ import { EstimateLogo } from "@/components/shared/EstimateLogo";
 
 const NAV_LINKS = [
   { href: "/construction-cost", label: "Construction costs" },
+  { href: "/interior-cost-calculator", label: "Interior costs" },
   { href: "/about", label: "About" },
   { href: "/for-architects", label: "For architects" },
 ];
